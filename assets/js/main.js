@@ -51,7 +51,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (CONFIG.music) {
       document.getElementById('pill-music-title').textContent = CONFIG.music.title || "Red Cooper - On the Frost Bridge";
       if (CONFIG.music.src) {
-        bgmAudio.src = CONFIG.music.src;
+        const sourceEl = bgmAudio.querySelector('source');
+        if (sourceEl && sourceEl.getAttribute('src') !== CONFIG.music.src) {
+          sourceEl.src = CONFIG.music.src;
+          bgmAudio.load();
+        }
       }
     }
 

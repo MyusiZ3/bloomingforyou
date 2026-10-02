@@ -23,7 +23,7 @@ const CONFIG = {
   music: {
     title: "Red Cooper - On the Frost Bridge",
     subtitle: "Acoustic Piano & Strings",
-    src: "assets/audio/bgm.ogg",
+    src: "assets/audio/bgm.mp3",
     autoplayOnOpen: true,
   },
 
