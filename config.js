@@ -2,114 +2,119 @@
  * ========================================================
  * BLOOMING FOR YOU - CONFIGURATION FILE
  * ========================================================
- * Kamu bisa dengan mudah mengubah isi ucapan, nama, foto,
- * lagu, dan pesan rahasia di sini tanpa perlu mengubah HTML/CSS.
  */
 
 const CONFIG = {
   // Informasi Penerima
   recipient: {
     name: "Aliya",
-    nickname: "My Love",
-    envelopeLabel: "A Birthday Bouquet For",
-    waxSealInitials: "A & M", // Inisial pada segel lilin
+    nickname: "Sayang",
+    envelopeLabel: "Ada Kado Kecil Buat:",
+    waxSealInitials: "A & M",
   },
 
-  // Tanggal & Hari Spesial (Opsional untuk counter atau badge)
+  // Tagline & Tanggal
   dates: {
-    birthdayDate: "2026-10-02", // Format: YYYY-MM-DD
-    anniversaryDate: "2024-05-18", // Sesuaikan jika ada tanggal jadian
-    tagline: "Celebrating Another Year of Your Beautiful Bloom",
+    birthdayDate: "2026-10-02",
+    tagline: "Happy Birthday to the Prettiest Girl",
   },
 
   // Pengaturan Lagu (BGM)
   music: {
     title: "Red Cooper - On the Frost Bridge",
     subtitle: "Acoustic Piano & Strings",
-    // File audio default. Kamu bisa mengganti file ini di folder 'assets/audio/'
-    // atau mengganti source ke file MP3 lagumu sendiri!
     src: "assets/audio/bgm.ogg",
-    autoplayOnOpen: true, // Otomatis putar saat amplop dibuka
+    autoplayOnOpen: true,
   },
 
-  // Surat Ucapan Cinta & Ulang Tahun
+  // Surat Ucapan Ultah (Natural, santai, manis, dan tulus)
   letter: {
-    salutation: "Untuk Aliya tersayang,",
+    salutation: "Hai Aliya sayang,",
     paragraphs: [
-      "Selamat ulang tahun, cintaku. Di hari yang begitu istimewa ini, aku hanya ingin berhenti sejenak dari riuhnya dunia untuk merayakan satu hal yang paling aku syukuri: hadirnya kamu dalam hidupku.",
-      "Melihatmu tumbuh, tertawa, dan melangkah sejauh ini adalah salah satu pemandangan terindah yang pernah kumiliki. Terima kasih sudah menjadi sosok yang selalu menenangkan dengan senyum manismu, yang selalu tulus dalam setiap perhatian kecil, dan yang membuat hari-hari biasa terasa sangat berarti.",
-      "Bunga-bunga vintage di sini kupilih khusus untukmu—karena seperti bunga yang mekar abadi di atas kanvas waktu, doaku untuk bahagiamu, kesehatanmu, dan impian-impianmu tidak akan pernah layu.",
-      "Semoga di usiamu yang baru ini, semesta selalu melimpahkanmu hal-hal baik, ketenangan hati, dan kebahagiaan yang meluap-luap. Aku berjanji akan terus ada di sampingmu, menggenggam tanganmu di setiap musim yang akan kita lewati."
+      "Selamat ulang tahun yaa! Ga kerasa waktu jalan cepet banget, dan sekarang kamu udah nambah umur lagi.",
+      "Jujur aku bukan tipe orang yang pinter ngerangkai kata-kata puitis kek di novel atau quotes sosmed. Tapi yang jelas, aku bener-bener bersyukur dan seneng banget bisa ngerayain hari ulang tahunmu bareng kamu.",
+      "Makasih banyak yaa udah selalu ada, udah sabar sama aku, udah mau dengerin cerita-cerita randomku, dan makasih udah jadi orang yang selalu bisa bikin aku senyum bahkan pas hari-hariku lagi capek. Kamu yang kadang ngeselin tapi aslinya gemesin banget itu selalu jadi orang favoritku.",
+      "Di umurmu yang baru ini, doa aku sederhana tapi tulus dari hati: semoga kamu selalu sehat, selalu dilimpahkan bahagia, dijauhin dari hal-hal yang bikin sedih atau overthinking, dan semua hal yang lagi kamu usahain atau impikan bisa dipermudah jalannya.",
+      "Tetep jadi Aliya yang aku kenal ya. Jangan pernah ngerasa sendirian kalau lagi ada masalah, karena ada aku di sini yang bakal selalu siap nemenin dan dengerin kamu kapan pun."
     ],
-    closing: "Dengan segenap rasa sayangku,",
-    signature: "Selalu Untukmu ❤️",
+    closing: "Sayang kamu banyak-banyak,",
+    signature: "Pacarmu yang paling beruntung ❤️",
   },
 
-  // Bunga & Pesan Filosofi Cinta (Interaktif saat bunga di-klik)
+  // Bunga & Pesan Lucu / Manis (Saat bunga di-klik)
   flowers: [
     {
       id: "rose",
       name: "Rosa Centifolia",
-      commonName: "English Cabbage Rose",
-      meaning: "Cinta yang Tak Pernah Pudar & Ketulusan Hati",
+      commonName: "Vintage Pink Rose",
+      meaning: "Bunga Mawar Klasik yang Manis",
       image: "assets/images/rose.jpg",
       cutout: "assets/images/rose_cutout.png",
-      note: "Setiap helai kelopaknya melambangkan rasa kagumku padamu. Dari hari pertama hingga hari ini, caramu tersenyum tetap menjadi hal paling favorit di mataku.",
+      note: "Tiap liat mawar ini bawaannya inget caramu tersenyum. Simpel aja sih, senyum manismu itu selalu jadi hal paling juara buat bikin hariku adem.",
     },
     {
       id: "peony",
       name: "Paeonia Officinalis",
       commonName: "Heritage Garden Peony",
-      meaning: "Kemakmuran, Keanggunan & Kasih yang Mendalam",
+      meaning: "Bunga Peony yang Anggun",
       image: "assets/images/peony.jpg",
       cutout: "assets/images/peony_cutout.png",
-      note: "Peony dikenal sebagai bunga yang mekar dengan penuh keanggunan. Bagiku, itu adalah gambaran dirimu—selalu anggun, hangat, dan membawa kedamaian bagi siapa saja di sekitarmu.",
+      note: "Katanya peony itu bunganya orang yang bawa kehangatan. Pas banget sama kamu, yang selalu berhasil bikin suasana jadi nyaman tiap ada di deketmu.",
     },
     {
       id: "chrysanthemum",
       name: "Chrysanthème Doré",
-      commonName: "Golden Sunlight Dahlia",
-      meaning: "Kebahagiaan Abadi, Optimisme & Cahaya Hidup",
+      commonName: "Golden Sunshine Blossom",
+      meaning: "Bunga Mentari yang Ceria",
       image: "assets/images/chrysanthemum.jpg",
       cutout: "assets/images/chrysanthemum_cutout.png",
-      note: "Warna keemasannya melambangkan harapan dan sukacita. Semoga tawamu tidak pernah padam, dan setiap langkahmu selalu disinari kehangatan.",
+      note: "Warnanya terang kayak ketawamu. Jangan bosen buat ketawa lepas yaa, soalnya tawamu itu nular banget dan bikin gemes.",
     }
   ],
 
-  // Foto Kenangan (Polaroid Scrapbook)
+  // Foto Kenangan Asli dari folder Moments (Natural & Real)
   polaroids: [
     {
       id: "first-meet",
       chapter: "Chapter 01",
-      title: "When We First Met",
-      date: "Pertemuan Pertama",
-      image: "assets/images/polaroids/first_meet.jpg",
-      caption: "Hari pertama mataku tertuju padamu. Masih ingat rasa canggung tapi bahagia saat kita saling menyapa?",
+      title: "Awal Banget Ketemu",
+      date: "Pertama Kali Kenal",
+      image: "assets/images/Moments/foto1.jpg",
+      caption: "Inget ga sih momen ini? Masih pada malu-malu tapi aslinya aku udah curi-curi pandang terus ke kamu haha. Liat tuh pose kedipmu, gemes banget!",
       rotation: "-3deg"
     },
     {
       id: "mutual-feelings",
       chapter: "Chapter 02",
-      title: "When We Knew We Liked Each Other",
-      date: "Saat Rasa Mulai Bicara",
-      image: "assets/images/polaroids/falling_in_love.jpg",
-      caption: "Momen saat kita sadar bahwa obrolan kita bukan lagi sekadar basa-basi, melainkan dua hati yang mulai saling mencari.",
+      title: "Mulai Salting Sendiri",
+      date: "Saling Suka",
+      image: "assets/images/Moments/foto2.jpg",
+      caption: "Momen waktu kita udah sama-sama sadar kalau saling suka, tapi masih pada jaim. Pose dua jari andalanmu yang selalu lucu.",
       rotation: "2.5deg"
     },
     {
       id: "official-day",
       chapter: "Chapter 03",
-      title: "The Day It Began",
-      date: "Momen Kita Jadian",
-      image: "assets/images/polaroids/dating.jpg",
-      caption: "Hari paling manis saat kamu menerima perasaanku. Titik awal perjalanan indah kita berdua.",
+      title: "Momen Kita Jadian",
+      date: "Hari Bahagia Kita",
+      image: "assets/images/Moments/foto3.jpg",
+      caption: "Hari paling bikin lega dan bahagia. Akhirnya resmi bisa manggil kamu pacar dan jalanin hari-hari bareng kamu.",
       rotation: "-2deg"
+    },
+    {
+      id: "random-nights",
+      chapter: "Chapter 04",
+      title: "Cerita Random Bareng Kamu",
+      date: "Momen Seru Kita",
+      image: "assets/images/Moments/foto4.jpg",
+      caption: "Walau fotonya rada remang-remang begini, tapi momen ngobrol ngalor-ngidul sama kamu itu selalu jadi hal paling seru yang ga pengen cepet selesai.",
+      rotation: "2.8deg"
     }
   ],
 
   // Efek Animasi
   effects: {
-    floatingPetals: true, // Animasi kelopak bunga melayang
+    floatingPetals: true,
     petalColors: ["#d97d7d", "#e8a598", "#f4c2ba", "#c96f6f", "#e0b084"],
     sparkles: true,
   }

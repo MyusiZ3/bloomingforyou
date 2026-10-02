@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Share / Reply Button Link
     if (btnShareLove) {
-      const waText = encodeURIComponent(`Halo sayang, aku udah buka web bunganya... Cantik dan manis banget! Makasih yaa, i love you! ❤️🌹`);
+      const waText = encodeURIComponent(`Sayanggg, aku udah buka bunganyaa... Suka banget gemes dan lucu parah! Makasih banyak yaa, love you so much! ❤️🌹`);
       btnShareLove.href = `https://api.whatsapp.com/send?text=${waText}`;
     }
   }
