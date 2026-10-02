@@ -41,34 +41,55 @@ const CONFIG = {
     signature: "Pacarmu yang paling beruntung ❤️",
   },
 
-  // Bunga & Pesan Lucu / Manis (Saat bunga di-klik)
+  // Bunga & Pesan Lucu / Manis (Asset Asli dari flowerisblooming)
   flowers: [
     {
-      id: "rose",
-      name: "Rosa Centifolia",
-      commonName: "Vintage Pink Rose",
-      meaning: "Bunga Mawar Klasik yang Manis",
-      image: "assets/images/rose.jpg",
-      cutout: "assets/images/rose_cutout.png",
-      note: "Tiap liat mawar ini bawaannya inget caramu tersenyum. Simpel aja sih, senyum manismu itu selalu jadi hal paling juara buat bikin hariku adem.",
-    },
-    {
       id: "peony",
-      name: "Paeonia Officinalis",
-      commonName: "Heritage Garden Peony",
-      meaning: "Bunga Peony yang Anggun",
-      image: "assets/images/peony.jpg",
-      cutout: "assets/images/peony_cutout.png",
-      note: "Katanya peony itu bunganya orang yang bawa kehangatan. Pas banget sama kamu, yang selalu berhasil bikin suasana jadi nyaman tiap ada di deketmu.",
+      name: "Heritage Peony",
+      commonName: "Bunga Peony Lembut",
+      meaning: "Kasih yang Tulus & Membawa Kehangatan",
+      image: "assets/images/flowers/peony.webp",
+      note: "Peony itu lambang kehangatan dan ketulusan. Pas banget buat kamu yang selalu bikin aku ngerasa nyaman dan tenang tiap ada di dekatmu."
     },
     {
-      id: "chrysanthemum",
-      name: "Chrysanthème Doré",
-      commonName: "Golden Sunshine Blossom",
-      meaning: "Bunga Mentari yang Ceria",
-      image: "assets/images/chrysanthemum.jpg",
-      cutout: "assets/images/chrysanthemum_cutout.png",
-      note: "Warnanya terang kayak ketawamu. Jangan bosen buat ketawa lepas yaa, soalnya tawamu itu nular banget dan bikin gemes.",
+      id: "rose",
+      name: "Classic Rose",
+      commonName: "Mawar Klasik",
+      meaning: "Cinta & Ketulusan yang Tak Pernah Pudar",
+      image: "assets/images/flowers/rose.webp",
+      note: "Bunga klasik yang ga pernah gagal. Kayak rasa sayangku ke kamu yang selalu mekar tiap hari."
+    },
+    {
+      id: "tulip",
+      name: "Blushing Tulip",
+      commonName: "Bunga Tulip Merah Muda",
+      meaning: "Kasih Sayang Manis & Perasaan yang Tumbuh",
+      image: "assets/images/flowers/tulip.webp",
+      note: "Tiap liat tulip manis ini bawaannya inget senyummu pas lagi salting dan ketawa malu-malu haha."
+    },
+    {
+      id: "hydrangea",
+      name: "Blue Hydrangea",
+      commonName: "Bunga Hydrangea Biru",
+      meaning: "Rasa Syukur & Ketulusan Mendalam",
+      image: "assets/images/flowers/hydrangea.webp",
+      note: "Kelopaknya yang rimbun ngingetin aku sama banyaknya hal-hal kecil dari kamu yang selalu aku syukuri setiap saat."
+    },
+    {
+      id: "sunflower",
+      name: "Golden Sunflower",
+      commonName: "Bunga Matahari Ceria",
+      meaning: "Keceriaan, Semangat & Kehangatan Hidup",
+      image: "assets/images/flowers/sunflower.webp",
+      note: "Kamu yang ceria dan selalu bawa tawa itu ibarat matahari di hari-hariku yang lagi mendung atau capek."
+    },
+    {
+      id: "daisy",
+      name: "Sweet Daisy",
+      commonName: "Bunga Daisy Putih",
+      meaning: "Ketulusan, Kesetiaan & Hati yang Murni",
+      image: "assets/images/flowers/daisy.webp",
+      note: "Simpel tapi gemesin banget. Tetep jadi Aliya yang ceria dan manis kayak daisy ini yaa."
     }
   ],
 

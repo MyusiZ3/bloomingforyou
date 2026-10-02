@@ -646,38 +646,71 @@ body {
   display: block;
 }
 
-/* Flower Positioning & Blooming Animations */
-.layer-left {
-  width: 200px;
-  bottom: 140px;
-  left: 30px;
-  z-index: 3;
-  transform: rotate(-18deg) scale(0.95);
-  animation: bloomLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+/* Flower Positioning & Blooming Animations (Multi-layer Bouquet) */
+.layer-back-left {
+  width: 170px;
+  bottom: 190px;
+  left: 55px;
+  z-index: 2;
+  transform: rotate(-24deg) scale(0.95);
+  animation: bloomBackLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-back-right {
+  width: 180px;
+  bottom: 195px;
+  right: 50px;
+  z-index: 2;
+  transform: rotate(22deg) scale(0.95);
+  animation: bloomBackRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-front-left {
+  width: 175px;
+  bottom: 125px;
+  left: 35px;
+  z-index: 4;
+  transform: rotate(-14deg);
+  animation: bloomFrontLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-front-right {
+  width: 170px;
+  bottom: 130px;
+  right: 35px;
+  z-index: 4;
+  transform: rotate(14deg);
+  animation: bloomFrontRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
 .layer-center {
-  width: 220px;
-  bottom: 195px;
+  width: 205px;
+  bottom: 170px;
   left: 50%;
-  margin-left: -110px;
-  z-index: 4;
+  margin-left: -102px;
+  z-index: 3;
   transform: rotate(0deg) scale(1);
   animation: bloomCenter 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-.layer-right {
-  width: 195px;
-  bottom: 150px;
-  right: 35px;
-  z-index: 3;
-  transform: rotate(18deg) scale(0.95);
-  animation: bloomRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+@keyframes bloomBackLeft {
+  0% { transform: translateY(70px) rotate(-10deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-24deg) scale(0.95); opacity: 1; }
 }
 
-@keyframes bloomLeft {
+@keyframes bloomBackRight {
+  0% { transform: translateY(70px) rotate(10deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(22deg) scale(0.95); opacity: 1; }
+}
+
+@keyframes bloomFrontLeft {
   0% { transform: translateY(80px) rotate(-5deg) scale(0.6); opacity: 0; }
-  100% { transform: rotate(-18deg) scale(0.95); opacity: 1; }
+  100% { transform: rotate(-14deg) scale(1); opacity: 1; }
+}
+
+@keyframes bloomFrontRight {
+  0% { transform: translateY(80px) rotate(5deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(14deg) scale(1); opacity: 1; }
 }
 
 @keyframes bloomCenter {
@@ -685,14 +718,11 @@ body {
   100% { transform: rotate(0deg) scale(1); opacity: 1; }
 }
 
-@keyframes bloomRight {
-  0% { transform: translateY(80px) rotate(5deg) scale(0.6); opacity: 0; }
-  100% { transform: rotate(18deg) scale(0.95); opacity: 1; }
-}
-
-.layer-left:hover { transform: rotate(-22deg) scale(1.05) translateY(-10px); z-index: 6; }
-.layer-center:hover { transform: rotate(0deg) scale(1.08) translateY(-12px); z-index: 6; }
-.layer-right:hover { transform: rotate(22deg) scale(1.05) translateY(-10px); z-index: 6; }
+.layer-back-left:hover { transform: rotate(-28deg) scale(1.05) translateY(-8px); z-index: 6; }
+.layer-back-right:hover { transform: rotate(26deg) scale(1.05) translateY(-8px); z-index: 6; }
+.layer-front-left:hover { transform: rotate(-18deg) scale(1.06) translateY(-10px); z-index: 6; }
+.layer-front-right:hover { transform: rotate(18deg) scale(1.06) translateY(-10px); z-index: 6; }
+.layer-center:hover { transform: rotate(0deg) scale(1.08) translateY(-10px); z-index: 6; }
 
 /* Interactive Hover Badge */
 .flower-hover-badge {
@@ -1381,9 +1411,11 @@ body {
     width: 240px;
   }
   
-  .layer-left { width: 155px; left: 15px; bottom: 110px; }
-  .layer-center { width: 175px; margin-left: -87px; bottom: 150px; }
-  .layer-right { width: 150px; right: 15px; bottom: 120px; }
+  .layer-back-left { width: 125px; bottom: 155px; left: 30px; }
+  .layer-back-right { width: 135px; bottom: 160px; right: 25px; }
+  .layer-front-left { width: 130px; bottom: 105px; left: 20px; }
+  .layer-front-right { width: 125px; bottom: 110px; right: 20px; }
+  .layer-center { width: 155px; bottom: 135px; margin-left: -77px; }
   
   .parchment-letter {
     padding: 35px 22px;
