@@ -1,0 +1,1416 @@
+/* ========================================================
+   BLOOMING FOR YOU - VINTAGE BOTANICAL STYLESHEET
+   Inspired by Victorian Herbarium, Botanical Art & flowerisblooming
+   ======================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-parchment: #f4eee2;
+  --bg-parchment-light: #fbf7ee;
+  --bg-parchment-dark: #e8decb;
+  --bg-envelope: #ebdcc4;
+  --bg-envelope-dark: #d8c4a4;
+  --bg-envelope-pocket: #dfcaa8;
+  
+  --forest-dark: #14281e;
+  --forest-medium: #1f3b2c;
+  --forest-soft: #2d5540;
+  --forest-light: #446f56;
+  
+  --gold-antique: #b78a48;
+  --gold-light: #dfb877;
+  --gold-glow: rgba(183, 138, 72, 0.25);
+  
+  --wax-red: #7c1818;
+  --wax-dark: #581010;
+  --wax-highlight: #a82a2a;
+  
+  --ink-primary: #221e1a;
+  --ink-secondary: #5a5148;
+  --ink-muted: #847a6f;
+  
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-editorial: 'Cormorant Garamond', 'Source Serif 4', Georgia, serif;
+  --font-handwriting: 'Dancing Script', 'Alex Brush', cursive;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(34, 30, 26, 0.08);
+  --shadow-md: 0 8px 24px rgba(34, 30, 26, 0.12);
+  --shadow-lg: 0 16px 40px rgba(20, 40, 30, 0.18);
+  --shadow-envelope: 0 20px 50px rgba(18, 30, 22, 0.28);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-editorial);
+  background-color: var(--bg-parchment);
+  background-image: 
+    radial-gradient(#e5d7be 1px, transparent 1px),
+    linear-gradient(to bottom, #f7f1e6 0%, #eee4d2 100%);
+  background-size: 28px 28px, 100% 100%;
+  color: var(--ink-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Falling Petals Canvas */
+#petals-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Helpers */
+.hidden {
+  display: none !important;
+}
+
+/* ========================================================
+   FLOATING MUSIC PILL
+   ======================================================== */
+.music-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(251, 247, 238, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-antique);
+  padding: 8px 16px 8px 10px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.music-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.vinyl-disc {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #111;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinVinyl 5s linear infinite;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.vinyl-disc.paused {
+  animation-play-state: paused;
+}
+
+.vinyl-groove {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,0.25);
+}
+
+.vinyl-center {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--wax-red);
+  border: 2px solid #fff;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.music-title {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--forest-dark);
+  max-width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-status {
+  font-family: var(--font-handwriting);
+  font-size: 0.85rem;
+  color: var(--gold-antique);
+}
+
+.music-btn {
+  background: none;
+  border: none;
+  color: var(--forest-medium);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.music-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.music-btn:hover {
+  background: rgba(183, 138, 72, 0.15);
+}
+
+
+/* ========================================================
+   STAGE 1: THE VINTAGE SEALED ENVELOPE
+   ======================================================== */
+.envelope-stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.envelope-stage.stage-fade-out {
+  opacity: 0;
+  transform: scale(0.96) translateY(-20px);
+  pointer-events: none;
+}
+
+.envelope-scene-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 580px;
+  width: 100%;
+}
+
+.postage-tag-top {
+  letter-spacing: 4px;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--forest-soft);
+  text-transform: uppercase;
+  border-bottom: 1px dashed var(--gold-antique);
+  padding-bottom: 4px;
+}
+
+/* 3D Envelope Container */
+.envelope-container {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 310px;
+  perspective: 1200px;
+  filter: drop-shadow(0 25px 35px rgba(22, 36, 26, 0.3));
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.envelope-container:hover {
+  transform: translateY(-6px);
+}
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: #dbcaad;
+  border-radius: 8px;
+  box-shadow: inset 0 0 40px rgba(80, 60, 40, 0.15);
+}
+
+/* Paper slip peeking out */
+.envelope-paper-slip {
+  position: absolute;
+  top: 15px;
+  left: 30px;
+  right: 30px;
+  height: 250px;
+  background: var(--bg-parchment-light);
+  border-radius: 4px;
+  border: 1px solid #decbb4;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 30px;
+  transition: transform 0.9s cubic-bezier(0.34, 1.25, 0.64, 1);
+  z-index: 2;
+}
+
+.envelope-container.is-open .envelope-paper-slip {
+  transform: translateY(-130px);
+}
+
+.slip-header {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-secondary);
+  letter-spacing: 2px;
+}
+
+.slip-recipient {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  margin-top: 6px;
+}
+
+.slip-rose-icon {
+  color: var(--gold-antique);
+  font-size: 1.4rem;
+  margin-top: 8px;
+}
+
+/* Envelope Body / Front Pocket */
+.envelope-pocket {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #e4d3ba 0%, #d8c2a3 100%);
+  border-radius: 8px;
+  clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 52%);
+  z-index: 4;
+  box-shadow: 
+    inset 0 -10px 30px rgba(70, 50, 30, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+/* Vintage Stamps */
+.vintage-stamp {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 60px;
+  height: 72px;
+  background: #fbf7ee;
+  border: 2px dashed #bba183;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 2px 6px rgba(0,0,0,0.15);
+  transform: rotate(4deg);
+}
+
+.stamp-inner {
+  font-family: var(--font-editorial);
+  font-size: 0.72rem;
+  text-align: center;
+  font-weight: 700;
+  color: var(--wax-red);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.postmark {
+  position: absolute;
+  top: 14px;
+  right: 56px;
+  width: 75px;
+  height: 75px;
+  opacity: 0.65;
+  transform: rotate(-12deg);
+}
+
+/* Recipient Vintage Address Label */
+.vintage-label {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75%;
+  background: rgba(253, 250, 244, 0.95);
+  border: 1px solid #d3bf9f;
+  padding: 18px 20px;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(40, 25, 10, 0.08);
+  text-align: center;
+}
+
+.label-caption {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  display: block;
+}
+
+.label-name {
+  font-family: var(--font-serif);
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  letter-spacing: 1px;
+  margin: 2px 0 6px;
+}
+
+.label-note {
+  font-family: var(--font-handwriting);
+  font-size: 1.15rem;
+  color: var(--gold-antique);
+}
+
+/* Envelope Flap (Top Folding) */
+.envelope-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52%;
+  background: linear-gradient(to bottom, #d5c09e 0%, #e2d2ba 100%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform-origin: top center;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  box-shadow: 0 4px 12px rgba(40, 25, 10, 0.2);
+}
+
+.envelope-container.is-open .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+/* Wax Seal */
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 78px;
+  height: 78px;
+  background: radial-gradient(circle at 35% 35%, var(--wax-highlight) 0%, var(--wax-red) 65%, var(--wax-dark) 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  box-shadow: 
+    0 6px 18px rgba(60, 10, 10, 0.45),
+    inset 0 2px 3px rgba(255, 255, 255, 0.3),
+    inset 0 -3px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+
+.wax-seal:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 10px 25px rgba(120, 20, 20, 0.6);
+}
+
+.wax-inner {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 210, 210, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+}
+
+.wax-monogram {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffdfdf;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.wax-leaf-crest {
+  font-size: 0.9rem;
+  color: rgba(255, 230, 230, 0.8);
+  margin-top: -2px;
+}
+
+.seal-glow {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(230, 80, 80, 0.3) 0%, transparent 70%);
+  animation: sealPulse 2.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes sealPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 0.85; }
+}
+
+.envelope-container.is-open .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  pointer-events: none;
+}
+
+/* Action Call to action */
+.unseal-instruction {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--forest-medium);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: bounceHint 2s infinite ease-in-out;
+}
+
+@keyframes bounceHint {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+
+/* ========================================================
+   STAGE 2: THE REVEAL & BLOOMING EXPERIENCE
+   ======================================================== */
+.gift-stage {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  animation: fadeInStage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeInStage {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Header */
+.gift-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.header-botanical-ornament {
+  color: var(--gold-antique);
+  font-size: 1.2rem;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+}
+
+.header-subtitle {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--forest-soft);
+  margin-bottom: 8px;
+}
+
+.header-title {
+  font-family: var(--font-serif);
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  line-height: 1.2;
+}
+
+.header-title .highlight-name {
+  font-family: var(--font-handwriting);
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--wax-red);
+  display: inline-block;
+  transform: rotate(-2deg);
+  margin-left: 6px;
+}
+
+.header-instruction {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+  margin-top: 10px;
+}
+
+
+/* ========================================================
+   SECTION 1: THE GRAND BLOOMING BOUQUET
+   ======================================================== */
+.bouquet-section {
+  margin-bottom: 70px;
+}
+
+.bouquet-stage-card {
+  background: var(--bg-parchment-light);
+  border: 1px solid #dfd1b8;
+  border-radius: 12px;
+  padding: 50px 24px 30px;
+  box-shadow: var(--shadow-lg);
+  position: relative;
+  overflow: hidden;
+}
+
+.bouquet-stage-card::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed #d8c7ac;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+/* Bouquet Composition */
+.bouquet-composition {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Paper Wrapper at bottom */
+.bouquet-wrapper-paper {
+  position: absolute;
+  bottom: 0;
+  width: 220px;
+  height: 200px;
+  background: linear-gradient(to bottom, #deb887 0%, #c49d68 100%);
+  clip-path: polygon(15% 0%, 85% 0%, 55% 100%, 45% 100%);
+  z-index: 5;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.wrapper-crease {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 60%);
+}
+
+.wrapper-bow {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--wax-red);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Individual Flower Layers */
+.flower-layer {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s;
+}
+
+.flower-layer:hover {
+  filter: drop-shadow(0 12px 20px rgba(20, 40, 25, 0.3));
+}
+
+.flower-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Flower Positioning & Blooming Animations */
+.layer-left {
+  width: 230px;
+  bottom: 90px;
+  left: 20px;
+  z-index: 2;
+  transform: rotate(-18deg) scale(0.9);
+  animation: bloomLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-center {
+  width: 250px;
+  bottom: 120px;
+  left: 50%;
+  margin-left: -125px;
+  z-index: 3;
+  transform: rotate(2deg) scale(1);
+  animation: bloomCenter 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-right {
+  width: 220px;
+  bottom: 95px;
+  right: 25px;
+  z-index: 2;
+  transform: rotate(16deg) scale(0.92);
+  animation: bloomRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes bloomLeft {
+  0% { transform: translateY(60px) rotate(-5deg) scale(0.5); opacity: 0; }
+  100% { transform: rotate(-18deg) scale(0.9); opacity: 1; }
+}
+
+@keyframes bloomCenter {
+  0% { transform: translateY(80px) rotate(0deg) scale(0.4); opacity: 0; }
+  100% { transform: rotate(2deg) scale(1); opacity: 1; }
+}
+
+@keyframes bloomRight {
+  0% { transform: translateY(60px) rotate(5deg) scale(0.5); opacity: 0; }
+  100% { transform: rotate(16deg) scale(0.92); opacity: 1; }
+}
+
+.layer-left:hover { transform: rotate(-22deg) scale(1.03) translateY(-10px); z-index: 6; }
+.layer-center:hover { transform: rotate(0deg) scale(1.08) translateY(-12px); z-index: 6; }
+.layer-right:hover { transform: rotate(20deg) scale(1.05) translateY(-10px); z-index: 6; }
+
+/* Interactive Hover Badge */
+.flower-hover-badge {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(20, 40, 28, 0.9);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.flower-layer:hover .flower-hover-badge {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.flower-tag {
+  display: block;
+  text-align: center;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--forest-medium);
+  margin-top: 4px;
+  opacity: 0.8;
+}
+
+.bouquet-caption {
+  text-align: center;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.bouquet-quote {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+
+
+/* ========================================================
+   SECTION 2: THE HEARTFELT LETTER
+   ======================================================== */
+.letter-section {
+  margin-bottom: 70px;
+}
+
+.parchment-letter-wrapper {
+  position: relative;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.letter-stamp-corner {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  z-index: 5;
+  transform: rotate(8deg);
+}
+
+.letter-stamp-border {
+  border: 1.5px dashed var(--gold-antique);
+  padding: 6px 12px;
+  background: var(--bg-parchment-light);
+  font-family: var(--font-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--forest-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.parchment-letter {
+  background: var(--bg-parchment-light);
+  border: 1px solid #dfd1b8;
+  padding: 50px 45px;
+  border-radius: 6px;
+  box-shadow: 
+    0 10px 30px rgba(35, 25, 15, 0.08),
+    inset 0 0 60px rgba(210, 190, 160, 0.2);
+  position: relative;
+  line-height: 1.8;
+}
+
+.letter-watermark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15rem;
+  color: rgba(183, 138, 72, 0.04);
+  pointer-events: none;
+  user-select: none;
+}
+
+.letter-salutation {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--forest-dark);
+  margin-bottom: 24px;
+}
+
+.letter-body p {
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  color: var(--ink-primary);
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+.letter-footer {
+  margin-top: 36px;
+  text-align: right;
+}
+
+.letter-closing {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+}
+
+.letter-signature {
+  font-family: var(--font-handwriting);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--wax-red);
+  margin-top: 6px;
+}
+
+
+/* ========================================================
+   SECTION 3 & 4: HEADINGS & GRIDS
+   ======================================================== */
+.section-title-wrap {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-kicker {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--gold-antique);
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  margin: 6px 0 8px;
+}
+
+.ornament-line {
+  color: var(--gold-antique);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+}
+
+
+/* POLAROID SCRAPBOOK */
+.polaroid-section {
+  margin-bottom: 80px;
+}
+
+.polaroid-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.polaroid-item {
+  background: #ffffff;
+  padding: 14px 14px 24px;
+  border-radius: 4px;
+  box-shadow: 0 10px 25px rgba(25, 20, 15, 0.15);
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+
+.polaroid-item:hover {
+  transform: translateY(-8px) scale(1.03) !important;
+  box-shadow: 0 18px 35px rgba(25, 20, 15, 0.22);
+  z-index: 10;
+}
+
+.washi-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 24px;
+  background: rgba(225, 205, 175, 0.7);
+  backdrop-filter: blur(2px);
+  border-left: 2px dashed rgba(160, 140, 110, 0.4);
+  border-right: 2px dashed rgba(160, 140, 110, 0.4);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.polaroid-img-box {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f0e9dc;
+}
+
+.polaroid-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.polaroid-item:hover .polaroid-img-box img {
+  transform: scale(1.05);
+}
+
+.polaroid-caption-box {
+  padding-top: 14px;
+  text-align: center;
+}
+
+.polaroid-chapter {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-antique);
+}
+
+.polaroid-title {
+  font-family: var(--font-handwriting);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  margin-top: 2px;
+}
+
+.polaroid-click-hint {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  margin-top: 4px;
+}
+
+
+/* HERBARIUM SPECIMENS GRID */
+.herbarium-section {
+  margin-bottom: 80px;
+}
+
+.herbarium-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.herbarium-card {
+  background: var(--bg-parchment-light);
+  border: 1px solid #dfd1b8;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+.herbarium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.herbarium-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f9f5ee;
+  border-bottom: 1px solid #ebdcc5;
+  overflow: hidden;
+}
+
+.herbarium-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.herbarium-card:hover .herbarium-img-wrap img {
+  transform: scale(1.04);
+}
+
+.herbarium-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.herbarium-scientific {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+}
+
+.herbarium-common {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--gold-antique);
+  margin-bottom: 10px;
+}
+
+.herbarium-meaning {
+  font-family: var(--font-editorial);
+  font-size: 1.05rem;
+  color: var(--ink-secondary);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.herbarium-tap {
+  margin-top: auto;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--wax-red);
+  letter-spacing: 1px;
+}
+
+
+/* ========================================================
+   SECTION 5: CLOSING & REPLAY
+   ======================================================== */
+.closing-section {
+  margin-bottom: 50px;
+}
+
+.closing-card {
+  text-align: center;
+  background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
+  color: #fff;
+  padding: 50px 30px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.closing-icon {
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+}
+
+.closing-heading {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+
+.closing-text {
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  opacity: 0.9;
+  max-width: 500px;
+  margin: 0 auto 30px;
+}
+
+.closing-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: var(--gold-antique);
+  color: #fff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(183, 138, 72, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  transform: translateY(-2px);
+}
+
+.site-footer {
+  text-align: center;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+
+/* ========================================================
+   MODALS (BOTANICAL SPECIMEN & LIGHTBOX)
+   ======================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 30, 22, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: modalFade 0.3s ease;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  position: relative;
+  background: var(--bg-parchment-light);
+  border: 1px solid #dfd1b8;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalScale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScale {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #d8c7ac;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--forest-dark);
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: var(--wax-red);
+  color: #fff;
+  border-color: var(--wax-red);
+}
+
+.modal-plate-container {
+  width: 100%;
+  max-height: 360px;
+  overflow: hidden;
+  background: #fbf7ee;
+  border-bottom: 1px solid #e2d2ba;
+}
+
+.modal-plate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.specimen-badge {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-antique);
+}
+
+.modal-flower-name {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--forest-dark);
+  margin-top: 4px;
+}
+
+.modal-flower-common {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+}
+
+.modal-divider {
+  color: var(--gold-antique);
+  font-size: 0.9rem;
+  margin: 16px 0;
+  letter-spacing: 4px;
+}
+
+.meaning-box, .note-box {
+  margin-bottom: 16px;
+}
+
+.meaning-label, .note-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--forest-soft);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.meaning-text {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: var(--ink-primary);
+  font-style: italic;
+}
+
+.note-box {
+  background: rgba(183, 138, 72, 0.1);
+  border-left: 3px solid var(--gold-antique);
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+}
+
+.note-text {
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  color: var(--forest-dark);
+  line-height: 1.5;
+}
+
+
+/* LIGHTBOX POLAROID */
+.polaroid-lightbox-card {
+  max-width: 480px;
+  background: #ffffff;
+  padding: 16px 16px 24px;
+}
+
+.polaroid-tape-top {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 26px;
+  background: rgba(225, 205, 175, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.lightbox-img-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f0e9dc;
+  overflow: hidden;
+}
+
+.lightbox-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox-meta {
+  padding-top: 18px;
+  text-align: center;
+}
+
+.lightbox-chapter {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-antique);
+}
+
+.lightbox-title {
+  font-family: var(--font-handwriting);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  margin: 4px 0 10px;
+}
+
+.lightbox-caption {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+
+
+/* ========================================================
+   RESPONSIVE OPTIMIZATIONS (MOBILE FIRST)
+   ======================================================== */
+@media (max-width: 640px) {
+  .envelope-container {
+    height: 270px;
+  }
+  
+  .label-name {
+    font-size: 1.7rem;
+  }
+  
+  .header-title {
+    font-size: 2.1rem;
+  }
+  
+  .header-title .highlight-name {
+    font-size: 2.6rem;
+  }
+  
+  .bouquet-composition {
+    height: 400px;
+  }
+  
+  .layer-left { width: 170px; left: 10px; bottom: 70px; }
+  .layer-center { width: 190px; margin-left: -95px; bottom: 95px; }
+  .layer-right { width: 165px; right: 10px; bottom: 75px; }
+  
+  .parchment-letter {
+    padding: 35px 22px;
+  }
+  
+  .letter-salutation {
+    font-size: 1.5rem;
+  }
+  
+  .letter-body p {
+    font-size: 1.1rem;
+  }
+  
+  .music-pill {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 12px 6px 8px;
+  }
+  
+  .music-title {
+    max-width: 120px;
+    font-size: 0.75rem;
+  }
+}

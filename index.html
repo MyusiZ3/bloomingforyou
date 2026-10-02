@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>A Forever Bloom for Aliya 🌸</title>
+  
+  <!-- Open Graph & Meta for Social Share -->
+  <meta name="description" content="A handcrafted vintage botanical greeting and forever flower bouquet created with love for Aliya's special day.">
+  <meta property="og:title" content="A Special Delivery for Aliya 🌸">
+  <meta property="og:description" content="Open the sealed envelope to unveil a blooming bouquet and heartfelt birthday wishes.">
+  <meta property="og:image" content="assets/images/rose.jpg">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#1c2f24">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>">
+
+  <!-- Google Fonts: Editorial Serif, Romantic Handwriting, Clean Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- Floating Falling Petals Canvas -->
+  <canvas id="petals-canvas"></canvas>
+
+  <!-- Ambient Audio Element -->
+  <audio id="bgm-audio" loop preload="auto">
+    <source src="assets/audio/bgm.ogg" type="audio/ogg">
+    <source src="assets/audio/bgm.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Floating Music Player Bar (Active after opening) -->
+  <div class="music-pill hidden" id="music-pill">
+    <div class="vinyl-disc" id="vinyl-disc">
+      <div class="vinyl-groove"></div>
+      <div class="vinyl-center"></div>
+    </div>
+    <div class="music-info">
+      <span class="music-title" id="pill-music-title">Red Cooper - On the Frost Bridge</span>
+      <span class="music-status" id="pill-music-status">Now Playing ♫</span>
+    </div>
+    <button class="music-btn" id="music-toggle-btn" aria-label="Toggle Music">
+      <svg class="icon-pause" viewBox="0 0 24 24"><path fill="currentColor" d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+      <svg class="icon-play hidden" viewBox="0 0 24 24"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+    </button>
+  </div>
+
+  <!-- ========================================================
+       STAGE 1: THE SEALED ENVELOPE (ENTRY EXPERIENCE)
+       ======================================================== -->
+  <section class="stage envelope-stage" id="envelope-stage">
+    <div class="envelope-scene-wrapper">
+      
+      <!-- Vintage Tag above envelope -->
+      <div class="postage-tag-top">
+        <span class="postal-date" id="envelope-date">PAR AVION • SPECIAL DELIVERY</span>
+      </div>
+
+      <!-- 3D Interactive Envelope Container -->
+      <div class="envelope-container" id="envelope-container">
+        
+        <!-- Back of Envelope -->
+        <div class="envelope-back"></div>
+        
+        <!-- Letter Preview Peeking Inside -->
+        <div class="envelope-paper-slip">
+          <div class="slip-header">Happy Birthday</div>
+          <div class="slip-recipient" id="slip-recipient-name">Aliya</div>
+          <div class="slip-rose-icon">❦</div>
+        </div>
+
+        <!-- Envelope Body / Pocket -->
+        <div class="envelope-pocket">
+          <!-- Postal Stamps & Cancellation mark -->
+          <div class="vintage-stamp">
+            <span class="stamp-inner">1st Class<br>Love</span>
+          </div>
+          <div class="postmark">
+            <svg viewBox="0 0 100 100" class="postmark-svg">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="#684736" stroke-width="1.5" stroke-dasharray="4,2"/>
+              <text x="50" y="44" text-anchor="middle" font-size="10" fill="#684736" font-family="'Cormorant Garamond', serif" letter-spacing="2">AIR MAIL</text>
+              <text x="50" y="58" text-anchor="middle" font-size="8" fill="#684736" font-family="'Cormorant Garamond', serif">FOREVER BLOOM</text>
+            </svg>
+          </div>
+
+          <!-- Recipient Address Label -->
+          <div class="vintage-label">
+            <span class="label-caption" id="envelope-caption">A Birthday Bouquet For</span>
+            <h1 class="label-name" id="envelope-recipient-name">Aliya</h1>
+            <p class="label-note">Buka segelnya untuk melihat bungamu mekar</p>
+          </div>
+        </div>
+
+        <!-- Flap with 3D folding -->
+        <div class="envelope-flap" id="envelope-flap"></div>
+
+        <!-- Interactive Wax Seal -->
+        <div class="wax-seal" id="wax-seal" title="Klik untuk membuka surat">
+          <div class="wax-inner">
+            <span class="wax-monogram" id="wax-monogram">A & M</span>
+            <div class="wax-leaf-crest">❦</div>
+          </div>
+          <div class="seal-glow"></div>
+        </div>
+      </div>
+
+      <!-- Action Prompt -->
+      <div class="unseal-instruction" id="unseal-instruction">
+        <span class="finger-pointer">✧</span>
+        <span>Sentuh Segel Lilin Untuk Membuka</span>
+        <span class="finger-pointer">✧</span>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       STAGE 2: THE REVEAL & BLOOMING EXPERIENCE
+       ======================================================== -->
+  <main class="stage gift-stage hidden" id="gift-stage">
+    
+    <!-- Stage Header Banner -->
+    <header class="gift-header">
+      <div class="header-botanical-ornament">❦ ————— ❀ ————— ❦</div>
+      <p class="header-subtitle" id="header-tagline">Celebrating Another Year of Your Beautiful Bloom</p>
+      <h1 class="header-title">A Forever Bouquet for <span class="highlight-name" id="header-name">Aliya</span></h1>
+      <p class="header-instruction">Setiap bunga menyimpan pesan cinta rahasia. Sentuh bunganya untuk melihat maknanya.</p>
+    </header>
+
+    <!-- SECTION 1: THE GRAND BLOOMING BOUQUET -->
+    <section class="bouquet-section">
+      <div class="bouquet-stage-card">
+        
+        <!-- Bouquet Visual Arrangement -->
+        <div class="bouquet-composition" id="bouquet-composition">
+          
+          <!-- Bouquet Wrapper / Vintage Parchment Conical Wrap -->
+          <div class="bouquet-wrapper-paper">
+            <div class="wrapper-crease"></div>
+            <div class="wrapper-bow">
+              <span class="bow-center">❦</span>
+            </div>
+          </div>
+
+          <!-- Individual Flowers in Bouquet (Cutouts with 3D Depth) -->
+          <div class="flower-layer layer-left flower-item" data-flower-id="rose" title="Rosa Centifolia - Sentuh untuk membaca">
+            <div class="flower-hover-badge">Sentuh Aku 🌸</div>
+            <img src="assets/images/rose_cutout.png" alt="Vintage English Rose" class="flower-img bloom-rose">
+            <span class="flower-tag">Rosa Centifolia</span>
+          </div>
+
+          <div class="flower-layer layer-center flower-item" data-flower-id="peony" title="Paeonia Officinalis - Sentuh untuk membaca">
+            <div class="flower-hover-badge">Sentuh Aku 🌸</div>
+            <img src="assets/images/peony_cutout.png" alt="Vintage Peony" class="flower-img bloom-peony">
+            <span class="flower-tag">Paeonia Officinalis</span>
+          </div>
+
+          <div class="flower-layer layer-right flower-item" data-flower-id="chrysanthemum" title="Chrysantheme Dore - Sentuh untuk membaca">
+            <div class="flower-hover-badge">Sentuh Aku 🌸</div>
+            <img src="assets/images/chrysanthemum_cutout.png" alt="Vintage Chrysanthemum" class="flower-img bloom-chrysanthemum">
+            <span class="flower-tag">Chrysanthème Doré</span>
+          </div>
+
+        </div>
+
+        <div class="bouquet-caption">
+          <p class="bouquet-quote">"Seperti bunga-bunga ini yang mekar tanpa terburu-buru, cintaku padamu tumbuh semakin teduh di setiap detiknya."</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE HEARTFELT LETTER -->
+    <section class="letter-section">
+      <div class="parchment-letter-wrapper">
+        <div class="letter-stamp-corner">
+          <div class="letter-stamp-border">
+            <span>TO MY BELOVED</span>
+          </div>
+        </div>
+
+        <article class="parchment-letter">
+          <div class="letter-watermark">❦</div>
+          <h2 class="letter-salutation" id="letter-salutation">Untuk Aliya tersayang,</h2>
+          
+          <div class="letter-body" id="letter-body">
+            <!-- Injected via JavaScript from config.js -->
+          </div>
+
+          <div class="letter-footer">
+            <p class="letter-closing" id="letter-closing">Dengan segenap rasa sayangku,</p>
+            <p class="letter-signature" id="letter-signature">Selalu Untukmu ❤️</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SECTION 3: POLAROID SCRAPBOOK MEMORIES -->
+    <section class="polaroid-section">
+      <div class="section-title-wrap">
+        <span class="section-kicker">Our Journey</span>
+        <h2 class="section-heading">Kepingan Kenangan Terindah Kita</h2>
+        <div class="ornament-line">✦ ——— ❦ ——— ✦</div>
+      </div>
+
+      <div class="polaroid-grid" id="polaroid-grid">
+        <!-- Rendered dynamically from config.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 4: BOTANICAL HERBARIUM SPECIMENS -->
+    <section class="herbarium-section">
+      <div class="section-title-wrap">
+        <span class="section-kicker">Botanical Meaning</span>
+        <h2 class="section-heading">Filosofi Bunga Abadi Untukmu</h2>
+        <div class="ornament-line">✦ ——— ❦ ——— ✦</div>
+      </div>
+
+      <div class="herbarium-grid" id="herbarium-grid">
+        <!-- Rendered dynamically from config.js -->
+      </div>
+    </section>
+
+    <!-- SECTION 5: FINAL WISH & INTERACTIVE REPLAY -->
+    <section class="closing-section">
+      <div class="closing-card">
+        <div class="closing-icon">🌹</div>
+        <h3 class="closing-heading">Once Again, Happy Birthday, Aliya!</h3>
+        <p class="closing-text">Semoga tahun ini membawa ribuan kebahagiaan baru untukmu.</p>
+        
+        <div class="closing-actions">
+          <button class="btn-primary" id="btn-reopen-envelope">
+            <span class="btn-icon">✉</span> Tutup & Buka Amplop Lagi
+          </button>
+          <a class="btn-secondary" id="btn-share-love" href="#" target="_blank">
+            <span class="btn-icon">💌</span> Kirim Balasan Manis
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>Handcrafted with endless love for Aliya • Forever Blooming 2026</p>
+    </footer>
+
+  </main>
+
+
+  <!-- ========================================================
+       MODAL 1: FLOWER SPECIMEN DETAIL MODAL
+       ======================================================== -->
+  <div class="modal-backdrop hidden" id="flower-modal">
+    <div class="modal-card botanical-card">
+      <button class="modal-close-btn" id="flower-modal-close" aria-label="Close modal">&times;</button>
+      
+      <div class="modal-plate-container">
+        <img src="" alt="Botanical plate" id="modal-flower-img" class="modal-plate-img">
+      </div>
+
+      <div class="modal-content">
+        <div class="specimen-badge">Specimen Collectio No. 01</div>
+        <h3 class="modal-flower-name" id="modal-flower-name">Rosa Centifolia</h3>
+        <h4 class="modal-flower-common" id="modal-flower-common">English Cabbage Rose</h4>
+        
+        <div class="modal-divider">❦ ——— ❦</div>
+
+        <div class="meaning-box">
+          <span class="meaning-label">Makna Filosofi:</span>
+          <p class="meaning-text" id="modal-flower-meaning">Cinta abadi dan ketulusan hati.</p>
+        </div>
+
+        <div class="note-box">
+          <span class="note-label">Pesan Untukmu:</span>
+          <p class="note-text" id="modal-flower-note">Secret message goes here...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================
+       MODAL 2: POLAROID LIGHTBOX MODAL
+       ======================================================== -->
+  <div class="modal-backdrop hidden" id="polaroid-modal">
+    <div class="modal-card polaroid-lightbox-card">
+      <button class="modal-close-btn" id="polaroid-modal-close" aria-label="Close modal">&times;</button>
+      
+      <div class="lightbox-polaroid">
+        <div class="polaroid-tape-top"></div>
+        <div class="lightbox-img-wrapper">
+          <img src="" alt="Polaroid photo" id="lightbox-polaroid-img">
+        </div>
+        <div class="lightbox-meta">
+          <span class="lightbox-chapter" id="lightbox-chapter">Chapter 01</span>
+          <h3 class="lightbox-title" id="lightbox-title">When We First Met</h3>
+          <p class="lightbox-caption" id="lightbox-caption">Description of the memory...</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="assets/js/petals.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
