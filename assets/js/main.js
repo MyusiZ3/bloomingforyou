@@ -30,10 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Data from CONFIG
   function applyConfig() {
-    if (!window.CONFIG) return;
+    const configData = (typeof CONFIG !== 'undefined') ? CONFIG : (window.CONFIG || null);
+    if (!configData) return;
 
     // Recipient Info
-    const r = CONFIG.recipient || {};
+    const r = configData.recipient || {};
     document.getElementById('envelope-recipient-name').textContent = r.name || "Aliya";
     document.getElementById('slip-recipient-name').textContent = r.name || "Aliya";
     document.getElementById('header-name').textContent = r.name || "Aliya";
@@ -43,28 +44,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Dates & Tagline
-    if (CONFIG.dates && CONFIG.dates.tagline) {
-      document.getElementById('header-tagline').textContent = CONFIG.dates.tagline;
+    if (configData.dates && configData.dates.tagline) {
+      document.getElementById('header-tagline').textContent = configData.dates.tagline;
     }
 
     // Music Info
-    if (CONFIG.music) {
-      document.getElementById('pill-music-title').textContent = CONFIG.music.title || "Red Cooper - On the Frost Bridge";
-      if (CONFIG.music.src) {
+    if (configData.music) {
+      document.getElementById('pill-music-title').textContent = configData.music.title || "Red Cooper - On the Frost Bridge";
+      if (configData.music.src) {
         const sourceEl = bgmAudio.querySelector('source');
-        if (sourceEl && sourceEl.getAttribute('src') !== CONFIG.music.src) {
-          sourceEl.src = CONFIG.music.src;
+        if (sourceEl && sourceEl.getAttribute('src') !== configData.music.src) {
+          sourceEl.src = configData.music.src;
           bgmAudio.load();
         }
       }
     }
 
     // Letter
-    if (CONFIG.letter) {
-      const l = CONFIG.letter;
+    if (configData.letter) {
+      const l = configData.letter;
       document.getElementById('letter-salutation').textContent = l.salutation || `Untuk ${r.name} tersayang,`;
-      document.getElementById('letter-closing').textContent = l.closing || "Dengan segenap rasa sayangku,";
-      document.getElementById('letter-signature').textContent = l.signature || "Selalu Untukmu ❤️";
+      document.getElementById('letter-closing').textContent = l.closing || "Sayang kamu banyak-banyak,";
+      document.getElementById('letter-signature').textContent = l.signature || "Pacarmu yang paling beruntung ❤️";
 
       const letterBody = document.getElementById('letter-body');
       letterBody.innerHTML = '';
@@ -76,10 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Polaroids
-    renderPolaroids();
+    renderPolaroids(configData);
 
     // Herbarium
-    renderHerbarium();
+    renderHerbarium(configData);
 
     // Share / Reply Button Link
     if (btnShareLove) {
@@ -89,12 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Render Polaroids
-  function renderPolaroids() {
+  function renderPolaroids(configData) {
     const grid = document.getElementById('polaroid-grid');
-    if (!grid || !CONFIG.polaroids) return;
+    const cfg = configData || (typeof CONFIG !== 'undefined' ? CONFIG : window.CONFIG);
+    if (!grid || !cfg || !cfg.polaroids) return;
 
     grid.innerHTML = '';
-    CONFIG.polaroids.forEach((item, index) => {
+    cfg.polaroids.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'polaroid-item';
       card.style.transform = `rotate(${item.rotation || '0deg'})`;
@@ -117,12 +119,13 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Render Herbarium Specimen Cards
-  function renderHerbarium() {
+  function renderHerbarium(configData) {
     const grid = document.getElementById('herbarium-grid');
-    if (!grid || !CONFIG.flowers) return;
+    const cfg = configData || (typeof CONFIG !== 'undefined' ? CONFIG : window.CONFIG);
+    if (!grid || !cfg || !cfg.flowers) return;
 
     grid.innerHTML = '';
-    CONFIG.flowers.forEach(flower => {
+    cfg.flowers.forEach(flower => {
       const card = document.createElement('div');
       card.className = 'herbarium-card';
       card.innerHTML = `

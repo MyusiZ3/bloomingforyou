@@ -119,3 +119,9 @@ const CONFIG = {
     sparkles: true,
   }
 };
+
+// Pastikan CONFIG tersedia di window untuk browser
+if (typeof window !== 'undefined') {
+  window.CONFIG = CONFIG;
+}
+
