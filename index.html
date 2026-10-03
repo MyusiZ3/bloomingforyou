@@ -26,6 +26,43 @@
   <!-- Floating Falling Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
+  <!-- Floating Side Botanical Elements with Scroll Parallax (Full Viewport Outer Margins) -->
+  <div class="side-botanical-parallax-track" id="side-botanical-parallax-track" aria-hidden="true">
+    <!-- Left Side Outer Margin Botanicals -->
+    <div class="parallax-flower flower-p-left" style="top: 8%; --depth: 0.15; --rot: -18deg; --scale: 1.05;" data-depth="0.15">
+      <img src="assets/images/flowersfull/toss-bouquet.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-left" style="top: 25%; --depth: -0.22; --rot: 15deg; --scale: 0.95;" data-depth="-0.22">
+      <img src="assets/images/flowersfull/toss-pansy.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-left" style="top: 42%; --depth: 0.28; --rot: -25deg; --scale: 1.1;" data-depth="0.28">
+      <img src="assets/images/flowersfull/floral-1.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-left" style="top: 60%; --depth: -0.18; --rot: 20deg; --scale: 1.0;" data-depth="-0.18">
+      <img src="assets/images/flowersfull/toss-fern.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-left" style="top: 78%; --depth: 0.24; --rot: -15deg; --scale: 1.05;" data-depth="0.24">
+      <img src="assets/images/flowersfull/toss-poppy.webp" alt="">
+    </div>
+
+    <!-- Right Side Outer Margin Botanicals -->
+    <div class="parallax-flower flower-p-right" style="top: 10%; --depth: -0.18; --rot: 20deg; --scale: 1.1;" data-depth="-0.18">
+      <img src="assets/images/flowersfull/floral-3.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-right" style="top: 28%; --depth: 0.25; --rot: -16deg; --scale: 1.0;" data-depth="0.25">
+      <img src="assets/images/flowersfull/toss-lavender.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-right" style="top: 46%; --depth: -0.22; --rot: 28deg; --scale: 1.05;" data-depth="-0.22">
+      <img src="assets/images/flowersfull/toss-pot.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-right" style="top: 64%; --depth: 0.26; --rot: -22deg; --scale: 1.0;" data-depth="0.26">
+      <img src="assets/images/flowersfull/toss-can.webp" alt="">
+    </div>
+    <div class="parallax-flower flower-p-right" style="top: 82%; --depth: -0.2; --rot: 18deg; --scale: 1.08;" data-depth="-0.2">
+      <img src="assets/images/flowersfull/toss-basket.webp" alt="">
+    </div>
+  </div>
+
   <!-- Ambient Audio loaded into memory via Web Audio API (prevents IDM download popups) -->
 
   <!-- Floating Music Player Bar (Active after opening) -->
@@ -280,61 +317,6 @@
        ======================================================== -->
   <main class="stage gift-stage" id="gift-stage">
     
-    <!-- Floating Side Botanical Elements with Scroll Parallax (flowerisblooming.com style) -->
-    <div class="side-botanical-parallax-track" id="side-botanical-parallax-track" aria-hidden="true">
-      <!-- Left Side Floating Botanicals & Butterflies -->
-      <div class="parallax-flower flower-p-left" style="top: 3%; left: 1.2vw; --depth: 0.18; --rot: -18deg; --scale: 1.1;" data-depth="0.18">
-        <img src="assets/images/flowersfull/toss-bouquet.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 14%; left: 3.2vw; --depth: -0.25; --rot: 15deg; --scale: 0.85;" data-depth="-0.25">
-        <img src="assets/images/flowersfull/butterfly-coral.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 24%; left: 2.0vw; --depth: 0.22; --rot: -24deg; --scale: 1.0;" data-depth="0.22">
-        <img src="assets/images/flowersfull/floral-1.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 38%; left: 1.5vw; --depth: 0.3; --rot: -32deg; --scale: 1.15;" data-depth="0.3">
-        <img src="assets/images/flowersfull/toss-pansy.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 48%; left: 3.5vw; --depth: -0.2; --rot: 28deg; --scale: 0.9;" data-depth="-0.2">
-        <img src="assets/images/flowersfull/butterfly-lavender.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 58%; left: 1.8vw; --depth: -0.16; --rot: 16deg; --scale: 1.05;" data-depth="-0.16">
-        <img src="assets/images/flowersfull/toss-fern.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 72%; left: 1.2vw; --depth: 0.25; --rot: -22deg; --scale: 1.1;" data-depth="0.25">
-        <img src="assets/images/flowersfull/toss-poppy.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-left" style="top: 86%; left: 2.5vw; --depth: -0.22; --rot: 20deg; --scale: 1.0;" data-depth="-0.22">
-        <img src="assets/images/flowersfull/toss-basket.webp" alt="">
-      </div>
-
-      <!-- Right Side Floating Botanicals & Butterflies -->
-      <div class="parallax-flower flower-p-right" style="top: 4%; right: 1.5vw; --depth: -0.2; --rot: 22deg; --scale: 1.15;" data-depth="-0.2">
-        <img src="assets/images/flowersfull/floral-3.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 16%; right: 3.2vw; --depth: 0.28; --rot: -12deg; --scale: 0.85;" data-depth="0.28">
-        <img src="assets/images/flowersfull/butterfly-yellow.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 27%; right: 2.2vw; --depth: 0.26; --rot: -20deg; --scale: 1.05;" data-depth="0.26">
-        <img src="assets/images/flowersfull/toss-lavender.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 41%; right: 1vw; --depth: -0.18; --rot: 34deg; --scale: 1.12;" data-depth="-0.18">
-        <img src="assets/images/flowersfull/toss-pot.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 52%; right: 3.5vw; --depth: 0.22; --rot: -25deg; --scale: 0.9;" data-depth="0.22">
-        <img src="assets/images/flowersfull/butterfly-rose.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 62%; right: 2.4vw; --depth: 0.24; --rot: -15deg; --scale: 1.05;" data-depth="0.24">
-        <img src="assets/images/flowersfull/toss-fern.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 75%; right: 1.2vw; --depth: -0.25; --rot: 20deg; --scale: 1.15;" data-depth="-0.25">
-        <img src="assets/images/flowersfull/toss-can.webp" alt="">
-      </div>
-      <div class="parallax-flower flower-p-right" style="top: 88%; right: 2.2vw; --depth: 0.2; --rot: -24deg; --scale: 0.95;" data-depth="0.2">
-        <img src="assets/images/flowersfull/toss-poppy.webp" alt="">
-      </div>
-    </div>
-    
     <!-- Stage Header Banner -->
     <header class="gift-header">
       <div class="header-botanical-ornament">❦ ————— ❀ ————— ❦</div>
@@ -343,18 +325,10 @@
       <p class="header-instruction">Buket bunga spesial yang mekar abadi khusus untuk hari bahagiamu 🌸</p>
     </header>
 
-    <!-- SECTION 1: THE GRAND BLOOMING BOUQUET (Clean, No Hover Badges) -->
+    <!-- SECTION 1: THE GRAND BLOOMING BOUQUET (Clean, Lush, Fan-Shaped Dome) -->
     <section class="bouquet-section">
       <div class="bouquet-stage-card">
         
-        <!-- Romantic Floating Butterflies around the Bouquet -->
-        <div class="card-butterfly butterfly-card-left">
-          <img src="assets/images/flowersfull/butterfly-coral.webp" alt="Butterfly">
-        </div>
-        <div class="card-butterfly butterfly-card-right">
-          <img src="assets/images/flowersfull/butterfly-yellow.webp" alt="Butterfly">
-        </div>
-
         <!-- Bouquet Visual Arrangement (Rich 19-Flower Majestic Crown) -->
         <div class="bouquet-composition" id="bouquet-composition">
           
@@ -434,11 +408,6 @@
 
         <div class="bouquet-caption">
           <p class="bouquet-quote">"Bunga di luar sana bisa layu, tapi bunga yang ini bakal mekar terus buat nemenin kamu."</p>
-        </div>
-
-        <!-- Lush Meadow Foreground at bottom of Bouquet Card -->
-        <div class="card-meadow-foreground" aria-hidden="true">
-          <img src="assets/images/flowersfull/meadow.webp" alt="Lush Meadow" class="card-meadow-img">
         </div>
 
       </div>

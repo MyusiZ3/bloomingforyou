@@ -709,33 +709,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     let ticking = false;
-    let latestScrollY = window.scrollY || 0;
 
     function updateParallax() {
       ticking = false;
-      const scrollY = latestScrollY;
-      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY || window.pageYOffset || 0;
 
       itemsData.forEach(item => {
-        const rect = item.el.getBoundingClientRect();
-        // Calculate offset relative to center of viewport
-        const centerY = rect.top + rect.height / 2;
-        const relativeOffset = (centerY - viewportHeight / 2);
-        const translateY = -relativeOffset * item.depth * 0.45;
-
-        // Smooth in-and-out fade based on screen visibility
-        const isNearScreen = rect.top < viewportHeight + 100 && rect.bottom > -100;
-        if (isNearScreen) {
-          item.el.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0) rotate(${item.rot}) scale(${item.scale})`;
-          item.el.style.opacity = (window.innerWidth <= 640) ? '0.5' : '0.88';
-        } else {
-          item.el.style.opacity = '0';
-        }
+        const translateY = scrollY * item.depth * -0.28;
+        item.el.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0) rotate(${item.rot}) scale(${item.scale})`;
+        item.el.style.opacity = (window.innerWidth <= 640) ? '0.5' : '0.88';
       });
     }
 
     function onScroll() {
-      latestScrollY = window.scrollY || 0;
       if (!ticking) {
         requestAnimationFrame(updateParallax);
         ticking = true;
@@ -743,9 +729,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', () => {
-      onScroll();
-    }, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
 
     // Initial positioning
     requestAnimationFrame(updateParallax);
