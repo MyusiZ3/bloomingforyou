@@ -1240,23 +1240,23 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 52vw;
+  width: 53vw;
   height: 100%;
   pointer-events: none;
   will-change: transform;
-  transition: transform 1.05s cubic-bezier(0.65, 0, 0.25, 1);
+  transition: transform 1.25s cubic-bezier(0.77, 0, 0.175, 1);
   overflow: visible;
   background: transparent;
 }
 
 .curtain-left {
   left: 0;
-  transform: translateX(-110%);
+  transform: translateX(-112%);
 }
 
 .curtain-right {
   right: 0;
-  transform: translateX(110%);
+  transform: translateX(112%);
 }
 
 /* When curtains close (covering screen like theater curtains) */
@@ -1289,26 +1289,32 @@ body {
 
 .head-item {
   position: absolute;
-  width: var(--base-size, 340px);
-  height: var(--base-size, 340px);
+  width: var(--base-size, 320px);
+  height: var(--base-size, 320px);
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: var(--anim-name, flowerFloatA) var(--anim-dur, 4s) ease-in-out infinite alternate;
+  animation: var(--anim-name, flowerBreeze1) var(--anim-dur, 4s) ease-in-out infinite alternate;
   animation-delay: var(--anim-delay, 0s);
   will-change: transform;
 }
 
-@keyframes flowerFloatA {
+@keyframes flowerBreeze1 {
   0% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
-  50% { transform: translateY(-7px) rotate(calc(var(--rot, 0deg) + 3deg)) scale(1.03); }
+  50% { transform: translateY(-9px) rotate(calc(var(--rot, 0deg) + 4deg)) scale(1.035); }
   100% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
 }
 
-@keyframes flowerFloatB {
+@keyframes flowerBreeze2 {
   0% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
-  50% { transform: translateY(6px) rotate(calc(var(--rot, 0deg) - 3deg)) scale(1.02); }
+  50% { transform: translateY(8px) rotate(calc(var(--rot, 0deg) - 4deg)) scale(1.025); }
+  100% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
+}
+
+@keyframes flowerBreeze3 {
+  0% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
+  50% { transform: translate(-5px, -6px) rotate(calc(var(--rot, 0deg) + 3deg)) scale(1.03); }
   100% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
 }
 

@@ -252,7 +252,7 @@ document.addEventListener('DOMContentLoaded', () => {
         enteredCode = [];
         updateDots();
         if (padlockBtn) padlockBtn.classList.remove('unlocked');
-      }, 1050);
+      }, 1300);
 
     }, 180);
   }
