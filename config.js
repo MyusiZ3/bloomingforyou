@@ -21,8 +21,8 @@ const CONFIG = {
 
   // Pengaturan Lagu (BGM)
   music: {
-    title: "Red Cooper - On the Frost Bridge",
-    subtitle: "Acoustic Piano & Strings",
+    title: "wave to earth - seasons",
+    subtitle: "I can't be your love, 'cause I'm afraid...",
     src: "assets/audio/bgm.mp3",
     autoplayOnOpen: true,
   },

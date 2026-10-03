@@ -26,6 +26,53 @@
   <!-- Floating Falling Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
+  <!-- ========================================================
+       CINEMATIC FLORAL CURTAIN TRANSITION
+       ======================================================== -->
+  <div class="flower-curtain" id="flower-curtain" aria-hidden="true">
+    <!-- Left Floral Curtain Drapery -->
+    <div class="curtain-panel curtain-left" id="curtain-left">
+      <div class="curtain-fabric"></div>
+      <div class="curtain-botanical-cluster cluster-left-top">
+        <img src="assets/images/flowers/illustrated_md/cherry_blossom.webp" class="curtain-flower cf-1" alt="">
+        <img src="assets/images/flowers/illustrated_md/pink_rose.webp" class="curtain-flower cf-2" alt="">
+        <img src="assets/images/flowers/illustrated_md/pink_peony.webp" class="curtain-flower cf-3" alt="">
+        <img src="assets/images/flowers/illustrated_md/hydrangea.webp" class="curtain-flower cf-4" alt="">
+      </div>
+      <div class="curtain-botanical-cluster cluster-left-bottom">
+        <img src="assets/images/flowers/illustrated_md/babys_breath.webp" class="curtain-flower cf-5" alt="">
+        <img src="assets/images/flowers/illustrated_md/pink_tulip.webp" class="curtain-flower cf-6" alt="">
+        <img src="assets/images/flowers/illustrated_md/daisy.webp" class="curtain-flower cf-7" alt="">
+      </div>
+    </div>
+
+    <!-- Right Floral Curtain Drapery -->
+    <div class="curtain-panel curtain-right" id="curtain-right">
+      <div class="curtain-fabric"></div>
+      <div class="curtain-botanical-cluster cluster-right-top">
+        <img src="assets/images/flowers/illustrated_md/cherry_blossom.webp" class="curtain-flower cf-1" alt="">
+        <img src="assets/images/flowers/illustrated_md/white_rose.webp" class="curtain-flower cf-2" alt="">
+        <img src="assets/images/flowers/illustrated_md/pink_peony.webp" class="curtain-flower cf-3" alt="">
+        <img src="assets/images/flowers/illustrated_md/hydrangea.webp" class="curtain-flower cf-4" alt="">
+      </div>
+      <div class="curtain-botanical-cluster cluster-right-bottom">
+        <img src="assets/images/flowers/illustrated_md/babys_breath.webp" class="curtain-flower cf-5" alt="">
+        <img src="assets/images/flowers/illustrated_md/yellow_rose.webp" class="curtain-flower cf-6" alt="">
+        <img src="assets/images/flowers/illustrated_md/daisy.webp" class="curtain-flower cf-7" alt="">
+      </div>
+    </div>
+
+    <!-- Center Emblem Appearing When Curtains Close -->
+    <div class="curtain-center-emblem" id="curtain-center-emblem">
+      <div class="curtain-seal-ring">
+        <span class="curtain-monogram">A & M</span>
+      </div>
+      <h2 class="curtain-title">A Forever Bloom</h2>
+      <p class="curtain-subtitle">Buket spesial sedang mekar untuk Aliya...</p>
+      <div class="curtain-sparkle-row">✦ ❦ 🌸 ❦ ✦</div>
+    </div>
+  </div>
+
   <!-- Ambient Audio Element -->
   <audio id="bgm-audio" loop preload="none">
     <source src="assets/audio/bgm.mp3" type="audio/mpeg">
@@ -38,7 +85,7 @@
       <div class="vinyl-center"></div>
     </div>
     <div class="music-info">
-      <span class="music-title" id="pill-music-title">Red Cooper - On the Frost Bridge</span>
+      <span class="music-title" id="pill-music-title">wave to earth - seasons</span>
       <span class="music-status" id="pill-music-status">Now Playing ♫</span>
     </div>
     <button class="music-btn" id="music-toggle-btn" aria-label="Toggle Music">
@@ -222,16 +269,23 @@
       </div>
     </section>
 
-    <!-- SECTION 3: POLAROID SCRAPBOOK MEMORIES -->
+    <!-- SECTION 3: POLAROID SCRAPBOOK MEMORIES (SCRATCH-TO-REVEAL) -->
     <section class="polaroid-section">
       <div class="section-title-wrap">
         <span class="section-kicker">Our Journey</span>
         <h2 class="section-heading">Kepingan Momen Kita</h2>
+        <p class="section-scratch-hint">Gosok foto di bawah pelan-pelan yaa buat liat kenangan kita 🪄✨</p>
         <div class="ornament-line">✦ ——— ❦ ——— ✦</div>
       </div>
 
       <div class="polaroid-grid" id="polaroid-grid">
-        <!-- Rendered dynamically from config.js -->
+        <!-- Rendered dynamically from config.js with scratch canvas -->
+      </div>
+
+      <div class="polaroid-actions">
+        <button class="btn-scratch-all" id="btn-scratch-all">
+          <span class="btn-scratch-icon">✨</span> Buka Semua Foto Sekaligus
+        </button>
       </div>
     </section>
 
