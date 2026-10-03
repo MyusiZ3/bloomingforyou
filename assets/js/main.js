@@ -2,11 +2,11 @@
  * ========================================================
  * BLOOMING FOR YOU - MAIN LOGIC
  * Includes:
+ * - In-Memory Web Audio BGM Engine (Bypasses IDM download interceptors completely)
  * - Floral Curtain Gate with 6-Digit Passcode (081004) & Heart Padlock
  * - Theatrical Curtain Parting Animation
  * - Realistic Coin-Scratch Polaroid Reveal (No auto-reveal on click, reliable touch)
  * - Authentic Vintage Paper Letter Integration
- * - Background Music (wave to earth - seasons)
  * ========================================================
  */
 
@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const directUnlockBtn = document.getElementById('btn-direct-unlock');
   const btnLockCurtain = document.getElementById('btn-lock-curtain');
   
-  const bgmAudio = document.getElementById('bgm-audio');
   const musicPill = document.getElementById('music-pill');
   const vinylDisc = document.getElementById('vinyl-disc');
   const musicToggleBtn = document.getElementById('music-toggle-btn');
@@ -34,6 +33,144 @@ document.addEventListener('DOMContentLoaded', () => {
   let isPlaying = false;
   let isUnlocking = false;
   let enteredCode = [];
+
+  // ========================================================
+  // IN-MEMORY WEB AUDIO ENGINE (PREVENTS IDM DOWNLOAD POPUPS)
+  // ========================================================
+  let audioCtx = null;
+  let audioBuffer = null;
+  let audioSource = null;
+  let gainNode = null;
+  let isAudioLoading = false;
+  let isAudioLoaded = false;
+  let shouldPlayWhenLoaded = false;
+  let audioSrcUrl = "assets/audio/bgm.mp3";
+
+  function initAudioContext() {
+    if (audioCtx) return;
+    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+    if (AudioContextClass) {
+      audioCtx = new AudioContextClass();
+      gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0;
+      gainNode.connect(audioCtx.destination);
+    }
+  }
+
+  function loadAudioInMemory(url) {
+    if (isAudioLoaded || isAudioLoading) return;
+    isAudioLoading = true;
+    initAudioContext();
+
+    const targetUrl = url || audioSrcUrl;
+    fetch(targetUrl)
+      .then(res => res.arrayBuffer())
+      .then(arrayBuffer => {
+        if (!audioCtx) return;
+        return audioCtx.decodeAudioData(arrayBuffer);
+      })
+      .then(decoded => {
+        if (decoded) {
+          audioBuffer = decoded;
+          isAudioLoaded = true;
+          isAudioLoading = false;
+          if (shouldPlayWhenLoaded) {
+            startWebAudioPlayback();
+          }
+        }
+      })
+      .catch(err => {
+        console.log("Web Audio fetch fallback:", err);
+      });
+  }
+
+  // Preload audio immediately when DOM is ready
+  loadAudioInMemory();
+
+  function startWebAudioPlayback() {
+    if (!audioCtx || !audioBuffer || isPlaying) return;
+
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    try {
+      if (audioSource) {
+        audioSource.stop();
+        audioSource.disconnect();
+      }
+    } catch (_) {}
+
+    audioSource = audioCtx.createBufferSource();
+    audioSource.buffer = audioBuffer;
+    audioSource.loop = true;
+    audioSource.connect(gainNode);
+
+    // Smooth volume fade in
+    const now = audioCtx.currentTime;
+    gainNode.gain.cancelScheduledValues(now);
+    gainNode.gain.setValueAtTime(0.01, now);
+    gainNode.gain.exponentialRampToValueAtTime(0.75, now + 1.2);
+
+    audioSource.start(0);
+    isPlaying = true;
+
+    if (vinylDisc) vinylDisc.classList.remove('paused');
+    if (iconPause) iconPause.classList.remove('hidden');
+    if (iconPlay) iconPlay.classList.add('hidden');
+  }
+
+  function playAudio() {
+    shouldPlayWhenLoaded = true;
+    initAudioContext();
+
+    if (audioCtx && audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    if (!isAudioLoaded) {
+      loadAudioInMemory();
+      return;
+    }
+
+    startWebAudioPlayback();
+  }
+
+  function pauseAudio() {
+    shouldPlayWhenLoaded = false;
+    isPlaying = false;
+
+    if (audioCtx && gainNode) {
+      try {
+        const now = audioCtx.currentTime;
+        gainNode.gain.cancelScheduledValues(now);
+        gainNode.gain.setValueAtTime(Math.max(gainNode.gain.value, 0.01), now);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        setTimeout(() => {
+          if (audioSource && !isPlaying) {
+            try { audioSource.stop(); } catch (_) {}
+          }
+        }, 350);
+      } catch (_) {
+        if (audioSource) try { audioSource.stop(); } catch (_) {}
+      }
+    }
+
+    if (vinylDisc) vinylDisc.classList.add('paused');
+    if (iconPause) iconPause.classList.add('hidden');
+    if (iconPlay) iconPlay.classList.remove('hidden');
+  }
+
+  if (musicToggleBtn) {
+    musicToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isPlaying) {
+        pauseAudio();
+      } else {
+        playAudio();
+      }
+    });
+  }
 
   // ========================================================
   // CONFIGURATION INJECTION
@@ -57,8 +194,10 @@ document.addEventListener('DOMContentLoaded', () => {
     if (configData.music) {
       const titleEl = document.getElementById('pill-music-title');
       if (titleEl) titleEl.textContent = configData.music.title || "wave to earth - seasons";
-      if (configData.music.src && bgmAudio && bgmAudio.getAttribute('src') !== configData.music.src) {
-        bgmAudio.src = configData.music.src;
+      if (configData.music.src && configData.music.src !== audioSrcUrl) {
+        audioSrcUrl = configData.music.src;
+        isAudioLoaded = false;
+        loadAudioInMemory(audioSrcUrl);
       }
     }
 
@@ -95,56 +234,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // AUDIO CONTROLS (wave to earth - seasons)
-  // ========================================================
-  function playAudio() {
-    if (!bgmAudio) return;
-    bgmAudio.volume = 0;
-    const playPromise = bgmAudio.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        isPlaying = true;
-        if (vinylDisc) vinylDisc.classList.remove('paused');
-        if (iconPause) iconPause.classList.remove('hidden');
-        if (iconPlay) iconPlay.classList.add('hidden');
-
-        // Smooth volume fade-in
-        let vol = 0;
-        const fadeInterval = setInterval(() => {
-          if (vol < 0.75) {
-            vol += 0.05;
-            bgmAudio.volume = Math.min(vol, 0.75);
-          } else {
-            clearInterval(fadeInterval);
-          }
-        }, 100);
-      }).catch(err => {
-        console.log("Autoplay was prevented by browser:", err);
-      });
-    }
-  }
-
-  function pauseAudio() {
-    if (!bgmAudio) return;
-    bgmAudio.pause();
-    isPlaying = false;
-    if (vinylDisc) vinylDisc.classList.add('paused');
-    if (iconPause) iconPause.classList.add('hidden');
-    if (iconPlay) iconPlay.classList.remove('hidden');
-  }
-
-  if (musicToggleBtn) {
-    musicToggleBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (isPlaying) {
-        pauseAudio();
-      } else {
-        playAudio();
-      }
-    });
-  }
-
-  // ========================================================
   // SECRET GATEWAY: PASSCODE (081004) & PADLOCK UNLOCK
   // ========================================================
   function updateDots() {
@@ -162,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isUnlocking) return;
     isUnlocking = true;
 
-    // 1. Immediately play audio & unlock heart padlock shackle
+    // 1. Immediately play audio via Web Audio API & unlock heart padlock shackle
     playAudio();
 
     if (padlockBtn) padlockBtn.classList.add('unlocked');
@@ -332,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (canvas.isRevealed) return;
       const width = imgBox.offsetWidth || imgBox.getBoundingClientRect().width || 280;
       const height = imgBox.offsetHeight || imgBox.getBoundingClientRect().height || 280;
-      if (width < 30) return; // Wait until container has real dimensions
+      if (width < 30) return;
 
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
@@ -383,7 +472,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     requestAnimationFrame(paintFoil);
 
-    // Repaint on resize ONLY if scratch hasn't started yet
     window.addEventListener('resize', () => {
       if (!canvas.isRevealed && strokeCount === 0) {
         paintFoil();
@@ -429,7 +517,6 @@ document.addEventListener('DOMContentLoaded', () => {
       lastY = y;
       strokeCount++;
 
-      // Check progress every 4 strokes
       if (strokeCount % 4 === 0) {
         checkProgress();
       }
@@ -452,7 +539,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const percent = (transparent / total) * 100;
-        // Natural scratch feeling: reveals when ~35% is uncovered or ~45 natural strokes
         if (percent >= 35 || strokeCount >= 45) {
           revealCard();
         }

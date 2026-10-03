@@ -26,8 +26,7 @@
   <!-- Floating Falling Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
-  <!-- Ambient Audio Element (playsinline avoids browser download popup on mobile) -->
-  <audio id="bgm-audio" src="assets/audio/bgm.mp3" loop preload="auto" playsinline webkit-playsinline></audio>
+  <!-- Ambient Audio loaded into memory via Web Audio API (prevents IDM download popups) -->
 
   <!-- Floating Music Player Bar (Active after opening) -->
   <div class="music-pill hidden" id="music-pill">
