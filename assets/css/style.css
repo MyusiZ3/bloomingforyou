@@ -1225,8 +1225,9 @@ body {
   display: flex;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 0.5s ease;
   overflow: hidden;
+  background: radial-gradient(ellipse at center, #fffdf7 0%, #f6edd9 60%, #eeddbd 100%);
 }
 
 .flower-curtain.active {
@@ -1234,26 +1235,28 @@ body {
   pointer-events: all;
 }
 
-/* Left & Right Curtain Panels */
+/* Left & Right Curtain Panels - Organic, No Rectangular Edge */
 .curtain-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 55%;
+  width: 52vw;
   height: 100%;
+  pointer-events: none;
   will-change: transform;
-  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-  box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
+  transition: transform 1.05s cubic-bezier(0.65, 0, 0.25, 1);
+  overflow: visible;
+  background: transparent;
 }
 
 .curtain-left {
   left: 0;
-  transform: translateX(-105%);
+  transform: translateX(-110%);
 }
 
 .curtain-right {
   right: 0;
-  transform: translateX(105%);
+  transform: translateX(110%);
 }
 
 /* When curtains close (covering screen like theater curtains) */
@@ -1265,64 +1268,55 @@ body {
   transform: translateX(0);
 }
 
-/* When curtains open (parting away to reveal stage) */
+/* When curtains open (parting away smoothly to reveal stage) */
 .flower-curtain.curtains-open .curtain-left {
-  transform: translateX(-112%);
+  transform: translateX(-115%);
 }
 
 .flower-curtain.curtains-open .curtain-right {
-  transform: translateX(112%);
+  transform: translateX(115%);
 }
 
-/* Fabric Background - Warm creamy ivory/champagne vintage parchment as in screenshot */
-.curtain-fabric {
-  position: absolute;
-  inset: 0;
-  background: 
-    radial-gradient(ellipse at center, #fffbf2 0%, #f6edd9 60%, #eedebf 100%);
-  box-shadow: inset 0 0 80px rgba(180, 140, 90, 0.3);
-}
-
-.curtain-fabric::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(180, 140, 90, 0.12) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.7;
-}
-
-/* DENSE FLOWER HEADS WALL (LUSH & PACKED) */
+/* DENSE FLOWER HEADS WALL (LUSH, PACKED, ORGANIC) */
 .dense-flower-wall {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
+  overflow: visible;
 }
 
 .head-item {
   position: absolute;
-  width: calc(var(--base-size, 380px) * 1.25);
-  height: calc(var(--base-size, 380px) * 1.25);
+  width: var(--base-size, 340px);
+  height: var(--base-size, 340px);
   pointer-events: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: headBreathe 4s ease-in-out infinite alternate;
+  animation: var(--anim-name, flowerFloatA) var(--anim-dur, 4s) ease-in-out infinite alternate;
+  animation-delay: var(--anim-delay, 0s);
   will-change: transform;
 }
 
-@keyframes headBreathe {
-  0% { transform: translateY(0) scale(1) rotate(var(--rot, 0deg)); }
-  100% { transform: translateY(-6px) scale(1.03) rotate(calc(var(--rot, 0deg) + 2.5deg)); }
+@keyframes flowerFloatA {
+  0% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
+  50% { transform: translateY(-7px) rotate(calc(var(--rot, 0deg) + 3deg)) scale(1.03); }
+  100% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
+}
+
+@keyframes flowerFloatB {
+  0% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
+  50% { transform: translateY(6px) rotate(calc(var(--rot, 0deg) - 3deg)) scale(1.02); }
+  100% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }
 }
 
 .head-img {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 8px 20px rgba(60, 35, 10, 0.32));
+  filter: drop-shadow(0 6px 16px rgba(60, 35, 10, 0.28));
   transition: transform 0.3s ease;
 }
 
@@ -1854,12 +1848,12 @@ body {
   }
   
   .curtain-panel {
-    width: 55%;
+    width: 52vw;
   }
 
   .head-item {
-    width: calc(var(--base-size, 380px) * 0.88) !important;
-    height: calc(var(--base-size, 380px) * 0.88) !important;
+    width: calc(var(--base-size, 340px) * 0.75) !important;
+    height: calc(var(--base-size, 340px) * 0.75) !important;
   }
 
   .curtain-center-lock {

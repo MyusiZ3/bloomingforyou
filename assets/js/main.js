@@ -3,8 +3,8 @@
  * BLOOMING FOR YOU - MAIN LOGIC
  * Includes:
  * - Floral Curtain Gate with 6-Digit Passcode (081004) & Heart Padlock
- * - Ultra-Snappy Unlock Transition (< 0.8s)
- * - Quick-Reveal Scratch-Off Photos (No floating badge)
+ * - Theatrical Curtain Parting Animation
+ * - Realistic Coin-Scratch Polaroid Reveal (No auto-reveal on click, reliable touch)
  * - Authentic Vintage Paper Letter Integration
  * - Background Music (wave to earth - seasons)
  * ========================================================
@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (centerLock) createSparkleBurst(centerLock);
     if (musicPill) musicPill.classList.remove('hidden');
 
-    // 2. Part the massive floral curtains swiftly (no annoying delays!)
+    // 2. Part the massive floral curtains smoothly
     setTimeout(() => {
       if (flowerCurtain) {
         flowerCurtain.classList.remove('curtains-closed');
@@ -179,10 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (giftStage) giftStage.classList.remove('hidden');
 
-      // Re-trigger layout/resize for smooth polaroid display
-      window.dispatchEvent(new Event('resize'));
+      // Ensure all polaroid canvases are initialized with accurate layout dimensions
+      setTimeout(() => {
+        document.querySelectorAll('.scratch-canvas').forEach(c => {
+          if (c.paintFoilIfNotPainted) c.paintFoilIfNotPainted();
+        });
+      }, 350);
 
-      // Once parted, remove curtain overlay so user interacts immediately
+      // Once parted, hide curtain overlay so user can interact with main stage
       setTimeout(() => {
         if (flowerCurtain) {
           flowerCurtain.classList.remove('active', 'curtains-open');
@@ -191,9 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
         enteredCode = [];
         updateDots();
         if (padlockBtn) padlockBtn.classList.remove('unlocked');
-      }, 850);
+      }, 1050);
 
-    }, 150);
+    }, 180);
   }
 
   // Keypad Number Handling
@@ -270,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // SCRATCH-OFF POLAROID CARDS (FAST REVEAL, NO FLOATING BADGE)
+  // SCRATCH-OFF POLAROID CARDS (NATURAL SCRATCH, NO AUTO-CLICK REVEAL)
   // ========================================================
   function renderPolaroids(configData) {
     const grid = document.getElementById('polaroid-grid');
@@ -283,7 +287,6 @@ document.addEventListener('DOMContentLoaded', () => {
       card.className = 'polaroid-item';
       card.style.transform = `rotate(${item.rotation || '0deg'})`;
 
-      // Notice: Floating badge has been completely removed as requested
       card.innerHTML = `
         <div class="washi-tape"></div>
         <div class="polaroid-img-box" id="box-${item.id}">
@@ -302,17 +305,15 @@ document.addEventListener('DOMContentLoaded', () => {
       const canvas = card.querySelector('.scratch-canvas');
       const imgBox = card.querySelector('.polaroid-img-box');
 
-      // Initialize scratch functionality for this polaroid
+      // Initialize realistic scratch functionality for this polaroid
       initScratchCard(canvas, imgBox, item, card);
 
-      // Clicking opened polaroid triggers lightbox modal
+      // CRITICAL FIX: Clicking does NOT reveal card!
+      // Only opens the lightbox modal if the card is ALREADY revealed.
       card.addEventListener('click', () => {
-        if (canvas && !canvas.classList.contains('is-revealed')) {
-          // If not revealed yet, gentle click can also trigger quick reveal
-          if (canvas.revealCard) canvas.revealCard();
-          return;
+        if (canvas.isRevealed) {
+          openPolaroidModal(item);
         }
-        openPolaroidModal(item);
       });
     });
   }
@@ -322,13 +323,17 @@ document.addEventListener('DOMContentLoaded', () => {
     let isDrawing = false;
     let lastX = 0;
     let lastY = 0;
-    let isRevealed = false;
     let strokeCount = 0;
+    let hasPainted = false;
+
+    canvas.isRevealed = false;
 
     function paintFoil() {
-      const rect = imgBox.getBoundingClientRect();
-      const width = rect.width || 280;
-      const height = rect.height || 280;
+      if (canvas.isRevealed) return;
+      const width = imgBox.offsetWidth || imgBox.getBoundingClientRect().width || 280;
+      const height = imgBox.offsetHeight || imgBox.getBoundingClientRect().height || 280;
+      if (width < 30) return; // Wait until container has real dimensions
+
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
       canvas.width = Math.floor(width * dpr);
@@ -357,7 +362,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.strokeRect(15, 15, width - 30, height - 30);
       ctx.setLineDash([]);
 
-      // Subtle vintage icon & hint (No obstructive floating badge)
+      // Subtle vintage icon & hint (No floating badge)
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
@@ -372,17 +377,46 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.font = 'italic 12px "Cormorant Garamond", Georgia, serif';
       ctx.fillStyle = '#7a4e3d';
       ctx.fillText('Kenangan Kita', width / 2, height / 2 + 28);
+
+      hasPainted = true;
     }
 
     requestAnimationFrame(paintFoil);
+
+    // Repaint on resize ONLY if scratch hasn't started yet
     window.addEventListener('resize', () => {
-      if (!isRevealed) paintFoil();
+      if (!canvas.isRevealed && strokeCount === 0) {
+        paintFoil();
+      }
     });
 
+    canvas.paintFoilIfNotPainted = () => {
+      if (!hasPainted && !canvas.isRevealed) {
+        paintFoil();
+      }
+    };
+
+    function getCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      let clientX, clientY;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      return {
+        x: clientX - rect.left,
+        y: clientY - rect.top
+      };
+    }
+
+    // Realistic coin-scratch thickness (26px)
     function scratch(x, y) {
-      if (isRevealed) return;
+      if (canvas.isRevealed) return;
       ctx.globalCompositeOperation = 'destination-out';
-      ctx.lineWidth = 65;
+      ctx.lineWidth = 26;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
 
@@ -391,34 +425,24 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.lineTo(x, y);
       ctx.stroke();
 
-      ctx.beginPath();
-      ctx.arc(x, y, 32, 0, Math.PI * 2);
-      ctx.fill();
-
       lastX = x;
       lastY = y;
       strokeCount++;
 
-      // User requested: "cuma digosok ga banyak dan muncul aja"
-      // Quick reveal with just 3-4 gentle swipes
-      if (strokeCount >= 4) {
-        revealCard();
-        return;
-      }
-
-      if (strokeCount % 2 === 0) {
+      // Check progress every 4 strokes
+      if (strokeCount % 4 === 0) {
         checkProgress();
       }
     }
 
     function checkProgress() {
-      if (isRevealed) return;
+      if (canvas.isRevealed) return;
       try {
         const w = canvas.width;
         const h = canvas.height;
         const imgData = ctx.getImageData(0, 0, w, h).data;
         let transparent = 0;
-        const step = 64;
+        const step = 32;
         const total = Math.floor(imgData.length / (4 * step));
 
         for (let i = 3; i < imgData.length; i += 4 * step) {
@@ -428,18 +452,18 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         const percent = (transparent / total) * 100;
-        // As requested: very low threshold for immediate reveal
-        if (percent >= 10 || strokeCount >= 4) {
+        // Natural scratch feeling: reveals when ~35% is uncovered or ~45 natural strokes
+        if (percent >= 35 || strokeCount >= 45) {
           revealCard();
         }
       } catch (err) {
-        if (strokeCount > 4) revealCard();
+        if (strokeCount > 40) revealCard();
       }
     }
 
     function revealCard() {
-      if (isRevealed) return;
-      isRevealed = true;
+      if (canvas.isRevealed) return;
+      canvas.isRevealed = true;
       canvas.classList.add('is-revealed');
       imgBox.classList.add('revealed-glow');
 
@@ -452,37 +476,57 @@ document.addEventListener('DOMContentLoaded', () => {
       createSparkleBurst(imgBox);
     }
 
-    // Pointer events (Mobile Touch + Desktop Mouse unified)
-    canvas.addEventListener('pointerdown', (e) => {
-      if (isRevealed) return;
+    // Unified pointer & touch handling
+    function startDraw(e) {
+      if (canvas.isRevealed) return;
       isDrawing = true;
-      const rect = canvas.getBoundingClientRect();
-      lastX = e.clientX - rect.left;
-      lastY = e.clientY - rect.top;
+      const coords = getCoords(e);
+      lastX = coords.x;
+      lastY = coords.y;
       scratch(lastX, lastY);
-      canvas.setPointerCapture(e.pointerId);
-    });
+      if (e.pointerId) {
+        try { canvas.setPointerCapture(e.pointerId); } catch (_) {}
+      }
+    }
 
-    canvas.addEventListener('pointermove', (e) => {
-      if (!isDrawing || isRevealed) return;
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      scratch(x, y);
-    });
+    function moveDraw(e) {
+      if (!isDrawing || canvas.isRevealed) return;
+      if (e.cancelable) e.preventDefault();
+      const coords = getCoords(e);
+      scratch(coords.x, coords.y);
+    }
 
-    const stopScratch = (e) => {
+    function endDraw(e) {
       if (isDrawing) {
         isDrawing = false;
         checkProgress();
-        try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+        if (e.pointerId) {
+          try { canvas.releasePointerCapture(e.pointerId); } catch (_) {}
+        }
       }
-    };
+    }
 
-    canvas.addEventListener('pointerup', stopScratch);
-    canvas.addEventListener('pointercancel', stopScratch);
+    // Pointer events (Desktop Mouse + Stylus)
+    canvas.addEventListener('pointerdown', startDraw);
+    canvas.addEventListener('pointermove', moveDraw);
+    canvas.addEventListener('pointerup', endDraw);
+    canvas.addEventListener('pointercancel', endDraw);
 
-    // Expose revealCard on canvas for bulk action or single tap
+    // Touch events fallback for 100% reliable mobile touch scratching
+    canvas.addEventListener('touchstart', (e) => {
+      if (e.cancelable) e.preventDefault();
+      startDraw(e);
+    }, { passive: false });
+
+    canvas.addEventListener('touchmove', (e) => {
+      if (e.cancelable) e.preventDefault();
+      moveDraw(e);
+    }, { passive: false });
+
+    canvas.addEventListener('touchend', endDraw);
+    canvas.addEventListener('touchcancel', endDraw);
+
+    // Expose revealCard on canvas for bulk action button
     canvas.revealCard = revealCard;
   }
 
