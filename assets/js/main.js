@@ -2,7 +2,7 @@
  * ========================================================
  * BLOOMING FOR YOU - MAIN LOGIC
  * Includes:
- * - In-Memory Web Audio BGM Engine (Bypasses IDM download interceptors completely)
+ * - In-Memory Audio Engine using Blob (Bypasses IDM download interceptors completely)
  * - Floral Curtain Gate with 6-Digit Passcode (081004) & Heart Padlock
  * - Theatrical Curtain Parting Animation
  * - Realistic Coin-Scratch Polaroid Reveal (No auto-reveal on click, reliable touch)
@@ -35,125 +35,93 @@ document.addEventListener('DOMContentLoaded', () => {
   let enteredCode = [];
 
   // ========================================================
-  // IN-MEMORY WEB AUDIO ENGINE (PREVENTS IDM DOWNLOAD POPUPS)
+  // IN-MEMORY AUDIO ENGINE (NO IDM POPUPS)
   // ========================================================
-  let audioCtx = null;
-  let audioBuffer = null;
-  let audioSource = null;
-  let gainNode = null;
+  let bgmAudio = null;
   let isAudioLoading = false;
-  let isAudioLoaded = false;
-  let shouldPlayWhenLoaded = false;
-  let audioSrcUrl = "assets/audio/bgm.mp3";
+  let isAudioReady = false;
+  let shouldPlayWhenReady = false;
+  let audioSrcUrl = "assets/audio/track.dat";
 
-  function initAudioContext() {
-    if (audioCtx) return;
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    if (AudioContextClass) {
-      audioCtx = new AudioContextClass();
-      gainNode = audioCtx.createGain();
-      gainNode.gain.value = 0;
-      gainNode.connect(audioCtx.destination);
-    }
-  }
-
-  function loadAudioInMemory(url) {
-    if (isAudioLoaded || isAudioLoading) return;
+  function loadAudioBlob(url) {
+    if (isAudioReady || isAudioLoading) return;
     isAudioLoading = true;
-    initAudioContext();
-
     const targetUrl = url || audioSrcUrl;
+
     fetch(targetUrl)
-      .then(res => res.arrayBuffer())
-      .then(arrayBuffer => {
-        if (!audioCtx) return;
-        return audioCtx.decodeAudioData(arrayBuffer);
+      .then(res => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.arrayBuffer();
       })
-      .then(decoded => {
-        if (decoded) {
-          audioBuffer = decoded;
-          isAudioLoaded = true;
-          isAudioLoading = false;
-          if (shouldPlayWhenLoaded) {
-            startWebAudioPlayback();
-          }
+      .then(arrayBuffer => {
+        const audioBlob = new Blob([arrayBuffer], { type: 'audio/mpeg' });
+        const blobUrl = URL.createObjectURL(audioBlob);
+        bgmAudio = new Audio(blobUrl);
+        bgmAudio.loop = true;
+        bgmAudio.preload = 'auto';
+        isAudioReady = true;
+        isAudioLoading = false;
+
+        if (shouldPlayWhenReady) {
+          playAudio();
         }
       })
       .catch(err => {
-        console.log("Web Audio fetch fallback:", err);
+        console.warn("Blob audio fetch failed, falling back to direct Audio:", err);
+        try {
+          bgmAudio = new Audio(targetUrl);
+          bgmAudio.loop = true;
+          isAudioReady = true;
+          isAudioLoading = false;
+          if (shouldPlayWhenReady) {
+            playAudio();
+          }
+        } catch (_) {}
       });
   }
 
-  // Preload audio immediately when DOM is ready
-  loadAudioInMemory();
-
-  function startWebAudioPlayback() {
-    if (!audioCtx || !audioBuffer || isPlaying) return;
-
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    try {
-      if (audioSource) {
-        audioSource.stop();
-        audioSource.disconnect();
-      }
-    } catch (_) {}
-
-    audioSource = audioCtx.createBufferSource();
-    audioSource.buffer = audioBuffer;
-    audioSource.loop = true;
-    audioSource.connect(gainNode);
-
-    // Smooth volume fade in
-    const now = audioCtx.currentTime;
-    gainNode.gain.cancelScheduledValues(now);
-    gainNode.gain.setValueAtTime(0.01, now);
-    gainNode.gain.exponentialRampToValueAtTime(0.75, now + 1.2);
-
-    audioSource.start(0);
-    isPlaying = true;
-
-    if (vinylDisc) vinylDisc.classList.remove('paused');
-    if (iconPause) iconPause.classList.remove('hidden');
-    if (iconPlay) iconPlay.classList.add('hidden');
-  }
+  // Preload audio immediately when DOM loads
+  loadAudioBlob();
 
   function playAudio() {
-    shouldPlayWhenLoaded = true;
-    initAudioContext();
+    shouldPlayWhenReady = true;
 
-    if (audioCtx && audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    if (!isAudioLoaded) {
-      loadAudioInMemory();
+    if (!isAudioReady || !bgmAudio) {
+      loadAudioBlob();
       return;
     }
 
-    startWebAudioPlayback();
+    bgmAudio.volume = 0;
+    const playPromise = bgmAudio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        isPlaying = true;
+        if (vinylDisc) vinylDisc.classList.remove('paused');
+        if (iconPause) iconPause.classList.remove('hidden');
+        if (iconPlay) iconPlay.classList.add('hidden');
+
+        // Smooth volume fade-in
+        let vol = 0;
+        const fadeInterval = setInterval(() => {
+          if (vol < 0.75) {
+            vol += 0.05;
+            if (bgmAudio) bgmAudio.volume = Math.min(vol, 0.75);
+          } else {
+            clearInterval(fadeInterval);
+          }
+        }, 100);
+      }).catch(err => {
+        console.log("Audio autoplay prevented by browser:", err);
+      });
+    }
   }
 
   function pauseAudio() {
-    shouldPlayWhenLoaded = false;
+    shouldPlayWhenReady = false;
     isPlaying = false;
 
-    if (audioCtx && gainNode) {
-      try {
-        const now = audioCtx.currentTime;
-        gainNode.gain.cancelScheduledValues(now);
-        gainNode.gain.setValueAtTime(Math.max(gainNode.gain.value, 0.01), now);
-        gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
-        setTimeout(() => {
-          if (audioSource && !isPlaying) {
-            try { audioSource.stop(); } catch (_) {}
-          }
-        }, 350);
-      } catch (_) {
-        if (audioSource) try { audioSource.stop(); } catch (_) {}
-      }
+    if (bgmAudio) {
+      bgmAudio.pause();
     }
 
     if (vinylDisc) vinylDisc.classList.add('paused');
@@ -196,8 +164,8 @@ document.addEventListener('DOMContentLoaded', () => {
       if (titleEl) titleEl.textContent = configData.music.title || "wave to earth - seasons";
       if (configData.music.src && configData.music.src !== audioSrcUrl) {
         audioSrcUrl = configData.music.src;
-        isAudioLoaded = false;
-        loadAudioInMemory(audioSrcUrl);
+        isAudioReady = false;
+        loadAudioBlob(audioSrcUrl);
       }
     }
 
@@ -251,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isUnlocking) return;
     isUnlocking = true;
 
-    // 1. Immediately play audio via Web Audio API & unlock heart padlock shackle
+    // 1. Immediately play audio via in-memory Blob Audio & unlock heart padlock shackle
     playAudio();
 
     if (padlockBtn) padlockBtn.classList.add('unlocked');

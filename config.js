@@ -23,7 +23,7 @@ const CONFIG = {
   music: {
     title: "wave to earth - seasons",
     subtitle: "I can't be your love, 'cause I'm afraid...",
-    src: "assets/audio/bgm.mp3",
+    src: "assets/audio/track.dat",
     autoplayOnOpen: true,
   },
 
