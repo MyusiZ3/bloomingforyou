@@ -505,6 +505,7 @@ body {
    STAGE 2: THE REVEAL & BLOOMING EXPERIENCE
    ======================================================== */
 .gift-stage {
+  position: relative;
   max-width: 880px;
   margin: 0 auto;
   padding: 40px 24px 80px;
@@ -522,8 +523,60 @@ body {
   }
 }
 
+/* Side Botanical Parallax Track (flowerisblooming.com style) */
+.side-botanical-parallax-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: visible;
+}
+
+.parallax-flower {
+  position: absolute;
+  width: clamp(75px, 8.5vw, 135px);
+  height: auto;
+  pointer-events: none;
+  opacity: 0.88;
+  filter: drop-shadow(0 10px 22px rgba(45, 30, 15, 0.14));
+  transform: translateY(0) rotate(var(--rot, 0deg)) scale(var(--scale, 1));
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+  animation: gentleBotanicalFloat 6s ease-in-out infinite alternate;
+}
+
+.parallax-flower:nth-child(2n) {
+  animation-duration: 7.5s;
+  animation-delay: -2s;
+}
+
+.parallax-flower:nth-child(3n) {
+  animation-duration: 8.5s;
+  animation-delay: -4s;
+}
+
+.parallax-flower img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes gentleBotanicalFloat {
+  0% {
+    transform: translateY(-8px) rotate(calc(var(--rot, 0deg) - 2deg)) scale(var(--scale, 1));
+  }
+  100% {
+    transform: translateY(8px) rotate(calc(var(--rot, 0deg) + 2deg)) scale(var(--scale, 1));
+  }
+}
+
 /* Header */
 .gift-header {
+  position: relative;
+  z-index: 2;
   text-align: center;
   margin-bottom: 50px;
 }
@@ -576,6 +629,8 @@ body {
    SECTION 1: THE GRAND BLOOMING BOUQUET
    ======================================================== */
 .bouquet-section {
+  position: relative;
+  z-index: 2;
   margin-bottom: 70px;
 }
 
@@ -598,27 +653,27 @@ body {
   pointer-events: none;
 }
 
-/* Bouquet Composition */
+/* Bouquet Composition (Grand Majestic Crown) */
 .bouquet-composition {
   position: relative;
   width: 100%;
-  max-width: 480px;
-  height: 520px;
+  max-width: 520px;
+  height: 560px;
   margin: 0 auto;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
 
-/* Bouquet Wrapper (Image PNG No BG) */
+/* Bouquet Wrapper (Vintage Kraft Paper Cone) */
 .bouquet-wrapper-container {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 290px;
+  width: 260px;
   max-width: 85%;
-  z-index: 5;
+  z-index: 10;
   pointer-events: none;
 }
 
@@ -633,11 +688,12 @@ body {
 .flower-layer {
   position: absolute;
   cursor: pointer;
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s;
+  transform-origin: bottom center;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
 }
 
 .flower-layer:hover {
-  filter: drop-shadow(0 12px 20px rgba(20, 40, 25, 0.3));
+  filter: drop-shadow(0 14px 22px rgba(20, 40, 25, 0.35));
 }
 
 .flower-img {
@@ -646,188 +702,268 @@ body {
   display: block;
 }
 
-/* Flower Positioning & Blooming Animations (9-Flower Luxury Bouquet) */
+/* ========================================================
+   17-FLOWER FAN-SHAPED MAJESTIC BOUQUET ARRANGEMENT
+   Wrapper is a triangular cone (wide at top rim, narrow at bottom).
+   Flowers fan outward along the triangle slope without looking submerged.
+   ======================================================== */
 
-/* Deep Background Fillers */
-.layer-bg-left {
-  width: 145px;
-  bottom: 230px;
-  left: 35px;
+/* LAYER 1: Deep Background Sprigs & Spreads */
+.layer-deep-left {
+  width: 140px;
+  bottom: 290px;
+  left: -5px;
   z-index: 1;
-  transform: rotate(-28deg) scale(0.9);
-  opacity: 0.9;
-  animation: bloomBgLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  transform: rotate(-38deg);
+  opacity: 0.92;
+  animation: bloomDeepLeft 1.3s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-.layer-bg-center {
-  width: 165px;
-  bottom: 260px;
-  left: 50%;
-  margin-left: -82px;
-  z-index: 1;
-  transform: rotate(3deg) scale(0.95);
-  animation: bloomBgCenter 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
-}
-
-.layer-bg-right {
-  width: 145px;
-  bottom: 230px;
-  right: 35px;
-  z-index: 1;
-  transform: rotate(28deg) scale(0.9);
-  opacity: 0.9;
-  animation: bloomBgRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
-}
-
-/* Mid-Back Blooms */
-.layer-mid-left {
+.layer-deep-center-left {
   width: 155px;
-  bottom: 185px;
+  bottom: 335px;
   left: 65px;
+  z-index: 1;
+  transform: rotate(-20deg);
+  animation: bloomDeepCenterLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-deep-center {
+  width: 175px;
+  bottom: 360px;
+  left: 50%;
+  margin-left: -87.5px;
+  z-index: 1;
+  transform: rotate(0deg);
+  animation: bloomDeepCenter 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-deep-center-right {
+  width: 155px;
+  bottom: 335px;
+  right: 65px;
+  z-index: 1;
+  transform: rotate(20deg);
+  animation: bloomDeepCenterRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-deep-right {
+  width: 140px;
+  bottom: 290px;
+  right: -5px;
+  z-index: 1;
+  transform: rotate(38deg);
+  opacity: 0.92;
+  animation: bloomDeepRight 1.3s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* LAYER 2: Mid-Back Tall Stems (Fanning Outward) */
+.layer-mid-far-left {
+  width: 140px;
+  bottom: 255px;
+  left: 0px;
+  z-index: 2;
+  transform: rotate(-34deg);
+  animation: bloomMidFarLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-mid-left {
+  width: 145px;
+  bottom: 275px;
+  left: 60px;
   z-index: 2;
   transform: rotate(-18deg);
   animation: bloomMidLeft 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
+.layer-mid-center-star {
+  width: 180px;
+  bottom: 295px;
+  left: 50%;
+  margin-left: -90px;
+  z-index: 2;
+  transform: rotate(2deg);
+  animation: bloomMidCenterStar 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
 .layer-mid-right {
-  width: 175px;
-  bottom: 190px;
-  right: 55px;
+  width: 145px;
+  bottom: 275px;
+  right: 60px;
   z-index: 2;
   transform: rotate(18deg);
   animation: bloomMidRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-/* Mid-Front Blooms */
-.layer-front-left {
+.layer-mid-far-right {
   width: 165px;
-  bottom: 125px;
-  left: 35px;
+  bottom: 255px;
+  right: 0px;
+  z-index: 2;
+  transform: rotate(34deg);
+  animation: bloomMidFarRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* LAYER 3: Mid-Front Lush Blooms (Elevated High Above Rim) */
+.layer-front-far-left {
+  width: 150px;
+  bottom: 215px;
+  left: 15px;
   z-index: 3;
+  transform: rotate(-28deg);
+  animation: bloomFrontFarLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-front-left {
+  width: 155px;
+  bottom: 235px;
+  left: 75px;
+  z-index: 4;
   transform: rotate(-12deg);
-  animation: bloomFrontLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation: bloomFrontLeft 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-front-center-hero {
+  width: 185px;
+  bottom: 250px;
+  left: 50%;
+  margin-left: -92.5px;
+  z-index: 4;
+  transform: rotate(0deg);
+  animation: bloomFrontCenterHero 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
 .layer-front-right {
-  width: 160px;
-  bottom: 130px;
-  right: 35px;
-  z-index: 3;
+  width: 155px;
+  bottom: 235px;
+  right: 75px;
+  z-index: 4;
   transform: rotate(12deg);
-  animation: bloomFrontRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  animation: bloomFrontRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-/* Foreground Accents & Center Star */
-.layer-front-accent {
-  width: 120px;
-  bottom: 110px;
-  left: 120px;
-  z-index: 4;
-  transform: rotate(-8deg);
-  animation: bloomAccent 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+.layer-front-far-right {
+  width: 150px;
+  bottom: 215px;
+  right: 15px;
+  z-index: 3;
+  transform: rotate(28deg);
+  animation: bloomFrontFarRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-.layer-center-star {
-  width: 200px;
-  bottom: 145px;
-  left: 50%;
-  margin-left: -100px;
-  z-index: 4;
-  transform: rotate(0deg);
-  animation: bloomCenter 1.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+/* LAYER 4: Foreground Rim Accents (Spilling gently over wrapper rim) */
+.layer-rim-left {
+  width: 125px;
+  bottom: 195px;
+  left: 85px;
+  z-index: 11;
+  transform: rotate(-10deg);
+  animation: bloomRimLeft 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-/* Blooming Keyframes */
-@keyframes bloomBgLeft {
-  0% { transform: translateY(60px) rotate(-10deg) scale(0.5); opacity: 0; }
-  100% { transform: rotate(-28deg) scale(0.9); opacity: 0.9; }
+.layer-rim-right {
+  width: 130px;
+  bottom: 195px;
+  right: 85px;
+  z-index: 11;
+  transform: rotate(10deg);
+  animation: bloomRimRight 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-@keyframes bloomBgCenter {
-  0% { transform: translateY(70px) rotate(0deg) scale(0.5); opacity: 0; }
-  100% { transform: rotate(3deg) scale(0.95); opacity: 1; }
+/* Blooming Animations */
+@keyframes bloomDeepLeft {
+  0% { transform: translateY(60px) rotate(-15deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-38deg) scale(1); opacity: 0.92; }
+}
+@keyframes bloomDeepCenterLeft {
+  0% { transform: translateY(60px) rotate(-5deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-20deg) scale(1); opacity: 1; }
+}
+@keyframes bloomDeepCenter {
+  0% { transform: translateY(70px) scale(0.6); opacity: 0; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+@keyframes bloomDeepCenterRight {
+  0% { transform: translateY(60px) rotate(5deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(20deg) scale(1); opacity: 1; }
+}
+@keyframes bloomDeepRight {
+  0% { transform: translateY(60px) rotate(15deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(38deg) scale(1); opacity: 0.92; }
 }
 
-@keyframes bloomBgRight {
-  0% { transform: translateY(60px) rotate(10deg) scale(0.5); opacity: 0; }
-  100% { transform: rotate(28deg) scale(0.9); opacity: 0.9; }
+@keyframes bloomMidFarLeft {
+  0% { transform: translateY(70px) rotate(-10deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-34deg) scale(1); opacity: 1; }
 }
-
 @keyframes bloomMidLeft {
   0% { transform: translateY(70px) rotate(-5deg) scale(0.6); opacity: 0; }
   100% { transform: rotate(-18deg) scale(1); opacity: 1; }
 }
-
+@keyframes bloomMidCenterStar {
+  0% { transform: translateY(80px) scale(0.6); opacity: 0; }
+  100% { transform: rotate(2deg) scale(1); opacity: 1; }
+}
 @keyframes bloomMidRight {
   0% { transform: translateY(70px) rotate(5deg) scale(0.6); opacity: 0; }
   100% { transform: rotate(18deg) scale(1); opacity: 1; }
 }
+@keyframes bloomMidFarRight {
+  0% { transform: translateY(70px) rotate(10deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(34deg) scale(1); opacity: 1; }
+}
 
+@keyframes bloomFrontFarLeft {
+  0% { transform: translateY(80px) rotate(-10deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-28deg) scale(1); opacity: 1; }
+}
 @keyframes bloomFrontLeft {
   0% { transform: translateY(80px) rotate(-5deg) scale(0.6); opacity: 0; }
   100% { transform: rotate(-12deg) scale(1); opacity: 1; }
 }
-
+@keyframes bloomFrontCenterHero {
+  0% { transform: translateY(90px) scale(0.6); opacity: 0; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
 @keyframes bloomFrontRight {
   0% { transform: translateY(80px) rotate(5deg) scale(0.6); opacity: 0; }
   100% { transform: rotate(12deg) scale(1); opacity: 1; }
 }
-
-@keyframes bloomAccent {
-  0% { transform: translateY(80px) scale(0.5); opacity: 0; }
-  100% { transform: rotate(-8deg) scale(1); opacity: 1; }
+@keyframes bloomFrontFarRight {
+  0% { transform: translateY(80px) rotate(10deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(28deg) scale(1); opacity: 1; }
 }
 
-@keyframes bloomCenter {
-  0% { transform: translateY(90px) scale(0.5); opacity: 0; }
-  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+@keyframes bloomRimLeft {
+  0% { transform: translateY(60px) scale(0.5); opacity: 0; }
+  100% { transform: rotate(-10deg) scale(1); opacity: 1; }
+}
+@keyframes bloomRimRight {
+  0% { transform: translateY(60px) scale(0.5); opacity: 0; }
+  100% { transform: rotate(10deg) scale(1); opacity: 1; }
 }
 
-/* Hover Micro-interactions */
-.layer-bg-left:hover { transform: rotate(-32deg) scale(1.04) translateY(-8px); z-index: 6; }
-.layer-bg-center:hover { transform: rotate(0deg) scale(1.05) translateY(-8px); z-index: 6; }
-.layer-bg-right:hover { transform: rotate(32deg) scale(1.04) translateY(-8px); z-index: 6; }
-.layer-mid-left:hover { transform: rotate(-22deg) scale(1.06) translateY(-10px); z-index: 6; }
-.layer-mid-right:hover { transform: rotate(22deg) scale(1.06) translateY(-10px); z-index: 6; }
-.layer-front-left:hover { transform: rotate(-16deg) scale(1.08) translateY(-10px); z-index: 6; }
-.layer-front-right:hover { transform: rotate(16deg) scale(1.08) translateY(-10px); z-index: 6; }
-.layer-front-accent:hover { transform: rotate(-12deg) scale(1.1) translateY(-8px); z-index: 6; }
-.layer-center-star:hover { transform: rotate(0deg) scale(1.1) translateY(-10px); z-index: 6; }
+/* Hover Interactions */
+.layer-deep-left:hover { transform: rotate(-42deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-deep-center-left:hover { transform: rotate(-24deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-deep-center:hover { transform: rotate(0deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-deep-center-right:hover { transform: rotate(24deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-deep-right:hover { transform: rotate(42deg) scale(1.08) translateY(-10px); z-index: 15; }
 
-/* Interactive Hover Badge */
-.flower-hover-badge {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(20, 40, 28, 0.9);
-  color: #fff;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 999px;
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none;
-  white-space: nowrap;
-}
+.layer-mid-far-left:hover { transform: rotate(-38deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-mid-left:hover { transform: rotate(-22deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-mid-center-star:hover { transform: rotate(2deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-mid-right:hover { transform: rotate(22deg) scale(1.08) translateY(-10px); z-index: 15; }
+.layer-mid-far-right:hover { transform: rotate(38deg) scale(1.08) translateY(-10px); z-index: 15; }
 
-.flower-layer:hover .flower-hover-badge {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-5px);
-}
+.layer-front-far-left:hover { transform: rotate(-32deg) scale(1.1) translateY(-10px); z-index: 15; }
+.layer-front-left:hover { transform: rotate(-16deg) scale(1.1) translateY(-10px); z-index: 15; }
+.layer-front-center-hero:hover { transform: rotate(0deg) scale(1.1) translateY(-10px); z-index: 15; }
+.layer-front-right:hover { transform: rotate(16deg) scale(1.1) translateY(-10px); z-index: 15; }
+.layer-front-far-right:hover { transform: rotate(32deg) scale(1.1) translateY(-10px); z-index: 15; }
 
-.flower-tag {
-  display: block;
-  text-align: center;
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-size: 0.85rem;
-  color: var(--forest-medium);
-  margin-top: 4px;
-  opacity: 0.8;
-}
+.layer-rim-left:hover { transform: rotate(-14deg) scale(1.1) translateY(-8px); z-index: 15; }
+.layer-rim-right:hover { transform: rotate(14deg) scale(1.1) translateY(-8px); z-index: 15; }
 
 .bouquet-caption {
   text-align: center;
@@ -1818,22 +1954,40 @@ body {
   }
   
   .bouquet-composition {
-    height: 480px;
+    height: 490px;
+    max-width: 380px;
   }
   
   .bouquet-wrapper-container {
-    width: 250px;
+    width: 215px;
   }
   
-  .layer-bg-left { width: 95px; bottom: 190px; left: 15px; }
-  .layer-bg-center { width: 110px; bottom: 220px; margin-left: -55px; }
-  .layer-bg-right { width: 95px; bottom: 190px; right: 15px; }
-  .layer-mid-left { width: 105px; bottom: 150px; left: 35px; }
-  .layer-mid-right { width: 120px; bottom: 155px; right: 25px; }
-  .layer-front-left { width: 115px; bottom: 100px; left: 15px; }
-  .layer-front-right { width: 115px; bottom: 105px; right: 15px; }
-  .layer-front-accent { width: 85px; bottom: 90px; left: 75px; }
-  .layer-center-star { width: 145px; bottom: 120px; margin-left: -72px; }
+  /* Responsive 17 Layers */
+  .layer-deep-left { width: 105px; bottom: 250px; left: -5px; }
+  .layer-deep-center-left { width: 115px; bottom: 290px; left: 45px; }
+  .layer-deep-center { width: 130px; bottom: 310px; margin-left: -65px; }
+  .layer-deep-center-right { width: 115px; bottom: 290px; right: 45px; }
+  .layer-deep-right { width: 105px; bottom: 250px; right: -5px; }
+
+  .layer-mid-far-left { width: 105px; bottom: 220px; left: 0px; }
+  .layer-mid-left { width: 110px; bottom: 235px; left: 40px; }
+  .layer-mid-center-star { width: 135px; bottom: 255px; margin-left: -67.5px; }
+  .layer-mid-right { width: 110px; bottom: 235px; right: 40px; }
+  .layer-mid-far-right { width: 125px; bottom: 220px; right: 0px; }
+
+  .layer-front-far-left { width: 115px; bottom: 185px; left: 10px; }
+  .layer-front-left { width: 120px; bottom: 200px; left: 55px; }
+  .layer-front-center-hero { width: 140px; bottom: 215px; margin-left: -70px; }
+  .layer-front-right { width: 120px; bottom: 200px; right: 55px; }
+  .layer-front-far-right { width: 115px; bottom: 185px; right: 10px; }
+
+  .layer-rim-left { width: 95px; bottom: 165px; left: 60px; }
+  .layer-rim-right { width: 100px; bottom: 165px; right: 60px; }
+
+  .parallax-flower {
+    width: 65px;
+    opacity: 0.55;
+  }
   
   .parchment-letter {
     padding: 35px 22px;
