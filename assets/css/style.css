@@ -646,83 +646,153 @@ body {
   display: block;
 }
 
-/* Flower Positioning & Blooming Animations (Multi-layer Bouquet) */
-.layer-back-left {
-  width: 170px;
-  bottom: 190px;
-  left: 55px;
-  z-index: 2;
-  transform: rotate(-24deg) scale(0.95);
-  animation: bloomBackLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+/* Flower Positioning & Blooming Animations (9-Flower Luxury Bouquet) */
+
+/* Deep Background Fillers */
+.layer-bg-left {
+  width: 145px;
+  bottom: 230px;
+  left: 35px;
+  z-index: 1;
+  transform: rotate(-28deg) scale(0.9);
+  opacity: 0.9;
+  animation: bloomBgLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-.layer-back-right {
-  width: 180px;
-  bottom: 195px;
-  right: 50px;
-  z-index: 2;
-  transform: rotate(22deg) scale(0.95);
-  animation: bloomBackRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+.layer-bg-center {
+  width: 165px;
+  bottom: 260px;
+  left: 50%;
+  margin-left: -82px;
+  z-index: 1;
+  transform: rotate(3deg) scale(0.95);
+  animation: bloomBgCenter 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-.layer-front-left {
+.layer-bg-right {
+  width: 145px;
+  bottom: 230px;
+  right: 35px;
+  z-index: 1;
+  transform: rotate(28deg) scale(0.9);
+  opacity: 0.9;
+  animation: bloomBgRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* Mid-Back Blooms */
+.layer-mid-left {
+  width: 155px;
+  bottom: 185px;
+  left: 65px;
+  z-index: 2;
+  transform: rotate(-18deg);
+  animation: bloomMidLeft 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-mid-right {
   width: 175px;
+  bottom: 190px;
+  right: 55px;
+  z-index: 2;
+  transform: rotate(18deg);
+  animation: bloomMidRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* Mid-Front Blooms */
+.layer-front-left {
+  width: 165px;
   bottom: 125px;
   left: 35px;
-  z-index: 4;
-  transform: rotate(-14deg);
+  z-index: 3;
+  transform: rotate(-12deg);
   animation: bloomFrontLeft 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
 .layer-front-right {
-  width: 170px;
+  width: 160px;
   bottom: 130px;
   right: 35px;
-  z-index: 4;
-  transform: rotate(14deg);
-  animation: bloomFrontRight 1.5s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
-}
-
-.layer-center {
-  width: 205px;
-  bottom: 170px;
-  left: 50%;
-  margin-left: -102px;
   z-index: 3;
-  transform: rotate(0deg) scale(1);
-  animation: bloomCenter 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+  transform: rotate(12deg);
+  animation: bloomFrontRight 1.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-@keyframes bloomBackLeft {
-  0% { transform: translateY(70px) rotate(-10deg) scale(0.6); opacity: 0; }
-  100% { transform: rotate(-24deg) scale(0.95); opacity: 1; }
+/* Foreground Accents & Center Star */
+.layer-front-accent {
+  width: 120px;
+  bottom: 110px;
+  left: 120px;
+  z-index: 4;
+  transform: rotate(-8deg);
+  animation: bloomAccent 1.6s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
 }
 
-@keyframes bloomBackRight {
-  0% { transform: translateY(70px) rotate(10deg) scale(0.6); opacity: 0; }
-  100% { transform: rotate(22deg) scale(0.95); opacity: 1; }
+.layer-center-star {
+  width: 200px;
+  bottom: 145px;
+  left: 50%;
+  margin-left: -100px;
+  z-index: 4;
+  transform: rotate(0deg);
+  animation: bloomCenter 1.7s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+/* Blooming Keyframes */
+@keyframes bloomBgLeft {
+  0% { transform: translateY(60px) rotate(-10deg) scale(0.5); opacity: 0; }
+  100% { transform: rotate(-28deg) scale(0.9); opacity: 0.9; }
+}
+
+@keyframes bloomBgCenter {
+  0% { transform: translateY(70px) rotate(0deg) scale(0.5); opacity: 0; }
+  100% { transform: rotate(3deg) scale(0.95); opacity: 1; }
+}
+
+@keyframes bloomBgRight {
+  0% { transform: translateY(60px) rotate(10deg) scale(0.5); opacity: 0; }
+  100% { transform: rotate(28deg) scale(0.9); opacity: 0.9; }
+}
+
+@keyframes bloomMidLeft {
+  0% { transform: translateY(70px) rotate(-5deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-18deg) scale(1); opacity: 1; }
+}
+
+@keyframes bloomMidRight {
+  0% { transform: translateY(70px) rotate(5deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(18deg) scale(1); opacity: 1; }
 }
 
 @keyframes bloomFrontLeft {
   0% { transform: translateY(80px) rotate(-5deg) scale(0.6); opacity: 0; }
-  100% { transform: rotate(-14deg) scale(1); opacity: 1; }
+  100% { transform: rotate(-12deg) scale(1); opacity: 1; }
 }
 
 @keyframes bloomFrontRight {
   0% { transform: translateY(80px) rotate(5deg) scale(0.6); opacity: 0; }
-  100% { transform: rotate(14deg) scale(1); opacity: 1; }
+  100% { transform: rotate(12deg) scale(1); opacity: 1; }
+}
+
+@keyframes bloomAccent {
+  0% { transform: translateY(80px) scale(0.5); opacity: 0; }
+  100% { transform: rotate(-8deg) scale(1); opacity: 1; }
 }
 
 @keyframes bloomCenter {
-  0% { transform: translateY(90px) rotate(0deg) scale(0.5); opacity: 0; }
+  0% { transform: translateY(90px) scale(0.5); opacity: 0; }
   100% { transform: rotate(0deg) scale(1); opacity: 1; }
 }
 
-.layer-back-left:hover { transform: rotate(-28deg) scale(1.05) translateY(-8px); z-index: 6; }
-.layer-back-right:hover { transform: rotate(26deg) scale(1.05) translateY(-8px); z-index: 6; }
-.layer-front-left:hover { transform: rotate(-18deg) scale(1.06) translateY(-10px); z-index: 6; }
-.layer-front-right:hover { transform: rotate(18deg) scale(1.06) translateY(-10px); z-index: 6; }
-.layer-center:hover { transform: rotate(0deg) scale(1.08) translateY(-10px); z-index: 6; }
+/* Hover Micro-interactions */
+.layer-bg-left:hover { transform: rotate(-32deg) scale(1.04) translateY(-8px); z-index: 6; }
+.layer-bg-center:hover { transform: rotate(0deg) scale(1.05) translateY(-8px); z-index: 6; }
+.layer-bg-right:hover { transform: rotate(32deg) scale(1.04) translateY(-8px); z-index: 6; }
+.layer-mid-left:hover { transform: rotate(-22deg) scale(1.06) translateY(-10px); z-index: 6; }
+.layer-mid-right:hover { transform: rotate(22deg) scale(1.06) translateY(-10px); z-index: 6; }
+.layer-front-left:hover { transform: rotate(-16deg) scale(1.08) translateY(-10px); z-index: 6; }
+.layer-front-right:hover { transform: rotate(16deg) scale(1.08) translateY(-10px); z-index: 6; }
+.layer-front-accent:hover { transform: rotate(-12deg) scale(1.1) translateY(-8px); z-index: 6; }
+.layer-center-star:hover { transform: rotate(0deg) scale(1.1) translateY(-10px); z-index: 6; }
 
 /* Interactive Hover Badge */
 .flower-hover-badge {
@@ -1404,18 +1474,22 @@ body {
   }
   
   .bouquet-composition {
-    height: 440px;
+    height: 480px;
   }
   
   .bouquet-wrapper-container {
-    width: 240px;
+    width: 250px;
   }
   
-  .layer-back-left { width: 125px; bottom: 155px; left: 30px; }
-  .layer-back-right { width: 135px; bottom: 160px; right: 25px; }
-  .layer-front-left { width: 130px; bottom: 105px; left: 20px; }
-  .layer-front-right { width: 125px; bottom: 110px; right: 20px; }
-  .layer-center { width: 155px; bottom: 135px; margin-left: -77px; }
+  .layer-bg-left { width: 95px; bottom: 190px; left: 15px; }
+  .layer-bg-center { width: 110px; bottom: 220px; margin-left: -55px; }
+  .layer-bg-right { width: 95px; bottom: 190px; right: 15px; }
+  .layer-mid-left { width: 105px; bottom: 150px; left: 35px; }
+  .layer-mid-right { width: 120px; bottom: 155px; right: 25px; }
+  .layer-front-left { width: 115px; bottom: 100px; left: 15px; }
+  .layer-front-right { width: 115px; bottom: 105px; right: 15px; }
+  .layer-front-accent { width: 85px; bottom: 90px; left: 75px; }
+  .layer-center-star { width: 145px; bottom: 120px; margin-left: -72px; }
   
   .parchment-letter {
     padding: 35px 22px;

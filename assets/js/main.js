@@ -18,8 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const iconPause = musicToggleBtn.querySelector('.icon-pause');
   const iconPlay = musicToggleBtn.querySelector('.icon-play');
 
-  const flowerModal = document.getElementById('flower-modal');
-  const flowerModalClose = document.getElementById('flower-modal-close');
   const polaroidModal = document.getElementById('polaroid-modal');
   const polaroidModalClose = document.getElementById('polaroid-modal-close');
   const btnReopen = document.getElementById('btn-reopen-envelope');
@@ -79,9 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Polaroids
     renderPolaroids(configData);
 
-    // Herbarium
-    renderHerbarium(configData);
-
     // Share / Reply Button Link
     if (btnShareLove) {
       const waText = encodeURIComponent(`Sayanggg, aku udah buka bunganyaa... Suka banget gemes dan lucu parah! Makasih banyak yaa, love you so much! ❤️🌹`);
@@ -114,33 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
 
       card.addEventListener('click', () => openPolaroidModal(item));
-      grid.appendChild(card);
-    });
-  }
-
-  // Render Herbarium Specimen Cards
-  function renderHerbarium(configData) {
-    const grid = document.getElementById('herbarium-grid');
-    const cfg = configData || (typeof CONFIG !== 'undefined' ? CONFIG : window.CONFIG);
-    if (!grid || !cfg || !cfg.flowers) return;
-
-    grid.innerHTML = '';
-    cfg.flowers.forEach(flower => {
-      const card = document.createElement('div');
-      card.className = 'herbarium-card';
-      card.innerHTML = `
-        <div class="herbarium-img-wrap">
-          <img src="${flower.image}" alt="${flower.name}" loading="lazy">
-        </div>
-        <div class="herbarium-info">
-          <h3 class="herbarium-scientific">${flower.name}</h3>
-          <span class="herbarium-common">${flower.commonName}</span>
-          <p class="herbarium-meaning">${flower.meaning}</p>
-          <span class="herbarium-tap">Buka Pesan Khusus ❦</span>
-        </div>
-      `;
-
-      card.addEventListener('click', () => openFlowerModal(flower));
       grid.appendChild(card);
     });
   }
@@ -237,40 +205,44 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Flower Click Handlers (Bouquet)
-  document.querySelectorAll('.flower-item').forEach(item => {
+  // Flower Click Handlers (Bouquet tap playful heart effect)
+  document.querySelectorAll('.flower-layer').forEach(item => {
     item.addEventListener('click', (e) => {
       e.stopPropagation();
-      const flowerId = item.getAttribute('data-flower-id');
-      const flowerData = (CONFIG.flowers || []).find(f => f.id === flowerId);
-      if (flowerData) {
-        openFlowerModal(flowerData);
-      }
+      
+      // Add spring bounce animation
+      item.style.transition = 'transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1)';
+      item.style.transform += ' scale(1.15)';
+      setTimeout(() => {
+        item.style.transform = item.style.transform.replace(' scale(1.15)', '');
+      }, 250);
+
+      // Create floating mini heart
+      const rect = item.getBoundingClientRect();
+      const heart = document.createElement('div');
+      heart.textContent = '💖';
+      heart.style.position = 'fixed';
+      heart.style.left = `${rect.left + rect.width / 2}px`;
+      heart.style.top = `${rect.top + 20}px`;
+      heart.style.fontSize = '24px';
+      heart.style.pointerEvents = 'none';
+      heart.style.zIndex = '999';
+      heart.style.transition = 'all 1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+      heart.style.opacity = '1';
+      document.body.appendChild(heart);
+
+      requestAnimationFrame(() => {
+        heart.style.transform = `translateY(-60px) scale(1.4)`;
+        heart.style.opacity = '0';
+      });
+
+      setTimeout(() => {
+        heart.remove();
+      }, 1000);
     });
   });
 
-  // Modals Management
-  function openFlowerModal(flower) {
-    document.getElementById('modal-flower-img').src = flower.image;
-    document.getElementById('modal-flower-name').textContent = flower.name;
-    document.getElementById('modal-flower-common').textContent = flower.commonName;
-    document.getElementById('modal-flower-meaning').textContent = flower.meaning;
-    document.getElementById('modal-flower-note').textContent = flower.note;
-
-    flowerModal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeFlowerModal() {
-    flowerModal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  flowerModalClose.addEventListener('click', closeFlowerModal);
-  flowerModal.addEventListener('click', (e) => {
-    if (e.target === flowerModal) closeFlowerModal();
-  });
-
+  // Polaroid Lightbox Modal Management
   function openPolaroidModal(item) {
     document.getElementById('lightbox-polaroid-img').src = item.image;
     document.getElementById('lightbox-chapter').textContent = item.chapter || "";
@@ -294,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Escape key to close modals
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-      closeFlowerModal();
       closePolaroidModal();
     }
   });
