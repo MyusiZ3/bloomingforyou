@@ -53,12 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Music Info
     if (configData.music) {
       document.getElementById('pill-music-title').textContent = configData.music.title || "wave to earth - seasons";
-      if (configData.music.src) {
-        const sourceEl = bgmAudio.querySelector('source');
-        if (sourceEl && sourceEl.getAttribute('src') !== configData.music.src) {
-          sourceEl.src = configData.music.src;
-          bgmAudio.load();
-        }
+      if (configData.music.src && bgmAudio && bgmAudio.getAttribute('src') !== configData.music.src) {
+        bgmAudio.src = configData.music.src;
       }
     }
 
