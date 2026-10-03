@@ -653,6 +653,101 @@ body {
   pointer-events: none;
 }
 
+/* Romantic Floating Butterflies around Bouquet */
+.card-butterfly {
+  position: absolute;
+  width: 44px;
+  height: auto;
+  z-index: 15;
+  pointer-events: none;
+  filter: drop-shadow(0 6px 12px rgba(45, 30, 15, 0.18));
+  will-change: transform;
+}
+
+.butterfly-card-left {
+  top: 32px;
+  left: 36px;
+  animation: flutterLeft 5s ease-in-out infinite alternate;
+}
+
+.butterfly-card-right {
+  top: 48px;
+  right: 40px;
+  animation: flutterRight 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes flutterLeft {
+  0% { transform: translate(0, 0) rotate(-15deg) scale(1); }
+  50% { transform: translate(12px, -18px) rotate(-8deg) scale(1.08); }
+  100% { transform: translate(-8px, -28px) rotate(-22deg) scale(0.95); }
+}
+
+@keyframes flutterRight {
+  0% { transform: translate(0, 0) rotate(18deg) scaleX(-1); }
+  50% { transform: translate(-15px, -16px) rotate(10deg) scaleX(-1) scale(1.06); }
+  100% { transform: translate(10px, -26px) rotate(24deg) scaleX(-1) scale(0.96); }
+}
+
+/* Card Meadow Foreground */
+.card-meadow-foreground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  pointer-events: none;
+  z-index: 12;
+  overflow: hidden;
+  opacity: 0.92;
+}
+
+.card-meadow-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+  filter: drop-shadow(0 -4px 10px rgba(45, 30, 15, 0.08));
+}
+
+/* Page Bottom Meadow Landscape */
+.page-bottom-meadow-wrap {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  margin-top: -20px;
+  margin-bottom: 25px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 12px;
+}
+
+.meadow-mist-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+  animation: mistFloat 14s ease-in-out infinite alternate;
+}
+
+.meadow-horizon-img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+@keyframes mistFloat {
+  0% { transform: translateX(-20px) scale(1); opacity: 0.35; }
+  100% { transform: translateX(20px) scale(1.05); opacity: 0.5; }
+}
+
 /* Bouquet Composition (Grand Majestic Crown) */
 .bouquet-composition {
   position: relative;
@@ -701,6 +796,40 @@ body {
   height: auto;
   display: block;
 }
+
+/* Deep Botanical Foliage (Ferns) */
+.layer-fern-left {
+  width: 170px;
+  bottom: 275px;
+  left: -40px;
+  z-index: 0;
+  transform: rotate(-50deg);
+  opacity: 0.88;
+  animation: bloomFernLeft 1.3s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+.layer-fern-right {
+  width: 170px;
+  bottom: 275px;
+  right: -40px;
+  z-index: 0;
+  transform: rotate(50deg) scaleX(-1);
+  opacity: 0.88;
+  animation: bloomFernRight 1.3s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes bloomFernLeft {
+  0% { transform: translateY(60px) rotate(-25deg) scale(0.6); opacity: 0; }
+  100% { transform: rotate(-50deg) scale(1); opacity: 0.88; }
+}
+
+@keyframes bloomFernRight {
+  0% { transform: translateY(60px) rotate(25deg) scaleX(-1) scale(0.6); opacity: 0; }
+  100% { transform: rotate(50deg) scaleX(-1) scale(1); opacity: 0.88; }
+}
+
+.layer-fern-left:hover { transform: rotate(-54deg) scale(1.06) translateY(-8px); z-index: 15; }
+.layer-fern-right:hover { transform: rotate(54deg) scaleX(-1) scale(1.06) translateY(-8px); z-index: 15; }
 
 /* ========================================================
    17-FLOWER FAN-SHAPED MAJESTIC BOUQUET ARRANGEMENT
@@ -1962,6 +2091,10 @@ body {
     width: 215px;
   }
   
+  /* Responsive Foliage & Ferns */
+  .layer-fern-left { width: 125px; bottom: 230px; left: -25px; }
+  .layer-fern-right { width: 125px; bottom: 230px; right: -25px; }
+
   /* Responsive 17 Layers */
   .layer-deep-left { width: 105px; bottom: 250px; left: -5px; }
   .layer-deep-center-left { width: 115px; bottom: 290px; left: 45px; }
@@ -1984,8 +2117,22 @@ body {
   .layer-rim-left { width: 95px; bottom: 165px; left: 60px; }
   .layer-rim-right { width: 100px; bottom: 165px; right: 60px; }
 
+  .card-butterfly {
+    width: 32px;
+  }
+  .butterfly-card-left { top: 16px; left: 16px; }
+  .butterfly-card-right { top: 22px; right: 16px; }
+
+  .card-meadow-foreground {
+    height: 55px;
+  }
+
+  .page-bottom-meadow-wrap {
+    height: 110px;
+  }
+
   .parallax-flower {
-    width: 65px;
+    width: 58px;
     opacity: 0.55;
   }
   
