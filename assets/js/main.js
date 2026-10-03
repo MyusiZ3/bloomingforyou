@@ -428,31 +428,12 @@ document.addEventListener('DOMContentLoaded', () => {
         flowerCurtain.classList.remove('curtains-open');
         flowerCurtain.classList.add('curtains-closed');
 
-        // When curtains have fully met in the center (~1s)
+        // Auto unlock fallback after 3 seconds if she doesn't type code
         setTimeout(() => {
-          // Switch to Gift Stage behind closed curtains
-          envelopeStage.classList.add('hidden');
-          giftStage.classList.remove('hidden');
-          window.scrollTo({ top: 0, behavior: 'instant' });
-
-          // Repaint canvases if gift stage just became visible
-          document.querySelectorAll('.scratch-canvas:not(.is-revealed)').forEach(c => {
-            window.dispatchEvent(new Event('resize'));
-          });
-
-          // Hold closed curtain for a moment so Aliya sees the monogram & blooming flowers
-          setTimeout(() => {
-            // Part the curtains open to unveil the grand bouquet
-            flowerCurtain.classList.remove('curtains-closed');
-            flowerCurtain.classList.add('curtains-open');
-
-            // Once fully opened, hide curtain overlay
-            setTimeout(() => {
-              flowerCurtain.classList.remove('active', 'curtains-open');
-            }, 1200);
-          }, 850);
-
-        }, 1100);
+          if (!isUnlocking) {
+            triggerUnlock();
+          }
+        }, 3200);
       } else {
         // Fallback
         envelopeStage.classList.add('stage-fade-out');
@@ -463,6 +444,106 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 700);
       }
     }, 700);
+  }
+
+  // Keypad & Padlock Logic
+  let enteredCode = [];
+  let isUnlocking = false;
+
+  function updateDots() {
+    const dots = document.querySelectorAll('.p-dot');
+    dots.forEach((dot, idx) => {
+      if (idx < enteredCode.length) {
+        dot.classList.add('filled');
+      } else {
+        dot.classList.remove('filled');
+      }
+    });
+  }
+
+  function triggerUnlock() {
+    if (isUnlocking) return;
+    isUnlocking = true;
+
+    // Fill all dots
+    const dots = document.querySelectorAll('.p-dot');
+    dots.forEach(d => d.classList.add('filled'));
+
+    // Lift shackle on padlock
+    const padlock = document.getElementById('heart-padlock-btn');
+    if (padlock) padlock.classList.add('unlocked');
+
+    // Confetti / sparkle burst
+    const centerLock = document.getElementById('curtain-center-lock');
+    if (centerLock) createSparkleBurst(centerLock);
+
+    // Switch views behind closed curtains
+    setTimeout(() => {
+      envelopeStage.classList.add('hidden');
+      giftStage.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      // Repaint canvases if needed
+      document.querySelectorAll('.scratch-canvas:not(.is-revealed)').forEach(c => {
+        window.dispatchEvent(new Event('resize'));
+      });
+
+      // Part the dense flower curtains open to reveal bouquet!
+      setTimeout(() => {
+        flowerCurtain.classList.remove('curtains-closed');
+        flowerCurtain.classList.add('curtains-open');
+
+        // Once fully opened, hide curtain overlay
+        setTimeout(() => {
+          flowerCurtain.classList.remove('active', 'curtains-open');
+          isUnlocking = false;
+          enteredCode = [];
+          updateDots();
+          if (padlock) padlock.classList.remove('unlocked');
+        }, 1300);
+      }, 700);
+
+    }, 600);
+  }
+
+  // Keypad Buttons
+  document.querySelectorAll('.key-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const key = btn.dataset.key;
+      if (key === 'del') {
+        if (enteredCode.length > 0) {
+          enteredCode.pop();
+          updateDots();
+        }
+      } else if (btn.id === 'key-auto') {
+        triggerUnlock();
+      } else if (key !== undefined) {
+        if (enteredCode.length < 4) {
+          enteredCode.push(key);
+          updateDots();
+          if (enteredCode.length === 4) {
+            setTimeout(triggerUnlock, 250);
+          }
+        }
+      }
+    });
+  });
+
+  const padlockBtn = document.getElementById('heart-padlock-btn');
+  if (padlockBtn) {
+    padlockBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerUnlock();
+    });
+  }
+
+  const directUnlockBtn = document.getElementById('btn-direct-unlock');
+  if (directUnlockBtn) {
+    directUnlockBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerUnlock();
+    });
   }
 
   waxSeal.addEventListener('click', (e) => {

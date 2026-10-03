@@ -26,100 +26,330 @@
   <!-- Floating Falling Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
-    <!-- ========================================================
-       CINEMATIC FLORAL CURTAIN TRANSITION (DENSE FLOWER HEADS WALL)
+      <!-- ========================================================
+       CINEMATIC FLORAL CURTAIN TRANSITION (GIANT DENSE FLOWER WALL)
        ======================================================== -->
   <div class="flower-curtain" id="flower-curtain" aria-hidden="true">
-    <!-- Left Floral Curtain Drapery -->
+    <!-- Left Dense Flower Wall Panel -->
     <div class="curtain-panel curtain-left" id="curtain-left">
       <div class="curtain-fabric"></div>
       <div class="dense-flower-wall wall-left">
-  <div class="head-item" style="top: -3.9%; left: -8.8%; width: 148px; height: 148px; z-index: 2; transform: rotate(-19.4deg); animation-delay: 1.35s;">
+  <div class="head-item" style="top: -7.5vh; left: -12.4%; --base-size: 336px; z-index: 8; --rot: 33.9deg; transform: rotate(33.9deg); animation-delay: 0.12s;">
     <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: -1.9%; left: 13.5%; width: 157px; height: 157px; z-index: 4; transform: rotate(-32.9deg); animation-delay: 0.47s;">
-    <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: -4.2%; left: 38.4%; width: 177px; height: 177px; z-index: 7; transform: rotate(14.1deg); animation-delay: 0.44s;">
-    <img src="assets/images/flowers/heads/white_rose.webp" alt="white_rose" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: -4.3%; left: 61.9%; width: 130px; height: 130px; z-index: 7; transform: rotate(21.4deg); animation-delay: 0.68s;">
+  <div class="head-item" style="top: -8.0vh; left: 10.8%; --base-size: 332px; z-index: 13; --rot: -1.2deg; transform: rotate(-1.2deg); animation-delay: 0.53s;">
     <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: -7.8%; left: 84.7%; width: 152px; height: 152px; z-index: 2; transform: rotate(-28.5deg); animation-delay: 0.72s;">
+  <div class="head-item" style="top: -5.2vh; left: 26.6%; --base-size: 267px; z-index: 13; --rot: -32.9deg; transform: rotate(-32.9deg); animation-delay: 1.34s;">
     <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 10.8%; left: -7.4%; width: 133px; height: 133px; z-index: 2; transform: rotate(-2.8deg); animation-delay: 1.95s;">
-    <img src="assets/images/flowers/heads/yellow_ranunculus.webp" alt="yellow_ranunculus" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 11.0%; left: 16.3%; width: 184px; height: 184px; z-index: 6; transform: rotate(8.3deg); animation-delay: 1.15s;">
-    <img src="assets/images/flowers/heads/camellia.webp" alt="camellia" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 13.6%; left: 35.3%; width: 145px; height: 145px; z-index: 2; transform: rotate(-14.7deg); animation-delay: 1.71s;">
-    <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 14.9%; left: 59.3%; width: 159px; height: 159px; z-index: 3; transform: rotate(23.4deg); animation-delay: 0.74s;">
-    <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 9.7%; left: 80.6%; width: 191px; height: 191px; z-index: 10; transform: rotate(10.4deg); animation-delay: 1.27s;">
-    <img src="assets/images/flowers/heads/orange_rose.webp" alt="orange_rose" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 29.3%; left: -7.5%; width: 160px; height: 160px; z-index: 9; transform: rotate(-16.1deg); animation-delay: 0.44s;">
+  <div class="head-item" style="top: -9.9vh; left: 52.3%; --base-size: 271px; z-index: 7; --rot: 23.3deg; transform: rotate(23.3deg); animation-delay: 0.52s;">
     <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 27.6%; left: 17.6%; width: 134px; height: 134px; z-index: 6; transform: rotate(22.5deg); animation-delay: 0.80s;">
-    <img src="assets/images/flowers/heads/marigold.webp" alt="marigold" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 25.5%; left: 40.5%; width: 167px; height: 167px; z-index: 4; transform: rotate(15.3deg); animation-delay: 1.31s;">
-    <img src="assets/images/flowers/heads/peony.webp" alt="peony" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 28.2%; left: 62.5%; width: 160px; height: 160px; z-index: 4; transform: rotate(-16.5deg); animation-delay: 1.49s;">
-    <img src="assets/images/flowers/heads/yellow_zinnia.webp" alt="yellow_zinnia" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 29.3%; left: 83.5%; width: 158px; height: 158px; z-index: 6; transform: rotate(5.8deg); animation-delay: 0.44s;">
-    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 50.0%; left: -5.9%; width: 136px; height: 136px; z-index: 2; transform: rotate(-31.7deg); animation-delay: 0.31s;">
-    <img src="assets/images/flowers/heads/chrysanthemum.webp" alt="chrysanthemum" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 43.3%; left: 17.1%; width: 169px; height: 169px; z-index: 10; transform: rotate(-8.1deg); animation-delay: 1.99s;">
-    <img src="assets/images/flowers/heads/yellow_gerbera.webp" alt="yellow_gerbera" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 46.2%; left: 40.8%; width: 186px; height: 186px; z-index: 2; transform: rotate(-34.2deg); animation-delay: 1.36s;">
-    <img src="assets/images/flowers/heads/rose.webp" alt="rose" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 46.3%; left: 58.6%; width: 172px; height: 172px; z-index: 7; transform: rotate(-27.2deg); animation-delay: 0.32s;">
+  <div class="head-item" style="top: -8.4vh; left: 68.4%; --base-size: 259px; z-index: 11; --rot: 25.9deg; transform: rotate(25.9deg); animation-delay: 0.82s;">
     <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 42.0%; left: 83.3%; width: 177px; height: 177px; z-index: 3; transform: rotate(33.0deg); animation-delay: 1.02s;">
-    <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 59.9%; left: -5.2%; width: 185px; height: 185px; z-index: 4; transform: rotate(0.5deg); animation-delay: 0.31s;">
-    <img src="assets/images/flowers/heads/red_dahlia.webp" alt="red_dahlia" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 65.1%; left: 16.2%; width: 181px; height: 181px; z-index: 1; transform: rotate(2.1deg); animation-delay: 1.20s;">
+  <div class="head-item" style="top: 9.2vh; left: -11.9%; --base-size: 320px; z-index: 2; --rot: -21.7deg; transform: rotate(-21.7deg); animation-delay: 1.01s;">
     <img src="assets/images/flowers/heads/marigold.webp" alt="marigold" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 62.9%; left: 35.7%; width: 154px; height: 154px; z-index: 5; transform: rotate(34.0deg); animation-delay: 0.48s;">
+  <div class="head-item" style="top: 8.0vh; left: 6.1%; --base-size: 291px; z-index: 6; --rot: 2.8deg; transform: rotate(2.8deg); animation-delay: 1.99s;">
     <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 60.9%; left: 60.4%; width: 135px; height: 135px; z-index: 2; transform: rotate(16.2deg); animation-delay: 1.96s;">
-    <img src="assets/images/flowers/heads/pink_ranunculus.webp" alt="pink_ranunculus" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 63.3%; left: 79.8%; width: 173px; height: 173px; z-index: 3; transform: rotate(31.3deg); animation-delay: 0.53s;">
-    <img src="assets/images/flowers/heads/carnation.webp" alt="carnation" class="head-img" loading="eager">
-  </div>
-  <div class="head-item" style="top: 83.0%; left: -6.5%; width: 144px; height: 144px; z-index: 4; transform: rotate(2.8deg); animation-delay: 1.43s;">
+  <div class="head-item" style="top: 6.2vh; left: 28.9%; --base-size: 273px; z-index: 1; --rot: 25.6deg; transform: rotate(25.6deg); animation-delay: 1.08s;">
     <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 79.2%; left: 17.0%; width: 154px; height: 154px; z-index: 8; transform: rotate(28.0deg); animation-delay: 0.24s;">
+  <div class="head-item" style="top: 5.7vh; left: 52.1%; --base-size: 286px; z-index: 14; --rot: 39.3deg; transform: rotate(39.3deg); animation-delay: 0.91s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 7.9vh; left: 69.8%; --base-size: 294px; z-index: 5; --rot: 30.1deg; transform: rotate(30.1deg); animation-delay: 2.17s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 20.1vh; left: -9.8%; --base-size: 328px; z-index: 2; --rot: 36.3deg; transform: rotate(36.3deg); animation-delay: 0.08s;">
+    <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 21.1vh; left: 13.6%; --base-size: 328px; z-index: 2; --rot: 27.1deg; transform: rotate(27.1deg); animation-delay: 1.69s;">
+    <img src="assets/images/flowers/heads/yellow_ranunculus.webp" alt="yellow_ranunculus" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 22.7vh; left: 30.8%; --base-size: 291px; z-index: 11; --rot: 11.0deg; transform: rotate(11.0deg); animation-delay: 0.45s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 23.8vh; left: 51.9%; --base-size: 330px; z-index: 15; --rot: -4.3deg; transform: rotate(-4.3deg); animation-delay: 2.42s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 19.5vh; left: 67.2%; --base-size: 278px; z-index: 1; --rot: -10.0deg; transform: rotate(-10.0deg); animation-delay: 1.37s;">
     <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
   </div>
-  <div class="head-item" style="top: 77.8%; left: 37.0%; width: 168px; height: 168px; z-index: 4; transform: rotate(-18.9deg); animation-delay: 0.01s;">
-    <img src="assets/images/flowers/heads/white_rose.webp" alt="white_rose" class="head-img" loading="eager">
+  <div class="head-item" style="top: 38.1vh; left: -11.2%; --base-size: 255px; z-index: 14; --rot: -17.7deg; transform: rotate(-17.7deg); animation-delay: 0.82s;">
+    <img src="assets/images/flowers/heads/camellia.webp" alt="camellia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 35.7vh; left: 7.2%; --base-size: 291px; z-index: 9; --rot: -6.0deg; transform: rotate(-6.0deg); animation-delay: 2.45s;">
+    <img src="assets/images/flowers/heads/red_dahlia.webp" alt="red_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 39.4vh; left: 28.6%; --base-size: 258px; z-index: 15; --rot: 12.3deg; transform: rotate(12.3deg); animation-delay: 0.44s;">
+    <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 34.1vh; left: 49.2%; --base-size: 305px; z-index: 1; --rot: 12.5deg; transform: rotate(12.5deg); animation-delay: 2.01s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 35.4vh; left: 68.2%; --base-size: 309px; z-index: 9; --rot: 4.2deg; transform: rotate(4.2deg); animation-delay: 0.79s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 49.1vh; left: -12.9%; --base-size: 281px; z-index: 7; --rot: -10.9deg; transform: rotate(-10.9deg); animation-delay: 1.0s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 49.3vh; left: 7.8%; --base-size: 255px; z-index: 2; --rot: -28.1deg; transform: rotate(-28.1deg); animation-delay: 0.36s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 49.7vh; left: 26.2%; --base-size: 327px; z-index: 11; --rot: -23.8deg; transform: rotate(-23.8deg); animation-delay: 1.72s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 51.2vh; left: 51.3%; --base-size: 299px; z-index: 9; --rot: -29.8deg; transform: rotate(-29.8deg); animation-delay: 1.39s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 50.8vh; left: 68.4%; --base-size: 273px; z-index: 4; --rot: 30.6deg; transform: rotate(30.6deg); animation-delay: 1.14s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 65.8vh; left: -13.7%; --base-size: 254px; z-index: 12; --rot: 39.4deg; transform: rotate(39.4deg); animation-delay: 2.2s;">
+    <img src="assets/images/flowers/heads/marigold.webp" alt="marigold" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 66.6vh; left: 6.4%; --base-size: 299px; z-index: 1; --rot: -23.6deg; transform: rotate(-23.6deg); animation-delay: 1.93s;">
+    <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 66.8vh; left: 33.9%; --base-size: 332px; z-index: 7; --rot: -35.3deg; transform: rotate(-35.3deg); animation-delay: 2.32s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 68.0vh; left: 52.2%; --base-size: 335px; z-index: 13; --rot: -1.0deg; transform: rotate(-1.0deg); animation-delay: 2.14s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 64.4vh; left: 71.5%; --base-size: 273px; z-index: 12; --rot: 11.1deg; transform: rotate(11.1deg); animation-delay: 0.22s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 82.7vh; left: -10.4%; --base-size: 296px; z-index: 8; --rot: -34.2deg; transform: rotate(-34.2deg); animation-delay: 1.78s;">
+    <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 81.5vh; left: 8.1%; --base-size: 271px; z-index: 13; --rot: -22.7deg; transform: rotate(-22.7deg); animation-delay: 1.33s;">
+    <img src="assets/images/flowers/heads/yellow_ranunculus.webp" alt="yellow_ranunculus" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 84.9vh; left: 31.9%; --base-size: 308px; z-index: 15; --rot: -26.2deg; transform: rotate(-26.2deg); animation-delay: 1.47s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 83.0vh; left: 53.2%; --base-size: 290px; z-index: 4; --rot: -37.0deg; transform: rotate(-37.0deg); animation-delay: 2.24s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 84.7vh; left: 72.4%; --base-size: 311px; z-index: 2; --rot: 30.4deg; transform: rotate(30.4deg); animation-delay: 1.48s;">
+    <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 99.6vh; left: -11.3%; --base-size: 333px; z-index: 10; --rot: 32.3deg; transform: rotate(32.3deg); animation-delay: 1.65s;">
+    <img src="assets/images/flowers/heads/camellia.webp" alt="camellia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 99.4vh; left: 6.9%; --base-size: 338px; z-index: 10; --rot: -4.1deg; transform: rotate(-4.1deg); animation-delay: 1.78s;">
+    <img src="assets/images/flowers/heads/red_dahlia.webp" alt="red_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 100.0vh; left: 30.8%; --base-size: 339px; z-index: 3; --rot: -7.8deg; transform: rotate(-7.8deg); animation-delay: 1.75s;">
+    <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 94.7vh; left: 51.5%; --base-size: 255px; z-index: 5; --rot: -32.3deg; transform: rotate(-32.3deg); animation-delay: 0.59s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 98.3vh; left: 69.1%; --base-size: 300px; z-index: 14; --rot: -27.9deg; transform: rotate(-27.9deg); animation-delay: 2.19s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
   </div>
 </div>
     </div>
+
+    <!-- Right Dense Flower Wall Panel -->
+    <div class="curtain-panel curtain-right" id="curtain-right">
+      <div class="curtain-fabric"></div>
+      <div class="dense-flower-wall wall-right">
+  <div class="head-item" style="top: -6.4vh; right: -8.8%; --base-size: 286px; z-index: 11; --rot: -24.2deg; transform: rotate(-24.2deg); animation-delay: 1.0s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: -10.7vh; right: 9.5%; --base-size: 290px; z-index: 6; --rot: 31.9deg; transform: rotate(31.9deg); animation-delay: 0.5s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: -8.0vh; right: 30.9%; --base-size: 327px; z-index: 14; --rot: 1.8deg; transform: rotate(1.8deg); animation-delay: 1.01s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: -8.1vh; right: 49.4%; --base-size: 317px; z-index: 11; --rot: 26.3deg; transform: rotate(26.3deg); animation-delay: 0.09s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: -9.5vh; right: 68.0%; --base-size: 292px; z-index: 5; --rot: 28.9deg; transform: rotate(28.9deg); animation-delay: 2.42s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 9.6vh; right: -12.6%; --base-size: 306px; z-index: 7; --rot: -32.0deg; transform: rotate(-32.0deg); animation-delay: 0.65s;">
+    <img src="assets/images/flowers/heads/marigold.webp" alt="marigold" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 5.1vh; right: 13.3%; --base-size: 261px; z-index: 4; --rot: -29.8deg; transform: rotate(-29.8deg); animation-delay: 1.72s;">
+    <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 7.9vh; right: 29.5%; --base-size: 271px; z-index: 6; --rot: 31.6deg; transform: rotate(31.6deg); animation-delay: 0.48s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 5.8vh; right: 52.9%; --base-size: 339px; z-index: 6; --rot: -20.6deg; transform: rotate(-20.6deg); animation-delay: 1.92s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 7.7vh; right: 72.3%; --base-size: 285px; z-index: 6; --rot: 21.0deg; transform: rotate(21.0deg); animation-delay: 0.87s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 19.9vh; right: -9.6%; --base-size: 281px; z-index: 4; --rot: -12.4deg; transform: rotate(-12.4deg); animation-delay: 1.47s;">
+    <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 19.1vh; right: 13.7%; --base-size: 337px; z-index: 6; --rot: -8.8deg; transform: rotate(-8.8deg); animation-delay: 0.26s;">
+    <img src="assets/images/flowers/heads/yellow_ranunculus.webp" alt="yellow_ranunculus" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 24.5vh; right: 27.4%; --base-size: 327px; z-index: 12; --rot: 14.2deg; transform: rotate(14.2deg); animation-delay: 0.76s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 22.9vh; right: 53.5%; --base-size: 261px; z-index: 9; --rot: -25.2deg; transform: rotate(-25.2deg); animation-delay: 1.17s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 21.6vh; right: 73.0%; --base-size: 265px; z-index: 8; --rot: 18.1deg; transform: rotate(18.1deg); animation-delay: 1.16s;">
+    <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 37.6vh; right: -13.8%; --base-size: 259px; z-index: 3; --rot: 5.2deg; transform: rotate(5.2deg); animation-delay: 1.59s;">
+    <img src="assets/images/flowers/heads/camellia.webp" alt="camellia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 39.3vh; right: 12.4%; --base-size: 327px; z-index: 7; --rot: -33.0deg; transform: rotate(-33.0deg); animation-delay: 0.02s;">
+    <img src="assets/images/flowers/heads/red_dahlia.webp" alt="red_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 35.2vh; right: 31.5%; --base-size: 321px; z-index: 8; --rot: -23.5deg; transform: rotate(-23.5deg); animation-delay: 2.4s;">
+    <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 39.6vh; right: 48.0%; --base-size: 288px; z-index: 11; --rot: -20.5deg; transform: rotate(-20.5deg); animation-delay: 0.59s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 38.0vh; right: 69.8%; --base-size: 304px; z-index: 8; --rot: -34.2deg; transform: rotate(-34.2deg); animation-delay: 1.17s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 53.7vh; right: -13.3%; --base-size: 268px; z-index: 1; --rot: -36.6deg; transform: rotate(-36.6deg); animation-delay: 1.62s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 52.0vh; right: 13.0%; --base-size: 312px; z-index: 7; --rot: 0.7deg; transform: rotate(0.7deg); animation-delay: 2.24s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 51.4vh; right: 32.8%; --base-size: 334px; z-index: 4; --rot: -15.2deg; transform: rotate(-15.2deg); animation-delay: 0.48s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 52.6vh; right: 50.3%; --base-size: 319px; z-index: 7; --rot: -4.1deg; transform: rotate(-4.1deg); animation-delay: 1.35s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 49.7vh; right: 72.6%; --base-size: 272px; z-index: 11; --rot: 33.5deg; transform: rotate(33.5deg); animation-delay: 1.23s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 69.0vh; right: -6.4%; --base-size: 312px; z-index: 13; --rot: 30.2deg; transform: rotate(30.2deg); animation-delay: 0.55s;">
+    <img src="assets/images/flowers/heads/marigold.webp" alt="marigold" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 67.6vh; right: 10.9%; --base-size: 263px; z-index: 13; --rot: 37.3deg; transform: rotate(37.3deg); animation-delay: 1.38s;">
+    <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 68.7vh; right: 28.7%; --base-size: 337px; z-index: 10; --rot: 19.1deg; transform: rotate(19.1deg); animation-delay: 0.54s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 64.5vh; right: 49.0%; --base-size: 273px; z-index: 14; --rot: 32.5deg; transform: rotate(32.5deg); animation-delay: 0.5s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 65.2vh; right: 73.3%; --base-size: 289px; z-index: 12; --rot: 16.1deg; transform: rotate(16.1deg); animation-delay: 0.86s;">
+    <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 84.3vh; right: -11.3%; --base-size: 262px; z-index: 12; --rot: 34.5deg; transform: rotate(34.5deg); animation-delay: 2.5s;">
+    <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 81.4vh; right: 6.2%; --base-size: 277px; z-index: 7; --rot: 21.3deg; transform: rotate(21.3deg); animation-delay: 0.8s;">
+    <img src="assets/images/flowers/heads/yellow_ranunculus.webp" alt="yellow_ranunculus" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 82.5vh; right: 29.1%; --base-size: 309px; z-index: 11; --rot: -3.9deg; transform: rotate(-3.9deg); animation-delay: 2.24s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 84.7vh; right: 48.1%; --base-size: 288px; z-index: 4; --rot: -26.2deg; transform: rotate(-26.2deg); animation-delay: 0.65s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 83.5vh; right: 71.3%; --base-size: 287px; z-index: 6; --rot: 16.3deg; transform: rotate(16.3deg); animation-delay: 1.13s;">
+    <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 97.8vh; right: -12.1%; --base-size: 268px; z-index: 9; --rot: -38.3deg; transform: rotate(-38.3deg); animation-delay: 2.16s;">
+    <img src="assets/images/flowers/heads/camellia.webp" alt="camellia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 98.3vh; right: 13.3%; --base-size: 298px; z-index: 12; --rot: -12.4deg; transform: rotate(-12.4deg); animation-delay: 0.54s;">
+    <img src="assets/images/flowers/heads/red_dahlia.webp" alt="red_dahlia" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 94.4vh; right: 31.4%; --base-size: 330px; z-index: 5; --rot: -21.2deg; transform: rotate(-21.2deg); animation-delay: 0.5s;">
+    <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 97.7vh; right: 47.3%; --base-size: 290px; z-index: 7; --rot: 22.0deg; transform: rotate(22.0deg); animation-delay: 0.91s;">
+    <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+  </div>
+  <div class="head-item" style="top: 99.0vh; right: 69.1%; --base-size: 274px; z-index: 2; --rot: 2.7deg; transform: rotate(2.7deg); animation-delay: 1.87s;">
+    <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+  </div>
+</div>
+    </div>
+
+    <!-- Golden Heart Padlock & Keypad Centerpiece (Matching Screenshot) -->
+    <div class="curtain-center-lock" id="curtain-center-lock">
+      <div class="padlock-heart-container" id="heart-padlock-btn" title="Klik untuk membuka langsung">
+        <svg class="padlock-svg" viewBox="0 0 100 120" width="76" height="92">
+          <defs>
+            <linearGradient id="goldShine" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff6b3"/>
+              <stop offset="35%" stop-color="#e5bd57"/>
+              <stop offset="70%" stop-color="#b88628"/>
+              <stop offset="100%" stop-color="#7a5410"/>
+            </linearGradient>
+            <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#e5bd57" flood-opacity="0.6"/>
+            </filter>
+          </defs>
+          <!-- Shackle that can unlock/lift -->
+          <path id="padlock-shackle" class="padlock-shackle" d="M34 45 V24 A16 16 0 0 1 66 24 V45" fill="none" stroke="url(#goldShine)" stroke-width="7" stroke-linecap="round"/>
+          <!-- Heart Lock Body -->
+          <path d="M50 110 C20 85 5 65 5 45 A24 24 0 0 1 50 35 A24 24 0 0 1 95 45 C95 65 80 85 50 110 Z" fill="url(#goldShine)" filter="url(#goldGlow)"/>
+          <!-- Keyhole -->
+          <circle cx="50" cy="62" r="5" fill="#301f07"/>
+          <polygon points="48,64 52,64 54,76 46,76" fill="#301f07"/>
+        </svg>
+      </div>
+
+      <!-- Secret Note & Passcode Dots -->
+      <div class="padlock-note-card">
+        <span class="padlock-tofrom-from">From: Pacarmu ❤️</span>
+        <span class="padlock-tofrom-to">For: Aliya 🌸</span>
+        <p class="padlock-hint">a little secret...</p>
+        
+        <div class="padlock-pass-dots" id="pass-dots">
+          <span class="p-dot" data-idx="0"></span>
+          <span class="p-dot" data-idx="1"></span>
+          <span class="p-dot" data-idx="2"></span>
+          <span class="p-dot" data-idx="3"></span>
+        </div>
+
+        <!-- Interactive Secret Pinpad -->
+        <div class="curtain-keypad" id="curtain-keypad">
+          <div class="keypad-row">
+            <button class="key-btn" data-key="1">1</button>
+            <button class="key-btn" data-key="2">2</button>
+            <button class="key-btn" data-key="3">3</button>
+          </div>
+          <div class="keypad-row">
+            <button class="key-btn" data-key="4">4</button>
+            <button class="key-btn" data-key="5">5</button>
+            <button class="key-btn" data-key="6">6</button>
+          </div>
+          <div class="keypad-row">
+            <button class="key-btn" data-key="7">7</button>
+            <button class="key-btn" data-key="8">8</button>
+            <button class="key-btn" data-key="9">9</button>
+          </div>
+          <div class="keypad-row">
+            <button class="key-btn key-action" id="key-auto" title="Buka Langsung">✨</button>
+            <button class="key-btn" data-key="0">0</button>
+            <button class="key-btn key-action" data-key="del">⌫</button>
+          </div>
+        </div>
+
+        <button class="btn-direct-unlock" id="btn-direct-unlock">Sentuh untuk Buka 🔓</button>
+      </div>
+    </div>
+  </div>
 
     <!-- Right Floral Curtain Drapery -->
     <div class="curtain-panel curtain-right" id="curtain-right">
