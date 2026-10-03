@@ -508,8 +508,17 @@ body {
   position: relative;
   max-width: 880px;
   margin: 0 auto;
-  padding: 40px 24px 80px;
+  padding: 40px 24px 130px;
   animation: fadeInStage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 30px 20px 40px;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-secondary);
 }
 
 @keyframes fadeInStage {
@@ -661,27 +670,33 @@ body {
   pointer-events: none;
 }
 
-/* Page Bottom Meadow Landscape */
+/* Full-Width Edge-to-Edge Floating Foreground Meadow (Screen Bottom, NO Box) */
 .page-bottom-meadow-wrap {
-  position: relative;
-  width: 100%;
-  height: 160px;
-  margin-top: -20px;
-  margin-bottom: 25px;
-  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  height: clamp(80px, 12vh, 150px);
+  margin: 0;
+  padding: 0;
+  overflow: visible;
   pointer-events: none;
-  z-index: 1;
-  border-radius: 12px;
+  z-index: 10;
+  border-radius: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
 }
 
 .meadow-mist-img {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 130%;
   object-fit: cover;
-  opacity: 0.42;
+  object-position: bottom center;
+  opacity: 0.38;
   animation: mistFloat 14s ease-in-out infinite alternate;
 }
 
@@ -692,7 +707,8 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: bottom;
+  object-position: bottom center;
+  filter: drop-shadow(0 -4px 12px rgba(35, 20, 10, 0.12));
 }
 
 @keyframes mistFloat {
