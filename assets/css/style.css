@@ -848,45 +848,141 @@ body {
    SECTION 2: THE HEARTFELT LETTER
    ======================================================== */
 .letter-section {
-  margin-bottom: 70px;
+  margin-bottom: 75px;
 }
 
-.parchment-letter-wrapper {
+.parchment-letter-wrapper.vintage-paper-wrapper {
   position: relative;
-  max-width: 680px;
+  max-width: 660px;
   margin: 0 auto;
+  padding: 10px;
 }
 
-.letter-stamp-corner {
-  position: absolute;
-  top: -15px;
-  right: -15px;
-  z-index: 5;
-  transform: rotate(8deg);
-}
-
-.letter-stamp-border {
-  border: 1.5px dashed var(--gold-antique);
-  padding: 6px 12px;
-  background: var(--bg-parchment-light);
-  font-family: var(--font-sans);
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 2px;
-  color: var(--forest-soft);
-  box-shadow: var(--shadow-sm);
-}
-
-.parchment-letter {
-  background: var(--bg-parchment-light);
-  border: 1px solid #dfd1b8;
-  padding: 50px 45px;
-  border-radius: 6px;
-  box-shadow: 
-    0 10px 30px rgba(35, 25, 15, 0.08),
-    inset 0 0 60px rgba(210, 190, 160, 0.2);
+.vintage-paper-sheet {
   position: relative;
+  background: 
+    radial-gradient(ellipse at 50% 50%, #fefbf4 0%, #f7edd4 70%, #ebd7b2 100%);
+  border: 1px solid #d8c199;
+  border-radius: 4px;
+  padding: 55px 44px 50px;
+  box-shadow: 
+    0 1px 3px rgba(0,0,0,0.06),
+    0 14px 40px rgba(50, 30, 15, 0.16),
+    inset 0 0 70px rgba(180, 135, 80, 0.22);
   line-height: 1.8;
+  overflow: hidden;
+}
+
+/* Vintage Decorative Inset Borders */
+.vintage-paper-sheet::before {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(160, 115, 65, 0.35);
+  pointer-events: none;
+}
+
+.vintage-paper-sheet::after {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 1px dashed rgba(160, 115, 65, 0.2);
+  pointer-events: none;
+}
+
+/* Vintage Postage Stamp in Top-Right Corner */
+.letter-vintage-stamp {
+  position: absolute;
+  top: 24px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+  transform: rotate(-2deg);
+}
+
+.stamp-serrated {
+  width: 58px;
+  height: 68px;
+  background: #fbf5e7;
+  border: 2px dashed #b88628;
+  padding: 4px 2px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.stamp-rate {
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: var(--wax-red);
+  letter-spacing: 1px;
+}
+
+.stamp-icon {
+  font-size: 1.2rem;
+  color: #b88628;
+  margin: 1px 0;
+}
+
+.stamp-label {
+  font-family: var(--font-sans);
+  font-size: 0.48rem;
+  font-weight: 700;
+  color: #6a4a24;
+}
+
+.stamp-postmark {
+  border-left: 2px solid rgba(100, 70, 40, 0.35);
+  padding-left: 6px;
+  font-family: var(--font-editorial);
+  font-size: 0.72rem;
+  color: rgba(100, 70, 40, 0.6);
+  letter-spacing: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stamp-postmark .pm-date {
+  font-size: 0.62rem;
+  color: var(--wax-red);
+}
+
+/* Wax Seal Accent */
+.letter-wax-crest {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #9b2020 0%, #581010 100%);
+  box-shadow: 0 4px 12px rgba(88, 16, 16, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  transform: rotate(-6deg);
+}
+
+.wax-crest-inner {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fcebd2;
+  letter-spacing: 1px;
+  border: 1px solid rgba(255, 235, 210, 0.4);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .letter-watermark {
@@ -894,36 +990,37 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 15rem;
+  font-size: 16rem;
   color: rgba(183, 138, 72, 0.04);
   pointer-events: none;
   user-select: none;
   z-index: 0;
 }
 
-.parchment-letter > *:not(.letter-watermark) {
+.vintage-paper-sheet > *:not(.letter-watermark) {
   position: relative;
   z-index: 1;
 }
 
 .letter-salutation {
-  font-family: var(--font-serif);
-  font-size: 1.8rem;
-  font-weight: 600;
-  color: var(--forest-dark);
-  margin-bottom: 24px;
+  font-family: var(--font-handwriting);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #3b220e;
+  margin-bottom: 20px;
 }
 
 .letter-body p {
   font-family: var(--font-editorial);
-  font-size: 1.25rem;
-  color: var(--ink-primary);
-  margin-bottom: 20px;
-  text-align: justify;
+  font-size: 1.28rem;
+  color: #271a10;
+  margin-bottom: 16px;
+  line-height: 1.65;
+  text-indent: 20px;
 }
 
 .letter-footer {
-  margin-top: 36px;
+  margin-top: 32px;
   text-align: right;
 }
 
@@ -931,15 +1028,15 @@ body {
   font-family: var(--font-editorial);
   font-style: italic;
   font-size: 1.15rem;
-  color: var(--ink-secondary);
+  color: #5c3f22;
 }
 
 .letter-signature {
   font-family: var(--font-handwriting);
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--wax-red);
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 
@@ -1058,39 +1155,9 @@ body {
   pointer-events: none;
 }
 
-/* Scratch Hint Badge */
+/* Scratch Hint Badge - Completely removed per user request */
 .scratch-badge {
-  position: absolute;
-  bottom: 12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(20, 40, 30, 0.9);
-  color: #fff;
-  padding: 6px 14px;
-  border-radius: 999px;
-  font-family: var(--font-sans);
-  font-size: 0.74rem;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-  border: 1px solid var(--gold-antique);
-  z-index: 6;
-  pointer-events: none;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  animation: bounceHint 2s infinite ease-in-out;
-}
-
-@keyframes bounceHint {
-  0%, 100% { transform: translate(-50%, 0); }
-  50% { transform: translate(-50%, -4px); }
-}
-
-.scratch-badge.fade-out {
-  opacity: 0;
-  transform: translate(-50%, 8px);
+  display: none !important;
 }
 
 /* Shimmer pulse effect after scratch reveal */
@@ -1172,22 +1239,21 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 52%;
+  width: 55%;
   height: 100%;
-  overflow: hidden;
   will-change: transform;
-  transition: transform 1.25s cubic-bezier(0.77, 0, 0.175, 1);
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.4);
 }
 
 .curtain-left {
   left: 0;
-  transform: translateX(-101%);
+  transform: translateX(-105%);
 }
 
 .curtain-right {
   right: 0;
-  transform: translateX(101%);
+  transform: translateX(105%);
 }
 
 /* When curtains close (covering screen like theater curtains) */
@@ -1201,11 +1267,11 @@ body {
 
 /* When curtains open (parting away to reveal stage) */
 .flower-curtain.curtains-open .curtain-left {
-  transform: translateX(-103%);
+  transform: translateX(-112%);
 }
 
 .flower-curtain.curtains-open .curtain-right {
-  transform: translateX(103%);
+  transform: translateX(112%);
 }
 
 /* Fabric Background - Warm creamy ivory/champagne vintage parchment as in screenshot */
@@ -1237,8 +1303,8 @@ body {
 
 .head-item {
   position: absolute;
-  width: var(--base-size, 280px);
-  height: var(--base-size, 280px);
+  width: calc(var(--base-size, 380px) * 1.25);
+  height: calc(var(--base-size, 380px) * 1.25);
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -1322,6 +1388,18 @@ body {
   box-shadow: 0 12px 35px rgba(50, 35, 20, 0.25);
   backdrop-filter: blur(8px);
   width: 220px;
+  transition: transform 0.2s ease;
+}
+
+.padlock-note-card.shake-error {
+  animation: shakeCard 0.35s ease-in-out;
+  border-color: #c95656;
+}
+
+@keyframes shakeCard {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
 }
 
 .padlock-tofrom-from, .padlock-tofrom-to {
@@ -1780,8 +1858,8 @@ body {
   }
 
   .head-item {
-    width: calc(var(--base-size, 280px) * 0.7) !important;
-    height: calc(var(--base-size, 280px) * 0.7) !important;
+    width: calc(var(--base-size, 380px) * 0.88) !important;
+    height: calc(var(--base-size, 380px) * 0.88) !important;
   }
 
   .curtain-center-lock {

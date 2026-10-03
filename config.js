@@ -27,15 +27,19 @@ const CONFIG = {
     autoplayOnOpen: true,
   },
 
-  // Surat Ucapan Ultah (Natural, santai, manis, dan tulus)
+  // PIN Rahasia Masuk (Ulang Tahun Aliya: 08-10-04)
+  security: {
+    pin: "081004",
+    hint: "Ketik 081004 atau sentuh gembok",
+  },
+
+  // Surat Ucapan Ultah (Manis, tulus, tidak terlalu panjang)
   letter: {
     salutation: "Hai Aliya sayang,",
     paragraphs: [
-      "Selamat ulang tahun yaa! Ga kerasa waktu jalan cepet banget, dan sekarang kamu udah nambah umur lagi.",
-      "Jujur aku bukan tipe orang yang pinter ngerangkai kata-kata puitis kek di novel atau quotes sosmed. Tapi yang jelas, aku bener-bener bersyukur dan seneng banget bisa ngerayain hari ulang tahunmu bareng kamu.",
-      "Makasih banyak yaa udah selalu ada, udah sabar sama aku, udah mau dengerin cerita-cerita randomku, dan makasih udah jadi orang yang selalu bisa bikin aku senyum bahkan pas hari-hariku lagi capek. Kamu yang kadang ngeselin tapi aslinya gemesin banget itu selalu jadi orang favoritku.",
-      "Di umurmu yang baru ini, doa aku sederhana tapi tulus dari hati: semoga kamu selalu sehat, selalu dilimpahkan bahagia, dijauhin dari hal-hal yang bikin sedih atau overthinking, dan semua hal yang lagi kamu usahain atau impikan bisa dipermudah jalannya.",
-      "Tetep jadi Aliya yang aku kenal ya. Jangan pernah ngerasa sendirian kalau lagi ada masalah, karena ada aku di sini yang bakal selalu siap nemenin dan dengerin kamu kapan pun."
+      "Selamat ulang tahun yaa! Makasih banyak udah selalu ada, udah sabar sama aku, dan selalu jadi orang yang paling bisa bikin aku senyum bahkan pas hari-hariku lagi capek.",
+      "Doa aku sederhana tapi tulus dari hati: semoga kamu selalu sehat, bahagia terus, dijauhin dari hal-hal yang bikin sedih, dan semua impianmu dipermudah jalannya.",
+      "Tetep jadi Aliya kesayanganku ya. I love you in every season ❤️"
     ],
     closing: "Sayang kamu banyak-banyak,",
     signature: "Pacarmu yang paling beruntung ❤️",
