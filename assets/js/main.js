@@ -1121,7 +1121,59 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function initScrollParallax() {
     const parallaxItems = document.querySelectorAll('.parallax-flower');
-    if (!parallaxItems.length) return;
+    const scrapbookSpreads = document.querySelectorAll('.scrapbook-spread');
+
+    // 1. Intersection Observer for Parallax Reveal
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -40px 0px'
+      });
+
+      scrapbookSpreads.forEach(spread => revealObserver.observe(spread));
+    } else {
+      scrapbookSpreads.forEach(spread => spread.classList.add('is-revealed'));
+    }
+
+    // 2. Interactive 3D Cursor Tilt for Scrapbook Spreads (Desktop)
+    scrapbookSpreads.forEach(spread => {
+      let bounds = null;
+
+      spread.addEventListener('mouseenter', () => {
+        bounds = spread.getBoundingClientRect();
+      });
+
+      spread.addEventListener('mousemove', (e) => {
+        if (!bounds) bounds = spread.getBoundingClientRect();
+        const x = (e.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (e.clientY - bounds.top) / bounds.height - 0.5;
+
+        const pFront = spread.querySelector('.polaroid-front');
+        const pBack = spread.querySelector('.polaroid-back');
+        const memo = spread.querySelector('.scrapbook-memo-card');
+
+        if (pFront) pFront.style.transform = `rotate(calc(var(--rot, 3.5deg) + ${x * 4}deg)) translate3d(${x * 12}px, ${y * 12}px, 20px)`;
+        if (pBack) pBack.style.transform = `rotate(calc(var(--rot, -4deg) + ${x * -3}deg)) translate3d(${x * -8}px, ${y * -8}px, 5px)`;
+        if (memo) memo.style.transform = `rotate(calc(2.5deg + ${x * 2}deg)) translate3d(${x * 6}px, ${y * 6}px, 10px)`;
+      });
+
+      spread.addEventListener('mouseleave', () => {
+        const pFront = spread.querySelector('.polaroid-front');
+        const pBack = spread.querySelector('.polaroid-back');
+        const memo = spread.querySelector('.scrapbook-memo-card');
+
+        if (pFront) pFront.style.transform = `rotate(var(--rot, 3.5deg)) translate3d(0, 0, 0)`;
+        if (pBack) pBack.style.transform = `rotate(var(--rot, -4deg)) translate3d(0, 0, 0)`;
+        if (memo) memo.style.transform = `rotate(2.5deg) translate3d(0, 0, 0)`;
+        bounds = null;
+      });
+    });
 
     const itemsData = Array.from(parallaxItems).map((el, index) => {
       const speedY = parseFloat(el.getAttribute('data-speed-y')) || (0.35 + (index % 4) * 0.08);
@@ -1155,7 +1207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let isRunning = true;
 
     function renderParallaxFrame() {
-      // Fluid Momentum Lerp (Scrub physics identical to flowerisblooming GSAP scrub)
+      // Fluid Momentum Lerp
       smoothScrollY += (targetScrollY - smoothScrollY) * 0.085;
 
       const vh = window.innerHeight;
@@ -1165,27 +1217,19 @@ document.addEventListener('DOMContentLoaded', () => {
         const stageRect = stageEl.getBoundingClientRect();
         const stageTop = targetScrollY + stageRect.top;
 
+        // 1. Botanical Margin Parallax
         itemsData.forEach(item => {
           const elementDocY = stageTop + item.initialTop;
-          // Offset relative to screen center
           const centerOffset = (smoothScrollY + vh * 0.5) - (elementDocY + item.height * 0.5);
-          const normalizedProgress = centerOffset / (vh * 0.75); // -1.0 to +1.0
+          const normalizedProgress = centerOffset / (vh * 0.75);
 
-          // 1. Organic Vertical Depth Lag (Independent speed per layer)
           const curY = -centerOffset * item.speedY;
-
-          // 2. Pronounced Lateral Drift + Harmonic Breeze Sway (Gliding along side margins)
           const waveSway = Math.sin(smoothScrollY * item.swayFreq + item.phase) * item.swayAmp;
           const curX = (normalizedProgress * item.driftX) + waveSway;
-
-          // 3. Dynamic Inertial Tilt & Wobble
           const rotWobble = Math.cos(smoothScrollY * (item.swayFreq * 0.75) + item.phase) * (item.rotAmp * 0.4);
           const curRot = item.baseRot + (normalizedProgress * item.rotAmp) + rotWobble;
-
-          // 4. Subtle Scale Breathing
           const depthScale = item.baseScale * (1 + (1 - Math.min(1, Math.abs(normalizedProgress))) * 0.05);
 
-          // 5. Smooth Viewport Opacity Easing
           const viewTop = elementDocY + curY - smoothScrollY;
           const viewBottom = viewTop + item.height;
           let opacity = 0;
@@ -1199,6 +1243,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
           item.el.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0) rotate(${curRot.toFixed(1)}deg) scale(${depthScale.toFixed(3)})`;
           item.el.style.opacity = opacity.toFixed(2);
+        });
+
+        // 2. Scrapbook Multi-Plane Parallax Depth
+        scrapbookSpreads.forEach(spread => {
+          if (!spread.classList.contains('is-revealed')) return;
+          const rect = spread.getBoundingClientRect();
+          const spreadCenter = rect.top + rect.height * 0.5;
+          const distFromCenter = (spreadCenter - vh * 0.5) / (vh * 0.6); // -1.0 to 1.0
+
+          const pBack = spread.querySelector('.polaroid-back');
+          const pFront = spread.querySelector('.polaroid-front');
+          const memo = spread.querySelector('.scrapbook-memo-card');
+          const flowers = spread.querySelector('.scrapbook-dried-botanicals');
+          const news = spread.querySelector('.scrapbook-newsprint-clipping');
+
+          if (pBack) {
+            const y = distFromCenter * 18;
+            const rot = distFromCenter * -1.5;
+            pBack.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) rotate(calc(var(--rot, -4deg) + ${rot.toFixed(1)}deg))`;
+          }
+          if (pFront) {
+            const y = distFromCenter * -22;
+            const rot = distFromCenter * 2.0;
+            pFront.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) rotate(calc(var(--rot, 3.5deg) + ${rot.toFixed(1)}deg))`;
+          }
+          if (memo) {
+            const y = distFromCenter * 14;
+            memo.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) rotate(2.5deg)`;
+          }
+          if (flowers) {
+            const y = distFromCenter * -15;
+            flowers.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0)`;
+          }
+          if (news) {
+            const y = distFromCenter * 8;
+            news.style.transform = `translate3d(0, ${y.toFixed(1)}px, 0) rotate(-3deg)`;
+          }
         });
       }
 
@@ -1219,7 +1300,6 @@ document.addEventListener('DOMContentLoaded', () => {
       smoothScrollY = targetScrollY;
     };
 
-    // Start continuous momentum render loop
     requestAnimationFrame(renderParallaxFrame);
   }
 
