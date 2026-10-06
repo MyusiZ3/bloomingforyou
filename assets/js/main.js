@@ -294,12 +294,72 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Vintage Envelope Unsealing ---
+  function playPaperSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+
+      // 1. Paper rustling texture synthesis
+      const bufferSize = Math.floor(ctx.sampleRate * 0.55);
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.28));
+      }
+
+      const noiseSource = ctx.createBufferSource();
+      noiseSource.buffer = buffer;
+
+      // Bandpass filter to sculpt crisp paper friction
+      const bandpass = ctx.createBiquadFilter();
+      bandpass.type = 'bandpass';
+      bandpass.frequency.setValueAtTime(2200, ctx.currentTime);
+      bandpass.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.45);
+      bandpass.Q.setValueAtTime(2.2, ctx.currentTime);
+
+      // Highpass to eliminate low rumble
+      const highpass = ctx.createBiquadFilter();
+      highpass.type = 'highpass';
+      highpass.frequency.setValueAtTime(700, ctx.currentTime);
+
+      const gainNode = ctx.createGain();
+      gainNode.gain.setValueAtTime(0.01, ctx.currentTime);
+      gainNode.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 0.04);
+      gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.52);
+
+      noiseSource.connect(bandpass);
+      bandpass.connect(highpass);
+      highpass.connect(gainNode);
+      gainNode.connect(ctx.destination);
+
+      noiseSource.start();
+      noiseSource.stop(ctx.currentTime + 0.55);
+
+      // 2. Subtle wax seal unseal snap
+      const snapOsc = ctx.createOscillator();
+      const snapGain = ctx.createGain();
+      snapOsc.type = 'triangle';
+      snapOsc.frequency.setValueAtTime(320, ctx.currentTime);
+      snapOsc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.08);
+
+      snapGain.gain.setValueAtTime(0.22, ctx.currentTime);
+      snapGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
+
+      snapOsc.connect(snapGain);
+      snapGain.connect(ctx.destination);
+      snapOsc.start();
+      snapOsc.stop(ctx.currentTime + 0.095);
+    } catch (_) {}
+  }
+
   function openEnvelope() {
     if (isOpeningEnvelope) return;
     isOpeningEnvelope = true;
 
-    // 1. Play Background Music immediately
+    // 1. Play Background Music & Paper Unsealing SFX
     playAudio();
+    playPaperSound();
 
     // 2. Open 3D Envelope Flap & raise wax seal
     if (envelopeBox) {
