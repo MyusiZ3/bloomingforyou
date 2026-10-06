@@ -754,66 +754,49 @@ body {
 /* Flame & Smoke Container */
 .flame-wrapper {
   position: relative;
-  width: 26px;
-  height: 36px;
+  width: 28px;
+  height: 42px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
 }
 
-/* Animated Flame Core */
-.flame-core {
-  position: relative;
-  width: 16px;
-  height: 28px;
-  background: radial-gradient(ellipse at 50% 80%, #ffffff 0%, #ffea70 30%, #ff8c1a 75%, #ff4b1f 100%);
-  border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
-  box-shadow: 
-    0 0 14px rgba(255, 160, 20, 0.95),
-    0 0 28px rgba(255, 120, 0, 0.55);
-  animation: candleFlameDance 1.3s ease-in-out infinite alternate;
+/* Classic Watercolor Flame Sprite */
+.classic-flame-img {
+  width: 26px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(255, 185, 45, 0.95)) drop-shadow(0 0 20px rgba(255, 120, 20, 0.5));
+  animation: flameGentleBreeze 2.4s ease-in-out infinite alternate;
   transform-origin: bottom center;
-  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.flame-inner {
-  position: absolute;
-  bottom: 3px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 10px;
-  background: #ffffff;
-  border-radius: 50%;
-  opacity: 0.9;
-  filter: blur(0.5px);
-}
-
-@keyframes candleFlameDance {
+@keyframes flameGentleBreeze {
   0% {
-    transform: rotate(-2.5deg) scaleY(0.95);
-    border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+    transform: translateY(0) rotate(-2.5deg) scale(0.97);
   }
   50% {
-    transform: rotate(2deg) scaleY(1.05) skewX(2deg);
-    border-radius: 45% 55% 30% 40% / 65% 55% 45% 35%;
+    transform: translateY(-2px) rotate(2.5deg) scale(1.04);
   }
   100% {
-    transform: rotate(-1.5deg) scaleY(1.02);
-    border-radius: 55% 45% 40% 30% / 55% 65% 35% 45%;
+    transform: translateY(1px) rotate(-1.5deg) scale(0.99);
   }
 }
 
 /* Extinguished Candle State */
+.candle-flame-spot.is-extinguished .classic-flame-img {
+  opacity: 0;
+  transform: scale(0.2) translateY(-12px);
+  pointer-events: none;
+}
+
 .candle-flame-spot.is-extinguished .flame-glow-aura {
   opacity: 0;
   transform: scale(0.3);
-}
-
-.candle-flame-spot.is-extinguished .flame-core {
-  opacity: 0;
-  transform: scale(0.1) translateY(8px);
-  pointer-events: none;
 }
 
 /* Smoke Curl Animation */
