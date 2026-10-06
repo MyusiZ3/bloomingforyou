@@ -507,6 +507,9 @@ body {
   max-width: 580px;
   width: 100%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .cake-scene-card::before {
@@ -515,6 +518,8 @@ body {
 
 .cake-header-wrap {
   margin-bottom: 12px;
+  width: 100%;
+  text-align: center;
 }
 
 .cake-title {
@@ -543,13 +548,16 @@ body {
   max-width: 420px;
   margin: 16px auto 8px;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .cake-image-wrap {
   position: relative;
   width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
   display: block;
   filter: drop-shadow(0 18px 40px rgba(45, 25, 12, 0.22));
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
@@ -559,6 +567,14 @@ body {
   opacity: 0;
   transform: scale(0.9) translateY(12px);
   pointer-events: none;
+}
+
+.cake-custom-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* Clown Reveal Character */
@@ -692,13 +708,13 @@ body {
 }
 
 .candle-flame-left {
-  top: 8.4%;
-  left: 41.4%;
+  top: 7.0%;
+  left: 40.8%;
 }
 
 .candle-flame-right {
-  top: 8.3%;
-  left: 59.1%;
+  top: 6.9%;
+  left: 58.8%;
 }
 
 .candle-flame-spot:hover {
