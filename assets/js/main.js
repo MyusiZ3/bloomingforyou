@@ -392,7 +392,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Celebrate with delicate floral sparkle burst
       triggerBirthdayCelebration();
 
-      // Transition cake & butterflies to clown reveal
+      // Transition cake & butterflies out
       if (cakeImageWrap) {
         cakeImageWrap.classList.add('cake-wrap-exit');
       }
@@ -404,22 +404,90 @@ document.addEventListener('DOMContentLoaded', () => {
         cakeTitleEl.style.transform = 'translateY(-6px)';
       }
 
-      setTimeout(() => {
-        if (cakeImageWrap) cakeImageWrap.classList.add('hidden');
-        if (cakeClownReveal) {
-          cakeClownReveal.classList.remove('hidden');
+      // 3-Step Character Story Sequence
+      const characterStory = [
+        {
+          src: 'assets/images/character/clown.png',
+          alt: 'Queen and Clown',
+          title: 'a special day for <span class="cake-highlight-name">my little gurl...</span>',
+          duration: 3000
+        },
+        {
+          src: 'assets/images/character/menunjuk.png',
+          alt: 'Look at Her',
+          title: 'look at her... <span class="cake-highlight-name">she\'s 22 now</span>',
+          duration: 3000
+        },
+        {
+          src: 'assets/images/character/short.png',
+          alt: 'Still Cute',
+          title: 'still cute tho. <span class="cake-highlight-name">unfortunately :3...</span>',
+          duration: 3000
         }
-        if (cakeTitleEl) {
-          cakeTitleEl.innerHTML = 'A special day for <span class="cake-highlight-name">my little gurl...</span>';
-          cakeTitleEl.style.opacity = '1';
-          cakeTitleEl.style.transform = 'translateY(0)';
-        }
-      }, 350);
+      ];
 
-      // Show clown for 3 seconds, then proceed to main gift stage
-      setTimeout(() => {
-        proceedToGiftStage();
-      }, 3350);
+      // Preload story character images for instant display
+      characterStory.forEach(item => {
+        const img = new Image();
+        img.src = item.src;
+      });
+
+      function playCharacterStep(index) {
+        if (index >= characterStory.length) {
+          proceedToGiftStage();
+          return;
+        }
+
+        const step = characterStory[index];
+        const characterImg = document.getElementById('cake-character-img');
+
+        if (index === 0) {
+          setTimeout(() => {
+            if (cakeImageWrap) cakeImageWrap.classList.add('hidden');
+            if (cakeClownReveal) cakeClownReveal.classList.remove('hidden');
+            if (characterImg) {
+              characterImg.src = step.src;
+              characterImg.alt = step.alt;
+            }
+            if (cakeTitleEl) {
+              cakeTitleEl.innerHTML = step.title;
+              cakeTitleEl.style.opacity = '1';
+              cakeTitleEl.style.transform = 'translateY(0)';
+            }
+
+            setTimeout(() => {
+              playCharacterStep(index + 1);
+            }, step.duration);
+          }, 350);
+        } else {
+          if (cakeTitleEl) {
+            cakeTitleEl.style.opacity = '0';
+            cakeTitleEl.style.transform = 'translateY(-6px)';
+          }
+          if (characterImg) {
+            characterImg.classList.add('character-fade');
+          }
+
+          setTimeout(() => {
+            if (characterImg) {
+              characterImg.src = step.src;
+              characterImg.alt = step.alt;
+              characterImg.classList.remove('character-fade');
+            }
+            if (cakeTitleEl) {
+              cakeTitleEl.innerHTML = step.title;
+              cakeTitleEl.style.opacity = '1';
+              cakeTitleEl.style.transform = 'translateY(0)';
+            }
+
+            setTimeout(() => {
+              playCharacterStep(index + 1);
+            }, step.duration);
+          }, 350);
+        }
+      }
+
+      playCharacterStep(0);
     }
   }
 
