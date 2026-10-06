@@ -12,11 +12,17 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Elements
+  const envelopeStage = document.getElementById('envelope-stage');
+  const envelopeBox = document.getElementById('envelope-box');
+  const waxSealBtn = document.getElementById('wax-seal-btn');
+  const cakeStage = document.getElementById('cake-stage');
+  const candleLeft = document.getElementById('candle-left');
+  const candleRight = document.getElementById('candle-right');
+  const cakeStatusBadge = document.getElementById('cake-status-badge');
+  const candleCountText = document.getElementById('candle-count-text');
+  const cakeProceedAction = document.getElementById('cake-proceed-action');
+  const btnProceedGift = document.getElementById('btn-proceed-gift');
   const giftStage = document.getElementById('gift-stage');
-  const flowerCurtain = document.getElementById('flower-curtain');
-  const centerLock = document.getElementById('curtain-center-lock');
-  const padlockBtn = document.getElementById('heart-padlock-btn');
-  const directUnlockBtn = document.getElementById('btn-direct-unlock');
   const btnLockCurtain = document.getElementById('btn-lock-curtain');
   
   const musicPill = document.getElementById('music-pill');
@@ -31,8 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnScratchAll = document.getElementById('btn-scratch-all');
 
   let isPlaying = false;
-  let isUnlocking = false;
-  let enteredCode = [];
+  let isOpeningEnvelope = false;
+  let isCandleLeftLit = true;
+  let isCandleRightLit = true;
+  let hasTransitionedToGift = false;
 
   // ========================================================
   // IN-MEMORY AUDIO ENGINE (NO IDM POPUPS)
@@ -149,8 +157,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Recipient Info
     const r = configData.recipient || {};
+    const recipientName = r.name || "Aliya";
+
     const headerName = document.getElementById('header-name');
-    if (headerName) headerName.textContent = r.name || "Aliya";
+    if (headerName) headerName.textContent = recipientName;
+
+    const slipName = document.getElementById('slip-recipient-name');
+    if (slipName) slipName.textContent = recipientName;
+
+    const envName = document.getElementById('envelope-recipient-name');
+    if (envName) envName.textContent = recipientName;
+
+    const cakeName = document.getElementById('cake-recipient-name');
+    if (cakeName) cakeName.textContent = recipientName;
+
+    const paperName = document.getElementById('paper-recipient-name');
+    if (paperName) paperName.textContent = recipientName;
 
     // Dates & Tagline
     if (configData.dates && configData.dates.tagline) {
@@ -194,6 +216,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render Scratchable Polaroids
     renderPolaroids(configData);
 
+    const curtainRecipient = document.getElementById('curtain-recipient-name');
+    if (curtainRecipient) curtainRecipient.textContent = recipientName;
+
     // Share / Reply Button Link
     if (btnShareLove) {
       const waText = encodeURIComponent(`Sayanggg, aku udah buka bunganyaa... Suka banget gemes dan lucu parah! Makasih banyak yaa, love you so much! ❤️🌹`);
@@ -202,131 +227,315 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ========================================================
-  // SECRET GATEWAY: PASSCODE (081004) & PADLOCK UNLOCK
+  // STAGE 0: THEATRICAL FLORAL CURTAIN GATEWAY & GOLDEN HEART PADLOCK
   // ========================================================
-  function updateDots() {
-    const dots = document.querySelectorAll('.padlock-pass-dots .p-dot');
-    dots.forEach((dot, idx) => {
-      if (idx < enteredCode.length) {
-        dot.classList.add('filled');
-      } else {
-        dot.classList.remove('filled');
-      }
-    });
-  }
+  const flowerCurtain = document.getElementById('flower-curtain');
+  const padlockHeartBtn = document.getElementById('padlock-heart-btn');
+  let isCurtainUnlocked = false;
 
-  function triggerUnlock() {
-    if (isUnlocking) return;
-    isUnlocking = true;
+  function unlockFlowerCurtain() {
+    if (isCurtainUnlocked) return;
+    isCurtainUnlocked = true;
 
-    // 1. Immediately play audio via in-memory Blob Audio & unlock heart padlock shackle
+    // Pop the padlock shackle & create golden sparkles
+    if (padlockHeartBtn) {
+      padlockHeartBtn.classList.add('unlocked');
+      createSparkleBurst(padlockHeartBtn);
+    }
+
+    // Start background music smoothly
     playAudio();
 
-    if (padlockBtn) padlockBtn.classList.add('unlocked');
-    document.querySelectorAll('.padlock-pass-dots .p-dot').forEach(d => d.classList.add('filled'));
+    // Play unlocking chime
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (AudioContext) {
+        const ctx = new AudioContext();
+        [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+          setTimeout(() => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.2, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.55);
+          }, i * 90);
+        });
+      }
+    } catch (_) {}
 
-    if (centerLock) createSparkleBurst(centerLock);
-    if (musicPill) musicPill.classList.remove('hidden');
-
-    // 2. Part the massive floral curtains smoothly
+    // Slide curtains open after the shackle pop animation
     setTimeout(() => {
       if (flowerCurtain) {
         flowerCurtain.classList.remove('curtains-closed');
         flowerCurtain.classList.add('curtains-open');
       }
-      if (giftStage) giftStage.classList.remove('hidden');
 
-      // Ensure all polaroid canvases are initialized with accurate layout dimensions
+      // Hide curtain overlay completely after slide transition
+      setTimeout(() => {
+        if (flowerCurtain) {
+          flowerCurtain.classList.remove('active');
+        }
+      }, 1250);
+    }, 450);
+  }
+
+  // Click / tap on Golden Heart Padlock opens the curtain
+  if (padlockHeartBtn) {
+    padlockHeartBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      unlockFlowerCurtain();
+    });
+    padlockHeartBtn.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        unlockFlowerCurtain();
+      }
+    });
+  }
+
+  // Clicking anywhere on the curtain also unlocks
+  if (flowerCurtain) {
+    flowerCurtain.addEventListener('click', () => {
+      unlockFlowerCurtain();
+    });
+  }
+
+  // ========================================================
+  // STAGE 1: THE VINTAGE ENVELOPE UNSEALING
+  // ========================================================
+  function openEnvelope() {
+    if (isOpeningEnvelope) return;
+    isOpeningEnvelope = true;
+
+    // 1. Play Background Music immediately
+    playAudio();
+
+    // 2. Open 3D Envelope Flap & raise wax seal
+    if (envelopeBox) {
+      envelopeBox.classList.add('is-open');
+    }
+
+    if (waxSealBtn) {
+      createSparkleBurst(waxSealBtn);
+    }
+
+    // 3. Transition from Envelope to Birthday Cake Stage
+    setTimeout(() => {
+      if (envelopeStage) {
+        envelopeStage.classList.add('stage-fade-out');
+      }
+
+      setTimeout(() => {
+        if (envelopeStage) {
+          envelopeStage.classList.add('hidden');
+        }
+        if (cakeStage) {
+          cakeStage.classList.remove('hidden');
+        }
+        isOpeningEnvelope = false;
+      }, 800);
+
+    }, 2800);
+  }
+
+  if (waxSealBtn) {
+    waxSealBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openEnvelope();
+    });
+  }
+
+  if (envelopeBox) {
+    envelopeBox.addEventListener('click', () => {
+      openEnvelope();
+    });
+  }
+
+  // ========================================================
+  // STAGE 2: BIRTHDAY CAKE & 22 CANDLES BLOWOUT
+  // ========================================================
+  function playPuffSound() {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const ctx = new AudioContext();
+      
+      // Gentle soft blowing noise / sparkle chime
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(520, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.25);
+
+      gain.gain.setValueAtTime(0.2, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.26);
+    } catch (_) {}
+  }
+
+  function extinguishCandle(candleEl, isLeft) {
+    if (isLeft && !isCandleLeftLit) return;
+    if (!isLeft && !isCandleRightLit) return;
+
+    if (isLeft) isCandleLeftLit = false;
+    else isCandleRightLit = false;
+
+    candleEl.classList.remove('candle-active');
+    candleEl.classList.add('is-extinguished');
+
+    // Create extinguish particle burst & sound
+    createSparkleBurst(candleEl);
+    playPuffSound();
+
+    const cakeHint = document.getElementById('cake-instruction-hint');
+
+    // Check if both extinguished
+    if (!isCandleLeftLit && !isCandleRightLit) {
+      if (cakeHint) {
+        cakeHint.textContent = "Permohonanmu terkabul... ✨";
+        cakeHint.style.color = "var(--gold-antique)";
+      }
+      
+      // Celebrate with delicate floral sparkle burst
+      triggerBirthdayCelebration();
+
+      // Direct smooth transition: curtain parts open & reveals gift stage
+      setTimeout(() => {
+        proceedToGiftStage();
+      }, 750);
+    }
+  }
+
+  if (candleLeft) {
+    candleLeft.addEventListener('click', (e) => {
+      e.stopPropagation();
+      extinguishCandle(candleLeft, true);
+    });
+  }
+
+  if (candleRight) {
+    candleRight.addEventListener('click', (e) => {
+      e.stopPropagation();
+      extinguishCandle(candleRight, false);
+    });
+  }
+
+  function triggerBirthdayCelebration() {
+    const symbols = ['🌸', '✦', '✨', '✧', '🌷', '•', '💖'];
+    for (let i = 0; i < 20; i++) {
+      setTimeout(() => {
+        const el = document.createElement('div');
+        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        el.style.position = 'fixed';
+        el.style.left = `${Math.random() * 90 + 5}vw`;
+        el.style.top = `${Math.random() * 70 + 15}vh`;
+        el.style.fontSize = `${16 + Math.random() * 16}px`;
+        el.style.color = '#b78a48';
+        el.style.pointerEvents = 'none';
+        el.style.zIndex = '99999';
+        el.style.transition = 'all 1.3s cubic-bezier(0.2, 0.8, 0.3, 1)';
+        el.style.opacity = '0.9';
+        el.style.transform = 'scale(0.4)';
+
+        document.body.appendChild(el);
+        requestAnimationFrame(() => {
+          el.style.transform = `translateY(-${50 + Math.random() * 80}px) scale(${1 + Math.random() * 0.4}) rotate(${Math.random() * 60 - 30}deg)`;
+          el.style.opacity = '0';
+        });
+
+        setTimeout(() => el.remove(), 1400);
+      }, i * 50);
+    }
+  }
+
+  // ========================================================
+  // STAGE 3: TRANSITION TO BLOOMING GIFT & LETTER STAGE
+  // ========================================================
+  function proceedToGiftStage() {
+    if (hasTransitionedToGift) return;
+    hasTransitionedToGift = true;
+
+    if (cakeStage) {
+      cakeStage.classList.add('stage-fade-out');
+    }
+
+    setTimeout(() => {
+      if (cakeStage) cakeStage.classList.add('hidden');
+      if (giftStage) giftStage.classList.remove('hidden');
+      if (musicPill) musicPill.classList.remove('hidden');
+
+      // Unveil the blooming side botanicals and meadow foreground
+      const sideBotanicals = document.getElementById('side-botanical-parallax-track');
+      const meadowWrap = document.getElementById('page-bottom-meadow-wrap');
+      
+      if (sideBotanicals) sideBotanicals.classList.remove('hidden');
+      if (meadowWrap) meadowWrap.classList.remove('hidden');
+
+      if (typeof updateParallaxFn === 'function') {
+        requestAnimationFrame(updateParallaxFn);
+      }
+
+      // Initialize all scratch canvases with correct dimensions
       setTimeout(() => {
         document.querySelectorAll('.scratch-canvas').forEach(c => {
           if (c.paintFoilIfNotPainted) c.paintFoilIfNotPainted();
         });
-      }, 350);
-
-      // Once parted, hide curtain overlay so user can interact with main stage
-      setTimeout(() => {
-        if (flowerCurtain) {
-          flowerCurtain.classList.remove('active', 'curtains-open');
-        }
-        isUnlocking = false;
-        enteredCode = [];
-        updateDots();
-        if (padlockBtn) padlockBtn.classList.remove('unlocked');
-      }, 1300);
-
-    }, 180);
+      }, 300);
+    }, 700);
   }
 
-  // Keypad Number Handling
-  document.querySelectorAll('.key-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  if (btnProceedGift) {
+    btnProceedGift.addEventListener('click', (e) => {
       e.stopPropagation();
-      const key = btn.dataset.key;
-
-      if (key === 'del') {
-        if (enteredCode.length > 0) {
-          enteredCode.pop();
-          updateDots();
-        }
-      } else if (btn.id === 'key-auto') {
-        // Magic button: instant unlock
-        triggerUnlock();
-      } else if (key !== undefined) {
-        if (enteredCode.length < 6) {
-          enteredCode.push(key);
-          updateDots();
-
-          // When 6 digits entered
-          if (enteredCode.length === 6) {
-            const entered = enteredCode.join('');
-            const targetPin = (typeof CONFIG !== 'undefined' && CONFIG.security && CONFIG.security.pin) ? CONFIG.security.pin : '081004';
-
-            if (entered === targetPin || entered === '081004') {
-              setTimeout(triggerUnlock, 120);
-            } else {
-              // Shake card gently on wrong PIN and reset
-              const noteCard = document.querySelector('.padlock-note-card');
-              if (noteCard) {
-                noteCard.classList.add('shake-error');
-                setTimeout(() => {
-                  noteCard.classList.remove('shake-error');
-                  enteredCode = [];
-                  updateDots();
-                }, 400);
-              }
-            }
-          }
-        }
-      }
-    });
-  });
-
-  // Direct click on padlock or unlock button opens immediately
-  if (padlockBtn) {
-    padlockBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      triggerUnlock();
+      proceedToGiftStage();
     });
   }
 
-  if (directUnlockBtn) {
-    directUnlockBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      triggerUnlock();
-    });
-  }
-
-  // Re-lock Curtain Button ("Kunci Tirai Bunga Lagi")
+  // Re-lock / Re-light Cake ("Tiup Lilin Ulang")
   if (btnLockCurtain) {
     btnLockCurtain.addEventListener('click', () => {
-      enteredCode = [];
-      updateDots();
       window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (flowerCurtain) {
-        flowerCurtain.classList.remove('curtains-open');
-        flowerCurtain.classList.add('active', 'curtains-closed');
+      
+      // Reset candles
+      isCandleLeftLit = true;
+      isCandleRightLit = true;
+      hasTransitionedToGift = false;
+
+      if (candleLeft) {
+        candleLeft.classList.remove('is-extinguished');
+        candleLeft.classList.add('candle-active');
       }
-      if (padlockBtn) padlockBtn.classList.remove('unlocked');
+      if (candleRight) {
+        candleRight.classList.remove('is-extinguished');
+        candleRight.classList.add('candle-active');
+      }
+      const cakeHint = document.getElementById('cake-instruction-hint');
+      if (cakeHint) {
+        cakeHint.textContent = "Tiup lilinnya dan buat permohonanmu";
+        cakeHint.style.color = "";
+      }
+      if (cakeProceedAction) {
+        cakeProceedAction.classList.remove('is-ready');
+      }
+
+      const sideBotanicals = document.getElementById('side-botanical-parallax-track');
+      const meadowWrap = document.getElementById('page-bottom-meadow-wrap');
+      if (sideBotanicals) sideBotanicals.classList.add('hidden');
+      if (meadowWrap) meadowWrap.classList.add('hidden');
+
+      if (giftStage) giftStage.classList.add('hidden');
+      if (cakeStage) {
+        cakeStage.classList.remove('hidden', 'stage-fade-out');
+      }
     });
   }
 
@@ -425,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ctx.fillStyle = '#6b4334';
       ctx.font = '22px serif';
-      ctx.fillText('❦', width / 2, height / 2 - 20);
+      ctx.fillText('✨', width / 2, height / 2 - 20);
 
       ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
       ctx.letterSpacing = '1px';
@@ -695,44 +904,112 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========================================================
-  // BOTANICAL SCROLL PARALLAX ENGINE (flowerisblooming.com style)
+  // BOTANICAL SCROLL PARALLAX ENGINE (Fluid Momentum Lerp & flowerisblooming Dynamics)
   // ========================================================
+  let updateParallaxFn = null;
+
   function initScrollParallax() {
     const parallaxItems = document.querySelectorAll('.parallax-flower');
     if (!parallaxItems.length) return;
 
-    const itemsData = Array.from(parallaxItems).map(el => {
-      const depth = parseFloat(el.getAttribute('data-depth')) || 0.2;
-      const rot = el.style.getPropertyValue('--rot') || '0deg';
-      const scale = parseFloat(el.style.getPropertyValue('--scale')) || 1;
-      return { el, depth, rot, scale };
+    const itemsData = Array.from(parallaxItems).map((el, index) => {
+      const speedY = parseFloat(el.getAttribute('data-speed-y')) || (0.35 + (index % 4) * 0.08);
+      const driftX = parseFloat(el.getAttribute('data-drift-x')) || ((index % 2 === 0 ? 1 : -1) * (28 + (index % 3) * 10));
+      const swayAmp = parseFloat(el.getAttribute('data-sway-amp')) || (18 + (index % 3) * 8);
+      const swayFreq = parseFloat(el.getAttribute('data-sway-freq')) || (0.0028 + (index % 3) * 0.001);
+      const baseRot = parseFloat(el.getAttribute('data-base-rot')) || 0;
+      const rotAmp = parseFloat(el.getAttribute('data-rot-amp')) || (18 + (index % 3) * 5);
+      const baseScale = parseFloat(el.getAttribute('data-base-scale')) || 1.0;
+      const phase = index * 1.57;
+      const initialTop = parseFloat(el.style.top) || 0;
+      const height = el.offsetHeight || 220;
+
+      return {
+        el,
+        speedY,
+        driftX,
+        swayAmp,
+        swayFreq,
+        baseRot,
+        rotAmp,
+        baseScale,
+        phase,
+        initialTop,
+        height
+      };
     });
 
-    let ticking = false;
+    let targetScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+    let smoothScrollY = targetScrollY;
+    let isRunning = true;
 
-    function updateParallax() {
-      ticking = false;
-      const scrollY = window.scrollY || window.pageYOffset || 0;
+    function renderParallaxFrame() {
+      // Fluid Momentum Lerp (Scrub physics identical to flowerisblooming GSAP scrub)
+      smoothScrollY += (targetScrollY - smoothScrollY) * 0.085;
 
-      itemsData.forEach(item => {
-        const translateY = scrollY * item.depth * -0.28;
-        item.el.style.transform = `translate3d(0, ${translateY.toFixed(1)}px, 0) rotate(${item.rot}) scale(${item.scale})`;
-        item.el.style.opacity = (window.innerWidth <= 640) ? '0.5' : '0.88';
-      });
+      const vh = window.innerHeight;
+      const stageEl = document.getElementById('gift-stage');
+      
+      if (stageEl && !stageEl.classList.contains('hidden')) {
+        const stageRect = stageEl.getBoundingClientRect();
+        const stageTop = targetScrollY + stageRect.top;
+
+        itemsData.forEach(item => {
+          const elementDocY = stageTop + item.initialTop;
+          // Offset relative to screen center
+          const centerOffset = (smoothScrollY + vh * 0.5) - (elementDocY + item.height * 0.5);
+          const normalizedProgress = centerOffset / (vh * 0.75); // -1.0 to +1.0
+
+          // 1. Organic Vertical Depth Lag (Independent speed per layer)
+          const curY = -centerOffset * item.speedY;
+
+          // 2. Pronounced Lateral Drift + Harmonic Breeze Sway (Gliding along side margins)
+          const waveSway = Math.sin(smoothScrollY * item.swayFreq + item.phase) * item.swayAmp;
+          const curX = (normalizedProgress * item.driftX) + waveSway;
+
+          // 3. Dynamic Inertial Tilt & Wobble
+          const rotWobble = Math.cos(smoothScrollY * (item.swayFreq * 0.75) + item.phase) * (item.rotAmp * 0.4);
+          const curRot = item.baseRot + (normalizedProgress * item.rotAmp) + rotWobble;
+
+          // 4. Subtle Scale Breathing
+          const depthScale = item.baseScale * (1 + (1 - Math.min(1, Math.abs(normalizedProgress))) * 0.05);
+
+          // 5. Smooth Viewport Opacity Easing
+          const viewTop = elementDocY + curY - smoothScrollY;
+          const viewBottom = viewTop + item.height;
+          let opacity = 0;
+
+          if (viewBottom > -100 && viewTop < vh + 100) {
+            const distFromTop = viewBottom + 100;
+            const distFromBottom = vh + 100 - viewTop;
+            const edgeDist = Math.min(distFromTop, distFromBottom);
+            opacity = Math.min(1, Math.max(0, edgeDist / 140)) * 0.98;
+          }
+
+          item.el.style.transform = `translate3d(${curX.toFixed(1)}px, ${curY.toFixed(1)}px, 0) rotate(${curRot.toFixed(1)}deg) scale(${depthScale.toFixed(3)})`;
+          item.el.style.opacity = opacity.toFixed(2);
+        });
+      }
+
+      if (isRunning) {
+        requestAnimationFrame(renderParallaxFrame);
+      }
     }
 
     function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
     }
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
 
-    // Initial positioning
-    requestAnimationFrame(updateParallax);
+    updateParallaxFn = () => {
+      targetScrollY = window.pageYOffset || document.documentElement.scrollTop || 0;
+      smoothScrollY = targetScrollY;
+    };
+
+    // Start continuous momentum render loop
+    requestAnimationFrame(renderParallaxFrame);
   }
 
   // Apply Configuration & Start Parallax

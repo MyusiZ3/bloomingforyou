@@ -26,42 +26,7 @@
   <!-- Floating Falling Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
-  <!-- Floating Side Botanical Elements with Scroll Parallax (Full Viewport Outer Margins) -->
-  <div class="side-botanical-parallax-track" id="side-botanical-parallax-track" aria-hidden="true">
-    <!-- Left Side Outer Margin Botanicals -->
-    <div class="parallax-flower flower-p-left" style="top: 8%; --depth: 0.15; --rot: -18deg; --scale: 1.05;" data-depth="0.15">
-      <img src="assets/images/flowersfull/toss-bouquet.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-left" style="top: 25%; --depth: -0.22; --rot: 15deg; --scale: 0.95;" data-depth="-0.22">
-      <img src="assets/images/flowersfull/toss-pansy.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-left" style="top: 42%; --depth: 0.28; --rot: -25deg; --scale: 1.1;" data-depth="0.28">
-      <img src="assets/images/flowersfull/floral-1.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-left" style="top: 60%; --depth: -0.18; --rot: 20deg; --scale: 1.0;" data-depth="-0.18">
-      <img src="assets/images/flowersfull/toss-fern.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-left" style="top: 78%; --depth: 0.24; --rot: -15deg; --scale: 1.05;" data-depth="0.24">
-      <img src="assets/images/flowersfull/toss-poppy.webp" alt="">
-    </div>
 
-    <!-- Right Side Outer Margin Botanicals -->
-    <div class="parallax-flower flower-p-right" style="top: 10%; --depth: -0.18; --rot: 20deg; --scale: 1.1;" data-depth="-0.18">
-      <img src="assets/images/flowersfull/floral-3.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-right" style="top: 28%; --depth: 0.25; --rot: -16deg; --scale: 1.0;" data-depth="0.25">
-      <img src="assets/images/flowersfull/toss-lavender.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-right" style="top: 46%; --depth: -0.22; --rot: 28deg; --scale: 1.05;" data-depth="-0.22">
-      <img src="assets/images/flowersfull/toss-pot.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-right" style="top: 64%; --depth: 0.26; --rot: -22deg; --scale: 1.0;" data-depth="0.26">
-      <img src="assets/images/flowersfull/toss-can.webp" alt="">
-    </div>
-    <div class="parallax-flower flower-p-right" style="top: 82%; --depth: -0.2; --rot: 18deg; --scale: 1.08;" data-depth="-0.2">
-      <img src="assets/images/flowersfull/toss-basket.webp" alt="">
-    </div>
-  </div>
 
   <!-- Ambient Audio loaded into memory via Web Audio API (prevents IDM download popups) -->
 
@@ -82,326 +47,703 @@
   </div>
 
   <!-- ========================================================
-       STAGE 1: THE INITIAL SECRET GATEWAY (DENSE GIANT FLOWER WALL & PIN)
+       STAGE 0: THEATRICAL FLORAL CURTAIN GATEWAY (Auto-opens in 3s)
        ======================================================== -->
-  <div class="flower-curtain active curtains-closed" id="flower-curtain">
-    <!-- Left Dense Flower Wall Panel (Giant Blooms, 0 Whitespace, 0 Lag) -->
+  <div class="flower-curtain active curtains-closed" id="flower-curtain" role="button" aria-label="Sentuh untuk membuka tirai">
+    
+    <!-- LEFT FLORAL CURTAIN PANEL (Maximalist, deeply overflowing top/bottom, completely unique asymmetric cluster) -->
     <div class="curtain-panel curtain-left" id="curtain-left">
-      <div class="dense-flower-wall wall-left">
-        <div class="head-item" style="top: -7.6vh; left: -18.4%; --base-size: 524px; z-index: 18; --rot: -24.2deg; --anim-name: flowerBreeze1; --anim-dur: 4.12s; --anim-delay: 0.62s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+      <div class="dense-flower-wall">
+        <!-- EXTRA TOP OVERFLOW (Completely covers upper screen edge) -->
+        <div class="head-item" style="top: -14vh; left: -4vw; --base-size: clamp(170px, 21vw, 280px); --rot: -28deg; --anim-name: flowerBreeze1; --anim-dur: 4.6s; --anim-delay: -1.0s; z-index: 2;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: -7.6vh; left: 14.0%; --base-size: 452px; z-index: 8; --rot: -35.6deg; --anim-name: flowerBreeze2; --anim-dur: 5.13s; --anim-delay: 0.65s;">
-          <img src="assets/images/flowers/heads/pink_ranunculus.webp" alt="pink_ranunculus" class="head-img" loading="eager">
+        <div class="head-item" style="top: -13vh; left: 10vw; --base-size: clamp(165px, 20vw, 270px); --rot: 14deg; --anim-name: flowerBreeze2; --anim-dur: 5.2s; --anim-delay: -2.3s; z-index: 1;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: -7.6vh; left: 47.3%; --base-size: 521px; z-index: 3; --rot: -14.5deg; --anim-name: flowerBreeze3; --anim-dur: 4.67s; --anim-delay: 0.56s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: -15vh; left: 23vw; --base-size: clamp(160px, 19vw, 260px); --rot: -38deg; --anim-name: flowerBreeze3; --anim-dur: 4.1s; --anim-delay: -0.5s; z-index: 3;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: -7.6vh; left: 80.5%; --base-size: 444px; z-index: 12; --rot: 30.0deg; --anim-name: flowerBreeze1; --anim-dur: 3.91s; --anim-delay: 1.97s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: -12vh; left: 36vw; --base-size: clamp(155px, 18vw, 250px); --rot: 22deg; --anim-name: flowerBreeze1; --anim-dur: 5.5s; --anim-delay: -1.7s; z-index: 2;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 9.0vh; left: -11.1%; --base-size: 526px; z-index: 10; --rot: -34.0deg; --anim-name: flowerBreeze2; --anim-dur: 4.22s; --anim-delay: 2.47s;">
-          <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+        <div class="head-item" style="top: -10vh; left: 48vw; --base-size: clamp(140px, 16vw, 220px); --rot: -12deg; --anim-name: flowerBreeze2; --anim-dur: 4.8s; --anim-delay: -3.0s; z-index: 4;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 9.0vh; left: 19.3%; --base-size: 499px; z-index: 11; --rot: 10.0deg; --anim-name: flowerBreeze3; --anim-dur: 3.61s; --anim-delay: 2.1s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+
+        <!-- TOP-MID SECTION -->
+        <div class="head-item" style="top: -4vh; left: -5vw; --base-size: clamp(180px, 22vw, 290px); --rot: 10deg; --anim-name: flowerBreeze3; --anim-dur: 5.0s; --anim-delay: -0.8s; z-index: 5;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 9.0vh; left: 54.0%; --base-size: 462px; z-index: 11; --rot: 4.4deg; --anim-name: flowerBreeze1; --anim-dur: 4.08s; --anim-delay: 1.83s;">
-          <img src="assets/images/flowers/heads/yellow_gerbera.webp" alt="yellow_gerbera" class="head-img" loading="eager">
+        <div class="head-item" style="top: -3vh; left: 8vw; --base-size: clamp(160px, 19vw, 255px); --rot: -22deg; --anim-name: flowerBreeze1; --anim-dur: 4.4s; --anim-delay: -2.0s; z-index: 6;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 9.0vh; left: 85.8%; --base-size: 523px; z-index: 3; --rot: -21.0deg; --anim-name: flowerBreeze2; --anim-dur: 3.87s; --anim-delay: 2.73s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: -2vh; left: 21vw; --base-size: clamp(170px, 20vw, 275px); --rot: 35deg; --anim-name: flowerBreeze2; --anim-dur: 5.6s; --anim-delay: -1.4s; z-index: 7;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 27.8vh; left: -20.8%; --base-size: 504px; z-index: 4; --rot: -19.5deg; --anim-name: flowerBreeze3; --anim-dur: 3.86s; --anim-delay: 0.85s;">
-          <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+        <div class="head-item" style="top: -1vh; left: 34vw; --base-size: clamp(150px, 17vw, 240px); --rot: -16deg; --anim-name: flowerBreeze3; --anim-dur: 4.2s; --anim-delay: -2.7s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 27.8vh; left: 15.7%; --base-size: 445px; z-index: 5; --rot: 39.2deg; --anim-name: flowerBreeze1; --anim-dur: 3.57s; --anim-delay: 2.47s;">
-          <img src="assets/images/flowers/heads/yellow_gerbera.webp" alt="yellow_gerbera" class="head-img" loading="eager">
+        <div class="head-item" style="top: 2vh; left: 46vw; --base-size: clamp(140px, 16vw, 225px); --rot: 26deg; --anim-name: flowerBreeze1; --anim-dur: 5.1s; --anim-delay: -0.4s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 27.8vh; left: 45.2%; --base-size: 431px; z-index: 13; --rot: -29.1deg; --anim-name: flowerBreeze2; --anim-dur: 4.22s; --anim-delay: 1.41s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+
+        <!-- UPPER CHEST ROW -->
+        <div class="head-item" style="top: 8vh; left: -3vw; --base-size: clamp(175px, 21vw, 280px); --rot: -30deg; --anim-name: flowerBreeze2; --anim-dur: 4.9s; --anim-delay: -1.9s; z-index: 7;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 27.8vh; left: 75.6%; --base-size: 507px; z-index: 3; --rot: -12.8deg; --anim-name: flowerBreeze3; --anim-dur: 5.02s; --anim-delay: 2.13s;">
-          <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+        <div class="head-item" style="top: 10vh; left: 11vw; --base-size: clamp(165px, 20vw, 260px); --rot: 18deg; --anim-name: flowerBreeze3; --anim-dur: 5.3s; --anim-delay: -0.6s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 48.4vh; left: -10.8%; --base-size: 530px; z-index: 15; --rot: 13.2deg; --anim-name: flowerBreeze1; --anim-dur: 4.78s; --anim-delay: 1.59s;">
-          <img src="assets/images/flowers/heads/yellow_ranunculus.webp" alt="yellow_ranunculus" class="head-img" loading="eager">
+        <div class="head-item" style="top: 11vh; left: 25vw; --base-size: clamp(160px, 19vw, 250px); --rot: -14deg; --anim-name: flowerBreeze1; --anim-dur: 4.5s; --anim-delay: -2.5s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 48.4vh; left: 24.6%; --base-size: 444px; z-index: 11; --rot: 19.9deg; --anim-name: flowerBreeze2; --anim-dur: 3.65s; --anim-delay: 1.95s;">
-          <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+        <div class="head-item" style="top: 13vh; left: 38vw; --base-size: clamp(145px, 17vw, 230px); --rot: 30deg; --anim-name: flowerBreeze2; --anim-dur: 5.7s; --anim-delay: -1.2s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 48.4vh; left: 51.4%; --base-size: 471px; z-index: 3; --rot: 27.8deg; --anim-name: flowerBreeze3; --anim-dur: 3.87s; --anim-delay: 1.49s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 16vh; left: 49vw; --base-size: clamp(130px, 15vw, 210px); --rot: -20deg; --anim-name: flowerBreeze3; --anim-dur: 4.3s; --anim-delay: -2.9s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 48.4vh; left: 85.7%; --base-size: 531px; z-index: 10; --rot: -9.9deg; --anim-name: flowerBreeze1; --anim-dur: 3.8s; --anim-delay: 0.39s;">
-          <img src="assets/images/flowers/heads/pink_ranunculus.webp" alt="pink_ranunculus" class="head-img" loading="eager">
+
+        <!-- MID-UPPER SECTION -->
+        <div class="head-item" style="top: 20vh; left: -5vw; --base-size: clamp(185px, 22vw, 295px); --rot: 24deg; --anim-name: flowerBreeze1; --anim-dur: 5.1s; --anim-delay: -0.3s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 68.3vh; left: -21.0%; --base-size: 532px; z-index: 11; --rot: 11.0deg; --anim-name: flowerBreeze2; --anim-dur: 4.37s; --anim-delay: 0.32s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 22vh; left: 8vw; --base-size: clamp(155px, 18vw, 245px); --rot: -36deg; --anim-name: flowerBreeze2; --anim-dur: 4.7s; --anim-delay: -2.1s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 68.3vh; left: 14.1%; --base-size: 459px; z-index: 15; --rot: -24.4deg; --anim-name: flowerBreeze3; --anim-dur: 3.64s; --anim-delay: 0.37s;">
-          <img src="assets/images/flowers/heads/yellow_gerbera.webp" alt="yellow_gerbera" class="head-img" loading="eager">
+        <div class="head-item" style="top: 23vh; left: 20vw; --base-size: clamp(170px, 20vw, 270px); --rot: 12deg; --anim-name: flowerBreeze3; --anim-dur: 5.4s; --anim-delay: -1.5s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 68.3vh; left: 48.7%; --base-size: 471px; z-index: 6; --rot: 4.3deg; --anim-name: flowerBreeze1; --anim-dur: 4.09s; --anim-delay: 2.92s;">
-          <img src="assets/images/flowers/heads/orange_rose.webp" alt="orange_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 25vh; left: 33vw; --base-size: clamp(150px, 18vw, 235px); --rot: -25deg; --anim-name: flowerBreeze1; --anim-dur: 4.1s; --anim-delay: -2.8s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 68.3vh; left: 78.4%; --base-size: 439px; z-index: 16; --rot: 11.0deg; --anim-name: flowerBreeze2; --anim-dur: 4.02s; --anim-delay: 2.52s;">
-          <img src="assets/images/flowers/heads/orange_rose.webp" alt="orange_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 28vh; left: 45vw; --base-size: clamp(135px, 15vw, 215px); --rot: 18deg; --anim-name: flowerBreeze2; --anim-dur: 5.2s; --anim-delay: -0.9s; z-index: 14;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; left: -8.3%; --base-size: 430px; z-index: 7; --rot: -6.3deg; --anim-name: flowerBreeze3; --anim-dur: 4.63s; --anim-delay: 0.66s;">
-          <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+
+        <!-- CENTER WAISTLINE SECTION (Encroaching toward center greeting) -->
+        <div class="head-item" style="top: 34vh; left: -2vw; --base-size: clamp(175px, 21vw, 280px); --rot: -18deg; --anim-name: flowerBreeze3; --anim-dur: 4.8s; --anim-delay: -1.8s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; left: 21.7%; --base-size: 506px; z-index: 13; --rot: -35.6deg; --anim-name: flowerBreeze1; --anim-dur: 4.97s; --anim-delay: 1.96s;">
-          <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+        <div class="head-item" style="top: 36vh; left: 12vw; --base-size: clamp(165px, 20vw, 260px); --rot: 28deg; --anim-name: flowerBreeze1; --anim-dur: 5.5s; --anim-delay: -0.5s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; left: 56.0%; --base-size: 517px; z-index: 8; --rot: 29.8deg; --anim-name: flowerBreeze2; --anim-dur: 5.15s; --anim-delay: 2.98s;">
-          <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+        <div class="head-item" style="top: 38vh; left: 24vw; --base-size: clamp(160px, 19vw, 255px); --rot: -10deg; --anim-name: flowerBreeze2; --anim-dur: 4.3s; --anim-delay: -2.4s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; left: 85.5%; --base-size: 521px; z-index: 14; --rot: -22.8deg; --anim-name: flowerBreeze3; --anim-dur: 3.74s; --anim-delay: 0.29s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: 40vh; left: 37vw; --base-size: clamp(140px, 16vw, 220px); --rot: 34deg; --anim-name: flowerBreeze3; --anim-dur: 5.0s; --anim-delay: -1.1s; z-index: 14;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+
+        <!-- LOWER-MID SECTION (Lush Burgundy & Coral Flow) -->
+        <div class="head-item" style="top: 48vh; left: -4vw; --base-size: clamp(180px, 22vw, 285px); --rot: 15deg; --anim-name: flowerBreeze2; --anim-dur: 5.1s; --anim-delay: -2.7s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 49vh; left: 9vw; --base-size: clamp(165px, 20vw, 265px); --rot: -24deg; --anim-name: flowerBreeze3; --anim-dur: 4.4s; --anim-delay: -0.7s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 51vh; left: 22vw; --base-size: clamp(170px, 21vw, 270px); --rot: 20deg; --anim-name: flowerBreeze1; --anim-dur: 5.6s; --anim-delay: -1.6s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="top: 53vh; left: 35vw; --base-size: clamp(155px, 18vw, 245px); --rot: -32deg; --anim-name: flowerBreeze2; --anim-dur: 4.6s; --anim-delay: -2.9s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 56vh; left: 47vw; --base-size: clamp(135px, 15vw, 215px); --rot: 16deg; --anim-name: flowerBreeze3; --anim-dur: 5.3s; --anim-delay: -1.3s; z-index: 14;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+
+        <!-- LOWER SECTION -->
+        <div class="head-item" style="top: 62vh; left: -3vw; --base-size: clamp(185px, 22vw, 290px); --rot: -12deg; --anim-name: flowerBreeze1; --anim-dur: 4.9s; --anim-delay: -0.4s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="top: 64vh; left: 11vw; --base-size: clamp(170px, 20vw, 270px); --rot: 25deg; --anim-name: flowerBreeze2; --anim-dur: 5.4s; --anim-delay: -2.2s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 65vh; left: 24vw; --base-size: clamp(165px, 19vw, 260px); --rot: -20deg; --anim-name: flowerBreeze3; --anim-dur: 4.2s; --anim-delay: -1.7s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 67vh; left: 37vw; --base-size: clamp(150px, 17vw, 235px); --rot: 38deg; --anim-name: flowerBreeze1; --anim-dur: 5.7s; --anim-delay: -3.1s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 70vh; left: 48vw; --base-size: clamp(130px, 14vw, 205px); --rot: -15deg; --anim-name: flowerBreeze2; --anim-dur: 4.5s; --anim-delay: -0.8s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+
+        <!-- BOTTOM PRIMARY ROW -->
+        <div class="head-item" style="bottom: -2vh; left: -5vw; --base-size: clamp(190px, 23vw, 305px); --rot: 20deg; --anim-name: flowerBreeze3; --anim-dur: 5.2s; --anim-delay: -1.5s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -1vh; left: 9vw; --base-size: clamp(175px, 21vw, 280px); --rot: -28deg; --anim-name: flowerBreeze1; --anim-dur: 4.6s; --anim-delay: -0.2s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: 0vh; left: 22vw; --base-size: clamp(170px, 20vw, 270px); --rot: 16deg; --anim-name: flowerBreeze2; --anim-dur: 5.5s; --anim-delay: -2.6s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: 2vh; left: 35vw; --base-size: clamp(160px, 19vw, 255px); --rot: -32deg; --anim-name: flowerBreeze3; --anim-dur: 4.3s; --anim-delay: -1.0s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: 5vh; left: 47vw; --base-size: clamp(140px, 16vw, 220px); --rot: 22deg; --anim-name: flowerBreeze1; --anim-dur: 5.0s; --anim-delay: -2.3s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+
+        <!-- EXTRA BOTTOM OVERFLOW (Completely covers lower screen edge) -->
+        <div class="head-item" style="bottom: -15vh; left: -3vw; --base-size: clamp(185px, 22vw, 295px); --rot: -16deg; --anim-name: flowerBreeze2; --anim-dur: 4.8s; --anim-delay: -1.9s; z-index: 6;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -14vh; left: 11vw; --base-size: clamp(170px, 20vw, 275px); --rot: 24deg; --anim-name: flowerBreeze3; --anim-dur: 5.3s; --anim-delay: -0.6s; z-index: 7;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -13vh; left: 24vw; --base-size: clamp(175px, 21vw, 280px); --rot: -35deg; --anim-name: flowerBreeze1; --anim-dur: 4.4s; --anim-delay: -2.8s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -12vh; left: 38vw; --base-size: clamp(165px, 20vw, 260px); --rot: 14deg; --anim-name: flowerBreeze2; --anim-dur: 5.8s; --anim-delay: -1.4s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
         </div>
       </div>
     </div>
 
-    <!-- Right Dense Flower Wall Panel (Giant Blooms, 0 Whitespace, 0 Lag) -->
+    <!-- RIGHT FLORAL CURTAIN PANEL (Distinct asymmetrical flow: Yellow crown, diagonal Red sweep, Coral clusters) -->
     <div class="curtain-panel curtain-right" id="curtain-right">
-      <div class="dense-flower-wall wall-right">
-        <div class="head-item" style="top: -11.1vh; right: -18.1%; --base-size: 531px; z-index: 12; --rot: -27.1deg; --anim-name: flowerBreeze1; --anim-dur: 4.22s; --anim-delay: 0.2s;">
-          <img src="assets/images/flowers/heads/pink_chrysanthemum.webp" alt="pink_chrysanthemum" class="head-img" loading="eager">
+      <div class="dense-flower-wall">
+        <!-- EXTRA TOP OVERFLOW -->
+        <div class="head-item" style="top: -15vh; right: -5vw; --base-size: clamp(180px, 22vw, 290px); --rot: 32deg; --anim-name: flowerBreeze3; --anim-dur: 5.0s; --anim-delay: -1.4s; z-index: 2;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: -11.1vh; right: 16.9%; --base-size: 460px; z-index: 18; --rot: -5.1deg; --anim-name: flowerBreeze2; --anim-dur: 3.93s; --anim-delay: 2.51s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: -14vh; right: 9vw; --base-size: clamp(170px, 20vw, 275px); --rot: -18deg; --anim-name: flowerBreeze1; --anim-dur: 4.5s; --anim-delay: -0.3s; z-index: 1;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: -11.1vh; right: 46.0%; --base-size: 526px; z-index: 3; --rot: -8.5deg; --anim-name: flowerBreeze3; --anim-dur: 4.67s; --anim-delay: 2.34s;">
-          <img src="assets/images/flowers/heads/yellow_gerbera.webp" alt="yellow_gerbera" class="head-img" loading="eager">
+        <div class="head-item" style="top: -13vh; right: 22vw; --base-size: clamp(165px, 20vw, 265px); --rot: 26deg; --anim-name: flowerBreeze2; --anim-dur: 5.4s; --anim-delay: -2.5s; z-index: 3;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: -11.1vh; right: 78.5%; --base-size: 544px; z-index: 8; --rot: -22.7deg; --anim-name: flowerBreeze1; --anim-dur: 4.47s; --anim-delay: 2.09s;">
-          <img src="assets/images/flowers/heads/yellow_gerbera.webp" alt="yellow_gerbera" class="head-img" loading="eager">
+        <div class="head-item" style="top: -12vh; right: 35vw; --base-size: clamp(150px, 17vw, 240px); --rot: -34deg; --anim-name: flowerBreeze3; --anim-dur: 4.2s; --anim-delay: -1.1s; z-index: 2;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 8.2vh; right: -8.2%; --base-size: 436px; z-index: 12; --rot: -21.0deg; --anim-name: flowerBreeze2; --anim-dur: 5.04s; --anim-delay: 0.05s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: -9vh; right: 47vw; --base-size: clamp(135px, 15vw, 215px); --rot: 15deg; --anim-name: flowerBreeze1; --anim-dur: 5.7s; --anim-delay: -2.9s; z-index: 4;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 8.2vh; right: 21.3%; --base-size: 471px; z-index: 9; --rot: 34.7deg; --anim-name: flowerBreeze3; --anim-dur: 5.0s; --anim-delay: 1.88s;">
-          <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+
+        <!-- TOP-MID SECTION -->
+        <div class="head-item" style="top: -5vh; right: -3vw; --base-size: clamp(175px, 21vw, 285px); --rot: -22deg; --anim-name: flowerBreeze2; --anim-dur: 4.7s; --anim-delay: -2.0s; z-index: 5;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 8.2vh; right: 54.2%; --base-size: 430px; z-index: 11; --rot: 16.0deg; --anim-name: flowerBreeze1; --anim-dur: 3.6s; --anim-delay: 1.81s;">
-          <img src="assets/images/flowers/heads/marigold.webp" alt="marigold" class="head-img" loading="eager">
+        <div class="head-item" style="top: -3vh; right: 12vw; --base-size: clamp(165px, 20vw, 260px); --rot: 30deg; --anim-name: flowerBreeze3; --anim-dur: 5.3s; --anim-delay: -0.7s; z-index: 6;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 8.2vh; right: 84.5%; --base-size: 489px; z-index: 10; --rot: -21.0deg; --anim-name: flowerBreeze2; --anim-dur: 4.37s; --anim-delay: 0.18s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: -2vh; right: 25vw; --base-size: clamp(160px, 19vw, 250px); --rot: -12deg; --anim-name: flowerBreeze1; --anim-dur: 4.4s; --anim-delay: -1.6s; z-index: 7;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 29.4vh; right: -19.1%; --base-size: 520px; z-index: 16; --rot: 34.5deg; --anim-name: flowerBreeze3; --anim-dur: 4.18s; --anim-delay: 0.04s;">
-          <img src="assets/images/flowers/heads/orange_marigold.webp" alt="orange_marigold" class="head-img" loading="eager">
+        <div class="head-item" style="top: 0vh; right: 38vw; --base-size: clamp(145px, 17vw, 230px); --rot: 40deg; --anim-name: flowerBreeze2; --anim-dur: 5.5s; --anim-delay: -2.7s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 29.4vh; right: 16.5%; --base-size: 532px; z-index: 15; --rot: 26.8deg; --anim-name: flowerBreeze1; --anim-dur: 4.48s; --anim-delay: 1.38s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 3vh; right: 48vw; --base-size: clamp(130px, 14vw, 205px); --rot: -18deg; --anim-name: flowerBreeze3; --anim-dur: 4.1s; --anim-delay: -0.5s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 29.4vh; right: 46.4%; --base-size: 434px; z-index: 8; --rot: -15.7deg; --anim-name: flowerBreeze2; --anim-dur: 3.87s; --anim-delay: 0.86s;">
-          <img src="assets/images/flowers/heads/red_peony.webp" alt="red_peony" class="head-img" loading="eager">
+
+        <!-- UPPER CHEST ROW -->
+        <div class="head-item" style="top: 9vh; right: -4vw; --base-size: clamp(180px, 22vw, 290px); --rot: 18deg; --anim-name: flowerBreeze1; --anim-dur: 5.2s; --anim-delay: -0.9s; z-index: 7;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 29.4vh; right: 79.2%; --base-size: 544px; z-index: 10; --rot: -5.2deg; --anim-name: flowerBreeze3; --anim-dur: 3.97s; --anim-delay: 0.91s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 11vh; right: 10vw; --base-size: clamp(160px, 19vw, 255px); --rot: -35deg; --anim-name: flowerBreeze2; --anim-dur: 4.6s; --anim-delay: -2.3s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 49.8vh; right: -12.4%; --base-size: 534px; z-index: 13; --rot: -18.7deg; --anim-name: flowerBreeze1; --anim-dur: 5.06s; --anim-delay: 2.1s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 12vh; right: 23vw; --base-size: clamp(170px, 20vw, 270px); --rot: 22deg; --anim-name: flowerBreeze3; --anim-dur: 5.6s; --anim-delay: -1.2s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 49.8vh; right: 21.5%; --base-size: 525px; z-index: 3; --rot: 34.2deg; --anim-name: flowerBreeze2; --anim-dur: 4.93s; --anim-delay: 2.26s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: 14vh; right: 36vw; --base-size: clamp(150px, 18vw, 240px); --rot: -16deg; --anim-name: flowerBreeze1; --anim-dur: 4.3s; --anim-delay: -2.8s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 49.8vh; right: 53.1%; --base-size: 516px; z-index: 9; --rot: -30.5deg; --anim-name: flowerBreeze3; --anim-dur: 4.04s; --anim-delay: 1.25s;">
-          <img src="assets/images/flowers/heads/daffodil.webp" alt="daffodil" class="head-img" loading="eager">
+        <div class="head-item" style="top: 18vh; right: 47vw; --base-size: clamp(135px, 15vw, 215px); --rot: 28deg; --anim-name: flowerBreeze2; --anim-dur: 5.1s; --anim-delay: -0.4s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 49.8vh; right: 86.0%; --base-size: 525px; z-index: 12; --rot: -33.0deg; --anim-name: flowerBreeze1; --anim-dur: 5.04s; --anim-delay: 0.07s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+
+        <!-- MID-UPPER SECTION -->
+        <div class="head-item" style="top: 21vh; right: -2vw; --base-size: clamp(175px, 21vw, 280px); --rot: -26deg; --anim-name: flowerBreeze3; --anim-dur: 4.9s; --anim-delay: -1.7s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 67.6vh; right: -18.2%; --base-size: 469px; z-index: 12; --rot: -4.9deg; --anim-name: flowerBreeze2; --anim-dur: 5.03s; --anim-delay: 0.68s;">
-          <img src="assets/images/flowers/heads/red_dahlia.webp" alt="red_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: 23vh; right: 12vw; --base-size: clamp(165px, 20vw, 260px); --rot: 14deg; --anim-name: flowerBreeze1; --anim-dur: 5.3s; --anim-delay: -0.8s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 67.6vh; right: 11.5%; --base-size: 510px; z-index: 11; --rot: -4.2deg; --anim-name: flowerBreeze3; --anim-dur: 4.76s; --anim-delay: 2.8s;">
-          <img src="assets/images/flowers/heads/pink_ranunculus.webp" alt="pink_ranunculus" class="head-img" loading="eager">
+        <div class="head-item" style="top: 25vh; right: 25vw; --base-size: clamp(160px, 19vw, 250px); --rot: -38deg; --anim-name: flowerBreeze2; --anim-dur: 4.2s; --anim-delay: -2.1s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 67.6vh; right: 48.6%; --base-size: 436px; z-index: 16; --rot: -33.8deg; --anim-name: flowerBreeze1; --anim-dur: 3.93s; --anim-delay: 1.4s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 27vh; right: 38vw; --base-size: clamp(140px, 16vw, 225px); --rot: 20deg; --anim-name: flowerBreeze3; --anim-dur: 5.7s; --anim-delay: -1.3s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 67.6vh; right: 79.0%; --base-size: 482px; z-index: 8; --rot: -23.9deg; --anim-name: flowerBreeze2; --anim-dur: 5.07s; --anim-delay: 2.64s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 30vh; right: 48vw; --base-size: clamp(130px, 14vw, 205px); --rot: -12deg; --anim-name: flowerBreeze1; --anim-dur: 4.5s; --anim-delay: -2.6s; z-index: 14;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; right: -8.0%; --base-size: 439px; z-index: 18; --rot: -7.0deg; --anim-name: flowerBreeze3; --anim-dur: 4.75s; --anim-delay: 1.39s;">
-          <img src="assets/images/flowers/heads/pink_ranunculus.webp" alt="pink_ranunculus" class="head-img" loading="eager">
+
+        <!-- CENTER WAISTLINE SECTION -->
+        <div class="head-item" style="top: 35vh; right: -4vw; --base-size: clamp(185px, 22vw, 295px); --rot: 30deg; --anim-name: flowerBreeze2; --anim-dur: 5.2s; --anim-delay: -0.6s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; right: 20.9%; --base-size: 541px; z-index: 3; --rot: 25.1deg; --anim-name: flowerBreeze1; --anim-dur: 3.51s; --anim-delay: 0.2s;">
-          <img src="assets/images/flowers/heads/yellow_dahlia.webp" alt="yellow_dahlia" class="head-img" loading="eager">
+        <div class="head-item" style="top: 37vh; right: 9vw; --base-size: clamp(160px, 19vw, 255px); --rot: -15deg; --anim-name: flowerBreeze3; --anim-dur: 4.6s; --anim-delay: -2.4s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; right: 52.7%; --base-size: 526px; z-index: 3; --rot: 12.8deg; --anim-name: flowerBreeze2; --anim-dur: 3.95s; --anim-delay: 2.17s;">
-          <img src="assets/images/flowers/heads/yellow_rose.webp" alt="yellow_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 39vh; right: 22vw; --base-size: clamp(165px, 20vw, 265px); --rot: 25deg; --anim-name: flowerBreeze1; --anim-dur: 5.4s; --anim-delay: -1.1s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
         </div>
-        <div class="head-item" style="top: 92.3vh; right: 88.2%; --base-size: 514px; z-index: 6; --rot: 36.3deg; --anim-name: flowerBreeze3; --anim-dur: 4.42s; --anim-delay: 0.62s;">
-          <img src="assets/images/flowers/heads/pink_rose.webp" alt="pink_rose" class="head-img" loading="eager">
+        <div class="head-item" style="top: 41vh; right: 35vw; --base-size: clamp(145px, 17vw, 230px); --rot: -30deg; --anim-name: flowerBreeze2; --anim-dur: 4.3s; --anim-delay: -3.0s; z-index: 14;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+
+        <!-- LOWER-MID SECTION -->
+        <div class="head-item" style="top: 48vh; right: -3vw; --base-size: clamp(180px, 22vw, 290px); --rot: -20deg; --anim-name: flowerBreeze1; --anim-dur: 5.0s; --anim-delay: -1.5s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 50vh; right: 11vw; --base-size: clamp(165px, 20vw, 260px); --rot: 35deg; --anim-name: flowerBreeze2; --anim-dur: 4.4s; --anim-delay: -0.2s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 52vh; right: 24vw; --base-size: clamp(170px, 21vw, 275px); --rot: -14deg; --anim-name: flowerBreeze3; --anim-dur: 5.7s; --anim-delay: -2.5s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 54vh; right: 37vw; --base-size: clamp(150px, 18vw, 240px); --rot: 24deg; --anim-name: flowerBreeze1; --anim-dur: 4.7s; --anim-delay: -1.0s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="top: 57vh; right: 48vw; --base-size: clamp(135px, 15vw, 215px); --rot: -28deg; --anim-name: flowerBreeze2; --anim-dur: 5.2s; --anim-delay: -2.7s; z-index: 14;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+
+        <!-- LOWER SECTION -->
+        <div class="head-item" style="top: 63vh; right: -5vw; --base-size: clamp(185px, 22vw, 295px); --rot: 16deg; --anim-name: flowerBreeze3; --anim-dur: 4.8s; --anim-delay: -0.7s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 64vh; right: 8vw; --base-size: clamp(170px, 20vw, 270px); --rot: -32deg; --anim-name: flowerBreeze1; --anim-dur: 5.5s; --anim-delay: -2.0s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 66vh; right: 21vw; --base-size: clamp(165px, 20vw, 265px); --rot: 20deg; --anim-name: flowerBreeze2; --anim-dur: 4.3s; --anim-delay: -1.4s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="top: 68vh; right: 34vw; --base-size: clamp(155px, 18vw, 245px); --rot: -18deg; --anim-name: flowerBreeze3; --anim-dur: 5.6s; --anim-delay: -3.2s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="top: 71vh; right: 46vw; --base-size: clamp(140px, 16vw, 220px); --rot: 30deg; --anim-name: flowerBreeze1; --anim-dur: 4.5s; --anim-delay: -0.9s; z-index: 13;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+
+        <!-- BOTTOM PRIMARY ROW -->
+        <div class="head-item" style="bottom: -3vh; right: -4vw; --base-size: clamp(190px, 23vw, 305px); --rot: -25deg; --anim-name: flowerBreeze2; --anim-dur: 5.1s; --anim-delay: -1.8s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -1vh; right: 10vw; --base-size: clamp(175px, 21vw, 280px); --rot: 18deg; --anim-name: flowerBreeze3; --anim-dur: 4.7s; --anim-delay: -0.4s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: 1vh; right: 23vw; --base-size: clamp(170px, 20vw, 270px); --rot: -30deg; --anim-name: flowerBreeze1; --anim-dur: 5.4s; --anim-delay: -2.7s; z-index: 10;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: 3vh; right: 36vw; --base-size: clamp(160px, 19vw, 255px); --rot: 22deg; --anim-name: flowerBreeze2; --anim-dur: 4.4s; --anim-delay: -1.3s; z-index: 11;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: 6vh; right: 48vw; --base-size: clamp(140px, 16vw, 220px); --rot: -14deg; --anim-name: flowerBreeze3; --anim-dur: 5.3s; --anim-delay: -2.1s; z-index: 12;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+
+        <!-- EXTRA BOTTOM OVERFLOW -->
+        <div class="head-item" style="bottom: -15vh; right: -4vw; --base-size: clamp(185px, 22vw, 295px); --rot: 28deg; --anim-name: flowerBreeze1; --anim-dur: 4.9s; --anim-delay: -1.6s; z-index: 6;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -14vh; right: 10vw; --base-size: clamp(175px, 21vw, 280px); --rot: -18deg; --anim-name: flowerBreeze2; --anim-dur: 5.5s; --anim-delay: -0.3s; z-index: 7;">
+          <img src="assets/images/flowers/Tirai/red_peony.webp" alt="Red Peony" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -13vh; right: 23vw; --base-size: clamp(170px, 20vw, 270px); --rot: 34deg; --anim-name: flowerBreeze3; --anim-dur: 4.6s; --anim-delay: -2.4s; z-index: 8;">
+          <img src="assets/images/flowers/Tirai/yellow_ranunculus.webp" alt="Yellow Ranunculus" class="head-img">
+        </div>
+        <div class="head-item" style="bottom: -11vh; right: 37vw; --base-size: clamp(165px, 20vw, 260px); --rot: -22deg; --anim-name: flowerBreeze1; --anim-dur: 5.2s; --anim-delay: -1.0s; z-index: 9;">
+          <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
       </div>
     </div>
 
-    <!-- Golden Heart Padlock & Secret Note Centerpiece (Matching Reel Screenshot) -->
+    <!-- CENTERPIECE: INTERACTIVE GOLDEN HEART PADLOCK (Tap to Unlock) -->
     <div class="curtain-center-lock" id="curtain-center-lock">
-      <div class="padlock-heart-container" id="heart-padlock-btn" title="Klik untuk membuka langsung">
-        <svg class="padlock-svg" viewBox="0 0 100 120" width="84" height="102">
-          <defs>
-            <linearGradient id="goldShine" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#fff8c4"/>
-              <stop offset="35%" stop-color="#ebc463"/>
-              <stop offset="70%" stop-color="#bd8c2c"/>
-              <stop offset="100%" stop-color="#7d5512"/>
-            </linearGradient>
-            <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#ebc463" flood-opacity="0.65"/>
-            </filter>
-          </defs>
-          <!-- Shackle that can unlock/lift -->
-          <path id="padlock-shackle" class="padlock-shackle" d="M34 45 V23 A16 16 0 0 1 66 23 V45" fill="none" stroke="url(#goldShine)" stroke-width="7.5" stroke-linecap="round"/>
-          <!-- Heart Lock Body -->
-          <path d="M50 110 C20 85 5 65 5 45 A24 24 0 0 1 50 35 A24 24 0 0 1 95 45 C95 65 80 85 50 110 Z" fill="url(#goldShine)" filter="url(#goldGlow)"/>
-          <!-- Keyhole -->
-          <circle cx="50" cy="63" r="5.5" fill="#301f07"/>
-          <polygon points="48,65 52,65 54,77 46,77" fill="#301f07"/>
-        </svg>
-      </div>
-
-      <!-- Secret Note & 6-Digit Passcode Dots -->
-      <div class="padlock-note-card">
-        <span class="padlock-tofrom-from">From: Pacarmu ❤️</span>
-        <span class="padlock-tofrom-to">For: Aliya 🌸</span>
-        <p class="padlock-hint">a little secret...</p>
+      <div class="padlock-heart-container" id="padlock-heart-btn" role="button" tabindex="0" aria-label="Klik gembok cinta untuk membuka kejutan">
+        <div class="padlock-img-wrap">
+          <img src="assets/images/gembok_lock.png" alt="Gembok Terkunci" class="padlock-img padlock-img-locked" id="padlock-img-locked">
+          <img src="assets/images/gembok_open.png" alt="Gembok Terbuka" class="padlock-img padlock-img-open" id="padlock-img-open">
+        </div>
         
-        <!-- 6 Dots for PIN 081004 -->
-        <div class="padlock-pass-dots" id="pass-dots">
-          <span class="p-dot" data-idx="0"></span>
-          <span class="p-dot" data-idx="1"></span>
-          <span class="p-dot" data-idx="2"></span>
-          <span class="p-dot" data-idx="3"></span>
-          <span class="p-dot" data-idx="4"></span>
-          <span class="p-dot" data-idx="5"></span>
-        </div>
-
-        <!-- Interactive Secret Pinpad -->
-        <div class="curtain-keypad" id="curtain-keypad">
-          <div class="keypad-row">
-            <button class="key-btn" data-key="1">1</button>
-            <button class="key-btn" data-key="2">2</button>
-            <button class="key-btn" data-key="3">3</button>
-          </div>
-          <div class="keypad-row">
-            <button class="key-btn" data-key="4">4</button>
-            <button class="key-btn" data-key="5">5</button>
-            <button class="key-btn" data-key="6">6</button>
-          </div>
-          <div class="keypad-row">
-            <button class="key-btn" data-key="7">7</button>
-            <button class="key-btn" data-key="8">8</button>
-            <button class="key-btn" data-key="9">9</button>
-          </div>
-          <div class="keypad-row">
-            <button class="key-btn key-action" id="key-auto" title="Buka Otomatis">✨</button>
-            <button class="key-btn" data-key="0">0</button>
-            <button class="key-btn key-action" data-key="del">⌫</button>
-          </div>
-        </div>
-
-        <button class="btn-direct-unlock" id="btn-direct-unlock">Sentuh untuk Buka Langsung 🔓</button>
       </div>
     </div>
+
   </div>
+
+  <!-- ========================================================
+       STAGE 1: THE VINTAGE WATERCOLOR ENVELOPE GATEWAY
+       ======================================================== -->
+  <section class="stage envelope-stage" id="envelope-stage">
+    <div class="envelope-scene-wrapper">
+      
+      <!-- Aesthetic Botanical Watercolor Envelope -->
+      <div class="watercolor-envelope-wrapper" id="envelope-box" role="button" aria-label="Buka Amplop Surat">
+        
+        <!-- Corner Botanical Accents (Matching user's reference) -->
+        <img src="assets/images/flowersfull/toss-pansy.webp" alt="Pansy" class="env-botanical-corner corner-top-left">
+        <img src="assets/images/flowersfull/blossom-7.webp" alt="Blossom" class="env-botanical-corner corner-bottom-left">
+        <img src="assets/images/flowersfull/butterfly-coral.webp" alt="Butterfly" class="env-botanical-corner corner-top-right">
+
+        <!-- Main Handcrafted Watercolor Botanical Envelope Asset -->
+        <div class="watercolor-envelope-card" id="envelope-card">
+          <img src="assets/images/envelope_closed.webp" alt="Handcrafted Botanical Watercolor Envelope Closed" class="env-state-img env-img-closed">
+          
+          <!-- Open Envelope State with Handcrafted Deckle Paper Text -->
+          <div class="env-open-wrap">
+            <img src="assets/images/envelope_open.webp" alt="Handcrafted Botanical Watercolor Envelope Opened" class="env-state-img env-img-open">
+            <div class="env-paper-note" id="env-paper-note">
+              <span class="env-paper-kicker">A special delivery for</span>
+              <h3 class="env-paper-name" id="paper-recipient-name">Aliya</h3>
+              <p class="env-paper-tagline" id="paper-tagline">my mine gwehh.. :3</p>
+            </div>
+          </div>
+          
+          <!-- Interactive Soft Lilac Wax Seal Click Target -->
+          <div class="watercolor-wax-seal" id="wax-seal-btn" role="button" aria-label="Sentuh Segel Lilin untuk Membuka Surat">
+            <span class="wax-seal-pulse-glow"></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
 
   <!-- ========================================================
-       STAGE 2: THE REVEAL & BLOOMING EXPERIENCE
+       STAGE 2: INTERACTIVE BIRTHDAY CAKE & 22 CANDLES BLOWOUT
        ======================================================== -->
-  <main class="stage gift-stage" id="gift-stage">
+  <section class="stage cake-stage hidden" id="cake-stage">
     
+    <!-- Floating Subtle Ambient Sparkles -->
+    <div class="cake-ambient-particles" aria-hidden="true">
+      <span class="c-sparkle" style="top: 12%; left: 14%;">✦</span>
+      <span class="c-sparkle" style="top: 25%; right: 12%;">✧</span>
+      <span class="c-sparkle" style="top: 38%; left: 10%;">✦</span>
+      <span class="c-sparkle" style="top: 65%; left: 16%;">✧</span>
+      <span class="c-sparkle" style="top: 75%; right: 15%;">✦</span>
+      <span class="c-sparkle" style="top: 20%; right: 22%;">✧</span>
+    </div>
+
+    <div class="cake-scene-card">
+      <div class="cake-header-wrap">
+        <h2 class="cake-title">Happy 22nd Birthday <span class="cake-highlight-name" id="cake-recipient-name">Aliya</span></h2>
+      </div>
+
+      <!-- Aesthetic Vintage Birthday Cake on Pedestal -->
+      <div class="birthday-cake-container">
+        
+        <!-- Main Birthday Cake Image with Interactive Flame Overlays -->
+        <div class="cake-image-wrap">
+          <img src="assets/images/cake.png" alt="Kue Ulang Tahun Vintage 22" class="cake-custom-img" loading="eager">
+
+          <!-- CANDLE FLAME 1: LEFT '2' -->
+          <div class="candle-flame-spot candle-active candle-flame-left" id="candle-left" role="button" tabindex="0" aria-label="Tiup lilin angka 2 kiri" title="Sentuh untuk meniup api lilin">
+            <div class="flame-glow-aura"></div>
+            <div class="flame-wrapper">
+              <div class="flame-core">
+                <div class="flame-inner"></div>
+              </div>
+              <div class="smoke-puff"></div>
+            </div>
+          </div>
+
+          <!-- CANDLE FLAME 2: RIGHT '2' -->
+          <div class="candle-flame-spot candle-active candle-flame-right" id="candle-right" role="button" tabindex="0" aria-label="Tiup lilin angka 2 kanan" title="Sentuh untuk meniup api lilin">
+            <div class="flame-glow-aura"></div>
+            <div class="flame-wrapper">
+              <div class="flame-core">
+                <div class="flame-inner"></div>
+              </div>
+              <div class="smoke-puff"></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Action Button (Reveals once both candles are blown) -->
+      <div class="cake-proceed-action" id="cake-proceed-action">
+        <button class="btn-proceed-gift" id="btn-proceed-gift">
+          Buka Buket Bunga 🌸
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ========================================================
+       STAGE 3: THE REVEAL & BLOOMING EXPERIENCE
+       ======================================================== -->
+  <main class="stage gift-stage hidden" id="gift-stage">
+    
+    <!-- Ambient Botanical Backing (Visible from Top, Parallax Floating on Scroll - flowerisblooming style) -->
+    <div class="side-botanical-parallax-track" id="side-botanical-parallax-track" aria-hidden="true">
+      <!-- Left Margin Ambient Botanicals -->
+      <div class="parallax-flower flower-p-left" style="top: 55px; left: -40px; width: 400px;" 
+           data-speed-y="0.42" data-drift-x="38" data-sway-amp="20" data-sway-freq="0.0028" data-base-rot="-14" data-rot-amp="18" data-base-scale="1.0">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-bouquet.webp" alt="Vintage Bouquet"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 410px; left: 15px; width: 95px;" 
+           data-speed-y="0.58" data-drift-x="-35" data-sway-amp="32" data-sway-freq="0.0052" data-base-rot="15" data-rot-amp="-24" data-base-scale="1.05">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/butterfly-coral.webp" alt="Butterfly"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 640px; left: -25px; width: 340px;" 
+           data-speed-y="0.36" data-drift-x="-30" data-sway-amp="18" data-sway-freq="0.0024" data-base-rot="10" data-rot-amp="-16" data-base-scale="1.02">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-note.webp" alt="Vintage Note Envelope"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 990px; left: 20px; width: 140px;" 
+           data-speed-y="0.48" data-drift-x="36" data-sway-amp="26" data-sway-freq="0.004" data-base-rot="-18" data-rot-amp="22" data-base-scale="0.98">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/blossom-3.webp" alt="Cherry Blossom"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 1210px; left: -10px; width: 240px;" 
+           data-speed-y="0.40" data-drift-x="30" data-sway-amp="20" data-sway-freq="0.0032" data-base-rot="-12" data-rot-amp="16" data-base-scale="1.0">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-tag.webp" alt="Vintage Botanical Tag"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 1540px; left: -30px; width: 310px;" 
+           data-speed-y="0.35" data-drift-x="-34" data-sway-amp="20" data-sway-freq="0.0028" data-base-rot="-12" data-rot-amp="16" data-base-scale="1.0">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-can.webp" alt="Watering Can"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 1860px; left: 15px; width: 90px;" 
+           data-speed-y="0.55" data-drift-x="38" data-sway-amp="34" data-sway-freq="0.0054" data-base-rot="20" data-rot-amp="-24" data-base-scale="1.06">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/butterfly-yellow.webp" alt="Yellow Butterfly"></span>
+      </div>
+      <div class="parallax-flower flower-p-left" style="top: 2040px; left: -20px; width: 270px;" 
+           data-speed-y="0.32" data-drift-x="28" data-sway-amp="18" data-sway-freq="0.003" data-base-rot="12" data-rot-amp="-16" data-base-scale="0.98">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-pot.webp" alt="Flower Pot"></span>
+      </div>
+
+      <!-- Right Margin Ambient Botanicals -->
+      <div class="parallax-flower flower-p-right" style="top: 80px; right: -35px; width: 360px;" 
+           data-speed-y="0.38" data-drift-x="-35" data-sway-amp="22" data-sway-freq="0.0028" data-base-rot="14" data-rot-amp="-18" data-base-scale="1.0">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-lavender.webp" alt="Lavender"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 420px; right: 20px; width: 90px;" 
+           data-speed-y="0.56" data-drift-x="36" data-sway-amp="32" data-sway-freq="0.005" data-base-rot="-16" data-rot-amp="24" data-base-scale="1.05">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/butterfly-lavender.webp" alt="Lavender Butterfly"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 660px; right: -30px; width: 360px;" 
+           data-speed-y="0.35" data-drift-x="32" data-sway-amp="18" data-sway-freq="0.0026" data-base-rot="-12" data-rot-amp="18" data-base-scale="1.02">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-basket.webp" alt="Flower Basket"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 1020px; right: 15px; width: 190px;" 
+           data-speed-y="0.46" data-drift-x="-32" data-sway-amp="24" data-sway-freq="0.0038" data-base-rot="22" data-rot-amp="-20" data-base-scale="0.96">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/blossom-7.webp" alt="Blossom Spray"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 1240px; right: -25px; width: 310px;" 
+           data-speed-y="0.37" data-drift-x="35" data-sway-amp="20" data-sway-freq="0.003" data-base-rot="15" data-rot-amp="-18" data-base-scale="1.0">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/floral-1.webp" alt="Floral Spray"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 1560px; right: -20px; width: 280px;" 
+           data-speed-y="0.40" data-drift-x="-34" data-sway-amp="22" data-sway-freq="0.0036" data-base-rot="20" data-rot-amp="-20" data-base-scale="0.98">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/toss-poppy.webp" alt="Poppy"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 1860px; right: 20px; width: 90px;" 
+           data-speed-y="0.54" data-drift-x="-36" data-sway-amp="30" data-sway-freq="0.005" data-base-rot="-22" data-rot-amp="24" data-base-scale="1.04">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/butterfly-rose.webp" alt="Rose Butterfly"></span>
+      </div>
+      <div class="parallax-flower flower-p-right" style="top: 2040px; right: -20px; width: 240px;" 
+           data-speed-y="0.34" data-drift-x="-26" data-sway-amp="20" data-sway-freq="0.0032" data-base-rot="18" data-rot-amp="-18" data-base-scale="0.98">
+        <span class="parallax-flower-inner"><img src="assets/images/flowersfull/blossom-9.webp" alt="Pressed Blossom"></span>
+      </div>
+    </div>
+
     <!-- Stage Header Banner -->
     <header class="gift-header">
-      <div class="header-botanical-ornament">❦ ————— ❀ ————— ❦</div>
-      <p class="header-subtitle" id="header-tagline">Happy Birthday to the Prettiest Girl</p>
       <h1 class="header-title">A Forever Bouquet for <span class="highlight-name" id="header-name">Aliya</span></h1>
-      <p class="header-instruction">Buket bunga spesial yang mekar abadi khusus untuk hari bahagiamu 🌸</p>
     </header>
 
     <!-- SECTION 1: THE GRAND BLOOMING BOUQUET (Clean, Lush, Fan-Shaped Dome) -->
     <section class="bouquet-section">
       <div class="bouquet-stage-card">
         
-        <!-- Bouquet Visual Arrangement (Rich 19-Flower Majestic Crown) -->
+        <!-- Bouquet Visual Arrangement (Rich 19-Flower 3D Layered Grand Bouquet) -->
         <div class="bouquet-composition" id="bouquet-composition">
           
-          <!-- Deep Foliage Backdrop (Lush Ferns) -->
-          <div class="flower-layer layer-fern-left" title="Botanical Fern">
-            <img src="assets/images/flowersfull/toss-fern.webp" alt="Fern" class="flower-img">
+          <!-- LAYER 0: Florist Bouquet Wrapper BACK (Flared kraft backing & inner pocket depth) -->
+          <div class="bouquet-wrapper-back">
+            <svg viewBox="0 0 320 340" width="100%" height="100%" class="bouquet-florist-wrapper-svg" preserveAspectRatio="xMidYMax meet">
+              <defs>
+                <linearGradient id="kraftInnerCavity" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#b59468"/>
+                  <stop offset="40%" stop-color="#8c6a3e"/>
+                  <stop offset="100%" stop-color="#4d351b"/>
+                </linearGradient>
+
+                <linearGradient id="kraftBackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#dfc7a2"/>
+                  <stop offset="35%" stop-color="#c9ad82"/>
+                  <stop offset="85%" stop-color="#ad8d5f"/>
+                  <stop offset="100%" stop-color="#8a6c42"/>
+                </linearGradient>
+
+                <linearGradient id="tissueBackGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="50%" stop-color="#f7f0e1"/>
+                  <stop offset="100%" stop-color="#dfd1b8"/>
+                </linearGradient>
+              </defs>
+
+              <g>
+                <!-- Back Flared Kraft Shell -->
+                <path d="M35,65 C75,30 125,25 160,27 C195,25 245,30 285,65 C272,145 235,235 195,315 L125,315 C85,235 48,145 35,65 Z" 
+                      fill="url(#kraftBackGrad)"/>
+
+                <!-- Inner Cavity (shadow pocket for stems) -->
+                <path d="M52,78 C85,62 130,58 160,59 C190,58 235,62 268,78 C248,145 218,225 185,285 L135,285 C102,225 72,145 52,78 Z" 
+                      fill="url(#kraftInnerCavity)" opacity="0.85"/>
+
+                <!-- Inner Tissue Accents -->
+                <path d="M42,62 C68,40 110,38 132,48 L122,175 L68,160 Z" fill="url(#tissueBackGrad)" opacity="0.95"/>
+                <path d="M278,62 C252,40 210,38 188,48 L198,175 L252,160 Z" fill="url(#tissueBackGrad)" opacity="0.95"/>
+                <path d="M120,44 C140,36 180,36 200,44 L190,140 L130,140 Z" fill="url(#tissueBackGrad)" opacity="0.8"/>
+              </g>
+            </svg>
           </div>
-          <div class="flower-layer layer-fern-right" title="Botanical Fern">
+
+          <!-- Deep Foliage Backdrop (Lush Ferns) -->
+          <div class="flower-layer layer-fern-left">
+            <img src="assets/images/flowers/lavender.webp" alt="Fern" class="flower-img">
+          </div>
+          <div class="flower-layer layer-fern-right">
             <img src="assets/images/flowersfull/toss-fern.webp" alt="Fern" class="flower-img">
           </div>
 
           <!-- Layer 1 (Deep Background Sprigs & Spreads - Tilted to match triangular wrapper) -->
-          <div class="flower-layer layer-deep-left" title="Baby's Breath">
+          <div class="flower-layer layer-deep-left">
             <img src="assets/images/flowers/illustrated_md/babys_breath.webp" alt="Baby's Breath" class="flower-img">
           </div>
-          <div class="flower-layer layer-deep-center-left" title="Cherry Blossom">
+          <div class="flower-layer layer-deep-center-left">
             <img src="assets/images/flowers/illustrated_md/cherry_blossom.webp" alt="Cherry Blossom" class="flower-img">
           </div>
-          <div class="flower-layer layer-deep-center" title="Magnolia">
+          <div class="flower-layer layer-deep-center">
             <img src="assets/images/flowers/illustrated_md/magnolia.webp" alt="Magnolia" class="flower-img">
           </div>
-          <div class="flower-layer layer-deep-center-right" title="Cherry Blossom">
+          <div class="flower-layer layer-deep-center-right">
             <img src="assets/images/flowers/illustrated_md/cherry_blossom.webp" alt="Cherry Blossom" class="flower-img">
           </div>
-          <div class="flower-layer layer-deep-right" title="Baby's Breath">
+          <div class="flower-layer layer-deep-right">
             <img src="assets/images/flowers/illustrated_md/babys_breath.webp" alt="Baby's Breath" class="flower-img">
           </div>
 
           <!-- Layer 2 (Mid-Back Tall Stems - Fanning outward left & right) -->
-          <div class="flower-layer layer-mid-far-left" title="Pink Tulip">
+          <div class="flower-layer layer-mid-far-left">
             <img src="assets/images/flowers/illustrated_md/pink_tulip.webp" alt="Pink Tulip" class="flower-img">
           </div>
-          <div class="flower-layer layer-mid-left" title="Yellow Tulip">
+          <div class="flower-layer layer-mid-left">
             <img src="assets/images/flowers/illustrated_md/yellow_tulip.webp" alt="Yellow Tulip" class="flower-img">
           </div>
-          <div class="flower-layer layer-mid-center-star" title="Pink Peony">
+          <div class="flower-layer layer-mid-center-star">
             <img src="assets/images/flowers/illustrated_md/pink_peony.webp" alt="Pink Peony" class="flower-img">
           </div>
-          <div class="flower-layer layer-mid-right" title="White Tulip">
+          <div class="flower-layer layer-mid-right">
             <img src="assets/images/flowers/illustrated_md/white_tulip.webp" alt="White Tulip" class="flower-img">
           </div>
-          <div class="flower-layer layer-mid-far-right" title="Hydrangea">
+          <div class="flower-layer layer-mid-far-right">
             <img src="assets/images/flowers/illustrated_md/hydrangea.webp" alt="Hydrangea" class="flower-img">
           </div>
 
           <!-- Layer 3 (Mid-Front Lush Blooms - Elevated above wrapper rim) -->
-          <div class="flower-layer layer-front-far-left" title="Pink Rose">
+          <div class="flower-layer layer-front-far-left">
             <img src="assets/images/flowers/illustrated_md/pink_rose.webp" alt="Pink Rose" class="flower-img">
           </div>
-          <div class="flower-layer layer-front-left" title="Ranunculus">
+          <div class="flower-layer layer-front-left">
             <img src="assets/images/flowers/illustrated_md/ranunculus.webp" alt="Ranunculus" class="flower-img">
           </div>
-          <div class="flower-layer layer-front-center-hero" title="Red Peony">
+          <div class="flower-layer layer-front-center-hero">
             <img src="assets/images/flowers/illustrated_md/red_peony.webp" alt="Red Peony" class="flower-img">
           </div>
-          <div class="flower-layer layer-front-right" title="Yellow Rose">
+          <div class="flower-layer layer-front-right">
             <img src="assets/images/flowers/illustrated_md/yellow_rose.webp" alt="Yellow Rose" class="flower-img">
           </div>
-          <div class="flower-layer layer-front-far-right" title="White Rose">
+          <div class="flower-layer layer-front-far-right">
             <img src="assets/images/flowers/illustrated_md/white_rose.webp" alt="White Rose" class="flower-img">
           </div>
 
           <!-- Layer 4 (Foreground Rim Accents) -->
-          <div class="flower-layer layer-rim-left" title="Sweet Daisy">
+          <div class="flower-layer layer-rim-left">
             <img src="assets/images/flowers/illustrated_md/daisy.webp" alt="Sweet Daisy" class="flower-img">
           </div>
-          <div class="flower-layer layer-rim-right" title="Carnation">
+          <div class="flower-layer layer-rim-right">
             <img src="assets/images/flowers/illustrated_md/carnation.webp" alt="Carnation" class="flower-img">
           </div>
 
-          <!-- Vintage Kraft Paper Bouquet Wrapper (Anchored cleanly at bottom) -->
-          <div class="bouquet-wrapper-container">
-            <img src="assets/images/bouquet_wrapper.png" alt="Vintage Kraft Bouquet Wrapper" class="bouquet-wrapper-img">
+          <!-- LAYER FINAL: Florist Bouquet Wrapper FRONT (Overlapping front kraft flaps, scooped collar, silk ribbon bow & gold crest) -->
+          <div class="bouquet-wrapper-front">
+            <svg viewBox="0 0 320 340" width="100%" height="100%" class="bouquet-florist-wrapper-svg" preserveAspectRatio="xMidYMax meet">
+              <defs>
+                <!-- Warm Kraft Paper Gradients -->
+                <linearGradient id="kraftFoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f2e2c6"/>
+                  <stop offset="45%" stop-color="#dbc097"/>
+                  <stop offset="100%" stop-color="#bd9f72"/>
+                </linearGradient>
+
+                <linearGradient id="kraftFrontLapGrad" x1="0%" y1="0%" x2="80%" y2="100%">
+                  <stop offset="0%" stop-color="#fcf2dc"/>
+                  <stop offset="45%" stop-color="#e8cfab"/>
+                  <stop offset="100%" stop-color="#c9ab7d"/>
+                </linearGradient>
+
+                <!-- Silk Ribbon Gradients (Burgundy & Rose Gold) -->
+                <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#a82828"/>
+                  <stop offset="45%" stop-color="#801515"/>
+                  <stop offset="80%" stop-color="#5a0b0b"/>
+                  <stop offset="100%" stop-color="#3d0505"/>
+                </linearGradient>
+
+                <linearGradient id="goldKnotGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#fff4c2"/>
+                  <stop offset="50%" stop-color="#d4aa48"/>
+                  <stop offset="100%" stop-color="#8f691b"/>
+                </linearGradient>
+
+                <!-- Drop Shadows -->
+                <filter id="foldInnerShadow" x="-10%" y="-10%" width="120%" height="120%">
+                  <feDropShadow dx="-3" dy="5" stdDeviation="5" flood-color="#3d2410" flood-opacity="0.22"/>
+                </filter>
+                <filter id="ribbonShadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#250505" flood-opacity="0.38"/>
+                </filter>
+              </defs>
+
+              <g>
+                <!-- Main Left Kraft Flap (Flowing diagonal wrap in front of stems) -->
+                <path d="M48,112 C82,102 128,118 152,142 L190,320 L122,320 C88,245 58,180 48,112 Z" 
+                      fill="url(#kraftFoldGrad)"/>
+
+                <!-- Main Right Overlapping Kraft Flap (Curving collar in front of stems) -->
+                <path d="M272,112 C236,102 186,112 148,148 C134,162 124,182 118,206 L130,322 L198,322 C234,245 262,180 272,112 Z" 
+                      fill="url(#kraftFrontLapGrad)"/>
+
+                <!-- Crisp Kraft Crease Highlights -->
+                <path d="M272,112 C236,102 186,112 148,148 C134,162 124,182 118,206" fill="none" stroke="#fff8ed" stroke-width="1.8" opacity="0.8"/>
+                <path d="M48,112 C82,102 128,118 152,142" fill="none" stroke="#eedcc2" stroke-width="1.2" opacity="0.65"/>
+
+                <!-- Silk Ribbon Waist Band -->
+                <path d="M124,242 C146,247 174,247 196,242 L198,258 C174,264 146,264 122,258 Z" 
+                      fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
+                
+                <!-- Ribbon Left Bow Loop -->
+                <path d="M160,250 C140,230 112,232 120,252 C126,265 145,260 160,253 Z" 
+                      fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
+                
+                <!-- Ribbon Right Bow Loop -->
+                <path d="M160,250 C180,230 208,232 200,252 C194,265 175,260 160,253 Z" 
+                      fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
+
+                <!-- Ribbon Trailing Streamer Tails -->
+                <path d="M154,254 C148,275 138,298 128,318 L138,320 C150,298 158,278 160,256 Z" 
+                      fill="url(#ribbonGrad)" opacity="0.95"/>
+                <path d="M166,254 C172,275 182,298 192,318 L182,320 C170,298 162,278 160,256 Z" 
+                      fill="url(#ribbonGrad)" opacity="0.95"/>
+
+                <!-- Golden Wax Crest Knot -->
+                <circle cx="160" cy="252" r="8.5" fill="url(#goldKnotGrad)" filter="url(#ribbonShadow)"/>
+                <circle cx="160" cy="252" r="6" fill="#801515"/>
+                <text x="160" y="254.5" font-family="'Playfair Display', serif" font-size="6.5" font-weight="bold" fill="#fff" text-anchor="middle">A</text>
+              </g>
+            </svg>
           </div>
 
         </div>
@@ -413,54 +755,21 @@
       </div>
     </section>
 
-    <!-- SECTION 2: THE HEARTFELT LETTER (AUTHENTIC VINTAGE CLASSIC PAPER) -->
+    <!-- SECTION 2: THE HEARTFELT LETTER (AUTHENTIC HANDWRITTEN VINTAGE PARCHMENT) -->
     <section class="letter-section">
-      <div class="parchment-letter-wrapper vintage-paper-wrapper">
-        
-        <!-- Vintage Postal Stamp in Corner -->
-        <div class="letter-vintage-stamp">
-          <div class="stamp-serrated">
-            <span class="stamp-rate">1ST CLASS</span>
-            <span class="stamp-icon">❦</span>
-            <span class="stamp-label">SPECIAL DELIVERY</span>
-          </div>
-          <div class="stamp-postmark">
-            <span>AIR MAIL</span>
-            <span class="pm-date">★ 08.10.2004 ★</span>
-          </div>
-        </div>
-
-        <!-- Wax Seal Crest Accent -->
-        <div class="letter-wax-crest">
-          <div class="wax-crest-inner">A & M</div>
-        </div>
-
-        <article class="parchment-letter vintage-paper-sheet">
-          <div class="deckled-edge-left"></div>
-          <div class="deckled-edge-right"></div>
-          <div class="letter-watermark">❦</div>
-          
-          <h2 class="letter-salutation" id="letter-salutation">Hai Aliya sayang,</h2>
-          
-          <div class="letter-body" id="letter-body">
-            <!-- Injected via JavaScript from config.js -->
-          </div>
-
-          <div class="letter-footer">
-            <p class="letter-closing" id="letter-closing">Sayang kamu banyak-banyak,</p>
-            <p class="letter-signature" id="letter-signature">Pacarmu yang paling beruntung ❤️</p>
-          </div>
-        </article>
+      <div class="letter-image-wrapper">
+        <img src="assets/images/surat.png" alt="Surat Ulang Tahun untuk Aliya" class="letter-custom-img" loading="lazy">
+        <img src="assets/images/character/birthday.png" alt="Karakter lucu ulang tahun" class="letter-character-clingy" loading="lazy">
+        <img src="assets/images/character/Untitled design.png" alt="Karakter lucu" class="letter-character-img" loading="lazy">
       </div>
     </section>
 
-    <!-- SECTION 3: POLAROID SCRAPBOOK MEMORIES (QUICK SCRATCH TO REVEAL) -->
+    <!-- SECTION 3: POLAROID SCRAPBOOK MEMORIES -->
     <section class="polaroid-section">
       <div class="section-title-wrap">
         <span class="section-kicker">Our Journey</span>
         <h2 class="section-heading">Kepingan Momen Kita</h2>
-        <p class="section-scratch-hint">Usap foto pelan-pelan yaa buat liat kenangan kita ✨</p>
-        <div class="ornament-line">✦ ——— ❦ ——— ✦</div>
+        <p class="section-scratch-hint">Usap foto untuk melihat cerita di baliknya</p>
       </div>
 
       <div class="polaroid-grid" id="polaroid-grid">
@@ -469,7 +778,7 @@
 
       <div class="polaroid-actions">
         <button class="btn-scratch-all" id="btn-scratch-all">
-          <span class="btn-scratch-icon">✨</span> Buka Semua Foto Sekaligus
+          Buka Semua Foto
         </button>
       </div>
     </section>
@@ -477,16 +786,16 @@
     <!-- SECTION 4: FINAL WISH & INTERACTIVE REPLAY -->
     <section class="closing-section">
       <div class="closing-card">
-        <div class="closing-icon">🌹</div>
-        <h3 class="closing-heading">Happy Birthday Sekali Lagi, Sayang!</h3>
-        <p class="closing-text">Semoga suka sama buket bunga digital kecil ini yaa. Makasih udah ada di hidup aku.</p>
+        <div class="closing-icon">🌸</div>
+        <h3 class="closing-heading">Happy Birthday Sekali Lagi, Sayang</h3>
+        <p class="closing-text">Buket bunga digital kecil ini dibuat spesial untuk menemani hari bahagiamu.</p>
         
         <div class="closing-actions">
           <button class="btn-primary" id="btn-lock-curtain">
-            <span class="btn-icon">🔒</span> Kunci Tirai Bunga Lagi
+            Tiup Lilin Ulang
           </button>
           <a class="btn-secondary" id="btn-share-love" href="#" target="_blank">
-            <span class="btn-icon">💌</span> Kirim Balasan ke WA
+            Kirim Pesan ke WhatsApp
           </a>
         </div>
       </div>
@@ -494,15 +803,14 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-      <p>Handcrafted with endless love for Aliya • Forever Blooming 2026</p>
+      <p>Handcrafted with love for Aliya • 2026</p>
     </footer>
 
   </main>
 
-  <!-- Full-Width Edge-to-Edge Botanical Meadow Foreground (Screen Bottom, NO Box) -->
-  <div class="page-bottom-meadow-wrap" aria-hidden="true">
-    <img src="assets/images/flowersfull/meadow-mist.webp" alt="" class="meadow-mist-img">
-    <img src="assets/images/flowersfull/meadow.webp" alt="Lush Meadow" class="meadow-horizon-img">
+  <!-- Full-Width Edge-to-Edge Botanical Meadow Foreground (Appears on Gift Stage only) -->
+  <div class="page-bottom-meadow-wrap hidden" id="page-bottom-meadow-wrap" aria-hidden="true">
+    <img src="assets/images/flowersfull/meadow-mist.webp" alt="Botanical Meadow" class="meadow-mist-img">
   </div>
 
 
