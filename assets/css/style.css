@@ -1035,20 +1035,22 @@ body {
 
 .header-title {
   font-family: var(--font-serif);
-  font-size: clamp(2rem, 3.4vw, 2.6rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.5rem);
   font-weight: 700;
   color: var(--forest-dark);
-  line-height: 1.2;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
 }
 
 .header-title .highlight-name {
-  font-family: var(--font-handwriting);
-  font-size: clamp(2.5rem, 4.2vw, 3.3rem);
+  font-family: inherit;
+  font-size: inherit;
   font-weight: 700;
-  color: var(--wax-red);
-  display: inline-block;
-  transform: rotate(-2deg);
-  margin-left: 6px;
+  color: #8a2534;
+  display: inline;
+  transform: none;
+  margin-left: 0;
+  font-style: italic;
 }
 
 
