@@ -727,21 +727,51 @@
       </div>
     </section>
 
-    <!-- Section 4: Closing -->
-    <section class="closing-section">
-      <div class="closing-card">
-        <div class="closing-icon">🌸</div>
-        <h3 class="closing-heading">Happy Birthday Sekali Lagi, Sayang</h3>
-        <p class="closing-text">Buket bunga digital kecil ini dibuat spesial untuk menemani hari bahagiamu.</p>
-        
-        <div class="closing-actions">
-          <button class="btn-primary" id="btn-lock-curtain">
-            Tiup Lilin Ulang
-          </button>
-          <a class="btn-secondary" id="btn-share-love" href="#" target="_blank">
-            Kirim Pesan ke WhatsApp
-          </a>
+    <!-- Section 4: Interactive Vintage Gift Box -->
+    <section class="closing-section giftbox-section" id="giftbox-section">
+      <div class="giftbox-scene">
+        <div class="section-title-wrap">
+          <span class="section-kicker">A Special Delivery</span>
+          <h2 class="section-heading">Kado Spesial Buat Kamu</h2>
+          <p class="section-scratch-hint giftbox-hint-text" id="giftbox-hint">Sentuh kotak kado untuk membukanya</p>
         </div>
+
+        <div class="giftbox-interactive-stage">
+          <div class="giftbox-wrapper" id="giftbox-wrapper" role="button" tabindex="0" aria-label="Buka kotak kado">
+            <!-- Sparkles aura -->
+            <div class="giftbox-ambient-sparkles" aria-hidden="true">
+              <span class="g-sparkle g-s1">✦</span>
+              <span class="g-sparkle g-s2">✧</span>
+              <span class="g-sparkle g-s3">✦</span>
+              <span class="g-sparkle g-s4">✧</span>
+            </div>
+
+            <!-- Box Closed -->
+            <img src="assets/images/box-close.png" alt="Kotak Kado Cantik Tertutup" class="giftbox-img giftbox-close-img" id="giftbox-close-img">
+
+            <!-- Box Open (initially hidden) -->
+            <img src="assets/images/box-open.png" alt="Kotak Kado Terbuka Berisi Bunga" class="giftbox-img giftbox-open-img hidden" id="giftbox-open-img">
+          </div>
+
+          <!-- Revealed Surprise Note & Actions -->
+          <div class="giftbox-content-revealed hidden" id="giftbox-content-revealed">
+            <div class="giftbox-letter-card">
+              <div class="giftbox-letter-tag">A Heartfelt Wish</div>
+              <h3 class="giftbox-letter-title">Happy Birthday Sekali Lagi, Sayang</h3>
+              <p class="giftbox-letter-text">Semoga setiap langkah dan harimu selalu dipenuhi kebahagiaan, kesehatan, dan senyuman paling manis. Terima kasih sudah hadir dan jadi bagian terindah dalam hidupku.</p>
+              
+              <div class="closing-actions giftbox-actions">
+                <button class="btn-primary btn-vintage-gold" id="btn-lock-curtain">
+                  Tiup Lilin Ulang
+                </button>
+                <a class="btn-secondary btn-vintage-outline" id="btn-share-love" href="#" target="_blank">
+                  Kirim Pesan ke WhatsApp
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
 

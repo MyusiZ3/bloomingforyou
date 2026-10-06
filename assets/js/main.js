@@ -682,6 +682,134 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cakeStage) {
         cakeStage.classList.remove('hidden', 'stage-fade-out');
       }
+
+      // Reset gift box
+      isGiftBoxOpening = false;
+      isGiftBoxOpened = false;
+      if (giftboxWrapper) {
+        giftboxWrapper.classList.remove('is-shaking', 'is-opened');
+      }
+      if (giftboxCloseImg) giftboxCloseImg.classList.remove('hidden');
+      if (giftboxOpenImg) giftboxOpenImg.classList.add('hidden');
+      if (giftboxRevealed) giftboxRevealed.classList.add('hidden');
+      if (giftboxHint) {
+        giftboxHint.textContent = "Sentuh kotak kado untuk membukanya";
+        giftboxHint.style.color = "";
+      }
+    });
+  }
+
+  // --- Interactive Vintage Gift Box Logic ---
+  const giftboxWrapper = document.getElementById('giftbox-wrapper');
+  const giftboxCloseImg = document.getElementById('giftbox-close-img');
+  const giftboxOpenImg = document.getElementById('giftbox-open-img');
+  const giftboxRevealed = document.getElementById('giftbox-content-revealed');
+  const giftboxHint = document.getElementById('giftbox-hint');
+
+  let isGiftBoxOpening = false;
+  let isGiftBoxOpened = false;
+
+  function playBoxShakeSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') ctx.resume();
+
+      const bufferSize = ctx.sampleRate * 0.35;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.12));
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const filter = ctx.createBiquadFilter();
+      filter.type = 'bandpass';
+      filter.frequency.setValueAtTime(500, ctx.currentTime);
+      filter.Q.setValueAtTime(3.2, ctx.currentTime);
+
+      const gain = ctx.createGain();
+      gain.gain.setValueAtTime(0.12, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.33);
+
+      noise.connect(filter);
+      filter.connect(gain);
+      gain.connect(ctx.destination);
+
+      noise.start();
+    } catch (_) {}
+  }
+
+  function playBoxPopSound() {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      if (ctx.state === 'suspended') ctx.resume();
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(340, ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(680, ctx.currentTime + 0.16);
+
+      gain.gain.setValueAtTime(0.16, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.22);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start();
+      osc.stop(ctx.currentTime + 0.24);
+    } catch (_) {}
+  }
+
+  if (giftboxWrapper) {
+    giftboxWrapper.addEventListener('click', () => {
+      if (isGiftBoxOpening || isGiftBoxOpened) return;
+      isGiftBoxOpening = true;
+
+      // 1. Shaking vibration
+      giftboxWrapper.classList.add('is-shaking');
+      if (giftboxHint) {
+        giftboxHint.textContent = "Membuka kado...";
+        giftboxHint.style.color = "var(--gold-antique)";
+      }
+      playBoxShakeSound();
+
+      setTimeout(() => {
+        playBoxShakeSound();
+      }, 380);
+
+      // 2. Open after shake finishes
+      setTimeout(() => {
+        giftboxWrapper.classList.remove('is-shaking');
+        giftboxWrapper.classList.add('is-opened');
+        isGiftBoxOpening = false;
+        isGiftBoxOpened = true;
+
+        if (giftboxCloseImg) giftboxCloseImg.classList.add('hidden');
+        if (giftboxOpenImg) giftboxOpenImg.classList.remove('hidden');
+
+        playBoxPopSound();
+        triggerBirthdayCelebration();
+
+        if (giftboxRevealed) {
+          giftboxRevealed.classList.remove('hidden');
+        }
+
+        if (giftboxHint) {
+          giftboxHint.textContent = "Kotak kado terbuka! ✨";
+        }
+      }, 850);
+    });
+
+    giftboxWrapper.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        giftboxWrapper.click();
+      }
     });
   }
 

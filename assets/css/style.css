@@ -2555,44 +2555,239 @@ body {
 }
 
 
-/* --- Closing & Replay --- */
-.closing-section {
-  margin-bottom: 50px;
-}
-
-.closing-card {
+/* --- Interactive Vintage Gift Box Section --- */
+.giftbox-section {
+  margin-bottom: 70px;
   text-align: center;
-  background: linear-gradient(135deg, var(--forest-dark) 0%, var(--forest-medium) 100%);
-  color: #fff;
-  padding: 50px 30px;
-  border-radius: 12px;
-  box-shadow: var(--shadow-lg);
+  position: relative;
 }
 
-.closing-icon {
-  font-size: 2.5rem;
-  margin-bottom: 12px;
+.giftbox-scene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 720px;
+  margin: 0 auto;
+  position: relative;
 }
 
-.closing-heading {
+.giftbox-interactive-stage {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.giftbox-wrapper {
+  position: relative;
+  width: clamp(240px, 48vw, 360px);
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transform-origin: bottom center;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.giftbox-wrapper:hover:not(.is-shaking):not(.is-opened) {
+  transform: scale(1.05) translateY(-6px);
+}
+
+.giftbox-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 15px 30px rgba(45, 25, 12, 0.2));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Gentle idle breathing on closed box */
+.giftbox-wrapper:not(.is-shaking):not(.is-opened) .giftbox-close-img {
+  animation: giftboxIdleBreath 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes giftboxIdleBreath {
+  0% { transform: translateY(0) scale(0.98); }
+  100% { transform: translateY(-6px) scale(1.02); }
+}
+
+/* 1. Vibration / Shaking Animation ("Geter-Geter") */
+.giftbox-wrapper.is-shaking {
+  animation: giftboxVibrate 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
+  pointer-events: none;
+}
+
+@keyframes giftboxVibrate {
+  0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+  10% { transform: scale(1.04) translate(-6px, -2px) rotate(-5deg); }
+  20% { transform: scale(1.06) translate(7px, 2px) rotate(5deg); }
+  30% { transform: scale(1.08) translate(-8px, -3px) rotate(-6deg); }
+  40% { transform: scale(1.10) translate(9px, 3px) rotate(6deg); }
+  50% { transform: scale(1.12) translate(-9px, -2px) rotate(-7deg); }
+  60% { transform: scale(1.13) translate(9px, 2px) rotate(7deg); }
+  70% { transform: scale(1.14) translate(-7px, -3px) rotate(-5deg); }
+  80% { transform: scale(1.12) translate(6px, 2px) rotate(4deg); }
+  90% { transform: scale(1.08) translate(-3px, -1px) rotate(-2deg); }
+  100% { transform: scale(1.04) translate(0, -6px) rotate(0deg); }
+}
+
+/* 2. Box Opened State */
+.giftbox-wrapper.is-opened {
+  cursor: default;
+}
+
+.giftbox-wrapper.is-opened .giftbox-close-img {
+  opacity: 0;
+  display: none;
+}
+
+.giftbox-wrapper.is-opened .giftbox-open-img {
+  display: block;
+  opacity: 1;
+  animation: giftboxPopOpen 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes giftboxPopOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Ambient Sparkles around Gift Box */
+.giftbox-ambient-sparkles {
+  position: absolute;
+  inset: -15px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.g-sparkle {
+  position: absolute;
+  color: var(--gold-antique, #c49a45);
+  font-size: 1.1rem;
+  opacity: 0.7;
+  animation: gSparkleFloat 2.5s ease-in-out infinite alternate;
+}
+
+.g-s1 { top: 12%; left: 8%; animation-delay: 0s; }
+.g-s2 { top: 18%; right: 10%; animation-delay: 0.6s; font-size: 1.4rem; }
+.g-s3 { bottom: 20%; left: 12%; animation-delay: 1.2s; }
+.g-s4 { bottom: 25%; right: 14%; animation-delay: 1.8s; font-size: 1.3rem; }
+
+@keyframes gSparkleFloat {
+  0% { transform: translateY(0) scale(0.85); opacity: 0.3; }
+  100% { transform: translateY(-8px) scale(1.2); opacity: 0.9; }
+}
+
+/* 3. Revealed Letter Card */
+.giftbox-content-revealed {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 560px;
+  animation: giftLetterSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes giftLetterSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.giftbox-letter-card {
+  background: #fffdf9 url('../images/scratchbg.png') center/cover no-repeat;
+  border: 1px solid rgba(215, 195, 165, 0.7);
+  border-radius: 6px;
+  padding: 36px 32px 32px;
+  box-shadow: 0 16px 40px rgba(45, 25, 12, 0.16);
+  text-align: center;
+  position: relative;
+}
+
+.giftbox-letter-tag {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #7d503c;
+  background: rgba(125, 80, 60, 0.1);
+  padding: 4px 14px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.giftbox-letter-title {
   font-family: var(--font-serif);
-  font-size: 2.2rem;
-  margin-bottom: 10px;
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  color: #2b1c13;
+  margin-bottom: 12px;
+  line-height: 1.3;
 }
 
-.closing-text {
+.giftbox-letter-text {
   font-family: var(--font-editorial);
-  font-size: 1.25rem;
-  opacity: 0.9;
-  max-width: 500px;
-  margin: 0 auto 30px;
+  font-size: 1.15rem;
+  color: #523a2a;
+  line-height: 1.6;
+  margin: 0 auto 26px;
+  max-width: 460px;
 }
 
-.closing-actions {
+.giftbox-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 14px;
   justify-content: center;
+}
+
+.btn-vintage-gold {
+  background: var(--gold-antique, #b78a48);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(183, 138, 72, 0.3);
+}
+
+.btn-vintage-gold:hover {
+  background: #c99a53;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(183, 138, 72, 0.45);
+}
+
+.btn-vintage-outline {
+  background: rgba(255, 255, 255, 0.85);
+  color: #3b2618;
+  border: 1.5px solid rgba(125, 80, 60, 0.45);
+}
+
+.btn-vintage-outline:hover {
+  background: #fff;
+  border-color: #7d503c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(45, 25, 12, 0.12);
 }
 
 .btn-primary, .btn-secondary {
@@ -2607,30 +2802,6 @@ body {
   text-decoration: none;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background: var(--gold-antique);
-  color: #fff;
-  border: none;
-}
-
-.btn-primary:hover {
-  background: var(--gold-light);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 15px rgba(183, 138, 72, 0.4);
-}
-
-.btn-secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-}
-
-.btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #fff;
-  transform: translateY(-2px);
 }
 
 .site-footer {
