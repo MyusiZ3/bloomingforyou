@@ -791,12 +791,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const imgBox = card.querySelector('.polaroid-img-box');
 
         initScratchCard(canvas, imgBox, item, card);
-
-        card.addEventListener('click', () => {
-          if (canvas.isRevealed) {
-            openPolaroidModal(item);
-          }
-        });
       }
 
       grid.appendChild(spread);
@@ -1080,40 +1074,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       setTimeout(() => heart.remove(), 950);
     });
-  });
-
-  // Polaroid Lightbox Modal Management
-  function openPolaroidModal(item) {
-    if (!polaroidModal) return;
-    const imgEl = document.getElementById('lightbox-polaroid-img');
-    const chEl = document.getElementById('lightbox-chapter');
-    const titleEl = document.getElementById('lightbox-title');
-    const capEl = document.getElementById('lightbox-caption');
-
-    if (imgEl) imgEl.src = item.image;
-    if (chEl) chEl.textContent = item.chapter || "";
-    if (titleEl) titleEl.textContent = item.title;
-    if (capEl) capEl.textContent = item.caption;
-
-    polaroidModal.classList.remove('hidden');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closePolaroidModal() {
-    if (!polaroidModal) return;
-    polaroidModal.classList.add('hidden');
-    document.body.style.overflow = '';
-  }
-
-  if (polaroidModalClose) polaroidModalClose.addEventListener('click', closePolaroidModal);
-  if (polaroidModal) {
-    polaroidModal.addEventListener('click', (e) => {
-      if (e.target === polaroidModal) closePolaroidModal();
-    });
-  }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closePolaroidModal();
   });
 
   // --- Botanical Scroll Parallax Engine (Fluid Momentum Lerp & Flowerisblooming Dynamics) ---
