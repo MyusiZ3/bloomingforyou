@@ -1958,7 +1958,7 @@ body {
 
 .polaroid-item {
   background: #ffffff;
-  padding: 14px 14px 22px;
+  padding: 12px 12px 34px;
   border-radius: 3px;
   box-shadow: 
     0 1px 3px rgba(0,0,0,0.08),
@@ -2913,7 +2913,7 @@ body {
   }
 
   .polaroid-item {
-    padding: 10px 10px 18px;
+    padding: 9px 9px 24px;
   }
 
   .polaroid-item:nth-child(1) { margin-top: 2px; }
@@ -2930,18 +2930,6 @@ body {
   .clothespin-spring {
     top: 11px;
     height: 5px;
-  }
-
-  .polaroid-title {
-    font-size: 1.12rem;
-  }
-
-  .polaroid-chapter {
-    font-size: 0.62rem;
-  }
-
-  .polaroid-click-hint {
-    font-size: 0.72rem;
   }
 }
 
@@ -3000,10 +2988,6 @@ body {
   }
 
   .polaroid-item {
-    padding: 8px 8px 14px;
-  }
-
-  .polaroid-title {
-    font-size: 1.02rem;
+    padding: 7px 7px 18px;
   }
 }

@@ -701,11 +701,6 @@ document.addEventListener('DOMContentLoaded', () => {
           <img src="${item.image}" alt="${item.title}" class="polaroid-photo-img" loading="lazy">
           <canvas class="scratch-canvas" id="canvas-${item.id}"></canvas>
         </div>
-        <div class="polaroid-caption-box">
-          <span class="polaroid-chapter">${item.chapter || `Chapter 0${index + 1}`}</span>
-          <h3 class="polaroid-title">${item.title}</h3>
-          <p class="polaroid-click-hint">Usap foto untuk membukanya ✦</p>
-        </div>
       `;
 
       grid.appendChild(card);
@@ -871,12 +866,6 @@ document.addEventListener('DOMContentLoaded', () => {
       canvas.isRevealed = true;
       canvas.classList.add('is-revealed');
       imgBox.classList.add('revealed-glow');
-
-      const hint = card.querySelector('.polaroid-click-hint');
-      if (hint) {
-        hint.textContent = '✨ Sentuh untuk membaca cerita lengkap ✦';
-        hint.style.color = 'var(--gold-antique)';
-      }
 
       createSparkleBurst(imgBox);
     }
