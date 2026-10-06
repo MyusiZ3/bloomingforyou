@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const iconPause = musicToggleBtn ? musicToggleBtn.querySelector('.icon-pause') : null;
   const iconPlay = musicToggleBtn ? musicToggleBtn.querySelector('.icon-play') : null;
 
-  const polaroidModal = document.getElementById('polaroid-modal');
-  const polaroidModalClose = document.getElementById('polaroid-modal-close');
   const btnShareLove = document.getElementById('btn-share-love');
   const btnScratchAll = document.getElementById('btn-scratch-all');
 
