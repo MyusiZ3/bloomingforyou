@@ -562,6 +562,81 @@ body {
   -webkit-user-drag: none;
 }
 
+/* Floating Butterflies Beside Cake */
+.cake-butterfly {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9;
+  filter: drop-shadow(0 6px 16px rgba(50, 30, 15, 0.25));
+  will-change: transform;
+}
+
+.cake-butterfly img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cake-butterfly-left {
+  top: 32%;
+  left: -8%;
+  width: clamp(52px, 12vw, 70px);
+  animation: butterflyFloatLeft 4.6s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+.cake-butterfly-right {
+  top: 40%;
+  right: -8%;
+  width: clamp(48px, 11vw, 66px);
+  animation: butterflyFloatRight 5.2s ease-in-out infinite alternate -1.8s;
+  transform-origin: center center;
+}
+
+.cake-butterfly-top-right {
+  top: 2%;
+  right: 6%;
+  width: clamp(38px, 8vw, 48px);
+  animation: butterflyFloatTop 4.2s ease-in-out infinite alternate -0.9s;
+  transform-origin: center center;
+}
+
+@keyframes butterflyFloatLeft {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-16deg) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) translateX(8px) rotate(-6deg) scale(1.06);
+  }
+  100% {
+    transform: translateY(-5px) translateX(-5px) rotate(-22deg) scale(0.96);
+  }
+}
+
+@keyframes butterflyFloatRight {
+  0% {
+    transform: translateY(0) translateX(0) rotate(18deg) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) translateX(-8px) rotate(26deg) scale(1.05);
+  }
+  100% {
+    transform: translateY(-6px) translateX(5px) rotate(12deg) scale(0.97);
+  }
+}
+
+@keyframes butterflyFloatTop {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-8deg) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) translateX(6px) rotate(8deg) scale(1.08);
+  }
+  100% {
+    transform: translateY(-3px) translateX(-4px) rotate(-14deg) scale(0.95);
+  }
+}
+
 /* Individual Candle Flame Spot */
 .candle-flame-spot {
   position: absolute;
