@@ -728,6 +728,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const flower = driedFlowers[spreadIdx % driedFlowers.length];
 
       spread.innerHTML = `
+        <!-- Vintage Scrapbook Background Card (torn parchment with stamps & flowers) -->
+        <div class="scrapbook-card-backdrop" aria-hidden="true">
+          <img src="assets/images/scratchbg.png" alt="Vintage Scrapbook Paper" class="scrapbook-backdrop-img">
+        </div>
+
         <!-- Newspaper print clipping collage layer -->
         <div class="scrapbook-newsprint-clipping" aria-hidden="true">
           <div class="newsprint-inner">
@@ -802,9 +807,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  const scratchBgImage = new Image();
-  scratchBgImage.src = 'assets/images/scratchbg.png';
-
   function initScratchCard(canvas, imgBox, item, card) {
     const ctx = canvas.getContext('2d');
     let isDrawing = false;
@@ -814,49 +816,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let hasPainted = false;
 
     canvas.isRevealed = false;
-
-    function renderFoilContent(width, height) {
-      // 1. Warm vintage parchment gradient base
-      const grad = ctx.createLinearGradient(0, 0, width, height);
-      grad.addColorStop(0, '#e5d1bc');
-      grad.addColorStop(0.35, '#dcc2a7');
-      grad.addColorStop(0.7, '#cfb395');
-      grad.addColorStop(1, '#be9f7f');
-
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, width, height);
-
-      // 2. Draw custom vintage torn paper background texture with flowers & stamps
-      if (scratchBgImage.complete && scratchBgImage.naturalWidth > 0) {
-        ctx.drawImage(scratchBgImage, 0, 0, width, height);
-      }
-
-      // 3. Delicate vintage frame border
-      ctx.strokeStyle = 'rgba(105, 68, 48, 0.45)';
-      ctx.lineWidth = 1.5;
-      ctx.strokeRect(10, 10, width - 20, height - 20);
-
-      ctx.strokeStyle = 'rgba(105, 68, 48, 0.25)';
-      ctx.setLineDash([3, 3]);
-      ctx.strokeRect(14, 14, width - 28, height - 28);
-      ctx.setLineDash([]);
-
-      // 4. Vintage Calligraphy Hints
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      ctx.fillStyle = '#4a2c1d';
-      ctx.font = '22px serif';
-      ctx.fillText('✨', width / 2, height / 2 - 20);
-
-      ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
-      ctx.letterSpacing = '1px';
-      ctx.fillText('USAP FOTO ✨', width / 2, height / 2 + 10);
-
-      ctx.font = 'italic 12px "Cormorant Garamond", Georgia, serif';
-      ctx.fillStyle = '#5c3826';
-      ctx.fillText('Kenangan Kita', width / 2, height / 2 + 28);
-    }
 
     function paintFoil() {
       if (canvas.isRevealed) return;
@@ -871,17 +830,44 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
 
-      renderFoilContent(width, height);
-      hasPainted = true;
+      // Vintage Shimmering Rose-Gold Foil
+      const grad = ctx.createLinearGradient(0, 0, width, height);
+      grad.addColorStop(0, '#d8ac9c');
+      grad.addColorStop(0.3, '#ebd4cb');
+      grad.addColorStop(0.6, '#caa090');
+      grad.addColorStop(0.85, '#e4c9bd');
+      grad.addColorStop(1, '#be8f7e');
 
-      // In case image was still loading on initial paint
-      if (!scratchBgImage.complete) {
-        scratchBgImage.onload = () => {
-          if (!canvas.isRevealed && strokeCount === 0) {
-            renderFoilContent(width, height);
-          }
-        };
-      }
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Delicate vintage frame border
+      ctx.strokeStyle = 'rgba(125, 80, 60, 0.35)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(10, 10, width - 20, height - 20);
+
+      ctx.strokeStyle = 'rgba(125, 80, 60, 0.2)';
+      ctx.setLineDash([3, 3]);
+      ctx.strokeRect(15, 15, width - 30, height - 30);
+      ctx.setLineDash([]);
+
+      // Subtle vintage icon & hint (No floating badge)
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      ctx.fillStyle = '#6b4334';
+      ctx.font = '22px serif';
+      ctx.fillText('✨', width / 2, height / 2 - 20);
+
+      ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
+      ctx.letterSpacing = '1px';
+      ctx.fillText('USAP FOTO ✨', width / 2, height / 2 + 10);
+
+      ctx.font = 'italic 12px "Cormorant Garamond", Georgia, serif';
+      ctx.fillStyle = '#7a4e3d';
+      ctx.fillText('Kenangan Kita', width / 2, height / 2 + 28);
+
+      hasPainted = true;
     }
 
     requestAnimationFrame(paintFoil);

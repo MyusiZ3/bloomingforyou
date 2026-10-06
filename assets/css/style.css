@@ -2083,6 +2083,33 @@ body {
 }
 
 /* 4. Overlapping Scrapbook Polaroids Container */
+.scrapbook-card-backdrop {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  overflow: visible;
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.scrapbook-backdrop-img {
+  width: 96%;
+  max-width: 840px;
+  height: 94%;
+  max-height: 480px;
+  object-fit: fill;
+  filter: drop-shadow(0 12px 32px rgba(45, 25, 12, 0.18));
+}
+
+.scrapbook-spread:not(.is-revealed) .scrapbook-card-backdrop {
+  opacity: 0;
+  transform: translateY(20px) scale(0.96);
+}
+
 .scrapbook-polaroid-pair {
   position: relative;
   width: 100%;
@@ -2095,10 +2122,10 @@ body {
 .scrapbook-polaroid {
   position: absolute;
   width: clamp(230px, 34vw, 290px);
-  background: #fbf7ee url('../images/scratchbg.png') center/cover no-repeat;
-  padding: 12px 12px 38px;
-  border-radius: 3px;
-  box-shadow: 0 16px 38px rgba(35, 20, 10, 0.22);
+  background: #ffffff;
+  padding: 12px 12px 36px;
+  border-radius: 2px;
+  box-shadow: 0 16px 38px rgba(35, 20, 10, 0.2);
   transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, z-index 0.2s;
   cursor: pointer;
   will-change: transform;
