@@ -434,6 +434,13 @@ document.addEventListener('DOMContentLoaded', () => {
     candleEl.classList.remove('candle-active');
     candleEl.classList.add('is-extinguished');
 
+    const aura = candleEl.querySelector('.flame-glow-aura');
+    if (aura) {
+      aura.style.opacity = '0';
+      aura.style.animation = 'none';
+      aura.style.display = 'none';
+    }
+
     // Create extinguish particle burst & sound
     createSparkleBurst(candleEl);
     playPuffSound();

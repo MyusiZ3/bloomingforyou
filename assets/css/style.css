@@ -789,14 +789,20 @@ body {
 
 /* Extinguished Candle State */
 .candle-flame-spot.is-extinguished .classic-flame-img {
-  opacity: 0;
-  transform: scale(0.2) translateY(-12px);
+  opacity: 0 !important;
+  animation: none !important;
+  transform: scale(0.2) translateY(-12px) !important;
   pointer-events: none;
+  visibility: hidden;
 }
 
 .candle-flame-spot.is-extinguished .flame-glow-aura {
-  opacity: 0;
-  transform: scale(0.3);
+  opacity: 0 !important;
+  animation: none !important;
+  transform: scale(0.2) !important;
+  pointer-events: none;
+  visibility: hidden;
+  display: none !important;
 }
 
 /* Smoke Curl Animation */
