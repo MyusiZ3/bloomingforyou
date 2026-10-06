@@ -691,8 +691,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (giftboxCloseImg) giftboxCloseImg.classList.remove('hidden');
       if (giftboxOpenImg) giftboxOpenImg.classList.add('hidden');
-      const deliveryCard = document.getElementById('giftbox-delivery-card');
-      if (deliveryCard) deliveryCard.classList.add('hidden');
+
+      const initialHeader = document.getElementById('giftbox-title-wrap');
+      if (initialHeader) initialHeader.classList.remove('hidden');
+
+      const floatingReveal = document.getElementById('gift-floating-reveal');
+      if (floatingReveal) floatingReveal.classList.add('hidden');
+
+      const bottomActions = document.getElementById('giftbox-bottom-actions');
+      if (bottomActions) bottomActions.classList.add('hidden');
+
       if (giftboxHint) {
         giftboxHint.textContent = "Sentuh kotak kado untuk membukanya";
         giftboxHint.style.opacity = "1";
@@ -705,7 +713,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const giftboxWrapper = document.getElementById('giftbox-wrapper');
   const giftboxCloseImg = document.getElementById('giftbox-close-img');
   const giftboxOpenImg = document.getElementById('giftbox-open-img');
-  const giftboxDeliveryCard = document.getElementById('giftbox-delivery-card');
+  const giftboxTitleWrap = document.getElementById('giftbox-title-wrap');
+  const giftFloatingReveal = document.getElementById('gift-floating-reveal');
+  const giftboxBottomActions = document.getElementById('giftbox-bottom-actions');
   const giftboxHint = document.getElementById('giftbox-hint');
 
   let isGiftBoxOpening = false;
@@ -794,23 +804,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (giftboxCloseImg) giftboxCloseImg.classList.add('hidden');
         if (giftboxOpenImg) giftboxOpenImg.classList.remove('hidden');
 
-        // Remove / fade out hint text completely
-        if (giftboxHint) {
-          giftboxHint.textContent = "";
-          giftboxHint.style.opacity = "0";
-        }
+        // Swap top header: hide initial, reveal floating mysterious gift title above the box
+        if (giftboxTitleWrap) giftboxTitleWrap.classList.add('hidden');
+        if (giftFloatingReveal) giftFloatingReveal.classList.remove('hidden');
+
+        // Reveal bottom actions
+        if (giftboxBottomActions) giftboxBottomActions.classList.remove('hidden');
 
         playBoxPopSound();
         triggerBirthdayCelebration();
 
-        // 3. Reveal "Gift is Arriving Soon" delivery card & smooth scroll down
-        const cardEl = document.getElementById('giftbox-delivery-card');
-        if (cardEl) {
-          cardEl.classList.remove('hidden');
-          setTimeout(() => {
-            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }, 320);
-        }
+        // Smooth scroll to the center of the opened scene
+        setTimeout(() => {
+          if (giftFloatingReveal) {
+            giftFloatingReveal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 250);
       }, 850);
     });
 
