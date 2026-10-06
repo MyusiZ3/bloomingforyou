@@ -1867,170 +1867,327 @@ body {
 }
 
 
-/* POLAROID HANGING CLOTHESLINE */
-.polaroid-section {
-  margin-bottom: 85px;
+/* ========================================================
+   VINTAGE SCRAPBOOK & JOURNAL COLLAGE (Reference Match)
+   ======================================================== */
+.scrapbook-section {
+  margin-bottom: 90px;
   position: relative;
 }
 
-.polaroid-clothesline-wrapper {
-  position: relative;
-  width: 100%;
-  max-width: 1100px;
+.vintage-scrapbook-board {
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  max-width: 1040px;
   margin: 0 auto;
-  padding-top: 36px;
+  position: relative;
 }
 
-/* Twine String Line */
-.twine-string-line {
+/* Scrapbook Spread Canvas */
+.scrapbook-spread {
+  position: relative;
+  background: #fcf9f2;
+  border-radius: 6px;
+  padding: 50px 40px 60px;
+  box-shadow: 
+    0 2px 8px rgba(0,0,0,0.04),
+    0 18px 45px rgba(45, 25, 12, 0.12);
+  border: 1px solid rgba(215, 195, 165, 0.6);
+  min-height: 480px;
+  overflow: visible;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scrapbook-spread::before {
+  content: '';
   position: absolute;
-  top: 18px;
-  left: 0;
-  right: 0;
-  height: 52px;
+  inset: 12px;
+  border: 1px dashed rgba(190, 165, 130, 0.35);
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+/* 1. Vintage Newsprint Clipping Layer */
+.scrapbook-newsprint-clipping {
+  position: absolute;
+  top: -15px;
+  left: 25px;
+  width: clamp(220px, 32vw, 340px);
+  background: #f4eee2;
+  border: 1px solid #d9cdb8;
+  padding: 18px 16px;
+  transform: rotate(-3deg);
+  box-shadow: 0 8px 24px rgba(40, 25, 10, 0.14);
   pointer-events: none;
   z-index: 1;
+  opacity: 0.88;
+  overflow: hidden;
+  filter: sepia(0.2) contrast(1.05);
 }
 
-.twine-svg-curve {
-  width: 100%;
-  height: 100%;
-  display: block;
+.spread-2 .scrapbook-newsprint-clipping {
+  left: auto;
+  right: 25px;
+  top: -12px;
+  transform: rotate(2.5deg);
 }
 
-.twine-path-shadow {
-  fill: none;
-  stroke: rgba(60, 35, 15, 0.16);
-  stroke-width: 3.5;
-  filter: blur(1.5px);
+.newsprint-headline {
+  font-family: var(--font-serif);
+  font-size: 0.88rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #1e1b18;
+  border-bottom: 2px solid #2e2820;
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+  line-height: 1.1;
 }
 
-.twine-path-main {
-  fill: none;
-  stroke: #8f653b;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-  stroke-dasharray: 6 2;
+.newsprint-subhead {
+  font-family: var(--font-sans);
+  font-size: 0.52rem;
+  font-weight: 700;
+  color: #5a5045;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
-/* Fairy Lights Along Twine String */
-.fairy-lights-chain {
+.newsprint-columns {
+  column-count: 2;
+  column-gap: 10px;
+  font-family: var(--font-editorial);
+  font-size: 0.58rem;
+  color: #4a4035;
+  line-height: 1.35;
+  text-align: justify;
+}
+
+.newsprint-columns p {
+  margin-bottom: 4px;
+}
+
+/* 2. Torn Parchment Memo Card with Washi Tape */
+.scrapbook-memo-card {
   position: absolute;
-  inset: 0;
+  top: 35px;
+  right: 40px;
+  width: clamp(200px, 28vw, 290px);
+  background: #fffdf8;
+  padding: 30px 22px 24px;
+  box-shadow: 0 10px 28px rgba(45, 25, 12, 0.12);
+  border: 1px solid rgba(220, 205, 180, 0.7);
+  transform: rotate(2.5deg);
   pointer-events: none;
-}
-
-.fairy-light-bulb {
-  position: absolute;
-  top: 22px;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #fff2c4;
-  box-shadow: 0 0 8px 3px rgba(255, 215, 110, 0.85), 0 0 20px 6px rgba(255, 185, 80, 0.5);
-  transform: translate(-50%, -50%);
-  animation: fairyGlowFlicker 3s ease-in-out infinite alternate;
-}
-
-.fairy-light-bulb:nth-child(2n) {
-  animation-duration: 4.2s;
-  animation-delay: -1.2s;
-}
-.fairy-light-bulb:nth-child(3n) {
-  animation-duration: 3.6s;
-  animation-delay: -2.4s;
-}
-
-@keyframes fairyGlowFlicker {
-  0% { opacity: 0.75; transform: translate(-50%, -50%) scale(0.9); }
-  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
-  100% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.95); }
-}
-
-.polaroid-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 36px 26px;
-  justify-content: center;
-  position: relative;
   z-index: 2;
+  border-radius: 2px;
 }
 
-.polaroid-item {
-  background: #ffffff;
-  padding: 12px 12px 34px;
-  border-radius: 3px;
-  box-shadow: 
-    0 1px 3px rgba(0,0,0,0.08),
-    0 14px 32px rgba(35, 20, 10, 0.16);
-  cursor: pointer;
-  position: relative;
-  transform-origin: 50% -18px;
-  transform: rotate(var(--rot, 0deg));
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease;
-  animation: polaroidHangingSway 5.5s ease-in-out infinite alternate;
+.spread-2 .scrapbook-memo-card {
+  right: auto;
+  left: 40px;
+  top: 30px;
+  transform: rotate(-3deg);
 }
 
-/* Staggered hanging heights for organic clothesline look */
-.polaroid-item:nth-child(1) {
-  margin-top: 4px;
-  animation-delay: 0s;
-}
-.polaroid-item:nth-child(2) {
-  margin-top: 18px;
-  animation-delay: -1.6s;
-}
-.polaroid-item:nth-child(3) {
-  margin-top: 8px;
-  animation-delay: -3.2s;
-}
-.polaroid-item:nth-child(4) {
-  margin-top: 22px;
-  animation-delay: -2.1s;
+.memo-handwriting-quote {
+  font-family: var(--font-handwriting);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #3d2616;
+  line-height: 1.25;
+  margin-bottom: 12px;
 }
 
-@keyframes polaroidHangingSway {
-  0% { transform: rotate(var(--rot, 0deg)); }
-  50% { transform: rotate(calc(var(--rot, 0deg) + 1.6deg)) translateY(2px); }
-  100% { transform: rotate(calc(var(--rot, 0deg) - 1.6deg)) translateY(-1px); }
+.memo-handwriting-quote em {
+  font-style: italic;
+  color: var(--wax-red);
 }
 
-.polaroid-item:hover {
-  transform: translateY(4px) scale(1.04) rotate(0deg) !important;
-  box-shadow: 0 22px 45px rgba(35, 20, 10, 0.28);
-  z-index: 10;
+.memo-handwriting-sub {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #6a533f;
+  line-height: 1.35;
 }
 
-/* 3D Realistic Wooden Clothespin Peg */
-.wooden-clothespin {
+.memo-seal-stamp {
   position: absolute;
-  top: -24px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 14px;
-  height: 38px;
-  z-index: 12;
+  bottom: 14px;
+  right: 16px;
+  color: #b08d5c;
+  opacity: 0.8;
+}
+
+/* 3. Pressed Dried Botanical Elements */
+.scrapbook-dried-botanicals {
+  position: absolute;
+  bottom: 25px;
+  left: 55px;
   pointer-events: none;
-  filter: drop-shadow(0 4px 6px rgba(40, 25, 10, 0.35));
+  z-index: 3;
 }
 
-.clothespin-wood {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, #d4a372 0%, #ba8651 45%, #996736 70%, #dfb788 100%);
-  border-radius: 2px 2px 3px 3px;
-  box-shadow: inset 1px 0 1px rgba(255, 255, 255, 0.35), inset -1px 0 1px rgba(0, 0, 0, 0.25);
+.spread-2 .scrapbook-dried-botanicals {
+  left: auto;
+  right: 55px;
 }
 
-.clothespin-spring {
+.dried-flower-img {
+  display: block;
+  filter: drop-shadow(0 8px 16px rgba(40, 25, 10, 0.22));
+}
+
+.flower-primary {
+  width: clamp(100px, 16vw, 155px);
+  transform: rotate(-15deg);
+}
+
+.flower-secondary {
   position: absolute;
-  top: 13px;
-  left: -2px;
-  right: -2px;
-  height: 6px;
-  background: linear-gradient(to bottom, #dedede 0%, #858585 50%, #444444 100%);
-  border-radius: 3px;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  bottom: -15px;
+  left: 40px;
+  width: clamp(80px, 12vw, 120px);
+  transform: rotate(20deg);
+  opacity: 0.85;
+}
+
+/* 4. Overlapping Scrapbook Polaroids Container */
+.scrapbook-polaroid-pair {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  height: 380px;
+  margin: 0 auto;
+  z-index: 4;
+}
+
+.scrapbook-polaroid {
+  position: absolute;
+  width: clamp(230px, 34vw, 290px);
+  background: #ffffff;
+  padding: 12px 12px 36px;
+  border-radius: 2px;
+  box-shadow: 0 16px 38px rgba(35, 20, 10, 0.2);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, z-index 0.2s;
+  cursor: pointer;
+}
+
+.polaroid-back {
+  top: 15px;
+  left: 8%;
+  z-index: 5;
+  transform: rotate(var(--rot, -4deg));
+}
+
+.polaroid-front {
+  top: 45px;
+  right: 8%;
+  z-index: 6;
+  transform: rotate(var(--rot, 3.5deg));
+}
+
+.scrapbook-polaroid:hover {
+  transform: scale(1.06) rotate(0deg) !important;
+  box-shadow: 0 24px 50px rgba(35, 20, 10, 0.3);
+  z-index: 20 !important;
+}
+
+/* Polaroid Bottom Chin Handwritten Quote */
+.polaroid-handwritten-chin {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0 10px;
+  pointer-events: none;
+}
+
+.chin-quote {
+  font-family: var(--font-handwriting);
+  font-size: 1.15rem;
+  color: #3b2a1a;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  line-height: 1;
+}
+
+/* 5. Scrapbook Washi Tape Strips */
+.scrapbook-washi-tape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  backdrop-filter: blur(1px);
+}
+
+.washi-tape-top {
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-1.5deg);
+  width: 75px;
+  height: 22px;
+}
+
+.washi-corner-bottom-left {
+  bottom: -10px;
+  left: -14px;
+  width: 80px;
+  height: 24px;
+  transform: rotate(-32deg);
+}
+
+.washi-corner-top-right {
+  top: -12px;
+  right: -14px;
+  width: 78px;
+  height: 24px;
+  transform: rotate(28deg);
+}
+
+.washi-tape-dark {
+  background: rgba(85, 75, 70, 0.72);
+  border-left: 2px dashed rgba(40, 35, 30, 0.4);
+  border-right: 2px dashed rgba(40, 35, 30, 0.4);
+}
+
+.washi-sage {
+  background: rgba(155, 175, 160, 0.75);
+  border-left: 2px dashed rgba(110, 135, 115, 0.45);
+  border-right: 2px dashed rgba(110, 135, 115, 0.45);
+}
+
+.washi-kraft {
+  background: rgba(215, 185, 150, 0.75);
+  border-left: 2px dashed rgba(160, 130, 95, 0.45);
+  border-right: 2px dashed rgba(160, 130, 95, 0.45);
+}
+
+.washi-tape-sage {
+  background: rgba(160, 180, 165, 0.75);
+  border-left: 2px dashed rgba(110, 135, 115, 0.45);
+  border-right: 2px dashed rgba(110, 135, 115, 0.45);
+}
+
+/* 6. Torn Paper Bottom Corner Accent */
+.scrapbook-torn-corner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 60px;
+  background: #f4ebd9;
+  clip-path: polygon(0 100%, 0 0, 100% 100%);
+  opacity: 0.6;
+  pointer-events: none;
 }
 
 .polaroid-img-box {
@@ -2900,36 +3057,91 @@ body {
     font-size: 1.2rem;
   }
 
-  /* Hanging Polaroid Responsive */
-  .polaroid-clothesline-wrapper {
-    padding-top: 28px;
-  }
-
-  .polaroid-grid {
-    grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
-    gap: 28px 14px;
-    max-width: 360px;
+  /* Vintage Scrapbook Responsive */
+  .vintage-scrapbook-board {
+    gap: 45px;
+    max-width: 380px;
     margin: 0 auto;
   }
 
-  .polaroid-item {
-    padding: 9px 9px 24px;
+  .scrapbook-spread {
+    padding: 24px 14px 28px;
+    min-height: 420px;
   }
 
-  .polaroid-item:nth-child(1) { margin-top: 2px; }
-  .polaroid-item:nth-child(2) { margin-top: 12px; }
-  .polaroid-item:nth-child(3) { margin-top: 4px; }
-  .polaroid-item:nth-child(4) { margin-top: 14px; }
+  .scrapbook-newsprint-clipping {
+    width: 175px;
+    top: -10px;
+    left: 8px;
+    padding: 10px 8px;
+  }
+  .spread-2 .scrapbook-newsprint-clipping {
+    right: 8px;
+    top: -10px;
+  }
+  .newsprint-headline { font-size: 0.72rem; }
+  .newsprint-subhead { font-size: 0.44rem; margin-bottom: 4px; }
+  .newsprint-columns { font-size: 0.48rem; column-gap: 6px; }
 
-  .wooden-clothespin {
-    width: 12px;
-    height: 32px;
-    top: -20px;
+  .scrapbook-memo-card {
+    width: 155px;
+    top: 14px;
+    right: 8px;
+    padding: 18px 12px 14px;
+  }
+  .spread-2 .scrapbook-memo-card {
+    left: 8px;
+    top: 14px;
+  }
+  .memo-handwriting-quote { font-size: 1.15rem; margin-bottom: 6px; }
+  .memo-handwriting-sub { font-size: 0.78rem; }
+
+  .scrapbook-dried-botanicals {
+    bottom: 12px;
+    left: 12px;
+  }
+  .spread-2 .scrapbook-dried-botanicals {
+    right: 12px;
+  }
+  .flower-primary { width: 85px; }
+  .flower-secondary { width: 65px; bottom: -10px; left: 25px; }
+
+  .scrapbook-polaroid-pair {
+    max-width: 320px;
+    height: 330px;
   }
 
-  .clothespin-spring {
-    top: 11px;
-    height: 5px;
+  .scrapbook-polaroid {
+    width: 195px;
+    padding: 8px 8px 26px;
+  }
+
+  .polaroid-back {
+    top: 30px;
+    left: 2%;
+  }
+
+  .polaroid-front {
+    top: 95px;
+    right: 2%;
+  }
+
+  .chin-quote {
+    font-size: 0.95rem;
+  }
+
+  .washi-corner-bottom-left {
+    width: 60px;
+    height: 18px;
+    bottom: -6px;
+    left: -10px;
+  }
+
+  .washi-corner-top-right {
+    width: 60px;
+    height: 18px;
+    top: -8px;
+    right: -10px;
   }
 }
 
@@ -2981,13 +3193,35 @@ body {
     max-width: 290px;
   }
 
-  .polaroid-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px 10px;
-    max-width: 320px;
+  .vintage-scrapbook-board {
+    max-width: 310px;
   }
 
-  .polaroid-item {
-    padding: 7px 7px 18px;
+  .scrapbook-spread {
+    padding: 18px 10px 22px;
+    min-height: 380px;
+  }
+
+  .scrapbook-polaroid-pair {
+    height: 300px;
+  }
+
+  .scrapbook-polaroid {
+    width: 175px;
+    padding: 6px 6px 22px;
+  }
+
+  .polaroid-back {
+    top: 25px;
+    left: 0;
+  }
+
+  .polaroid-front {
+    top: 85px;
+    right: 0;
+  }
+
+  .chin-quote {
+    font-size: 0.88rem;
   }
 }

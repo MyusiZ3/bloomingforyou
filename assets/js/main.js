@@ -680,45 +680,127 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Scratch-Off Polaroid Cards (Natural Scratch, No Auto-Click Reveal) ---
+  // --- Scratch-Off Polaroid Cards (Vintage Scrapbook Journal Collage) ---
   function renderPolaroids(configData) {
     const grid = document.getElementById('polaroid-grid');
     const cfg = configData || (typeof CONFIG !== 'undefined' ? CONFIG : window.CONFIG);
     if (!grid || !cfg || !cfg.polaroids) return;
 
     grid.innerHTML = '';
-    cfg.polaroids.forEach((item, index) => {
-      const card = document.createElement('div');
-      card.className = 'polaroid-item';
-      card.style.setProperty('--rot', item.rotation || '0deg');
 
-      card.innerHTML = `
-        <div class="wooden-clothespin" aria-hidden="true">
-          <span class="clothespin-wood"></span>
-          <span class="clothespin-spring"></span>
+    const quotes = [
+      "it's up to you how far you'll go.",
+      "sometime ever, sometime never.",
+      "every little moment with you.",
+      "still cute tho. unfortunately :3"
+    ];
+
+    const memoNotes = [
+      {
+        quote: "Sometime ever, <br><em>sometime never.</em>",
+        subquote: "Don't be afraid to be unique.",
+        tapeColor: "washi-tape-dark"
+      },
+      {
+        quote: "You are my favourite <br><em>chapter in every story.</em>",
+        subquote: "Always cherish you, always. ♡",
+        tapeColor: "washi-tape-sage"
+      }
+    ];
+
+    const driedFlowers = [
+      { primary: "assets/images/flowersfull/blossom-7.webp", secondary: "assets/images/flowersfull/toss-pansy.webp" },
+      { primary: "assets/images/flowersfull/blossom-9.webp", secondary: "assets/images/flowersfull/toss-fern.webp" }
+    ];
+
+    const items = cfg.polaroids;
+    for (let s = 0; s < items.length; s += 2) {
+      const spreadIdx = Math.floor(s / 2);
+      const spread = document.createElement('div');
+      spread.className = `scrapbook-spread spread-${spreadIdx + 1}`;
+
+      const memo = memoNotes[spreadIdx % memoNotes.length];
+      const flower = driedFlowers[spreadIdx % driedFlowers.length];
+
+      spread.innerHTML = `
+        <!-- Newspaper print clipping collage layer -->
+        <div class="scrapbook-newsprint-clipping" aria-hidden="true">
+          <div class="newsprint-inner">
+            <div class="newsprint-headline">THE DAILY CHRONICLE</div>
+            <div class="newsprint-subhead">SARDAR PATEL VISITS STATES TO ABSORB REF...</div>
+            <div class="newsprint-columns">
+              <p>Addressing a meeting of representatives today, Sardar Patel emphasized the importance of peace and unity across all territories...</p>
+              <p>Special moments captured in vintage frames, preserving memories that never fade with time...</p>
+            </div>
+          </div>
         </div>
-        <div class="polaroid-img-box" id="box-${item.id}">
-          <img src="${item.image}" alt="${item.title}" class="polaroid-photo-img" loading="lazy">
-          <canvas class="scratch-canvas" id="canvas-${item.id}"></canvas>
+
+        <!-- Torn paper memo note -->
+        <div class="scrapbook-memo-card" aria-hidden="true">
+          <div class="scrapbook-washi-tape washi-tape-top ${memo.tapeColor}"></div>
+          <div class="memo-handwriting-quote">${memo.quote}</div>
+          <div class="memo-handwriting-sub">${memo.subquote}</div>
+          <div class="memo-seal-stamp">
+            <svg viewBox="0 0 40 40" width="24" height="24">
+              <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
+              <path d="M14,24 Q20,12 26,24 M20,14 L20,27" fill="none" stroke="currentColor" stroke-width="1.2"/>
+            </svg>
+          </div>
         </div>
+
+        <!-- Pressed dried botanical bouquet -->
+        <div class="scrapbook-dried-botanicals" aria-hidden="true">
+          <img src="${flower.primary}" alt="Pressed Daisy" class="dried-flower-img flower-primary">
+          <img src="${flower.secondary}" alt="Pressed Leaf" class="dried-flower-img flower-secondary">
+        </div>
+
+        <!-- Polaroid Cards Container in Spread -->
+        <div class="scrapbook-polaroid-pair"></div>
+
+        <!-- Torn paper bottom corner accent -->
+        <div class="scrapbook-torn-corner" aria-hidden="true"></div>
       `;
 
-      grid.appendChild(card);
+      const pairContainer = spread.querySelector('.scrapbook-polaroid-pair');
 
-      const canvas = card.querySelector('.scratch-canvas');
-      const imgBox = card.querySelector('.polaroid-img-box');
+      for (let i = s; i < Math.min(s + 2, items.length); i++) {
+        const item = items[i];
+        const isSecond = (i % 2 === 1);
+        const card = document.createElement('div');
+        card.className = `polaroid-item scrapbook-polaroid ${isSecond ? 'polaroid-front' : 'polaroid-back'}`;
+        card.style.setProperty('--rot', item.rotation || (isSecond ? '3.5deg' : '-4.5deg'));
 
-      // Initialize realistic scratch functionality for this polaroid
-      initScratchCard(canvas, imgBox, item, card);
+        const washiPos = isSecond ? 'washi-corner-bottom-left' : 'washi-corner-top-right';
+        const washiColor = isSecond ? 'washi-sage' : 'washi-kraft';
+        const quoteText = quotes[i % quotes.length];
 
-      // CRITICAL FIX: Clicking does NOT reveal card!
-      // Only opens the lightbox modal if the card is ALREADY revealed.
-      card.addEventListener('click', () => {
-        if (canvas.isRevealed) {
-          openPolaroidModal(item);
-        }
-      });
-    });
+        card.innerHTML = `
+          <div class="scrapbook-washi-tape ${washiPos} ${washiColor}" aria-hidden="true"></div>
+          <div class="polaroid-img-box" id="box-${item.id}">
+            <img src="${item.image}" alt="${item.title}" class="polaroid-photo-img" loading="lazy">
+            <canvas class="scratch-canvas" id="canvas-${item.id}"></canvas>
+          </div>
+          <div class="polaroid-handwritten-chin">
+            <span class="chin-quote">${quoteText}</span>
+          </div>
+        `;
+
+        pairContainer.appendChild(card);
+
+        const canvas = card.querySelector('.scratch-canvas');
+        const imgBox = card.querySelector('.polaroid-img-box');
+
+        initScratchCard(canvas, imgBox, item, card);
+
+        card.addEventListener('click', () => {
+          if (canvas.isRevealed) {
+            openPolaroidModal(item);
+          }
+        });
+      }
+
+      grid.appendChild(spread);
+    }
   }
 
   function initScratchCard(canvas, imgBox, item, card) {
