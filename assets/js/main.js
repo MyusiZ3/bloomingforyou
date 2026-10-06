@@ -691,9 +691,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       if (giftboxCloseImg) giftboxCloseImg.classList.remove('hidden');
       if (giftboxOpenImg) giftboxOpenImg.classList.add('hidden');
-      if (giftboxRevealed) giftboxRevealed.classList.add('hidden');
+      const deliveryCard = document.getElementById('giftbox-delivery-card');
+      if (deliveryCard) deliveryCard.classList.add('hidden');
       if (giftboxHint) {
         giftboxHint.textContent = "Sentuh kotak kado untuk membukanya";
+        giftboxHint.style.opacity = "1";
         giftboxHint.style.color = "";
       }
     });
@@ -703,7 +705,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const giftboxWrapper = document.getElementById('giftbox-wrapper');
   const giftboxCloseImg = document.getElementById('giftbox-close-img');
   const giftboxOpenImg = document.getElementById('giftbox-open-img');
-  const giftboxRevealed = document.getElementById('giftbox-content-revealed');
+  const giftboxDeliveryCard = document.getElementById('giftbox-delivery-card');
   const giftboxHint = document.getElementById('giftbox-hint');
 
   let isGiftBoxOpening = false;
@@ -792,15 +794,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (giftboxCloseImg) giftboxCloseImg.classList.add('hidden');
         if (giftboxOpenImg) giftboxOpenImg.classList.remove('hidden');
 
+        // Remove / fade out hint text completely
+        if (giftboxHint) {
+          giftboxHint.textContent = "";
+          giftboxHint.style.opacity = "0";
+        }
+
         playBoxPopSound();
         triggerBirthdayCelebration();
 
-        if (giftboxRevealed) {
-          giftboxRevealed.classList.remove('hidden');
-        }
-
-        if (giftboxHint) {
-          giftboxHint.textContent = "Kotak kado terbuka! ✨";
+        // 3. Reveal "Gift is Arriving Soon" delivery card & smooth scroll down
+        const cardEl = document.getElementById('giftbox-delivery-card');
+        if (cardEl) {
+          cardEl.classList.remove('hidden');
+          setTimeout(() => {
+            cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }, 320);
         }
       }, 850);
     });
