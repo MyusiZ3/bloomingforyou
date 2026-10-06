@@ -396,10 +396,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (cakeImageWrap) {
         cakeImageWrap.classList.add('cake-wrap-exit');
       }
+
+      const cakeTitleEl = document.querySelector('.cake-title');
+      if (cakeTitleEl) {
+        cakeTitleEl.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+        cakeTitleEl.style.opacity = '0';
+        cakeTitleEl.style.transform = 'translateY(-6px)';
+      }
+
       setTimeout(() => {
         if (cakeImageWrap) cakeImageWrap.classList.add('hidden');
         if (cakeClownReveal) {
           cakeClownReveal.classList.remove('hidden');
+        }
+        if (cakeTitleEl) {
+          cakeTitleEl.innerHTML = 'A special day for <span class="cake-highlight-name">my little gurl...</span>';
+          cakeTitleEl.style.opacity = '1';
+          cakeTitleEl.style.transform = 'translateY(0)';
         }
       }, 350);
 
