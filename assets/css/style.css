@@ -2524,6 +2524,122 @@ body {
 
 /* --- Responsive Optimizations (Mobile First) --- */
 @media (max-width: 640px) {
+  .envelope-stage {
+    padding: 16px 12px;
+  }
+
+  .envelope-scene-wrapper {
+    max-width: 360px;
+    gap: 10px;
+  }
+
+  .watercolor-envelope-wrapper {
+    max-width: clamp(265px, 76vw, 310px);
+    margin: 8px auto;
+  }
+
+  .corner-top-left {
+    width: 64px;
+    top: -12px;
+    left: -12px;
+  }
+
+  .corner-bottom-left {
+    width: 60px;
+    bottom: -12px;
+    left: -12px;
+  }
+
+  .corner-top-right {
+    width: 44px;
+    top: 4px;
+    right: -8px;
+  }
+
+  .watercolor-wax-seal {
+    width: 54px;
+    height: 54px;
+  }
+
+  .env-paper-kicker {
+    font-size: 0.72rem;
+  }
+
+  .env-paper-name {
+    font-size: 1.55rem;
+  }
+
+  .env-paper-tagline {
+    font-size: 0.76rem;
+    margin-top: 2px;
+  }
+
+  .unseal-instruction {
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+
+  /* Stage 2: Cake Responsive */
+  .cake-stage {
+    padding: 16px 12px;
+  }
+
+  .cake-scene-card {
+    padding: 6px 10px;
+    max-width: 340px;
+  }
+
+  .cake-title {
+    font-size: 1.35rem;
+  }
+
+  .cake-highlight-name {
+    font-size: 1.85rem;
+  }
+
+  .birthday-cake-container {
+    max-width: 285px;
+    margin: 8px auto 4px;
+  }
+
+  .cake-image-wrap {
+    max-width: 285px;
+  }
+
+  .cake-clown-reveal {
+    max-width: 255px;
+  }
+
+  .cake-butterfly-left {
+    width: 38px;
+    left: -5%;
+    top: 30%;
+  }
+
+  .cake-butterfly-right {
+    width: 34px;
+    right: -5%;
+    top: 38%;
+  }
+
+  .cake-butterfly-top-right {
+    width: 26px;
+    right: 2%;
+    top: 2%;
+  }
+
+  .flame-glow-aura {
+    width: 48px;
+    height: 48px;
+    top: -10px;
+  }
+
+  .cake-proceed-btn {
+    padding: 10px 22px;
+    font-size: 0.92rem;
+  }
+
+  /* Stage 3: Bouquet & Letter Responsive */
   .envelope-container {
     height: 270px;
   }
@@ -2541,82 +2657,83 @@ body {
   }
   
   .bouquet-composition {
-    height: 440px;
-    max-width: 380px;
+    height: 400px;
+    max-width: 340px;
   }
   
   .bouquet-wrapper-back,
   .bouquet-wrapper-front {
-    width: 245px;
+    width: 220px;
   }
   
   /* Responsive Foliage & Ferns */
-  .layer-fern-left { width: 105px; bottom: 195px; left: 50%; margin-left: -95px; }
-  .layer-fern-right { width: 105px; bottom: 190px; left: 50%; margin-left: 5px; }
+  .layer-fern-left { width: 95px; bottom: 175px; left: 50%; margin-left: -85px; }
+  .layer-fern-right { width: 95px; bottom: 170px; left: 50%; margin-left: 5px; }
 
   /* Responsive 17 Flower Layers */
-  .layer-deep-left { width: 95px; bottom: 155px; left: 50%; margin-left: -110px; }
-  .layer-deep-center-left { width: 100px; bottom: 168px; left: 50%; margin-left: -70px; }
-  .layer-deep-center { width: 115px; bottom: 180px; left: 50%; margin-left: -57.5px; }
-  .layer-deep-center-right { width: 100px; bottom: 168px; left: 50%; margin-left: -25px; }
-  .layer-deep-right { width: 95px; bottom: 155px; left: 50%; margin-left: 15px; }
+  .layer-deep-left { width: 85px; bottom: 140px; left: 50%; margin-left: -98px; }
+  .layer-deep-center-left { width: 90px; bottom: 150px; left: 50%; margin-left: -62px; }
+  .layer-deep-center { width: 105px; bottom: 160px; left: 50%; margin-left: -52.5px; }
+  .layer-deep-center-right { width: 90px; bottom: 150px; left: 50%; margin-left: -22px; }
+  .layer-deep-right { width: 85px; bottom: 140px; left: 50%; margin-left: 12px; }
 
-  .layer-mid-far-left { width: 95px; bottom: 140px; left: 50%; margin-left: -95px; }
-  .layer-mid-left { width: 100px; bottom: 150px; left: 50%; margin-left: -65px; }
-  .layer-mid-center-star { width: 120px; bottom: 160px; left: 50%; margin-left: -60px; }
-  .layer-mid-right { width: 100px; bottom: 150px; left: 50%; margin-left: -30px; }
-  .layer-mid-far-right { width: 105px; bottom: 140px; left: 50%; margin-left: 0px; }
+  .layer-mid-far-left { width: 85px; bottom: 125px; left: 50%; margin-left: -85px; }
+  .layer-mid-left { width: 90px; bottom: 135px; left: 50%; margin-left: -58px; }
+  .layer-mid-center-star { width: 108px; bottom: 144px; left: 50%; margin-left: -54px; }
+  .layer-mid-right { width: 90px; bottom: 135px; left: 50%; margin-left: -26px; }
+  .layer-mid-far-right { width: 95px; bottom: 125px; left: 50%; margin-left: 0px; }
 
-  .layer-front-far-left { width: 100px; bottom: 125px; left: 50%; margin-left: -82px; }
-  .layer-front-left { width: 110px; bottom: 138px; left: 50%; margin-left: -58px; }
-  .layer-front-center-hero { width: 130px; bottom: 142px; left: 50%; margin-left: -65px; }
-  .layer-front-right { width: 110px; bottom: 138px; left: 50%; margin-left: -42px; }
-  .layer-front-far-right { width: 100px; bottom: 125px; left: 50%; margin-left: -10px; }
+  .layer-front-far-left { width: 90px; bottom: 112px; left: 50%; margin-left: -74px; }
+  .layer-front-left { width: 98px; bottom: 124px; left: 50%; margin-left: -52px; }
+  .layer-front-center-hero { width: 116px; bottom: 128px; left: 50%; margin-left: -58px; }
+  .layer-front-right { width: 98px; bottom: 124px; left: 50%; margin-left: -38px; }
+  .layer-front-far-right { width: 90px; bottom: 112px; left: 50%; margin-left: -8px; }
 
-  .layer-rim-left { width: 88px; bottom: 115px; left: 50%; margin-left: -52px; }
-  .layer-rim-right { width: 92px; bottom: 115px; left: 50%; margin-left: -28px; }
+  .layer-rim-left { width: 78px; bottom: 104px; left: 50%; margin-left: -46px; }
+  .layer-rim-right { width: 82px; bottom: 104px; left: 50%; margin-left: -24px; }
 
   .card-butterfly {
-    width: 32px;
+    width: 28px;
   }
-  .butterfly-card-left { top: 16px; left: 16px; }
-  .butterfly-card-right { top: 22px; right: 16px; }
+  .butterfly-card-left { top: 14px; left: 14px; }
+  .butterfly-card-right { top: 18px; right: 14px; }
 
   .card-meadow-foreground {
-    height: 55px;
+    height: 50px;
   }
 
   .page-bottom-meadow-wrap {
-    height: 110px;
+    height: 95px;
   }
 
   .parallax-flower {
-    width: 58px;
+    width: 52px;
     opacity: 0.55;
   }
   
   .letter-character-clingy {
-    width: 95px;
-    top: -8px;
-    left: 2px;
+    width: 78px;
+    top: -6px;
+    left: 0px;
   }
 
   .letter-character-img {
-    width: 90px;
-    bottom: 15%;
-    right: 12%;
+    width: 75px;
+    bottom: 12%;
+    right: 8%;
   }
 
   .parchment-letter {
-    padding: 35px 22px;
+    padding: 28px 18px;
   }
   
   .letter-salutation {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
   
   .letter-body p {
-    font-size: 1.1rem;
+    font-size: 1.02rem;
+    line-height: 1.6;
   }
   
   .music-pill {
@@ -2651,5 +2768,54 @@ body {
 
   .padlock-tofrom-from, .padlock-tofrom-to {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .watercolor-envelope-wrapper {
+    max-width: 260px;
+  }
+
+  .corner-top-left {
+    width: 54px;
+    top: -10px;
+    left: -10px;
+  }
+
+  .corner-bottom-left {
+    width: 50px;
+    bottom: -10px;
+    left: -10px;
+  }
+
+  .corner-top-right {
+    width: 38px;
+    right: -6px;
+  }
+
+  .env-paper-name {
+    font-size: 1.38rem;
+  }
+
+  .env-paper-tagline {
+    font-size: 0.7rem;
+  }
+
+  .birthday-cake-container,
+  .cake-image-wrap {
+    max-width: 250px;
+  }
+
+  .cake-title {
+    font-size: 1.2rem;
+  }
+
+  .cake-highlight-name {
+    font-size: 1.62rem;
+  }
+
+  .bouquet-composition {
+    height: 360px;
+    max-width: 290px;
   }
 }
