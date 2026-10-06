@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const envelopeBox = document.getElementById('envelope-box');
   const waxSealBtn = document.getElementById('wax-seal-btn');
   const cakeStage = document.getElementById('cake-stage');
+  const cakeImageWrap = document.getElementById('cake-image-wrap');
+  const cakeClownReveal = document.getElementById('cake-clown-reveal');
   const candleLeft = document.getElementById('candle-left');
   const candleRight = document.getElementById('candle-right');
   const cakeStatusBadge = document.getElementById('cake-status-badge');
@@ -390,10 +392,21 @@ document.addEventListener('DOMContentLoaded', () => {
       // Celebrate with delicate floral sparkle burst
       triggerBirthdayCelebration();
 
-      // Direct smooth transition: curtain parts open & reveals gift stage
+      // Transition cake & butterflies to clown reveal
+      if (cakeImageWrap) {
+        cakeImageWrap.classList.add('cake-wrap-exit');
+      }
+      setTimeout(() => {
+        if (cakeImageWrap) cakeImageWrap.classList.add('hidden');
+        if (cakeClownReveal) {
+          cakeClownReveal.classList.remove('hidden');
+        }
+      }, 350);
+
+      // Show clown for 3 seconds, then proceed to main gift stage
       setTimeout(() => {
         proceedToGiftStage();
-      }, 750);
+      }, 3350);
     }
   }
 
@@ -511,6 +524,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const meadowWrap = document.getElementById('page-bottom-meadow-wrap');
       if (sideBotanicals) sideBotanicals.classList.add('hidden');
       if (meadowWrap) meadowWrap.classList.add('hidden');
+
+      if (cakeImageWrap) {
+        cakeImageWrap.classList.remove('hidden', 'cake-wrap-exit');
+      }
+      if (cakeClownReveal) {
+        cakeClownReveal.classList.add('hidden');
+      }
 
       if (giftStage) giftStage.classList.add('hidden');
       if (cakeStage) {

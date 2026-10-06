@@ -552,14 +552,53 @@ body {
   width: 100%;
   display: block;
   filter: drop-shadow(0 18px 40px rgba(45, 25, 12, 0.22));
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.cake-custom-img {
+.cake-image-wrap.cake-wrap-exit {
+  opacity: 0;
+  transform: scale(0.9) translateY(12px);
+  pointer-events: none;
+}
+
+/* Clown Reveal Character */
+.cake-clown-reveal {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 16px 36px rgba(45, 25, 12, 0.22));
+  animation: clownPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.clown-custom-img {
   width: 100%;
   height: auto;
   display: block;
-  user-select: none;
-  -webkit-user-drag: none;
+  animation: clownFloat 2.6s ease-in-out infinite alternate;
+}
+
+@keyframes clownPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes clownFloat {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
 }
 
 /* Floating Butterflies Beside Cake */
