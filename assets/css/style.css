@@ -2584,8 +2584,9 @@ body {
 
 .giftbox-wrapper {
   position: relative;
-  width: clamp(240px, 48vw, 360px);
-  aspect-ratio: 1 / 1;
+  width: clamp(320px, 75vw, 500px);
+  max-width: 520px;
+  aspect-ratio: 1.15 / 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2593,11 +2594,11 @@ body {
   user-select: none;
   -webkit-user-select: none;
   transform-origin: bottom center;
-  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
 }
 
 .giftbox-wrapper:hover:not(.is-shaking):not(.is-opened) {
-  transform: scale(1.05) translateY(-6px);
+  transform: scale(1.04) translateY(-6px);
 }
 
 .giftbox-img {
@@ -2605,7 +2606,7 @@ body {
   height: 100%;
   object-fit: contain;
   display: block;
-  filter: drop-shadow(0 15px 30px rgba(45, 25, 12, 0.2));
+  filter: drop-shadow(0 18px 38px rgba(45, 25, 12, 0.22));
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
   pointer-events: none;
 }
@@ -2628,22 +2629,22 @@ body {
 
 @keyframes giftboxVibrate {
   0% { transform: scale(1) translate(0, 0) rotate(0deg); }
-  10% { transform: scale(1.04) translate(-6px, -2px) rotate(-5deg); }
-  20% { transform: scale(1.06) translate(7px, 2px) rotate(5deg); }
-  30% { transform: scale(1.08) translate(-8px, -3px) rotate(-6deg); }
-  40% { transform: scale(1.10) translate(9px, 3px) rotate(6deg); }
-  50% { transform: scale(1.12) translate(-9px, -2px) rotate(-7deg); }
-  60% { transform: scale(1.13) translate(9px, 2px) rotate(7deg); }
-  70% { transform: scale(1.14) translate(-7px, -3px) rotate(-5deg); }
-  80% { transform: scale(1.12) translate(6px, 2px) rotate(4deg); }
-  90% { transform: scale(1.08) translate(-3px, -1px) rotate(-2deg); }
+  10% { transform: scale(1.04) translate(-7px, -2px) rotate(-5deg); }
+  20% { transform: scale(1.06) translate(8px, 2px) rotate(5deg); }
+  30% { transform: scale(1.08) translate(-9px, -3px) rotate(-6deg); }
+  40% { transform: scale(1.10) translate(10px, 3px) rotate(6deg); }
+  50% { transform: scale(1.12) translate(-10px, -2px) rotate(-7deg); }
+  60% { transform: scale(1.13) translate(10px, 2px) rotate(7deg); }
+  70% { transform: scale(1.14) translate(-8px, -3px) rotate(-5deg); }
+  80% { transform: scale(1.12) translate(7px, 2px) rotate(4deg); }
+  90% { transform: scale(1.08) translate(-4px, -1px) rotate(-2deg); }
   100% { transform: scale(1.04) translate(0, -6px) rotate(0deg); }
 }
 
 /* 2. Box Opened State */
 .giftbox-wrapper.is-opened {
   cursor: default;
-  transform: translateY(18px);
+  transform: translateY(14px);
 }
 
 .giftbox-wrapper.is-opened .giftbox-close-img {
@@ -2654,6 +2655,7 @@ body {
 .giftbox-wrapper.is-opened .giftbox-open-img {
   display: block;
   opacity: 1;
+  transform: scale(1.12);
   animation: giftboxPopOpen 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
