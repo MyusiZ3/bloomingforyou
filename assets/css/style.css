@@ -2582,6 +2582,96 @@ body {
   margin-top: 10px;
 }
 
+/* Side Botanical Accent Elements */
+.giftbox-botanical-flank {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(90px, 18vw, 160px);
+  height: clamp(200px, 38vw, 340px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flank-left {
+  left: clamp(-30px, -2vw, 20px);
+}
+
+.flank-right {
+  right: clamp(-30px, -2vw, 20px);
+}
+
+.gift-bot-item {
+  position: absolute;
+  display: block;
+  filter: drop-shadow(0 10px 22px rgba(45, 25, 12, 0.16));
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.8s ease;
+  will-change: transform;
+}
+
+/* Left Flank Items */
+.bot-lavender-l {
+  top: -15px;
+  left: 0;
+  width: clamp(70px, 14vw, 110px);
+  transform: rotate(-18deg);
+  animation: botSwayLeft 4.2s ease-in-out infinite alternate;
+}
+
+.bot-chamomile-l {
+  bottom: -5px;
+  left: 20px;
+  width: clamp(75px, 15vw, 120px);
+  transform: rotate(14deg);
+  animation: botSwayRight 3.8s ease-in-out infinite alternate 0.5s;
+}
+
+.bot-breath-l {
+  top: 36%;
+  left: -15px;
+  width: clamp(65px, 12vw, 100px);
+  transform: rotate(-28deg);
+  opacity: 0.85;
+  animation: botSwayLeft 4.6s ease-in-out infinite alternate 1s;
+}
+
+/* Right Flank Items */
+.bot-cherry-r {
+  top: -12px;
+  right: 0;
+  width: clamp(80px, 15vw, 125px);
+  transform: rotate(18deg);
+  animation: botSwayRight 4.4s ease-in-out infinite alternate 0.3s;
+}
+
+.bot-daisy-r {
+  bottom: 0;
+  right: 15px;
+  width: clamp(72px, 14vw, 115px);
+  transform: rotate(-14deg);
+  animation: botSwayLeft 3.9s ease-in-out infinite alternate 0.8s;
+}
+
+.bot-sweetpea-r {
+  top: 38%;
+  right: -10px;
+  width: clamp(66px, 13vw, 105px);
+  transform: rotate(26deg);
+  opacity: 0.85;
+  animation: botSwayRight 4.8s ease-in-out infinite alternate 1.2s;
+}
+
+@keyframes botSwayLeft {
+  0% { transform: translateY(0) rotate(-16deg); }
+  100% { transform: translateY(-8px) rotate(-22deg) scale(1.03); }
+}
+
+@keyframes botSwayRight {
+  0% { transform: translateY(0) rotate(16deg); }
+  100% { transform: translateY(-8px) rotate(22deg) scale(1.03); }
+}
+
 .giftbox-wrapper {
   position: relative;
   width: clamp(320px, 75vw, 500px);
@@ -2595,6 +2685,7 @@ body {
   -webkit-user-select: none;
   transform-origin: bottom center;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  z-index: 2;
 }
 
 .giftbox-wrapper:hover:not(.is-shaking):not(.is-opened) {
