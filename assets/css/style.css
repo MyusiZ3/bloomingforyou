@@ -1060,23 +1060,18 @@ body {
 }
 
 .bouquet-stage-card {
-  background: rgba(251, 247, 238, 0.82);
-  backdrop-filter: blur(6px);
-  border: 1px solid #e2d4bc;
-  border-radius: 16px;
-  padding: 24px 20px 20px;
-  box-shadow: 0 12px 35px rgba(40, 25, 12, 0.08);
+  background: transparent;
+  backdrop-filter: none;
+  border: none;
+  border-radius: 0;
+  padding: 10px 0 20px;
+  box-shadow: none;
   position: relative;
   overflow: visible;
 }
 
 .bouquet-stage-card::before {
-  content: '';
-  position: absolute;
-  inset: 12px;
-  border: 1px dashed rgba(183, 138, 72, 0.4);
-  border-radius: 10px;
-  pointer-events: none;
+  display: none;
 }
 
 /* Full-Width Edge-to-Edge Floating Foreground Meadow */
