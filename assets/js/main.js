@@ -830,42 +830,93 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
 
-      // Vintage Shimmering Rose-Gold Foil
+      // Vintage Antique Warm Rosy-Gold Matte Foil
       const grad = ctx.createLinearGradient(0, 0, width, height);
-      grad.addColorStop(0, '#d8ac9c');
-      grad.addColorStop(0.3, '#ebd4cb');
-      grad.addColorStop(0.6, '#caa090');
-      grad.addColorStop(0.85, '#e4c9bd');
-      grad.addColorStop(1, '#be8f7e');
+      grad.addColorStop(0, '#d8bba7');
+      grad.addColorStop(0.28, '#ebd6c7');
+      grad.addColorStop(0.55, '#caad99');
+      grad.addColorStop(0.82, '#e3cdbe');
+      grad.addColorStop(1, '#bc9986');
 
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, width, height);
 
-      // Delicate vintage frame border
-      ctx.strokeStyle = 'rgba(125, 80, 60, 0.35)';
-      ctx.lineWidth = 1.5;
+      // Outer delicate vintage border
+      ctx.strokeStyle = 'rgba(95, 60, 42, 0.42)';
+      ctx.lineWidth = 1.2;
       ctx.strokeRect(10, 10, width - 20, height - 20);
 
-      ctx.strokeStyle = 'rgba(125, 80, 60, 0.2)';
+      // Inner dashed vintage border
+      ctx.strokeStyle = 'rgba(95, 60, 42, 0.22)';
+      ctx.lineWidth = 1;
       ctx.setLineDash([3, 3]);
       ctx.strokeRect(15, 15, width - 30, height - 30);
       ctx.setLineDash([]);
 
-      // Subtle vintage icon & hint (No floating badge)
+      // Corner ornamental brackets (Vintage album photo corners)
+      const cSize = 10;
+      ctx.strokeStyle = 'rgba(95, 60, 42, 0.5)';
+      ctx.lineWidth = 1.4;
+      
+      // Top-Left
+      ctx.beginPath();
+      ctx.moveTo(18, 18 + cSize); ctx.lineTo(18, 18); ctx.lineTo(18 + cSize, 18);
+      ctx.stroke();
+
+      // Top-Right
+      ctx.beginPath();
+      ctx.moveTo(width - 18 - cSize, 18); ctx.lineTo(width - 18, 18); ctx.lineTo(width - 18, 18 + cSize);
+      ctx.stroke();
+
+      // Bottom-Left
+      ctx.beginPath();
+      ctx.moveTo(18, height - 18 - cSize); ctx.lineTo(18, height - 18); ctx.lineTo(18 + cSize, height - 18);
+      ctx.stroke();
+
+      // Bottom-Right
+      ctx.beginPath();
+      ctx.moveTo(width - 18 - cSize, height - 18); ctx.lineTo(width - 18, height - 18); ctx.lineTo(width - 18, height - 18 - cSize);
+      ctx.stroke();
+
+      // Vintage Letterpress Typography & Filigree (No Emotes)
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      ctx.fillStyle = '#6b4334';
-      ctx.font = '22px serif';
-      ctx.fillText('✨', width / 2, height / 2 - 20);
+      // 1. Top Small-Caps Kicker
+      ctx.fillStyle = '#6b4735';
+      ctx.font = '600 8.5px "Playfair Display", Georgia, serif';
+      ctx.letterSpacing = '3px';
+      ctx.fillText('UNTOLD MOMENT', width / 2, height / 2 - 28);
 
-      ctx.font = 'bold 13px "Plus Jakarta Sans", sans-serif';
-      ctx.letterSpacing = '1px';
-      ctx.fillText('USAP FOTO ✨', width / 2, height / 2 + 10);
+      // 2. Vintage Divider Lines & Diamond
+      const lineY = height / 2 - 16;
+      ctx.strokeStyle = 'rgba(107, 71, 53, 0.35)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(width / 2 - 36, lineY);
+      ctx.lineTo(width / 2 - 8, lineY);
+      ctx.moveTo(width / 2 + 8, lineY);
+      ctx.lineTo(width / 2 + 36, lineY);
+      ctx.stroke();
 
-      ctx.font = 'italic 12px "Cormorant Garamond", Georgia, serif';
-      ctx.fillStyle = '#7a4e3d';
-      ctx.fillText('Kenangan Kita', width / 2, height / 2 + 28);
+      ctx.fillStyle = '#8a5940';
+      ctx.beginPath();
+      ctx.moveTo(width / 2, lineY - 3);
+      ctx.lineTo(width / 2 + 3, lineY);
+      ctx.lineTo(width / 2, lineY + 3);
+      ctx.lineTo(width / 2 - 3, lineY);
+      ctx.fill();
+
+      // 3. Main Calligraphic Script Title
+      ctx.fillStyle = '#3a2013';
+      ctx.font = 'italic 26px "Alex Brush", "Dancing Script", cursive';
+      ctx.fillText('Usap Foto', width / 2, height / 2 + 6);
+
+      // 4. Sub-caption in classic serif
+      ctx.fillStyle = '#6b4735';
+      ctx.font = 'italic 11.5px "Cormorant Garamond", Georgia, serif';
+      ctx.letterSpacing = '0.5px';
+      ctx.fillText('Sentuh untuk melihat cerita', width / 2, height / 2 + 28);
 
       hasPainted = true;
     }
