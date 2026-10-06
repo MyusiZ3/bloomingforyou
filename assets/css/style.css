@@ -84,9 +84,7 @@ body {
   display: none !important;
 }
 
-/* ========================================================
-   FLOATING MUSIC PILL
-   ======================================================== */
+/* --- Floating Music Pill --- */
 .music-pill {
   position: fixed;
   bottom: 24px;
@@ -194,9 +192,7 @@ body {
 }
 
 
-/* ========================================================
-   STAGE 1: THE VINTAGE SEALED ENVELOPE
-   ======================================================== */
+/* --- Vintage Sealed Envelope --- */
 .envelope-stage {
   min-height: 100vh;
   display: flex;
@@ -448,9 +444,7 @@ body {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* ========================================================
-   STAGE 2: INTERACTIVE BIRTHDAY CAKE & 22 CANDLES BLOWOUT
-   ======================================================== */
+/* --- Birthday Cake & 22 Candles Blowout --- */
 .cake-stage {
   min-height: 100vh;
   display: flex;
@@ -542,9 +536,7 @@ body {
   margin-left: 6px;
 }
 
-/* ========================================================
-   INTERACTIVE BIRTHDAY CAKE & 22 CANDLES
-   ======================================================== */
+/* --- Birthday Cake & 22 Candles --- */
 .birthday-cake-container {
   position: relative;
   width: 100%;
@@ -764,9 +756,7 @@ body {
 }
 
 
-/* ========================================================
-   STAGE 2: THE REVEAL & BLOOMING EXPERIENCE
-   ======================================================== */
+/* --- Reveal & Blooming Experience --- */
 .gift-stage {
   position: relative;
   max-width: 880px;
@@ -797,7 +787,7 @@ body {
   }
 }
 
-/* Side Botanical Parallax Track (Full-Height Stage Margins - flowerisblooming.com style) */
+/* Side Botanical Parallax Track */
 .side-botanical-parallax-track {
   position: absolute;
   top: 0;
@@ -872,9 +862,7 @@ body {
 }
 
 
-/* ========================================================
-   SECTION 1: THE GRAND BLOOMING BOUQUET
-   ======================================================== */
+/* --- Grand Blooming Bouquet --- */
 .bouquet-section {
   position: relative;
   z-index: 2;
@@ -901,7 +889,7 @@ body {
   pointer-events: none;
 }
 
-/* Full-Width Edge-to-Edge Floating Foreground Meadow (Natural Unclipped Botanical Edge) */
+/* Full-Width Edge-to-Edge Floating Foreground Meadow */
 .page-bottom-meadow-wrap {
   position: fixed;
   bottom: 0;
@@ -926,7 +914,7 @@ body {
   opacity: 0.98;
 }
 
-/* Bouquet Composition (Dense Harmonious Fan Crown) */
+/* Bouquet Composition */
 .bouquet-composition {
   position: relative;
   width: 100%;
@@ -1314,9 +1302,7 @@ body {
   100% { transform: rotate(8deg) scale(1); opacity: 1; }
 }
 
-/* ========================================================
-   ORGANIC WIND BREEZE SWAY ANIMATIONS (Natural & Random Rustle)
-   ======================================================== */
+/* --- Organic Wind Breeze Sway Animations (Natural & Random Rustle) --- */
 
 @keyframes windFernLeft {
   0% { transform: rotate(-36deg) translateY(0); }
@@ -1447,9 +1433,7 @@ body {
 }
 
 
-/* ========================================================
-   SECTION 2: THE HEARTFELT LETTER (CUSTOM HANDWRITTEN VINTAGE PARCHMENT)
-   ======================================================== */
+/* --- Heartfelt Letter (Custom Handwritten Vintage Parchment) --- */
 .letter-section {
   margin-bottom: 75px;
   position: relative;
@@ -1717,9 +1701,7 @@ body {
 }
 
 
-/* ========================================================
-   SECTION 3 & 4: HEADINGS & GRIDS
-   ======================================================== */
+/* --- Section 3 & 4: Headings & Grids --- */
 .section-title-wrap {
   text-align: center;
   margin-bottom: 40px;
@@ -1890,9 +1872,7 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* ========================================================
-   CINEMATIC FLORAL CURTAIN TRANSITION (DENSE FLOWER HEADS WALL)
-   ======================================================== */
+/* --- Cinematic Floral Curtain Transition --- */
 .flower-curtain {
   position: fixed;
   inset: 0;
@@ -1945,7 +1925,7 @@ body {
   transform: translateX(0);
 }
 
-/* When curtains open (parting away smoothly to reveal stage) */
+/* When curtains open */
 .flower-curtain.curtains-open .curtain-left {
   transform: translateX(-125%);
 }
@@ -2116,9 +2096,7 @@ body {
 }
 
 
-/* ========================================================
-   SECTION 5: CLOSING & REPLAY
-   ======================================================== */
+/* --- Closing & Replay --- */
 .closing-section {
   margin-bottom: 50px;
 }
@@ -2205,9 +2183,7 @@ body {
 }
 
 
-/* ========================================================
-   MODALS (BOTANICAL SPECIMEN & LIGHTBOX)
-   ======================================================== */
+/* --- Modals (Botanical Specimen & Lightbox) --- */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -2416,9 +2392,7 @@ body {
 }
 
 
-/* ========================================================
-   RESPONSIVE OPTIMIZATIONS (MOBILE FIRST)
-   ======================================================== */
+/* --- Responsive Optimizations (Mobile First) --- */
 @media (max-width: 640px) {
   .envelope-container {
     height: 270px;

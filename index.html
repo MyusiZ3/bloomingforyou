@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>A Forever Bloom for Aliya 🌸</title>
   
-  <!-- Open Graph & Meta for Social Share -->
   <meta name="description" content="A handcrafted vintage botanical greeting and forever flower bouquet created with love for Aliya's special day.">
   <meta property="og:title" content="A Special Delivery for Aliya 🌸">
   <meta property="og:description" content="Open the golden heart padlock to unveil a blooming bouquet and heartfelt birthday wishes.">
@@ -14,7 +13,6 @@
   <meta name="theme-color" content="#1c2f24">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌹</text></svg>">
 
-  <!-- Google Fonts: Editorial Serif, Romantic Handwriting, Clean Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Dancing+Script:wght@500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,14 +21,9 @@
 </head>
 <body>
 
-  <!-- Floating Falling Petals Canvas -->
   <canvas id="petals-canvas"></canvas>
 
-
-
-  <!-- Ambient Audio loaded into memory via Web Audio API (prevents IDM download popups) -->
-
-  <!-- Floating Music Player Bar (Active after opening) -->
+  <!-- Music Player -->
   <div class="music-pill hidden" id="music-pill">
     <div class="vinyl-disc" id="vinyl-disc">
       <div class="vinyl-groove"></div>
@@ -46,15 +39,11 @@
     </button>
   </div>
 
-  <!-- ========================================================
-       STAGE 0: THEATRICAL FLORAL CURTAIN GATEWAY (Auto-opens in 3s)
-       ======================================================== -->
+  <!-- Stage 0: Floral Curtain -->
   <div class="flower-curtain active curtains-closed" id="flower-curtain" role="button" aria-label="Sentuh untuk membuka tirai">
     
-    <!-- LEFT FLORAL CURTAIN PANEL (Maximalist, deeply overflowing top/bottom, completely unique asymmetric cluster) -->
     <div class="curtain-panel curtain-left" id="curtain-left">
       <div class="dense-flower-wall">
-        <!-- EXTRA TOP OVERFLOW (Completely covers upper screen edge) -->
         <div class="head-item" style="top: -14vh; left: -4vw; --base-size: clamp(170px, 21vw, 280px); --rot: -28deg; --anim-name: flowerBreeze1; --anim-dur: 4.6s; --anim-delay: -1.0s; z-index: 2;">
           <img src="assets/images/flowers/Tirai/tree_peony.webp" alt="Tree Peony" class="head-img">
         </div>
@@ -355,40 +344,31 @@
       </div>
     </div>
 
-    <!-- CENTERPIECE: INTERACTIVE GOLDEN HEART PADLOCK (Tap to Unlock) -->
+    <!-- Heart Padlock -->
     <div class="curtain-center-lock" id="curtain-center-lock">
-      <div class="padlock-heart-container" id="padlock-heart-btn" role="button" tabindex="0" aria-label="Klik gembok cinta untuk membuka kejutan">
+      <div class="padlock-heart-container" id="padlock-heart-btn" role="button" tabindex="0" aria-label="Buka gembok">
         <div class="padlock-img-wrap">
           <img src="assets/images/gembok_lock.png" alt="Gembok Terkunci" class="padlock-img padlock-img-locked" id="padlock-img-locked">
           <img src="assets/images/gembok_open.png" alt="Gembok Terbuka" class="padlock-img padlock-img-open" id="padlock-img-open">
         </div>
-        
       </div>
     </div>
 
   </div>
 
-  <!-- ========================================================
-       STAGE 1: THE VINTAGE WATERCOLOR ENVELOPE GATEWAY
-       ======================================================== -->
+  <!-- Stage 1: Envelope -->
   <section class="stage envelope-stage" id="envelope-stage">
     <div class="envelope-scene-wrapper">
-      
-      <!-- Aesthetic Botanical Watercolor Envelope -->
       <div class="watercolor-envelope-wrapper" id="envelope-box" role="button" aria-label="Buka Amplop Surat">
-        
-        <!-- Corner Botanical Accents (Matching user's reference) -->
         <img src="assets/images/flowersfull/toss-pansy.webp" alt="Pansy" class="env-botanical-corner corner-top-left">
         <img src="assets/images/flowersfull/blossom-7.webp" alt="Blossom" class="env-botanical-corner corner-bottom-left">
         <img src="assets/images/flowersfull/butterfly-coral.webp" alt="Butterfly" class="env-botanical-corner corner-top-right">
 
-        <!-- Main Handcrafted Watercolor Botanical Envelope Asset -->
         <div class="watercolor-envelope-card" id="envelope-card">
-          <img src="assets/images/envelope_closed.webp" alt="Handcrafted Botanical Watercolor Envelope Closed" class="env-state-img env-img-closed">
+          <img src="assets/images/envelope_closed.webp" alt="Amplop Tertutup" class="env-state-img env-img-closed">
           
-          <!-- Open Envelope State with Handcrafted Deckle Paper Text -->
           <div class="env-open-wrap">
-            <img src="assets/images/envelope_open.webp" alt="Handcrafted Botanical Watercolor Envelope Opened" class="env-state-img env-img-open">
+            <img src="assets/images/envelope_open.webp" alt="Amplop Terbuka" class="env-state-img env-img-open">
             <div class="env-paper-note" id="env-paper-note">
               <span class="env-paper-kicker">A special delivery for</span>
               <h3 class="env-paper-name" id="paper-recipient-name">Aliya</h3>
@@ -396,23 +376,16 @@
             </div>
           </div>
           
-          <!-- Interactive Soft Lilac Wax Seal Click Target -->
-          <div class="watercolor-wax-seal" id="wax-seal-btn" role="button" aria-label="Sentuh Segel Lilin untuk Membuka Surat">
+          <div class="watercolor-wax-seal" id="wax-seal-btn" role="button" aria-label="Buka Segel Lilin">
             <span class="wax-seal-pulse-glow"></span>
           </div>
         </div>
-
       </div>
     </div>
   </section>
 
-
-  <!-- ========================================================
-       STAGE 2: INTERACTIVE BIRTHDAY CAKE & 22 CANDLES BLOWOUT
-       ======================================================== -->
+  <!-- Stage 2: Birthday Cake -->
   <section class="stage cake-stage hidden" id="cake-stage">
-    
-    <!-- Floating Subtle Ambient Sparkles -->
     <div class="cake-ambient-particles" aria-hidden="true">
       <span class="c-sparkle" style="top: 12%; left: 14%;">✦</span>
       <span class="c-sparkle" style="top: 25%; right: 12%;">✧</span>
@@ -427,10 +400,7 @@
         <h2 class="cake-title">Happy 22nd Birthday <span class="cake-highlight-name" id="cake-recipient-name">Aliya</span></h2>
       </div>
 
-      <!-- Aesthetic Vintage Birthday Cake on Pedestal -->
       <div class="birthday-cake-container">
-        
-        <!-- Main Birthday Cake Image with Interactive Flame Overlays -->
         <div class="cake-image-wrap">
           <img src="assets/images/cake.png" alt="Kue Ulang Tahun Vintage 22" class="cake-custom-img" loading="eager">
 
@@ -547,19 +517,16 @@
       </div>
     </div>
 
-    <!-- Stage Header Banner -->
+    <!-- Header -->
     <header class="gift-header">
       <h1 class="header-title">A Forever Bouquet for <span class="highlight-name" id="header-name">Aliya</span></h1>
     </header>
 
-    <!-- SECTION 1: THE GRAND BLOOMING BOUQUET (Clean, Lush, Fan-Shaped Dome) -->
+    <!-- Section 1: Bouquet -->
     <section class="bouquet-section">
       <div class="bouquet-stage-card">
-        
-        <!-- Bouquet Visual Arrangement (Rich 19-Flower 3D Layered Grand Bouquet) -->
         <div class="bouquet-composition" id="bouquet-composition">
           
-          <!-- LAYER 0: Florist Bouquet Wrapper BACK (Flared kraft backing & inner pocket depth) -->
           <div class="bouquet-wrapper-back">
             <svg viewBox="0 0 320 340" width="100%" height="100%" class="bouquet-florist-wrapper-svg" preserveAspectRatio="xMidYMax meet">
               <defs>
@@ -584,15 +551,8 @@
               </defs>
 
               <g>
-                <!-- Back Flared Kraft Shell -->
-                <path d="M35,65 C75,30 125,25 160,27 C195,25 245,30 285,65 C272,145 235,235 195,315 L125,315 C85,235 48,145 35,65 Z" 
-                      fill="url(#kraftBackGrad)"/>
-
-                <!-- Inner Cavity (shadow pocket for stems) -->
-                <path d="M52,78 C85,62 130,58 160,59 C190,58 235,62 268,78 C248,145 218,225 185,285 L135,285 C102,225 72,145 52,78 Z" 
-                      fill="url(#kraftInnerCavity)" opacity="0.85"/>
-
-                <!-- Inner Tissue Accents -->
+                <path d="M35,65 C75,30 125,25 160,27 C195,25 245,30 285,65 C272,145 235,235 195,315 L125,315 C85,235 48,145 35,65 Z" fill="url(#kraftBackGrad)"/>
+                <path d="M52,78 C85,62 130,58 160,59 C190,58 235,62 268,78 C248,145 218,225 185,285 L135,285 C102,225 72,145 52,78 Z" fill="url(#kraftInnerCavity)" opacity="0.85"/>
                 <path d="M42,62 C68,40 110,38 132,48 L122,175 L68,160 Z" fill="url(#tissueBackGrad)" opacity="0.95"/>
                 <path d="M278,62 C252,40 210,38 188,48 L198,175 L252,160 Z" fill="url(#tissueBackGrad)" opacity="0.95"/>
                 <path d="M120,44 C140,36 180,36 200,44 L190,140 L130,140 Z" fill="url(#tissueBackGrad)" opacity="0.8"/>
@@ -600,7 +560,7 @@
             </svg>
           </div>
 
-          <!-- Deep Foliage Backdrop (Lush Ferns) -->
+          <!-- Foliage -->
           <div class="flower-layer layer-fern-left">
             <img src="assets/images/flowers/lavender.webp" alt="Fern" class="flower-img">
           </div>
@@ -608,7 +568,7 @@
             <img src="assets/images/flowersfull/toss-fern.webp" alt="Fern" class="flower-img">
           </div>
 
-          <!-- Layer 1 (Deep Background Sprigs & Spreads - Tilted to match triangular wrapper) -->
+          <!-- Layer 1 -->
           <div class="flower-layer layer-deep-left">
             <img src="assets/images/flowers/illustrated_md/babys_breath.webp" alt="Baby's Breath" class="flower-img">
           </div>
@@ -625,7 +585,7 @@
             <img src="assets/images/flowers/illustrated_md/babys_breath.webp" alt="Baby's Breath" class="flower-img">
           </div>
 
-          <!-- Layer 2 (Mid-Back Tall Stems - Fanning outward left & right) -->
+          <!-- Layer 2 -->
           <div class="flower-layer layer-mid-far-left">
             <img src="assets/images/flowers/illustrated_md/pink_tulip.webp" alt="Pink Tulip" class="flower-img">
           </div>
@@ -642,7 +602,7 @@
             <img src="assets/images/flowers/illustrated_md/hydrangea.webp" alt="Hydrangea" class="flower-img">
           </div>
 
-          <!-- Layer 3 (Mid-Front Lush Blooms - Elevated above wrapper rim) -->
+          <!-- Layer 3 -->
           <div class="flower-layer layer-front-far-left">
             <img src="assets/images/flowers/illustrated_md/pink_rose.webp" alt="Pink Rose" class="flower-img">
           </div>
@@ -659,7 +619,7 @@
             <img src="assets/images/flowers/illustrated_md/white_rose.webp" alt="White Rose" class="flower-img">
           </div>
 
-          <!-- Layer 4 (Foreground Rim Accents) -->
+          <!-- Layer 4 -->
           <div class="flower-layer layer-rim-left">
             <img src="assets/images/flowers/illustrated_md/daisy.webp" alt="Sweet Daisy" class="flower-img">
           </div>
@@ -667,11 +627,9 @@
             <img src="assets/images/flowers/illustrated_md/carnation.webp" alt="Carnation" class="flower-img">
           </div>
 
-          <!-- LAYER FINAL: Florist Bouquet Wrapper FRONT (Overlapping front kraft flaps, scooped collar, silk ribbon bow & gold crest) -->
           <div class="bouquet-wrapper-front">
             <svg viewBox="0 0 320 340" width="100%" height="100%" class="bouquet-florist-wrapper-svg" preserveAspectRatio="xMidYMax meet">
               <defs>
-                <!-- Warm Kraft Paper Gradients -->
                 <linearGradient id="kraftFoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#f2e2c6"/>
                   <stop offset="45%" stop-color="#dbc097"/>
@@ -684,7 +642,6 @@
                   <stop offset="100%" stop-color="#c9ab7d"/>
                 </linearGradient>
 
-                <!-- Silk Ribbon Gradients (Burgundy & Rose Gold) -->
                 <linearGradient id="ribbonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#a82828"/>
                   <stop offset="45%" stop-color="#801515"/>
@@ -698,7 +655,6 @@
                   <stop offset="100%" stop-color="#8f691b"/>
                 </linearGradient>
 
-                <!-- Drop Shadows -->
                 <filter id="foldInnerShadow" x="-10%" y="-10%" width="120%" height="120%">
                   <feDropShadow dx="-3" dy="5" stdDeviation="5" flood-color="#3d2410" flood-opacity="0.22"/>
                 </filter>
@@ -708,37 +664,15 @@
               </defs>
 
               <g>
-                <!-- Main Left Kraft Flap (Flowing diagonal wrap in front of stems) -->
-                <path d="M48,112 C82,102 128,118 152,142 L190,320 L122,320 C88,245 58,180 48,112 Z" 
-                      fill="url(#kraftFoldGrad)"/>
-
-                <!-- Main Right Overlapping Kraft Flap (Curving collar in front of stems) -->
-                <path d="M272,112 C236,102 186,112 148,148 C134,162 124,182 118,206 L130,322 L198,322 C234,245 262,180 272,112 Z" 
-                      fill="url(#kraftFrontLapGrad)"/>
-
-                <!-- Crisp Kraft Crease Highlights -->
+                <path d="M48,112 C82,102 128,118 152,142 L190,320 L122,320 C88,245 58,180 48,112 Z" fill="url(#kraftFoldGrad)"/>
+                <path d="M272,112 C236,102 186,112 148,148 C134,162 124,182 118,206 L130,322 L198,322 C234,245 262,180 272,112 Z" fill="url(#kraftFrontLapGrad)"/>
                 <path d="M272,112 C236,102 186,112 148,148 C134,162 124,182 118,206" fill="none" stroke="#fff8ed" stroke-width="1.8" opacity="0.8"/>
                 <path d="M48,112 C82,102 128,118 152,142" fill="none" stroke="#eedcc2" stroke-width="1.2" opacity="0.65"/>
-
-                <!-- Silk Ribbon Waist Band -->
-                <path d="M124,242 C146,247 174,247 196,242 L198,258 C174,264 146,264 122,258 Z" 
-                      fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
-                
-                <!-- Ribbon Left Bow Loop -->
-                <path d="M160,250 C140,230 112,232 120,252 C126,265 145,260 160,253 Z" 
-                      fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
-                
-                <!-- Ribbon Right Bow Loop -->
-                <path d="M160,250 C180,230 208,232 200,252 C194,265 175,260 160,253 Z" 
-                      fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
-
-                <!-- Ribbon Trailing Streamer Tails -->
-                <path d="M154,254 C148,275 138,298 128,318 L138,320 C150,298 158,278 160,256 Z" 
-                      fill="url(#ribbonGrad)" opacity="0.95"/>
-                <path d="M166,254 C172,275 182,298 192,318 L182,320 C170,298 162,278 160,256 Z" 
-                      fill="url(#ribbonGrad)" opacity="0.95"/>
-
-                <!-- Golden Wax Crest Knot -->
+                <path d="M124,242 C146,247 174,247 196,242 L198,258 C174,264 146,264 122,258 Z" fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
+                <path d="M160,250 C140,230 112,232 120,252 C126,265 145,260 160,253 Z" fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
+                <path d="M160,250 C180,230 208,232 200,252 C194,265 175,260 160,253 Z" fill="url(#ribbonGrad)" filter="url(#ribbonShadow)"/>
+                <path d="M154,254 C148,275 138,298 128,318 L138,320 C150,298 158,278 160,256 Z" fill="url(#ribbonGrad)" opacity="0.95"/>
+                <path d="M166,254 C172,275 182,298 192,318 L182,320 C170,298 162,278 160,256 Z" fill="url(#ribbonGrad)" opacity="0.95"/>
                 <circle cx="160" cy="252" r="8.5" fill="url(#goldKnotGrad)" filter="url(#ribbonShadow)"/>
                 <circle cx="160" cy="252" r="6" fill="#801515"/>
                 <text x="160" y="254.5" font-family="'Playfair Display', serif" font-size="6.5" font-weight="bold" fill="#fff" text-anchor="middle">A</text>
@@ -755,7 +689,7 @@
       </div>
     </section>
 
-    <!-- SECTION 2: THE HEARTFELT LETTER (AUTHENTIC HANDWRITTEN VINTAGE PARCHMENT) -->
+    <!-- Section 2: Letter -->
     <section class="letter-section">
       <div class="letter-image-wrapper">
         <img src="assets/images/surat.png" alt="Surat Ulang Tahun untuk Aliya" class="letter-custom-img" loading="lazy">
@@ -764,7 +698,7 @@
       </div>
     </section>
 
-    <!-- SECTION 3: POLAROID SCRAPBOOK MEMORIES -->
+    <!-- Section 3: Polaroid Scrapbook -->
     <section class="polaroid-section">
       <div class="section-title-wrap">
         <span class="section-kicker">Our Journey</span>
@@ -772,9 +706,7 @@
         <p class="section-scratch-hint">Usap foto untuk melihat cerita di baliknya</p>
       </div>
 
-      <div class="polaroid-grid" id="polaroid-grid">
-        <!-- Rendered dynamically from config.js with quick scratch canvas -->
-      </div>
+      <div class="polaroid-grid" id="polaroid-grid"></div>
 
       <div class="polaroid-actions">
         <button class="btn-scratch-all" id="btn-scratch-all">
@@ -783,7 +715,7 @@
       </div>
     </section>
 
-    <!-- SECTION 4: FINAL WISH & INTERACTIVE REPLAY -->
+    <!-- Section 4: Closing -->
     <section class="closing-section">
       <div class="closing-card">
         <div class="closing-icon">🌸</div>
@@ -808,15 +740,12 @@
 
   </main>
 
-  <!-- Full-Width Edge-to-Edge Botanical Meadow Foreground (Appears on Gift Stage only) -->
+  <!-- Foreground Meadow -->
   <div class="page-bottom-meadow-wrap hidden" id="page-bottom-meadow-wrap" aria-hidden="true">
     <img src="assets/images/flowersfull/meadow-mist.webp" alt="Botanical Meadow" class="meadow-mist-img">
   </div>
 
-
-  <!-- ========================================================
-       MODAL: POLAROID LIGHTBOX MODAL
-       ======================================================== -->
+  <!-- Polaroid Modal -->
   <div class="modal-backdrop hidden" id="polaroid-modal">
     <div class="modal-card polaroid-lightbox-card">
       <button class="modal-close-btn" id="polaroid-modal-close" aria-label="Close modal">&times;</button>
@@ -834,7 +763,6 @@
       </div>
     </div>
   </div>
-
 
   <!-- Scripts -->
   <script src="config.js"></script>

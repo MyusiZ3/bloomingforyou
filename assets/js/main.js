@@ -1,13 +1,5 @@
 /**
- * ========================================================
- * BLOOMING FOR YOU - MAIN LOGIC
- * Includes:
- * - In-Memory Audio Engine using Blob (Bypasses IDM download interceptors completely)
- * - Floral Curtain Gate with 6-Digit Passcode (081004) & Heart Padlock
- * - Theatrical Curtain Parting Animation
- * - Realistic Coin-Scratch Polaroid Reveal (No auto-reveal on click, reliable touch)
- * - Authentic Vintage Paper Letter Integration
- * ========================================================
+ * Blooming For You - Main Logic
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -42,9 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let isCandleRightLit = true;
   let hasTransitionedToGift = false;
 
-  // ========================================================
-  // IN-MEMORY AUDIO ENGINE (NO IDM POPUPS)
-  // ========================================================
+  // --- In-Memory Audio Engine (No Idm Popups) ---
   let bgmAudio = null;
   let isAudioLoading = false;
   let isAudioReady = false;
@@ -148,9 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // CONFIGURATION INJECTION
-  // ========================================================
+  // --- Configuration Injection ---
   function applyConfig() {
     const configData = (typeof CONFIG !== 'undefined') ? CONFIG : (window.CONFIG || null);
     if (!configData) return;
@@ -226,9 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ========================================================
-  // STAGE 0: THEATRICAL FLORAL CURTAIN GATEWAY & GOLDEN HEART PADLOCK
-  // ========================================================
+  // --- Theatrical Floral Curtain Gateway & Golden Heart Padlock ---
   const flowerCurtain = document.getElementById('flower-curtain');
   const padlockHeartBtn = document.getElementById('padlock-heart-btn');
   let isCurtainUnlocked = false;
@@ -305,9 +291,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // STAGE 1: THE VINTAGE ENVELOPE UNSEALING
-  // ========================================================
+  // --- Vintage Envelope Unsealing ---
   function openEnvelope() {
     if (isOpeningEnvelope) return;
     isOpeningEnvelope = true;
@@ -356,9 +340,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // STAGE 2: BIRTHDAY CAKE & 22 CANDLES BLOWOUT
-  // ========================================================
+  // --- Birthday Cake & 22 Candles Blowout ---
   function playPuffSound() {
     try {
       const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -457,9 +439,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // ========================================================
-  // STAGE 3: TRANSITION TO BLOOMING GIFT & LETTER STAGE
-  // ========================================================
+  // --- Transition To Blooming Gift & Letter Stage ---
   function proceedToGiftStage() {
     if (hasTransitionedToGift) return;
     hasTransitionedToGift = true;
@@ -539,9 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ========================================================
-  // SCRATCH-OFF POLAROID CARDS (NATURAL SCRATCH, NO AUTO-CLICK REVEAL)
-  // ========================================================
+  // --- Scratch-Off Polaroid Cards (Natural Scratch, No Auto-Click Reveal) ---
   function renderPolaroids(configData) {
     const grid = document.getElementById('polaroid-grid');
     const cfg = configData || (typeof CONFIG !== 'undefined' ? CONFIG : window.CONFIG);
@@ -903,9 +881,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') closePolaroidModal();
   });
 
-  // ========================================================
-  // BOTANICAL SCROLL PARALLAX ENGINE (Fluid Momentum Lerp & flowerisblooming Dynamics)
-  // ========================================================
+  // --- Botanical Scroll Parallax Engine (Fluid Momentum Lerp & Flowerisblooming Dynamics) ---
   let updateParallaxFn = null;
 
   function initScrollParallax() {
