@@ -690,10 +690,13 @@ document.addEventListener('DOMContentLoaded', () => {
     cfg.polaroids.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'polaroid-item';
-      card.style.transform = `rotate(${item.rotation || '0deg'})`;
+      card.style.setProperty('--rot', item.rotation || '0deg');
 
       card.innerHTML = `
-        <div class="washi-tape"></div>
+        <div class="wooden-clothespin" aria-hidden="true">
+          <span class="clothespin-wood"></span>
+          <span class="clothespin-spring"></span>
+        </div>
         <div class="polaroid-img-box" id="box-${item.id}">
           <img src="${item.image}" alt="${item.title}" class="polaroid-photo-img" loading="lazy">
           <canvas class="scratch-canvas" id="canvas-${item.id}"></canvas>
