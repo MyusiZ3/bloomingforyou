@@ -696,7 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (initialHeader) initialHeader.classList.remove('hidden');
 
       const floatingReveal = document.getElementById('gift-floating-reveal');
-      if (floatingReveal) floatingReveal.classList.add('hidden');
+      if (floatingReveal) floatingReveal.classList.remove('hidden', 'is-revealed');
 
       const bottomActions = document.getElementById('giftbox-bottom-actions');
       if (bottomActions) bottomActions.classList.add('hidden');
@@ -851,7 +851,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Swap top header: hide initial, reveal floating mysterious gift title above the box
         if (giftboxTitleWrap) giftboxTitleWrap.classList.add('hidden');
-        if (giftFloatingReveal) giftFloatingReveal.classList.remove('hidden');
+        if (giftFloatingReveal) {
+          giftFloatingReveal.classList.remove('hidden', 'is-revealed');
+          void giftFloatingReveal.offsetWidth; // Force reflow
+          giftFloatingReveal.classList.add('is-revealed');
+        }
 
         playBoxPopSound();
         triggerBirthdayCelebration();
