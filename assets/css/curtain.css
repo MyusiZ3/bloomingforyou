@@ -1,4 +1,7 @@
-/* --- Cinematic Floral Curtain Transition --- */
+/* ========================================================
+   BLOOMING FOR YOU - CINEMATIC FLORAL CURTAIN TRANSITION (STAGE 0)
+   ======================================================== */
+
 .flower-curtain {
   position: fixed;
   inset: 0;
@@ -10,7 +13,7 @@
   opacity: 0;
   transition: opacity 0.5s ease;
   overflow: hidden;
-  background: radial-gradient(ellipse at center, #fefaf0 0%, #f7ecd4 55%, #ecd8b0 100%);
+  background: radial-gradient(ellipse at center, #eedbb5 0%, #d8be8c 55%, #bd9960 100%);
 }
 
 .flower-curtain.active {
@@ -18,12 +21,13 @@
   pointer-events: all;
 }
 
-/* Left & Right Curtain Panels - Organic, No Rectangular Edge */
+/* Left & Right Curtain Panels - Full Edge-to-Edge Dense Spread */
 .curtain-panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 62vw;
+  width: 68vw;
+  min-width: 380px;
   height: 100%;
   pointer-events: none;
   will-change: transform;
@@ -72,8 +76,8 @@
 
 .head-item {
   position: absolute;
-  width: var(--base-size, 200px);
-  height: var(--base-size, 200px);
+  width: var(--base-size, clamp(180px, 22vw, 300px));
+  height: var(--base-size, clamp(180px, 22vw, 300px));
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -81,6 +85,32 @@
   animation: var(--anim-name, flowerBreeze1) var(--anim-dur, 4s) ease-in-out infinite alternate;
   animation-delay: var(--anim-delay, 0s);
   will-change: transform;
+}
+
+@media (max-width: 768px) {
+  .curtain-panel {
+    width: 85vw;
+  }
+  .curtain-left {
+    left: -10vw;
+  }
+  .curtain-right {
+    right: -10vw;
+  }
+  .head-item {
+    width: clamp(160px, 40vw, 250px) !important;
+    height: clamp(160px, 40vw, 250px) !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .curtain-panel {
+    width: 66vw;
+  }
+  .head-item {
+    width: clamp(210px, 17vw, 340px) !important;
+    height: clamp(210px, 17vw, 340px) !important;
+  }
 }
 
 @keyframes flowerBreeze1 {
@@ -219,32 +249,4 @@
 @keyframes hintBlink {
   0% { opacity: 0.85; transform: translateY(0); }
   100% { opacity: 1; transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(245, 215, 125, 0.6); }
-}
-
-
-/* --- Interactive Vintage Gift Box Section --- */
-.giftbox-section {
-  margin-bottom: 70px;
-  text-align: center;
-  position: relative;
-}
-
-.giftbox-scene {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 720px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.giftbox-interactive-stage {
-  position: relative;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
 }
