@@ -76,8 +76,8 @@
 
 .head-item {
   position: absolute;
-  width: var(--base-size, 200px);
-  height: var(--base-size, 200px);
+  width: var(--base-size, clamp(155px, 19vw, 245px));
+  height: var(--base-size, clamp(155px, 19vw, 245px));
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -176,8 +176,8 @@
 /* Image-based padlock */
 .padlock-img-wrap {
   position: relative;
-  width: 130px;
-  height: 150px;
+  width: 105px;
+  height: 125px;
 }
 
 .padlock-img {
