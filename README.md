@@ -1,80 +1,85 @@
-# 🌸 Blooming For You — Special Birthday Gift for Aliya
+# Blooming For You
 
-Sebuah website ucapan ulang tahun interaktif bertema **Vintage Botanical & Forever Flower Bouquet**, terinspirasi dari keindahan dan kehangatan [flowerisblooming.com](https://flowerisblooming.com). Dibuat khusus tanpa overengineering, ringan, dan siap diakses langsung di peramban (smartphone maupun desktop) selamanya.
+An interactive birthday celebration website designed with a vintage botanical scrapbook theme. Built with standard HTML, Vanilla CSS, and JavaScript with no external framework dependencies.
 
----
+## Features
 
-## ✨ Fitur Utama
+- **Entrance Gate**: A floral curtain gateway unlocked by a pin code or interactive heart padlock.
+- **Sealed Envelope**: A 3D vintage envelope with a wax seal that plays paper sliding audio upon opening.
+- **Birthday Cake & Candles**: An interactive 22nd birthday cake where candles can be clicked or blown out, followed by a character story sequence.
+- **Floral Bouquet**: A layered botanical bouquet with ambient floating petal canvas effects.
+- **Parchment Letter**: A custom handwritten-style letter sheet.
+- **Scratch-off Polaroid Scrapbook**: Multi-photo collage spreads (duo and trio layouts) featuring realistic scratch-to-reveal canvas cards, vintage newspaper clippings, postage stamps, washi tape, dried botanicals, and ambient floating animations.
+- **Mystery Gift Box**: An interactive gift box with shake audio, confetti bursts, and sequential text reveal animations.
+- **Background Music**: Integrated audio player with a floating toggle control.
 
-1. **The Sealed Envelope (3D Vintage Wax Seal)**:
-   - Amplop bergaya surat klasik vintage lengkap dengan stempel pos udara dan alamat bertuliskan nama **Aliya**.
-   - Segel lilin (*wax seal*) interaktif berinisial yang dapat disentuh untuk membuka kado.
-2. **Smooth Ambient BGM Player**:
-   - Musik latar (*Red Cooper - On the Frost Bridge*) otomatis memutar perlahan (*fade-in*) begitu amplop dibuka.
-   - Dilengkapi *floating vinyl player* di pojok kanan bawah dengan kontrol play/pause.
-3. **The Grand Blooming Bouquet**:
-   - Buket bunga vintage mekar (*Rosa Centifolia, Paeonia Officinalis, Chrysanthème Doré*).
-   - Efek kelopak bunga melayang lembut (*floating petals canvas*).
-   - Setiap bunga interaktif: sentuh bunga untuk membaca makna filosofi dan pesan cinta rahasia.
-4. **The Heartfelt Parchment Letter**:
-   - Surat cinta bergaya kertas vintage berserat alami dengan ucapan tulus dan puitis untuk hari ulang tahun Aliya.
-5. **Polaroid Scrapbook Memories**:
-   - Galeri foto polaroid bertengger alami dengan selotip washi tape:
-     - *Chapter 01: When We First Met*
-     - *Chapter 02: When We Knew We Liked Each Other*
-     - *Chapter 03: The Day It Began*
-   - Sentuh foto untuk melihat tampilan perbesar (*lightbox*) beserta cerita kenangannya.
-6. **Botanical Herbarium Collection**:
-   - Kartu botani klasik bergaya pelat ilustrasi Pierre-Joseph Redouté.
-7. **Replay & One-Tap WhatsApp Reply**:
-   - Tombol untuk melipat dan membuka amplop kembali kapan saja.
-   - Tombol untuk membalas pesan cinta secara otomatis ke WhatsApp.
+## Project Structure
 
----
+```text
+bloomingforyou/
+├── assets/
+│   ├── audio/          # Sound effects and background music
+│   ├── css/            # Modular stylesheets (base, bouquet, cake, curtain, envelope, giftbox, letter, parallax, scrapbook)
+│   ├── images/         # Image assets (Moments, characters, flowers, polaroids)
+│   └── js/             # Application logic (main.js, petals.js)
+├── config.js           # Central configuration file
+├── index.html          # Main HTML entry point
+└── README.md
+```
 
-## 🛠️ Cara Mengubah Pesan & Foto Sendiri
+## Configuration
 
-Semua konfigurasi teks, nama, lagu, dan foto tersimpan rapi di dalam file [`config.js`](file:///c:/Users/muham/Documents/Github/bloomingforyou/config.js). Kamu tidak perlu menyentuh kode HTML atau CSS sama sekali!
+All custom text, recipient information, letter content, music settings, and photos can be customized directly in `config.js`:
 
-### 1. Mengganti Foto Polaroid Sendiri
-Cukup simpan foto kenangan kalian ke dalam folder:
-`assets/images/polaroids/`
-Lalu ganti nama filenya di [`config.js`](file:///c:/Users/muham/Documents/Github/bloomingforyou/config.js) bagian `polaroids`:
+### 1. Photos and Captions
+Add images to `assets/images/Moments/` and register them in the `polaroids` array inside `config.js`:
+
 ```javascript
 polaroids: [
   {
-    chapter: "Chapter 01",
-    title: "When We First Met",
-    image: "assets/images/polaroids/foto_pertama_kita.jpg",
-    caption: "Cerita singkat momen ini...",
+    id: "first-together",
+    spread: 1,
+    title: "First Pic Together",
+    image: "assets/images/Moments/first.jpg",
+    caption: "first pic together btw :3",
+    rotation: "-5.5deg"
   },
   // ...
 ]
 ```
 
-### 2. Mengganti Musik (BGM)
-Jika kamu memiliki file MP3 lagu pilihanmu (misalnya `lagu_kita.mp3`), cukup letakkan file tersebut di:
-`assets/audio/`
-Lalu ubah pengaturannya di [`config.js`](file:///c:/Users/muham/Documents/Github/bloomingforyou/config.js):
+### 2. Letter Content
+Modify the `letter` object in `config.js` to change the greeting, paragraphs, and sign-off:
+
 ```javascript
-music: {
-  title: "Red Cooper - On the Frost Bridge",
-  src: "assets/audio/lagu_kita.mp3",
+letter: {
+  salutation: "Dear Aliya,",
+  paragraphs: [
+    "Your message here...",
+  ],
+  closing: "With love,",
+  signature: "Your Name",
 }
 ```
 
-### 3. Mengubah Teks Surat Ucapan
-Di [`config.js`](file:///c:/Users/muham/Documents/Github/bloomingforyou/config.js) bagian `letter`, kamu bisa mengubah paragraf surat sesuka hatimu.
+### 3. Background Music
+Set the track information in `config.js`:
 
----
+```javascript
+music: {
+  title: "wave to earth - seasons",
+  src: "assets/audio/track.dat",
+  autoplayOnOpen: true,
+}
+```
 
-## 🚀 Cara Mengaktifkan GitHub Pages (Hosting Gratis Selamanya)
+## Deployment
 
-Agar web ini bisa langsung dibuka oleh Aliya melalui link URL (misal: `https://myusiz3.github.io/bloomingforyou/`):
+This is a static site and can be hosted on GitHub Pages or any static web host.
 
-1. Buka repository kamu di GitHub: [https://github.com/MyusiZ3/bloomingforyou](https://github.com/MyusiZ3/bloomingforyou)
-2. Klik tab **Settings** di bagian atas repository.
-3. Di menu sebelah kiri, klik **Pages**.
-4. Di bagian **Build and deployment > Source**, pilih **Deploy from a branch**.
-5. Pilih Branch: **main** dan folder: **/ (root)**, lalu klik **Save**.
-6. Tunggu 1–2 menit, link website akan aktif dan bisa langsung dikirim ke pacarmu! 💌
+### Deploying to GitHub Pages:
+1. Push the repository to GitHub.
+2. Go to **Settings** > **Pages** in the repository.
+3. Under **Build and deployment > Source**, select **Deploy from a branch**.
+4. Set the branch to **main** and folder to **/ (root)**, then click **Save**.
+5. The live site will be available at `https://<username>.github.io/<repository-name>/`.
