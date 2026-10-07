@@ -202,3 +202,78 @@ body {
 .music-btn:hover {
   background: rgba(183, 138, 72, 0.15);
 }
+
+/* --- Stage Scroll Lock (Stage 0 - Curtain, Stage 1 - Envelope, Stage 2 - Cake) --- */
+html.no-scroll,
+body.no-scroll {
+  overflow: hidden !important;
+  height: 100% !important;
+  max-height: 100vh !important;
+  max-height: 100dvh !important;
+  touch-action: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* --- Site Footer & Babe Character --- */
+.site-footer {
+  text-align: center;
+  padding: 40px 20px 85px;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.site-footer p {
+  margin: 0;
+  max-width: 90vw;
+  line-height: 1.5;
+}
+
+.footer-character-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+.footer-character-img {
+  width: 100%;
+  max-width: 180px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 8px 18px rgba(70, 45, 20, 0.15));
+  animation: floatFooterBabe 3.8s ease-in-out infinite alternate;
+}
+
+@keyframes floatFooterBabe {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-6px) scale(1.02); }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 24px 16px 95px;
+    font-size: 0.88rem;
+  }
+  .footer-character-wrap {
+    max-width: 180px;
+  }
+  .footer-character-img {
+    max-width: 140px;
+  }
+}
+
+

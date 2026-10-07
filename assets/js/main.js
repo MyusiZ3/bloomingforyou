@@ -261,13 +261,16 @@ document.addEventListener('DOMContentLoaded', () => {
         flowerCurtain.classList.add('curtains-open');
       }
 
-      // Hide curtain overlay completely after slide transition
+      // Hide curtain overlay completely from DOM/rendering after slide transition
       setTimeout(() => {
         if (flowerCurtain) {
           flowerCurtain.classList.remove('active');
+          flowerCurtain.classList.add('hidden');
+          flowerCurtain.style.display = 'none';
         }
       }, 1250);
     }, 450);
+
   }
 
   // Click / tap on Golden Heart Padlock opens the curtain
@@ -565,6 +568,10 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       if (cakeStage) cakeStage.classList.add('hidden');
       if (giftStage) giftStage.classList.remove('hidden');
+
+      // Unlock scrolling for main interactive stage
+      document.body.classList.remove('no-scroll');
+      document.documentElement.classList.remove('no-scroll');
       if (musicPill) musicPill.classList.remove('hidden');
 
       // Unveil the blooming side botanicals and meadow foreground
@@ -598,6 +605,8 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnLockCurtain) {
     btnLockCurtain.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.body.classList.add('no-scroll');
+      document.documentElement.classList.add('no-scroll');
       
       // Reset candles
       isCandleLeftLit = true;

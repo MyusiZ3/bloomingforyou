@@ -372,13 +372,7 @@
   transition: all 0.3s ease;
 }
 
-.site-footer {
-  text-align: center;
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-size: 1rem;
-  color: var(--ink-muted);
-}
+/* .site-footer unified in base.css */
 
 
 /* --- Modals (Botanical Specimen & Lightbox) --- */
@@ -838,92 +832,7 @@
     font-size: 1.2rem;
   }
 
-  /* Vintage Scrapbook Responsive */
-  .vintage-scrapbook-board {
-    gap: 45px;
-    max-width: 380px;
-    margin: 0 auto;
-  }
 
-  .scrapbook-spread {
-    padding: 24px 14px 28px;
-    min-height: 420px;
-  }
-
-  .scrapbook-newsprint-clipping {
-    width: 175px;
-    top: -10px;
-    left: 8px;
-    padding: 10px 8px;
-  }
-  .spread-2 .scrapbook-newsprint-clipping {
-    right: 8px;
-    top: -10px;
-  }
-  .newsprint-headline { font-size: 0.72rem; }
-  .newsprint-subhead { font-size: 0.44rem; margin-bottom: 4px; }
-  .newsprint-columns { font-size: 0.48rem; column-gap: 6px; }
-
-  .scrapbook-memo-card {
-    width: 155px;
-    top: 14px;
-    right: 8px;
-    padding: 18px 12px 14px;
-  }
-  .spread-2 .scrapbook-memo-card {
-    left: 8px;
-    top: 14px;
-  }
-  .memo-handwriting-quote { font-size: 1.15rem; margin-bottom: 6px; }
-  .memo-handwriting-sub { font-size: 0.78rem; }
-
-  .scrapbook-dried-botanicals {
-    bottom: 12px;
-    left: 12px;
-  }
-  .spread-2 .scrapbook-dried-botanicals {
-    right: 12px;
-  }
-  .flower-primary { width: 85px; }
-  .flower-secondary { width: 65px; bottom: -10px; left: 25px; }
-
-  .scrapbook-polaroid-pair {
-    max-width: 320px;
-    height: 330px;
-  }
-
-  .scrapbook-polaroid {
-    width: 195px;
-    padding: 8px 8px 26px;
-  }
-
-  .polaroid-back {
-    top: 30px;
-    left: 2%;
-  }
-
-  .polaroid-front {
-    top: 95px;
-    right: 2%;
-  }
-
-  .chin-quote {
-    font-size: 0.95rem;
-  }
-
-  .washi-corner-bottom-left {
-    width: 60px;
-    height: 18px;
-    bottom: -6px;
-    left: -10px;
-  }
-
-  .washi-corner-top-right {
-    width: 60px;
-    height: 18px;
-    top: -8px;
-    right: -10px;
-  }
 }
 
 @media (max-width: 420px) {

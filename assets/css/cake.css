@@ -445,16 +445,7 @@
   animation: fadeInStage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.site-footer {
-  text-align: center;
-  padding: 18px 20px 24px;
-  font-family: var(--font-editorial);
-  font-style: italic;
-  font-size: 0.95rem;
-  color: var(--ink-secondary);
-  position: relative;
-  z-index: 2;
-}
+/* .site-footer unified in base.css */
 
 @keyframes fadeInStage {
   from {

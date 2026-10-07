@@ -711,7 +711,7 @@
 .scrapbook-polaroid {
   position: absolute;
   background: #ffffff;
-  padding: 11px 11px 34px;
+  padding: 11px 11px 50px;
   border-radius: 2px;
   box-shadow: 0 16px 36px rgba(35, 20, 10, 0.22);
   cursor: pointer;
@@ -727,21 +727,31 @@
 /* Polaroid Bottom Chin Handwritten Quote */
 .polaroid-handwritten-chin {
   position: absolute;
-  bottom: 8px;
-  left: 0;
-  right: 0;
+  bottom: 6px;
+  left: 6px;
+  right: 6px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  padding: 0 8px;
+  padding: 0 4px;
   pointer-events: none;
 }
 
 .chin-quote {
   font-family: var(--font-handwriting);
-  font-size: 1.08rem;
+  font-size: 0.98rem;
   color: #3b2a1a;
   font-weight: 600;
   letter-spacing: 0.2px;
-  line-height: 1;
+  line-height: 1.18;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-align: center;
 }
 
 /* 8. Scrapbook Washi Tape Strips (Rich Variations) */
@@ -944,81 +954,209 @@
    RESPONSIVE SCRAPBOOK ADJUSTMENTS
    ======================================================== */
 @media (max-width: 768px) {
+  .vintage-scrapbook-board {
+    gap: 50px;
+    width: 100%;
+    padding: 0 4px;
+    box-sizing: border-box;
+  }
+
   .scrapbook-spread {
-    min-height: 640px;
-    padding: 20px 8px 35px;
+    min-height: 610px;
+    padding: 16px 6px 32px;
+    width: 100%;
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .scrapbook-backdrop-img {
+    width: 98%;
+    height: 98%;
+    object-fit: fill;
   }
 
   .scrapbook-polaroid-container.is-trio {
-    height: 620px;
+    height: 650px;
+    width: 100%;
+    position: relative;
   }
 
   .polaroid-trio-1 {
     top: 15px;
-    left: 4%;
-    width: 215px;
-    transform: rotate(var(--rot, -5deg));
+    left: 3%;
+    right: auto;
+    width: clamp(175px, 49vw, 205px);
+    transform: rotate(var(--rot, -4.5deg));
   }
 
   .polaroid-trio-2 {
-    top: 195px;
+    top: 205px;
     left: auto;
-    right: 4%;
-    transform: rotate(var(--rot, 3.5deg));
-    width: 220px;
+    right: 3%;
+    transform: rotate(var(--rot, 3deg));
+    width: clamp(180px, 50vw, 210px);
     z-index: 7;
   }
 
   .polaroid-trio-3 {
-    top: 385px;
-    left: 6%;
+    top: 400px;
+    left: 4%;
     right: auto;
-    width: 215px;
+    width: clamp(175px, 49vw, 205px);
     transform: rotate(var(--rot, -3deg));
     z-index: 8;
   }
 
   .scrapbook-polaroid-container.is-duo {
-    height: 480px;
+    height: 490px;
+    width: 100%;
+    position: relative;
   }
 
   .polaroid-duo-1, .polaroid-back {
     top: 20px;
-    left: 4%;
-    width: 225px;
+    left: 3%;
+    right: auto;
+    width: clamp(185px, 52vw, 215px);
+    transform: rotate(var(--rot, -4deg));
   }
 
   .polaroid-duo-2, .polaroid-front {
-    top: 220px;
-    right: 4%;
+    top: 215px;
+    right: 3%;
     left: auto;
-    width: 230px;
+    width: clamp(185px, 52vw, 215px);
+    transform: rotate(var(--rot, 3deg));
+  }
+
+  .scrapbook-polaroid {
+    padding: 8px 8px 52px;
+  }
+
+  .polaroid-handwritten-chin {
+    bottom: 5px;
+    left: 4px;
+    right: 4px;
+    height: 44px;
+  }
+
+  .chin-quote {
+    font-size: 0.88rem;
+    line-height: 1.15;
   }
 
   .scrapbook-memo-card {
-    width: 200px;
-    padding: 18px 14px;
-    font-size: 0.9rem;
-    top: 10px;
+    width: clamp(155px, 44vw, 185px);
+    padding: 14px 10px 12px;
+    top: 12px;
+    right: 3%;
+    transform: rotate(1.5deg);
+  }
+
+  .spread-2 .scrapbook-memo-card {
+    right: auto;
+    left: 3%;
+    transform: rotate(-1.5deg);
   }
 
   .memo-handwriting-quote {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .memo-handwriting-sub {
+    font-size: 0.76rem;
+    line-height: 1.2;
   }
 
   .scrapbook-newsprint-clipping {
-    width: 220px;
-    padding: 12px 10px;
+    width: clamp(160px, 45vw, 190px);
+    padding: 10px 8px;
+    left: 3%;
+    top: -8px;
+    transform: rotate(-1.5deg);
+  }
+
+  .spread-2 .scrapbook-newsprint-clipping {
+    left: auto;
+    right: 3%;
+    transform: rotate(1.5deg);
+  }
+
+  .newsprint-headline {
+    font-size: 0.7rem;
+    letter-spacing: 0.6px;
+  }
+
+  .newsprint-subhead {
+    font-size: 0.42rem;
+    margin-bottom: 4px;
+  }
+
+  .newsprint-columns {
+    column-gap: 6px;
+    font-size: 0.46rem;
+    line-height: 1.25;
   }
 
   .scrapbook-stamp-cluster {
-    transform: scale(0.85);
-    top: 10px;
-    right: 15px;
+    transform: scale(0.72);
+    top: 6px;
+    right: 4px;
+    transform-origin: top right;
+    gap: 6px;
+  }
+
+  .spread-2 .scrapbook-stamp-cluster {
+    right: auto;
+    left: 4px;
+    transform-origin: top left;
   }
 
   .scrapbook-butterfly {
-    width: 42px;
+    width: 38px;
+    top: -24px;
+    right: -14px;
+  }
+
+  .scrapbook-dried-botanicals {
+    bottom: 12px;
+    left: 8px;
+  }
+
+  .spread-2 .scrapbook-dried-botanicals {
+    left: auto;
+    right: 8px;
+  }
+
+  .flower-primary {
+    width: 80px;
+  }
+
+  .flower-secondary {
+    width: 60px;
+    left: 16px;
+    bottom: -8px;
+  }
+
+  .scrapbook-dymo-label {
+    font-size: 0.52rem;
+    letter-spacing: 1px;
+    padding: 3px 8px;
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .spread-2 .scrapbook-dymo-label {
+    right: auto;
+    left: 10px;
+  }
+
+  .spread-3 .scrapbook-dymo-label {
+    bottom: 10px;
+    right: 10px;
   }
 }
 

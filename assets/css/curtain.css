@@ -8,18 +8,31 @@
   width: 100vw;
   height: 100vh;
   z-index: 99999;
-  display: flex;
+  display: none;
   pointer-events: none;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.8s ease 0.3s;
   overflow: hidden;
   background: radial-gradient(ellipse at center, #eedbb5 0%, #d8be8c 55%, #bd9960 100%);
 }
 
 .flower-curtain.active {
+  display: flex !important;
   opacity: 1;
   pointer-events: all;
 }
+
+.flower-curtain.curtains-open {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.flower-curtain:not(.active) .head-item,
+.flower-curtain.hidden .head-item {
+  animation: none !important;
+  will-change: auto !important;
+}
+
 
 /* Left & Right Curtain Panels - Full Edge-to-Edge Dense Spread */
 .curtain-panel {
@@ -46,6 +59,7 @@
   transform: translateX(120%);
 }
 
+
 /* When curtains close (covering screen like theater curtains) */
 .flower-curtain.curtains-closed .curtain-left {
   transform: translateX(0);
@@ -57,11 +71,11 @@
 
 /* When curtains open */
 .flower-curtain.curtains-open .curtain-left {
-  transform: translateX(-125%);
+  transform: translateX(-130%);
 }
 
 .flower-curtain.curtains-open .curtain-right {
-  transform: translateX(125%);
+  transform: translateX(130%);
 }
 
 /* DENSE FLOWER HEADS WALL (LUSH, PACKED, ORGANIC) */
@@ -76,8 +90,8 @@
 
 .head-item {
   position: absolute;
-  width: var(--base-size, clamp(155px, 19vw, 245px));
-  height: var(--base-size, clamp(155px, 19vw, 245px));
+  width: var(--base-size, clamp(170px, 20vw, 260px));
+  height: var(--base-size, clamp(170px, 20vw, 260px));
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -89,15 +103,26 @@
 
 @media (max-width: 768px) {
   .curtain-panel {
-    width: 82vw;
+    width: 65vw;
+    min-width: 260px;
   }
   .curtain-left {
-    left: -8vw;
+    left: -5vw;
   }
   .curtain-right {
-    right: -8vw;
+    right: -5vw;
+  }
+  .head-item {
+    width: clamp(170px, 22vh, 230px) !important;
+    height: clamp(170px, 22vh, 230px) !important;
+  }
+  .padlock-img-wrap {
+    width: 95px;
+    height: 115px;
   }
 }
+
+
 
 @keyframes flowerBreeze1 {
   0% { transform: translateY(0) rotate(var(--rot, 0deg)) scale(1); }

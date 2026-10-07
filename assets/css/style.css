@@ -4,28 +4,31 @@
    ======================================================== */
 
 /* Core Foundation & Theme Tokens */
-@import url('base.css?v=2.3');
+@import url('base.css?v=3.2');
 
 /* Stage 0: Floral Curtain & Golden Padlock */
-@import url('curtain.css?v=2.3');
+@import url('curtain.css?v=3.2');
 
 /* Stage 1: Botanical Watercolor Envelope */
-@import url('envelope.css?v=2.3');
+@import url('envelope.css?v=3.2');
 
 /* Stage 2: Birthday Cake & Blowout Candles */
-@import url('cake.css?v=2.3');
+@import url('cake.css?v=3.2');
 
 /* Ambient Parallax Track (Margin Botanicals) */
-@import url('parallax.css?v=2.3');
+@import url('parallax.css?v=3.2');
 
 /* Stage 3 - Section 1: Forever Floral Bouquet */
-@import url('bouquet.css?v=2.3');
+@import url('bouquet.css?v=3.2');
 
 /* Stage 3 - Section 2: Handwritten Love Letter */
-@import url('letter.css?v=2.3');
+@import url('letter.css?v=3.2');
 
 /* Stage 3 - Section 3: Vintage Scrapbook Journal */
-@import url('scrapbook.css?v=2.3');
+@import url('scrapbook.css?v=3.2');
 
 /* Stage 3 - Section 4: Interactive Gift Box & Finale */
-@import url('giftbox.css?v=2.3');
+@import url('giftbox.css?v=3.2');
+
+
+
