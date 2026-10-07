@@ -398,11 +398,11 @@
   opacity: 0.8;
 }
 
-/* 3. Pressed Dried Botanical Elements */
+/* 3. Pressed Dried Botanical & Butterfly Elements */
 .scrapbook-dried-botanicals {
   position: absolute;
   bottom: 25px;
-  left: 55px;
+  left: 45px;
   pointer-events: none;
   z-index: 3;
   transition: opacity 0.9s ease 0.2s, transform 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) 0.2s;
@@ -411,7 +411,12 @@
 
 .spread-2 .scrapbook-dried-botanicals {
   left: auto;
-  right: 55px;
+  right: 45px;
+}
+
+.spread-3 .scrapbook-dried-botanicals {
+  bottom: 30px;
+  left: 50px;
 }
 
 .dried-flower-img {
@@ -427,13 +432,184 @@
 .flower-secondary {
   position: absolute;
   bottom: -15px;
-  left: 40px;
+  left: 35px;
   width: clamp(80px, 12vw, 120px);
   transform: rotate(20deg);
-  opacity: 0.85;
+  opacity: 0.88;
 }
 
-/* 4. Overlapping Scrapbook Polaroids Container */
+/* Vintage Butterfly Accent */
+.scrapbook-butterfly {
+  position: absolute;
+  top: -35px;
+  right: -25px;
+  width: clamp(45px, 7vw, 68px);
+  filter: drop-shadow(0 6px 14px rgba(40, 20, 10, 0.25));
+  transform: rotate(18deg);
+  pointer-events: none;
+  z-index: 8;
+  animation: floatSubtle 5s ease-in-out infinite alternate;
+}
+
+@keyframes floatSubtle {
+  0% { transform: rotate(16deg) translateY(0); }
+  100% { transform: rotate(20deg) translateY(-6px); }
+}
+
+/* 4. Vintage Stamp Clusters */
+.scrapbook-stamp-cluster {
+  position: absolute;
+  top: 18px;
+  right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+  z-index: 3;
+  transform: rotate(2.5deg);
+  opacity: 0.92;
+}
+
+.spread-2 .scrapbook-stamp-cluster {
+  right: auto;
+  left: 35px;
+  transform: rotate(-3deg);
+}
+
+.vintage-post-stamp {
+  width: 52px;
+  height: 62px;
+  background: #fbf6ec;
+  border: 2px dashed #a8834a;
+  box-shadow: 0 4px 12px rgba(40, 25, 10, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  padding: 4px 2px;
+  transform: rotate(var(--stamp-rot, -3deg));
+}
+
+.stamp-mini-header {
+  font-family: var(--font-sans);
+  font-size: 0.46rem;
+  font-weight: 800;
+  color: var(--wax-red);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.stamp-mini-art {
+  font-size: 1.1rem;
+  color: #b08d5c;
+  line-height: 1;
+}
+
+.stamp-mini-footer {
+  font-family: var(--font-editorial);
+  font-size: 0.44rem;
+  color: #5c4328;
+  font-weight: 700;
+}
+
+/* Postal Cancellation Waves */
+.postal-cancellation-mark {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: rgba(90, 60, 35, 0.45);
+}
+
+.cancellation-wave {
+  width: 48px;
+  height: 6px;
+  background: radial-gradient(circle at 6px 3px, transparent 4px, currentColor 4px) repeat-x;
+  background-size: 12px 6px;
+}
+
+.cancellation-text {
+  font-family: var(--font-editorial);
+  font-size: 0.55rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(90, 60, 35, 0.6);
+  font-weight: 700;
+  text-align: center;
+}
+
+/* 5. Gold & Brass Paperclips */
+.scrapbook-paperclip {
+  position: absolute;
+  width: 18px;
+  height: 44px;
+  pointer-events: none;
+  z-index: 12;
+  filter: drop-shadow(1px 3px 5px rgba(30, 15, 5, 0.35));
+}
+
+.paperclip-gold {
+  border: 2.5px solid #d4af37;
+  border-radius: 9px;
+  background: transparent;
+  position: relative;
+}
+
+.paperclip-gold::after {
+  content: '';
+  position: absolute;
+  inset: 4px 2px 8px 2px;
+  border: 2px solid #b8860b;
+  border-radius: 6px;
+  border-bottom: none;
+}
+
+.clip-top-left {
+  top: -14px;
+  left: 24px;
+  transform: rotate(-12deg);
+}
+
+.clip-top-right {
+  top: -14px;
+  right: 28px;
+  transform: rotate(10deg);
+}
+
+/* 6. Vintage Dymo Embossed Label Tape & Tag */
+.scrapbook-dymo-label {
+  position: absolute;
+  bottom: 22px;
+  right: 40px;
+  background: #2a211b;
+  color: #fffaf0;
+  font-family: var(--font-sans);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  padding: 4px 12px;
+  border-radius: 2px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+  transform: rotate(-2deg);
+  pointer-events: none;
+  z-index: 9;
+  text-transform: uppercase;
+  border: 1px solid rgba(0,0,0,0.5);
+}
+
+.spread-2 .scrapbook-dymo-label {
+  right: auto;
+  left: 45px;
+  transform: rotate(2deg);
+}
+
+.spread-3 .scrapbook-dymo-label {
+  bottom: 18px;
+  right: 45px;
+  transform: rotate(-3deg);
+  background: #581818;
+}
+
+/* 7. Multi-Photo Polaroids Containers (Duo & Trio) */
 .scrapbook-card-backdrop {
   position: absolute;
   inset: 0;
@@ -449,9 +625,9 @@
 
 .scrapbook-backdrop-img {
   width: 100%;
-  max-width: 960px;
+  max-width: 1020px;
   height: 100%;
-  max-height: 560px;
+  max-height: 590px;
   object-fit: fill;
   filter: drop-shadow(0 16px 42px rgba(45, 25, 12, 0.22));
 }
@@ -461,47 +637,91 @@
   transform: translateY(20px) scale(0.96);
 }
 
-.scrapbook-polaroid-pair {
+/* Containers for multi-photo spreads */
+.scrapbook-polaroid-container {
   position: relative;
   width: 100%;
-  max-width: 580px;
-  height: 380px;
   margin: 0 auto;
   z-index: 4;
 }
 
+/* 2-Photo Duo Spread */
+.scrapbook-polaroid-container.is-duo {
+  max-width: 660px;
+  height: 410px;
+}
+
+.polaroid-duo-1, .polaroid-back {
+  top: 20px;
+  left: 6%;
+  right: auto;
+  z-index: 5;
+  width: clamp(235px, 32vw, 285px);
+  transform: rotate(var(--rot, -4.5deg));
+  transition: opacity 0.9s ease 0.15s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.polaroid-duo-2, .polaroid-front {
+  top: 52px;
+  left: 50%;
+  right: auto;
+  z-index: 6;
+  width: clamp(235px, 32vw, 285px);
+  transform: rotate(var(--rot, 3.5deg));
+  transition: opacity 0.95s ease 0.25s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+/* 3-Photo Trio Spread (Balanced 3-column positioning without translateX bugs) */
+.scrapbook-polaroid-container.is-trio {
+  max-width: 860px;
+  height: 440px;
+}
+
+.polaroid-trio-1 {
+  top: 32px;
+  left: 2%;
+  right: auto;
+  z-index: 5;
+  width: clamp(210px, 26vw, 255px);
+  transform: rotate(var(--rot, -6deg));
+  transition: opacity 0.9s ease 0.1s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.polaroid-trio-2 {
+  top: 60px;
+  left: 35.5%;
+  right: auto;
+  z-index: 7;
+  width: clamp(215px, 27vw, 260px);
+  transform: rotate(var(--rot, 2.5deg));
+  transition: opacity 0.95s ease 0.2s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.polaroid-trio-3 {
+  top: 25px;
+  left: 68.5%;
+  right: auto;
+  z-index: 6;
+  width: clamp(210px, 26vw, 255px);
+  transform: rotate(var(--rot, -3.5deg));
+  transition: opacity 1s ease 0.3s, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+/* Common Polaroid Card Base */
 .scrapbook-polaroid {
   position: absolute;
-  width: clamp(230px, 34vw, 290px);
   background: #ffffff;
-  padding: 12px 12px 36px;
+  padding: 11px 11px 34px;
   border-radius: 2px;
-  box-shadow: 0 16px 38px rgba(35, 20, 10, 0.2);
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.35s ease, z-index 0.2s;
+  box-shadow: 0 16px 36px rgba(35, 20, 10, 0.22);
   cursor: pointer;
   will-change: transform;
 }
 
-.polaroid-back {
-  top: 15px;
-  left: 8%;
-  z-index: 5;
-  transform: rotate(var(--rot, -4deg));
-  transition: opacity 0.9s ease 0.15s, transform 0.9s cubic-bezier(0.34, 1.4, 0.64, 1) 0.15s, box-shadow 0.35s ease;
-}
-
-.polaroid-front {
-  top: 45px;
-  right: 8%;
-  z-index: 6;
-  transform: rotate(var(--rot, 3.5deg));
-  transition: opacity 0.95s ease 0.25s, transform 0.95s cubic-bezier(0.34, 1.4, 0.64, 1) 0.25s, box-shadow 0.35s ease;
-}
-
 .scrapbook-polaroid:hover {
-  transform: scale(1.06) rotate(0deg) translateZ(30px) !important;
-  box-shadow: 0 24px 50px rgba(35, 20, 10, 0.32);
-  z-index: 20 !important;
+  transform: scale(1.08) rotate(0deg) translateZ(35px) !important;
+  box-shadow: 0 28px 56px rgba(35, 20, 10, 0.36) !important;
+  z-index: 30 !important;
 }
 
 /* Polaroid Bottom Chin Handwritten Quote */
@@ -511,25 +731,25 @@
   left: 0;
   right: 0;
   text-align: center;
-  padding: 0 10px;
+  padding: 0 8px;
   pointer-events: none;
 }
 
 .chin-quote {
   font-family: var(--font-handwriting);
-  font-size: 1.15rem;
+  font-size: 1.08rem;
   color: #3b2a1a;
   font-weight: 600;
   letter-spacing: 0.2px;
   line-height: 1;
 }
 
-/* 5. Scrapbook Washi Tape Strips */
+/* 8. Scrapbook Washi Tape Strips (Rich Variations) */
 .scrapbook-washi-tape {
   position: absolute;
   pointer-events: none;
   z-index: 10;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
   backdrop-filter: blur(1px);
 }
 
@@ -541,47 +761,74 @@
   height: 22px;
 }
 
+.washi-corner-top-left {
+  top: -10px;
+  left: -12px;
+  width: 75px;
+  height: 22px;
+  transform: rotate(-30deg);
+}
+
 .washi-corner-bottom-left {
   bottom: -10px;
   left: -14px;
-  width: 80px;
-  height: 24px;
+  width: 78px;
+  height: 22px;
   transform: rotate(-32deg);
 }
 
 .washi-corner-top-right {
-  top: -12px;
-  right: -14px;
-  width: 78px;
-  height: 24px;
+  top: -10px;
+  right: -12px;
+  width: 75px;
+  height: 22px;
   transform: rotate(28deg);
 }
 
+.washi-corner-bottom-right {
+  bottom: -10px;
+  right: -14px;
+  width: 78px;
+  height: 22px;
+  transform: rotate(30deg);
+}
+
 .washi-tape-dark {
-  background: rgba(85, 75, 70, 0.72);
+  background: rgba(85, 75, 70, 0.75);
   border-left: 2px dashed rgba(40, 35, 30, 0.4);
   border-right: 2px dashed rgba(40, 35, 30, 0.4);
 }
 
 .washi-sage {
-  background: rgba(155, 175, 160, 0.75);
+  background: rgba(155, 175, 160, 0.78);
   border-left: 2px dashed rgba(110, 135, 115, 0.45);
   border-right: 2px dashed rgba(110, 135, 115, 0.45);
 }
 
 .washi-kraft {
-  background: rgba(215, 185, 150, 0.75);
+  background: rgba(215, 185, 150, 0.78);
   border-left: 2px dashed rgba(160, 130, 95, 0.45);
   border-right: 2px dashed rgba(160, 130, 95, 0.45);
 }
 
-.washi-tape-sage {
-  background: rgba(160, 180, 165, 0.75);
-  border-left: 2px dashed rgba(110, 135, 115, 0.45);
-  border-right: 2px dashed rgba(110, 135, 115, 0.45);
+.washi-burgundy {
+  background: rgba(155, 60, 60, 0.75);
+  border-left: 2px dashed rgba(100, 30, 30, 0.5);
+  border-right: 2px dashed rgba(100, 30, 30, 0.5);
 }
 
-/* 6. Torn Paper Bottom Corner Accent */
+.washi-gold {
+  background: rgba(212, 175, 85, 0.75);
+  border-left: 2px dashed rgba(160, 120, 40, 0.5);
+  border-right: 2px dashed rgba(160, 120, 40, 0.5);
+}
+
+.washi-lace {
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.8), rgba(255,255,255,0.8) 4px, rgba(240,230,215,0.7) 4px, rgba(240,230,215,0.7) 8px);
+  border: 1px dashed rgba(180, 160, 130, 0.5);
+}
+
+/* 9. Torn Paper Bottom Corner Accent */
 .scrapbook-torn-corner {
   position: absolute;
   bottom: 0;
@@ -691,4 +938,178 @@
   color: #fff;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
+}
+
+/* ========================================================
+   RESPONSIVE SCRAPBOOK ADJUSTMENTS
+   ======================================================== */
+@media (max-width: 768px) {
+  .scrapbook-spread {
+    min-height: 640px;
+    padding: 20px 8px 35px;
+  }
+
+  .scrapbook-polaroid-container.is-trio {
+    height: 620px;
+  }
+
+  .polaroid-trio-1 {
+    top: 15px;
+    left: 4%;
+    width: 215px;
+    transform: rotate(var(--rot, -5deg));
+  }
+
+  .polaroid-trio-2 {
+    top: 195px;
+    left: auto;
+    right: 4%;
+    transform: rotate(var(--rot, 3.5deg));
+    width: 220px;
+    z-index: 7;
+  }
+
+  .polaroid-trio-3 {
+    top: 385px;
+    left: 6%;
+    right: auto;
+    width: 215px;
+    transform: rotate(var(--rot, -3deg));
+    z-index: 8;
+  }
+
+  .scrapbook-polaroid-container.is-duo {
+    height: 480px;
+  }
+
+  .polaroid-duo-1, .polaroid-back {
+    top: 20px;
+    left: 4%;
+    width: 225px;
+  }
+
+  .polaroid-duo-2, .polaroid-front {
+    top: 220px;
+    right: 4%;
+    left: auto;
+    width: 230px;
+  }
+
+  .scrapbook-memo-card {
+    width: 200px;
+    padding: 18px 14px;
+    font-size: 0.9rem;
+    top: 10px;
+  }
+
+  .memo-handwriting-quote {
+    font-size: 1.25rem;
+  }
+
+  .scrapbook-newsprint-clipping {
+    width: 220px;
+    padding: 12px 10px;
+  }
+
+  .scrapbook-stamp-cluster {
+    transform: scale(0.85);
+    top: 10px;
+    right: 15px;
+  }
+
+  .scrapbook-butterfly {
+    width: 42px;
+  }
+}
+
+
+/* ========================================================
+   AMBIENT FLOATING ANIMATIONS FOR SCRAPBOOK ELEMENTS
+   ======================================================== */
+.scrapbook-spread.is-revealed .scrapbook-newsprint-clipping {
+  animation: newsprintFloat 7s ease-in-out infinite alternate;
+}
+
+@keyframes newsprintFloat {
+  0% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-1.5deg) translateY(-8px); }
+  100% { transform: rotate(-4deg) translateY(6px); }
+}
+
+.spread-2.is-revealed .scrapbook-newsprint-clipping {
+  animation: newsprintFloatSpread2 7.5s ease-in-out infinite alternate;
+}
+
+@keyframes newsprintFloatSpread2 {
+  0% { transform: rotate(2.5deg) translateY(0); }
+  50% { transform: rotate(4deg) translateY(-8px); }
+  100% { transform: rotate(1.5deg) translateY(6px); }
+}
+
+.scrapbook-spread.is-revealed .scrapbook-stamp-cluster {
+  animation: stampClusterFloat 5.5s ease-in-out infinite alternate;
+}
+
+@keyframes stampClusterFloat {
+  0% { transform: rotate(2.5deg) translateY(0); }
+  50% { transform: rotate(4.5deg) translateY(-7px) scale(1.03); }
+  100% { transform: rotate(1deg) translateY(4px) scale(0.98); }
+}
+
+.spread-2.is-revealed .scrapbook-stamp-cluster {
+  animation: stampClusterFloatSpread2 6s ease-in-out infinite alternate;
+}
+
+@keyframes stampClusterFloatSpread2 {
+  0% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-1.2deg) translateY(-7px) scale(1.03); }
+  100% { transform: rotate(-4.2deg) translateY(5px) scale(0.98); }
+}
+
+.scrapbook-spread.is-revealed .scrapbook-memo-card {
+  animation: memoCardFloat 6.2s ease-in-out infinite alternate;
+}
+
+@keyframes memoCardFloat {
+  0% { transform: rotate(2.5deg) translateY(0); }
+  50% { transform: rotate(1deg) translateY(-6px); }
+  100% { transform: rotate(3.5deg) translateY(4px); }
+}
+
+.spread-2.is-revealed .scrapbook-memo-card {
+  animation: memoCardFloatSpread2 6.6s ease-in-out infinite alternate;
+}
+
+@keyframes memoCardFloatSpread2 {
+  0% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(-1.5deg) translateY(-6px); }
+  100% { transform: rotate(-4deg) translateY(4px); }
+}
+
+.scrapbook-spread.is-revealed .scrapbook-dymo-label {
+  animation: dymoLabelFloat 4.8s ease-in-out infinite alternate;
+}
+
+@keyframes dymoLabelFloat {
+  0% { transform: rotate(-2deg) translateY(0); }
+  100% { transform: rotate(-0.5deg) translateY(-6px); }
+}
+
+.spread-2.is-revealed .scrapbook-dymo-label {
+  animation: dymoLabelFloatSpread2 5.2s ease-in-out infinite alternate;
+}
+
+@keyframes dymoLabelFloatSpread2 {
+  0% { transform: rotate(2deg) translateY(0); }
+  100% { transform: rotate(3.5deg) translateY(-6px); }
+}
+
+.scrapbook-spread.is-revealed .scrapbook-dried-botanicals {
+  animation: botanicalsFloat 6.4s ease-in-out infinite alternate;
+}
+
+@keyframes botanicalsFloat {
+  0% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg) scale(1.02); }
+  100% { transform: translateY(5px) rotate(-1.5deg) scale(0.99); }
 }

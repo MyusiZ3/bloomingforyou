@@ -45,43 +45,76 @@ const CONFIG = {
     signature: "Pacarmu yang paling beruntung ❤️",
   },
 
-  // Foto Kenangan Asli dari folder Moments (Natural & Real)
+  // Foto Kenangan Asli dari folder Moments (Multi-Photo Spreads)
   polaroids: [
+    // Spread 1 (Trio - 3 Photos)
     {
-      id: "first-meet",
-      chapter: "Chapter 01",
-      title: "Awal Banget Ketemu",
-      date: "Pertama Kali Kenal",
-      image: "assets/images/Moments/foto1.jpg",
-      caption: "Inget ga sih momen ini? Masih pada malu-malu tapi aslinya aku udah curi-curi pandang terus ke kamu haha. Liat tuh pose kedipmu, gemes banget!",
-      rotation: "-3deg"
+      id: "first-together",
+      spread: 1,
+      title: "First Pic Together",
+      image: "assets/images/Moments/first.jpg",
+      caption: "first pic together btw :3",
+      rotation: "-5.5deg"
     },
     {
-      id: "mutual-feelings",
-      chapter: "Chapter 02",
-      title: "Mulai Salting Sendiri",
-      date: "Saling Suka",
-      image: "assets/images/Moments/foto2.jpg",
-      caption: "Momen waktu kita udah sama-sama sadar kalau saling suka, tapi masih pada jaim. Pose dua jari andalanmu yang selalu lucu.",
+      id: "where-it-started",
+      spread: 1,
+      title: "Where It Started",
+      image: "assets/images/Moments/moment.jpg",
+      caption: "look where it all started...",
       rotation: "2.5deg"
     },
     {
-      id: "official-day",
-      chapter: "Chapter 03",
-      title: "Momen Kita Jadian",
-      date: "Hari Bahagia Kita",
-      image: "assets/images/Moments/foto3.jpg",
-      caption: "Hari paling bikin lega dan bahagia. Akhirnya resmi bisa manggil kamu pacar dan jalanin hari-hari bareng kamu.",
-      rotation: "-2deg"
+      id: "pretty-girl",
+      spread: 1,
+      title: "Pretty Girl Spotted",
+      image: "assets/images/Moments/cutee.jpg",
+      caption: "pretty girl spotted (*/ω＼*)",
+      rotation: "-3deg"
+    },
+
+    // Spread 2 (Duo - 2 Photos)
+    {
+      id: "favorite-us",
+      spread: 2,
+      title: "Favorite Us",
+      image: "assets/images/Moments/look at.jpg",
+      caption: "one of my favorite us",
+      rotation: "-4deg"
     },
     {
-      id: "random-nights",
-      chapter: "Chapter 04",
-      title: "Cerita Random Bareng Kamu",
-      date: "Momen Seru Kita",
-      image: "assets/images/Moments/foto4.jpg",
-      caption: "Walau fotonya rada remang-remang begini, tapi momen ngobrol ngalor-ngidul sama kamu itu selalu jadi hal paling seru yang ga pengen cepet selesai.",
-      rotation: "2.8deg"
+      id: "still-love-gurl",
+      spread: 2,
+      title: "Still Loving You",
+      image: "assets/images/Moments/stilllove.jpg",
+      caption: "yeah... i still love this gurll (〜￣▽￣)〜",
+      rotation: "3.5deg"
+    },
+
+    // Spread 3 (Trio - 3 Photos)
+    {
+      id: "replay-days",
+      spread: 3,
+      title: "Wish to Replay",
+      image: "assets/images/Moments/replay.jpg",
+      caption: "one of those days i wish i could replay 😘",
+      rotation: "-6deg"
+    },
+    {
+      id: "fav-view",
+      spread: 3,
+      title: "My Favorite View",
+      image: "assets/images/Moments/favv.jpg",
+      caption: "my favorite view",
+      rotation: "2.5deg"
+    },
+    {
+      id: "choose-you-again",
+      spread: 3,
+      title: "Choose You Again",
+      image: "assets/images/Moments/keep.jpg",
+      caption: "and i'd choose you all over again.",
+      rotation: "-2deg"
     }
   ],
 
@@ -97,4 +130,3 @@ const CONFIG = {
 if (typeof window !== 'undefined') {
   window.CONFIG = CONFIG;
 }
-

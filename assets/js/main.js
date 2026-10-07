@@ -291,63 +291,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Vintage Envelope Unsealing ---
+  // --- Vintage Envelope Unsealing (Custom SFX) ---
+  let paperSlideAudio = new Audio('assets/audio/paper_slide_sfx.mp3');
+  paperSlideAudio.preload = 'auto';
+
   function playPaperSound() {
     try {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (!AudioCtx) return;
-      const ctx = new AudioCtx();
-
-      // 1. Paper rustling texture synthesis
-      const bufferSize = Math.floor(ctx.sampleRate * 0.55);
-      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const data = buffer.getChannelData(0);
-      for (let i = 0; i < bufferSize; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.28));
+      if (!paperSlideAudio) {
+        paperSlideAudio = new Audio('assets/audio/paper_slide_sfx.mp3');
       }
-
-      const noiseSource = ctx.createBufferSource();
-      noiseSource.buffer = buffer;
-
-      // Bandpass filter to sculpt crisp paper friction
-      const bandpass = ctx.createBiquadFilter();
-      bandpass.type = 'bandpass';
-      bandpass.frequency.setValueAtTime(2200, ctx.currentTime);
-      bandpass.frequency.exponentialRampToValueAtTime(1400, ctx.currentTime + 0.45);
-      bandpass.Q.setValueAtTime(2.2, ctx.currentTime);
-
-      // Highpass to eliminate low rumble
-      const highpass = ctx.createBiquadFilter();
-      highpass.type = 'highpass';
-      highpass.frequency.setValueAtTime(700, ctx.currentTime);
-
-      const gainNode = ctx.createGain();
-      gainNode.gain.setValueAtTime(0.01, ctx.currentTime);
-      gainNode.gain.linearRampToValueAtTime(0.35, ctx.currentTime + 0.04);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.52);
-
-      noiseSource.connect(bandpass);
-      bandpass.connect(highpass);
-      highpass.connect(gainNode);
-      gainNode.connect(ctx.destination);
-
-      noiseSource.start();
-      noiseSource.stop(ctx.currentTime + 0.55);
-
-      // 2. Subtle wax seal unseal snap
-      const snapOsc = ctx.createOscillator();
-      const snapGain = ctx.createGain();
-      snapOsc.type = 'triangle';
-      snapOsc.frequency.setValueAtTime(320, ctx.currentTime);
-      snapOsc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.08);
-
-      snapGain.gain.setValueAtTime(0.22, ctx.currentTime);
-      snapGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.09);
-
-      snapOsc.connect(snapGain);
-      snapGain.connect(ctx.destination);
-      snapOsc.start();
-      snapOsc.stop(ctx.currentTime + 0.095);
+      paperSlideAudio.volume = 0.85;
+      paperSlideAudio.currentTime = 0;
+      paperSlideAudio.play().catch(() => {});
     } catch (_) {}
   }
 
@@ -852,9 +807,59 @@ document.addEventListener('DOMContentLoaded', () => {
         // Swap top header: hide initial, reveal floating mysterious gift title above the box
         if (giftboxTitleWrap) giftboxTitleWrap.classList.add('hidden');
         if (giftFloatingReveal) {
+          const titleEl = giftFloatingReveal.querySelector('.gift-floating-title');
+          const descEl = giftFloatingReveal.querySelector('.gift-floating-desc');
+
+          // Step 1: Initial playful teaser text
+          if (titleEl) {
+            titleEl.style.opacity = '1';
+            titleEl.style.transform = 'translateY(0)';
+            titleEl.innerHTML = 'Awwww you got me :3';
+          }
+          if (descEl) {
+            descEl.style.opacity = '1';
+            descEl.style.transform = 'translateY(0)';
+            descEl.innerHTML = 'aandddd.... ✨';
+          }
+
           giftFloatingReveal.classList.remove('hidden', 'is-revealed');
           void giftFloatingReveal.offsetWidth; // Force reflow
           giftFloatingReveal.classList.add('is-revealed');
+
+          // Step 2: Smooth transition to the mysterious gift arrival reveal
+          setTimeout(() => {
+            if (titleEl) {
+              titleEl.style.transition = 'opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+              titleEl.style.opacity = '0';
+              titleEl.style.transform = 'translateY(-12px)';
+            }
+            if (descEl) {
+              descEl.style.transition = 'opacity 0.45s cubic-bezier(0.4, 0, 0.2, 1), transform 0.45s cubic-bezier(0.4, 0, 0.2, 1)';
+              descEl.style.opacity = '0';
+              descEl.style.transform = 'translateY(-12px)';
+            }
+
+            setTimeout(() => {
+              if (titleEl) {
+                titleEl.innerHTML = 'Your Gift is Arriving Soon <span class="gift-heart">♡</span>';
+                titleEl.style.transition = 'none';
+                titleEl.style.transform = 'translateY(16px)';
+                void titleEl.offsetWidth; // Force reflow
+                titleEl.style.transition = 'opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                titleEl.style.opacity = '1';
+                titleEl.style.transform = 'translateY(0)';
+              }
+              if (descEl) {
+                descEl.innerHTML = 'You Got a Mysterious Gift! ✨';
+                descEl.style.transition = 'none';
+                descEl.style.transform = 'translateY(16px)';
+                void descEl.offsetWidth; // Force reflow
+                descEl.style.transition = 'opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1)';
+                descEl.style.opacity = '1';
+                descEl.style.transform = 'translateY(0)';
+              }
+            }, 450);
+          }, 2400);
         }
 
         playBoxPopSound();
@@ -889,38 +894,108 @@ document.addEventListener('DOMContentLoaded', () => {
       "it's up to you how far you'll go.",
       "sometime ever, sometime never.",
       "every little moment with you.",
-      "still cute tho. unfortunately :3"
+      "still cute tho. unfortunately :3",
+      "my favorite smile in the whole world.",
+      "where every chapter begins ♡",
+      "falling for you in every season."
     ];
 
-    const memoNotes = [
+    // Rich spread decorations
+    const spreadConfigs = [
       {
-        quote: "Sometime ever, <br><em>sometime never.</em>",
-        subquote: "Don't be afraid to be unique.",
-        tapeColor: "washi-tape-dark"
+        memo: {
+          quote: "Sometime ever, <br><em>sometime never.</em>",
+          subquote: "Don't be afraid to be unique.",
+          tapeColor: "washi-tape-dark",
+          clip: "clip-top-left"
+        },
+        flowers: {
+          primary: "assets/images/flowersfull/blossom-7.webp",
+          secondary: "assets/images/flowersfull/toss-pansy.webp",
+          butterfly: "assets/images/flowersfull/butterfly-rose.webp"
+        },
+        stamps: [
+          { header: "AIR MAIL", art: "✦", footer: "25¢ LOVE", rot: "-4deg" },
+          { header: "Bandoeng", art: "♡", footer: "VINTAGE", rot: "3deg" }
+        ],
+        label: "FAVORITE MEMORIES ♡"
       },
       {
-        quote: "You are my favourite <br><em>chapter in every story.</em>",
-        subquote: "Always cherish you, always. ♡",
-        tapeColor: "washi-tape-sage"
+        memo: {
+          quote: "You are my favourite <br><em>chapter in every story.</em>",
+          subquote: "Always cherish you, always. ♡",
+          tapeColor: "washi-tape-sage",
+          clip: "clip-top-right"
+        },
+        flowers: {
+          primary: "assets/images/flowersfull/blossom-9.webp",
+          secondary: "assets/images/flowersfull/toss-fern.webp",
+          butterfly: "assets/images/flowersfull/butterfly-yellow.webp"
+        },
+        stamps: [
+          { header: "SPECIAL", art: "✿", footer: "ROMANCE", rot: "2deg" }
+        ],
+        label: "CHERISH EVERY MOMENT ✦"
+      },
+      {
+        memo: {
+          quote: "Look what we’ve made ♡ <br><em>just a bunch of moments.</em>",
+          subquote: "That became something so special.",
+          tapeColor: "washi-burgundy",
+          clip: "clip-top-right"
+        },
+        flowers: {
+          primary: "assets/images/flowersfull/blossom-3.webp",
+          secondary: "assets/images/flowersfull/toss-poppy.webp",
+          butterfly: "assets/images/flowersfull/butterfly-coral.webp"
+        },
+        stamps: [
+          { header: "ROYAL POST", art: "❦", footer: "ETERNAL", rot: "-3deg" },
+          { header: "SEASONS", art: "✦", footer: "10.02.26", rot: "4deg" }
+        ],
+        label: "OUR SWEET STORY ♡"
       }
     ];
 
-    const driedFlowers = [
-      { primary: "assets/images/flowersfull/blossom-7.webp", secondary: "assets/images/flowersfull/toss-pansy.webp" },
-      { primary: "assets/images/flowersfull/blossom-9.webp", secondary: "assets/images/flowersfull/toss-fern.webp" }
+    const washiStyles = [
+      { pos: 'washi-corner-top-left', color: 'washi-sage' },
+      { pos: 'washi-corner-top-right', color: 'washi-lace' },
+      { pos: 'washi-corner-bottom-right', color: 'washi-kraft' },
+      { pos: 'washi-corner-bottom-left', color: 'washi-burgundy' },
+      { pos: 'washi-corner-top-left', color: 'washi-gold' }
     ];
 
+    // Group polaroids dynamically by spread property
     const items = cfg.polaroids;
-    for (let s = 0; s < items.length; s += 2) {
-      const spreadIdx = Math.floor(s / 2);
+    const spreadsMap = new Map();
+
+    items.forEach((item, idx) => {
+      const spreadNum = item.spread || (Math.floor(idx / 2) + 1);
+      if (!spreadsMap.has(spreadNum)) {
+        spreadsMap.set(spreadNum, []);
+      }
+      spreadsMap.get(spreadNum).push(item);
+    });
+
+    let spreadIdx = 0;
+    spreadsMap.forEach((spreadItems, spreadNum) => {
       const spread = document.createElement('div');
       spread.className = `scrapbook-spread spread-${spreadIdx + 1}`;
 
-      const memo = memoNotes[spreadIdx % memoNotes.length];
-      const flower = driedFlowers[spreadIdx % driedFlowers.length];
+      const deco = spreadConfigs[spreadIdx % spreadConfigs.length];
+      const isTrio = spreadItems.length >= 3;
+
+      // Stamp cluster markup
+      const stampsHtml = deco.stamps.map(s => `
+        <div class="vintage-post-stamp" style="--stamp-rot: ${s.rot}">
+          <div class="stamp-mini-header">${s.header}</div>
+          <div class="stamp-mini-art">${s.art}</div>
+          <div class="stamp-mini-footer">${s.footer}</div>
+        </div>
+      `).join('');
 
       spread.innerHTML = `
-        <!-- Vintage Scrapbook Background Card (torn parchment with stamps & flowers) -->
+        <!-- Vintage Scrapbook Background Card -->
         <div class="scrapbook-card-backdrop" aria-hidden="true">
           <img src="assets/images/scratchbg.png" alt="Vintage Scrapbook Paper" class="scrapbook-backdrop-img">
         </div>
@@ -929,19 +1004,20 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="scrapbook-newsprint-clipping" aria-hidden="true">
           <div class="newsprint-inner">
             <div class="newsprint-headline">THE DAILY CHRONICLE</div>
-            <div class="newsprint-subhead">SARDAR PATEL VISITS STATES TO ABSORB REF...</div>
+            <div class="newsprint-subhead">SPECIAL COMMEMORATIVE EDITION - MEMORIES OF A LIFETIME</div>
             <div class="newsprint-columns">
-              <p>Addressing a meeting of representatives today, Sardar Patel emphasized the importance of peace and unity across all territories...</p>
               <p>Special moments captured in vintage frames, preserving memories that never fade with time...</p>
+              <p>A precious collection of sweet laughter, shared journeys, and endless smiles crafted with love...</p>
             </div>
           </div>
         </div>
 
-        <!-- Torn paper memo note -->
+        <!-- Torn paper memo note with paperclip -->
         <div class="scrapbook-memo-card" aria-hidden="true">
-          <div class="scrapbook-washi-tape washi-tape-top ${memo.tapeColor}"></div>
-          <div class="memo-handwriting-quote">${memo.quote}</div>
-          <div class="memo-handwriting-sub">${memo.subquote}</div>
+          <div class="scrapbook-washi-tape washi-tape-top ${deco.memo.tapeColor}"></div>
+          <div class="scrapbook-paperclip paperclip-gold ${deco.memo.clip}"></div>
+          <div class="memo-handwriting-quote">${deco.memo.quote}</div>
+          <div class="memo-handwriting-sub">${deco.memo.subquote}</div>
           <div class="memo-seal-stamp">
             <svg viewBox="0 0 40 40" width="24" height="24">
               <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2"/>
@@ -950,34 +1026,69 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <!-- Pressed dried botanical bouquet -->
-        <div class="scrapbook-dried-botanicals" aria-hidden="true">
-          <img src="${flower.primary}" alt="Pressed Daisy" class="dried-flower-img flower-primary">
-          <img src="${flower.secondary}" alt="Pressed Leaf" class="dried-flower-img flower-secondary">
+        <!-- Vintage Stamp Cluster -->
+        <div class="scrapbook-stamp-cluster" aria-hidden="true">
+          ${stampsHtml}
+          <div class="postal-cancellation-mark">
+            <div class="cancellation-wave"></div>
+            <div class="cancellation-text">AIR MAIL</div>
+            <div class="cancellation-wave"></div>
+          </div>
         </div>
 
-        <!-- Polaroid Cards Container in Spread -->
-        <div class="scrapbook-polaroid-pair"></div>
+        <!-- Pressed dried botanical bouquet & Butterfly -->
+        <div class="scrapbook-dried-botanicals" aria-hidden="true">
+          <img src="${deco.flowers.primary}" alt="Pressed Bloom" class="dried-flower-img flower-primary">
+          <img src="${deco.flowers.secondary}" alt="Pressed Leaf" class="dried-flower-img flower-secondary">
+          <img src="${deco.flowers.butterfly}" alt="Vintage Butterfly" class="scrapbook-butterfly">
+        </div>
+
+        <!-- Vintage Dymo Embossed Label -->
+        <div class="scrapbook-dymo-label" aria-hidden="true">${deco.label}</div>
+
+        <!-- Polaroid Cards Container in Spread (Duo / Trio) -->
+        <div class="scrapbook-polaroid-container ${isTrio ? 'is-trio' : 'is-duo'}"></div>
 
         <!-- Torn paper bottom corner accent -->
         <div class="scrapbook-torn-corner" aria-hidden="true"></div>
       `;
 
-      const pairContainer = spread.querySelector('.scrapbook-polaroid-pair');
+      const polaroidsContainer = spread.querySelector('.scrapbook-polaroid-container');
 
-      for (let i = s; i < Math.min(s + 2, items.length); i++) {
-        const item = items[i];
-        const isSecond = (i % 2 === 1);
+      spreadItems.forEach((item, itemIdx) => {
         const card = document.createElement('div');
-        card.className = `polaroid-item scrapbook-polaroid ${isSecond ? 'polaroid-front' : 'polaroid-back'}`;
-        card.style.setProperty('--rot', item.rotation || (isSecond ? '3.5deg' : '-4.5deg'));
+        let layoutClass = '';
+        let defaultRot = '0deg';
 
-        const washiPos = isSecond ? 'washi-corner-bottom-left' : 'washi-corner-top-right';
-        const washiColor = isSecond ? 'washi-sage' : 'washi-kraft';
-        const quoteText = quotes[i % quotes.length];
+        if (isTrio) {
+          if (itemIdx === 0) {
+            layoutClass = 'polaroid-trio-1';
+            defaultRot = '-6.5deg';
+          } else if (itemIdx === 1) {
+            layoutClass = 'polaroid-trio-2';
+            defaultRot = '2deg';
+          } else {
+            layoutClass = 'polaroid-trio-3';
+            defaultRot = '-3deg';
+          }
+        } else {
+          if (itemIdx === 0) {
+            layoutClass = 'polaroid-duo-1';
+            defaultRot = '-4.5deg';
+          } else {
+            layoutClass = 'polaroid-duo-2';
+            defaultRot = '3.5deg';
+          }
+        }
+
+        card.className = `polaroid-item scrapbook-polaroid ${layoutClass}`;
+        card.style.setProperty('--rot', item.rotation || defaultRot);
+
+        const washi = washiStyles[(spreadIdx * 3 + itemIdx) % washiStyles.length];
+        const quoteText = item.caption || quotes[(spreadIdx * 3 + itemIdx) % quotes.length];
 
         card.innerHTML = `
-          <div class="scrapbook-washi-tape ${washiPos} ${washiColor}" aria-hidden="true"></div>
+          <div class="scrapbook-washi-tape ${washi.pos} ${washi.color}" aria-hidden="true"></div>
           <div class="polaroid-img-box" id="box-${item.id}">
             <img src="${item.image}" alt="${item.title}" class="polaroid-photo-img" loading="lazy">
             <canvas class="scratch-canvas" id="canvas-${item.id}"></canvas>
@@ -987,16 +1098,17 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         `;
 
-        pairContainer.appendChild(card);
+        polaroidsContainer.appendChild(card);
 
         const canvas = card.querySelector('.scratch-canvas');
         const imgBox = card.querySelector('.polaroid-img-box');
 
         initScratchCard(canvas, imgBox, item, card);
-      }
+      });
 
       grid.appendChild(spread);
-    }
+      spreadIdx++;
+    });
   }
 
   function initScratchCard(canvas, imgBox, item, card) {
