@@ -1,0 +1,467 @@
+/* --- Birthday Cake & 22 Candles Blowout --- */
+.cake-stage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+  position: relative;
+  z-index: 10;
+  animation: fadeInStage 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cake-stage.stage-fade-out {
+  opacity: 0;
+  transform: scale(0.95) translateY(-25px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  pointer-events: none;
+}
+
+/* Dreamy Ambient Floating Particles */
+.cake-ambient-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cake-ambient-particles span {
+  position: absolute;
+  pointer-events: none;
+  font-size: 1.3rem;
+  opacity: 0.65;
+  filter: drop-shadow(0 2px 6px rgba(200, 140, 160, 0.3));
+  animation: floatDreamy 5s ease-in-out infinite alternate;
+}
+
+.cake-ambient-particles span:nth-child(2n) {
+  animation-duration: 6.5s;
+  animation-delay: -1.5s;
+}
+.cake-ambient-particles span:nth-child(3n) {
+  animation-duration: 7.5s;
+  animation-delay: -3s;
+}
+
+@keyframes floatDreamy {
+  0% { transform: translateY(0) rotate(-6deg) scale(0.95); opacity: 0.55; }
+  100% { transform: translateY(-16px) rotate(6deg) scale(1.1); opacity: 0.85; }
+}
+
+/* Cake Container (Clean & Cardless) */
+.cake-scene-card {
+  position: relative;
+  z-index: 20;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 10px 16px;
+  box-shadow: none;
+  max-width: 580px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cake-scene-card::before {
+  display: none;
+}
+
+.cake-header-wrap {
+  margin-bottom: 12px;
+  width: 100%;
+  text-align: center;
+}
+
+.cake-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3.4vw, 2.35rem);
+  font-weight: 700;
+  color: #2e1a0c;
+  margin: 0;
+  line-height: 1.35;
+}
+
+.cake-highlight-name {
+  font-family: var(--font-handwriting);
+  font-size: clamp(2.3rem, 4.2vw, 3.1rem);
+  font-weight: 700;
+  color: #a32e42;
+  display: inline-block;
+  text-shadow: 0 2px 10px rgba(255, 220, 228, 0.85);
+  margin-left: 6px;
+}
+
+/* --- Birthday Cake & 22 Candles --- */
+.birthday-cake-container {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 16px auto 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.cake-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 18px 40px rgba(45, 25, 12, 0.22));
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cake-image-wrap.cake-wrap-exit {
+  opacity: 0;
+  transform: scale(0.9) translateY(12px);
+  pointer-events: none;
+}
+
+.cake-custom-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Clown Reveal Character */
+.cake-clown-reveal {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  filter: drop-shadow(0 16px 36px rgba(45, 25, 12, 0.22));
+  animation: clownPopIn 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.clown-custom-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  animation: clownFloat 2.6s ease-in-out infinite alternate;
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.clown-custom-img.character-fade {
+  opacity: 0;
+  transform: scale(0.85) translateY(10px);
+}
+
+@keyframes clownPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes clownFloat {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+/* Floating Butterflies Beside Cake */
+.cake-butterfly {
+  position: absolute;
+  pointer-events: none;
+  z-index: 9;
+  filter: drop-shadow(0 6px 16px rgba(50, 30, 15, 0.25));
+  will-change: transform;
+}
+
+.cake-butterfly img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cake-butterfly-left {
+  top: 32%;
+  left: -8%;
+  width: clamp(52px, 12vw, 70px);
+  animation: butterflyFloatLeft 4.6s ease-in-out infinite alternate;
+  transform-origin: center center;
+}
+
+.cake-butterfly-right {
+  top: 40%;
+  right: -8%;
+  width: clamp(48px, 11vw, 66px);
+  animation: butterflyFloatRight 5.2s ease-in-out infinite alternate -1.8s;
+  transform-origin: center center;
+}
+
+.cake-butterfly-top-right {
+  top: 2%;
+  right: 6%;
+  width: clamp(38px, 8vw, 48px);
+  animation: butterflyFloatTop 4.2s ease-in-out infinite alternate -0.9s;
+  transform-origin: center center;
+}
+
+@keyframes butterflyFloatLeft {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-16deg) scale(1);
+  }
+  50% {
+    transform: translateY(-14px) translateX(8px) rotate(-6deg) scale(1.06);
+  }
+  100% {
+    transform: translateY(-5px) translateX(-5px) rotate(-22deg) scale(0.96);
+  }
+}
+
+@keyframes butterflyFloatRight {
+  0% {
+    transform: translateY(0) translateX(0) rotate(18deg) scale(1);
+  }
+  50% {
+    transform: translateY(-16px) translateX(-8px) rotate(26deg) scale(1.05);
+  }
+  100% {
+    transform: translateY(-6px) translateX(5px) rotate(12deg) scale(0.97);
+  }
+}
+
+@keyframes butterflyFloatTop {
+  0% {
+    transform: translateY(0) translateX(0) rotate(-8deg) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) translateX(6px) rotate(8deg) scale(1.08);
+  }
+  100% {
+    transform: translateY(-3px) translateX(-4px) rotate(-14deg) scale(0.95);
+  }
+}
+
+/* Individual Candle Flame Spot */
+.candle-flame-spot {
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate(-50%, -88%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  outline: none;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.candle-flame-left {
+  top: 7.0%;
+  left: 40.8%;
+}
+
+.candle-flame-right {
+  top: 6.9%;
+  left: 58.8%;
+}
+
+.candle-flame-spot:hover {
+  transform: translate(-50%, -92%) scale(1.15);
+}
+
+.candle-flame-spot:active {
+  transform: translate(-50%, -85%) scale(0.95);
+}
+
+/* Flame Glow Aura */
+.flame-glow-aura {
+  position: absolute;
+  top: -14px;
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 205, 60, 0.6) 0%, rgba(255, 130, 20, 0.25) 45%, transparent 75%);
+  filter: blur(5px);
+  animation: flameGlowFlicker 1.8s ease-in-out infinite alternate;
+  pointer-events: none;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+@keyframes flameGlowFlicker {
+  0% { transform: scale(0.92); opacity: 0.8; }
+  50% { transform: scale(1.08) translateX(1px); opacity: 1; }
+  100% { transform: scale(0.96) translateX(-1px); opacity: 0.85; }
+}
+
+/* Flame & Smoke Container */
+.flame-wrapper {
+  position: relative;
+  width: 28px;
+  height: 42px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+/* Classic Watercolor Flame Sprite */
+.classic-flame-img {
+  width: 26px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 0 10px rgba(255, 185, 45, 0.95)) drop-shadow(0 0 20px rgba(255, 120, 20, 0.5));
+  animation: flameGentleBreeze 2.4s ease-in-out infinite alternate;
+  transform-origin: bottom center;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: opacity 0.35s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes flameGentleBreeze {
+  0% {
+    transform: translateY(0) rotate(-2.5deg) scale(0.97);
+  }
+  50% {
+    transform: translateY(-2px) rotate(2.5deg) scale(1.04);
+  }
+  100% {
+    transform: translateY(1px) rotate(-1.5deg) scale(0.99);
+  }
+}
+
+/* Extinguished Candle State */
+.candle-flame-spot.is-extinguished .classic-flame-img {
+  opacity: 0 !important;
+  animation: none !important;
+  transform: scale(0.2) translateY(-12px) !important;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.candle-flame-spot.is-extinguished .flame-glow-aura {
+  opacity: 0 !important;
+  animation: none !important;
+  transform: scale(0.2) !important;
+  pointer-events: none;
+  visibility: hidden;
+  display: none !important;
+}
+
+/* Smoke Curl Animation */
+.smoke-puff {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background: rgba(220, 220, 220, 0.85);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
+.candle-flame-spot.is-extinguished .smoke-puff {
+  animation: smokeCurl 1.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes smokeCurl {
+  0% {
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(0) scale(0.8);
+    filter: blur(1px);
+  }
+  30% {
+    opacity: 0.7;
+    transform: translateX(-40%) translateY(-20px) scale(2.2);
+    filter: blur(2.5px);
+  }
+  70% {
+    opacity: 0.35;
+    transform: translateX(-60%) translateY(-45px) scale(3.5);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-45%) translateY(-65px) scale(4.8);
+    filter: blur(8px);
+  }
+}
+
+/* Proceed Button Area (Hidden - Transition is now seamless and automatic on candle blowout) */
+.cake-proceed-action {
+  display: none;
+}
+
+.btn-proceed-gift {
+  background: linear-gradient(135deg, #1f3b2c 0%, #14281e 100%);
+  color: #fbf7ee;
+  border: 1px solid var(--gold-antique);
+  padding: 13px 28px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(20, 40, 30, 0.28);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  animation: buttonPulseGlow 2.5s infinite ease-in-out;
+}
+
+.btn-proceed-gift:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(20, 40, 30, 0.4);
+  background: linear-gradient(135deg, #2a4e3b 0%, #1a3327 100%);
+}
+
+@keyframes buttonPulseGlow {
+  0%, 100% { box-shadow: 0 8px 25px rgba(20, 40, 30, 0.28); }
+  50% { box-shadow: 0 8px 30px rgba(183, 138, 72, 0.45); }
+}
+
+
+/* --- Reveal & Blooming Experience --- */
+.gift-stage {
+  position: relative;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 52px 20px 40px;
+  animation: fadeInStage 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 18px 20px 24px;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--ink-secondary);
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes fadeInStage {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

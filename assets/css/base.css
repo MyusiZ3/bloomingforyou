@@ -1,0 +1,192 @@
+/* ========================================================
+   BLOOMING FOR YOU - VINTAGE BOTANICAL STYLESHEET
+   Inspired by Victorian Herbarium, Botanical Art & flowerisblooming
+   ======================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-parchment: #f4eee2;
+  --bg-parchment-light: #fbf7ee;
+  --bg-parchment-dark: #e8decb;
+  --bg-envelope: #ebdcc4;
+  --bg-envelope-dark: #d8c4a4;
+  --bg-envelope-pocket: #dfcaa8;
+  
+  --forest-dark: #14281e;
+  --forest-medium: #1f3b2c;
+  --forest-soft: #2d5540;
+  --forest-light: #446f56;
+  
+  --gold-antique: #b78a48;
+  --gold-light: #dfb877;
+  --gold-glow: rgba(183, 138, 72, 0.25);
+  
+  --wax-red: #7c1818;
+  --wax-dark: #581010;
+  --wax-highlight: #a82a2a;
+  
+  --ink-primary: #221e1a;
+  --ink-secondary: #5a5148;
+  --ink-muted: #847a6f;
+  
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-editorial: 'Cormorant Garamond', 'Source Serif 4', Georgia, serif;
+  --font-handwriting: 'Dancing Script', 'Alex Brush', cursive;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(34, 30, 26, 0.08);
+  --shadow-md: 0 8px 24px rgba(34, 30, 26, 0.12);
+  --shadow-lg: 0 16px 40px rgba(20, 40, 30, 0.18);
+  --shadow-envelope: 0 20px 50px rgba(18, 30, 22, 0.28);
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  background-color: #f4eee2;
+}
+
+body {
+  font-family: var(--font-editorial);
+  background-color: #f4eee2;
+  background-image: radial-gradient(#dfd1b8 1.2px, transparent 1.2px);
+  background-size: 28px 28px;
+  background-repeat: repeat;
+  color: var(--ink-primary);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Falling Petals Canvas */
+#petals-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Helpers */
+.hidden {
+  display: none !important;
+}
+
+/* --- Floating Music Pill --- */
+.music-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(251, 247, 238, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--gold-antique);
+  padding: 8px 16px 8px 10px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-md);
+  z-index: 100;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+
+.music-pill:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.vinyl-disc {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #111;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: spinVinyl 5s linear infinite;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.vinyl-disc.paused {
+  animation-play-state: paused;
+}
+
+.vinyl-groove {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,0.25);
+}
+
+.vinyl-center {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--wax-red);
+  border: 2px solid #fff;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.music-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.music-title {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--forest-dark);
+  max-width: 170px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.music-status {
+  font-family: var(--font-handwriting);
+  font-size: 0.85rem;
+  color: var(--gold-antique);
+}
+
+.music-btn {
+  background: none;
+  border: none;
+  color: var(--forest-medium);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.music-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.music-btn:hover {
+  background: rgba(183, 138, 72, 0.15);
+}

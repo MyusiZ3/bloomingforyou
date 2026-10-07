@@ -1,0 +1,77 @@
+/* --- Heartfelt Letter (Custom Handwritten Vintage Parchment) --- */
+.letter-section {
+  margin-bottom: 75px;
+  position: relative;
+  z-index: 2;
+}
+
+.letter-image-wrapper {
+  position: relative;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.letter-custom-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 40px rgba(50, 30, 15, 0.2));
+  border-radius: 6px;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+}
+
+.letter-custom-img:hover {
+  transform: scale(1.015) translateY(-3px);
+  filter: drop-shadow(0 20px 48px rgba(50, 30, 15, 0.25));
+}
+
+/* Character mascot overlaid on top-left of letter */
+.letter-character-clingy {
+  position: absolute;
+  top: 114px;
+  left: 320px;
+  width: 160px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(50, 30, 15, 0.22));
+  animation: clingyFloat 3.6s ease-in-out infinite alternate;
+  transform-origin: center bottom;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes clingyFloat {
+  0% {
+    transform: translateY(0) rotate(-3deg) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) rotate(2deg) scale(1.03);
+  }
+  100% {
+    transform: translateY(-2px) rotate(-1deg) scale(1);
+  }
+}
+
+/* Character mascot overlaid on bottom-right of letter */
+.letter-character-img {
+  position: absolute;
+  bottom: 18%;
+  right: 15%;
+  width: 120px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(50, 30, 15, 0.22));
+  animation: characterFloat 3.2s ease-in-out infinite;
+  transform-origin: center bottom;
+  z-index: 5;
+  pointer-events: none;
+}
+
+@keyframes characterFloat {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50%       { transform: translateY(-10px) rotate(2deg); }
+}

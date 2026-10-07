@@ -1,0 +1,977 @@
+/* Side Botanical Accent Elements */
+.giftbox-botanical-flank {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: clamp(90px, 18vw, 160px);
+  height: clamp(200px, 38vw, 340px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flank-left {
+  left: clamp(-30px, -2vw, 20px);
+}
+
+.flank-right {
+  right: clamp(-30px, -2vw, 20px);
+}
+
+.gift-bot-item {
+  position: absolute;
+  display: block;
+  filter: drop-shadow(0 10px 22px rgba(45, 25, 12, 0.16));
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1), opacity 0.8s ease;
+  will-change: transform;
+}
+
+/* Left Flank Items */
+.bot-lavender-l {
+  top: -15px;
+  left: 0;
+  width: clamp(70px, 14vw, 110px);
+  transform: rotate(-18deg);
+  animation: botSwayLeft 4.2s ease-in-out infinite alternate;
+}
+
+.bot-chamomile-l {
+  bottom: -5px;
+  left: 20px;
+  width: clamp(75px, 15vw, 120px);
+  transform: rotate(14deg);
+  animation: botSwayRight 3.8s ease-in-out infinite alternate 0.5s;
+}
+
+.bot-breath-l {
+  top: 36%;
+  left: -15px;
+  width: clamp(65px, 12vw, 100px);
+  transform: rotate(-28deg);
+  opacity: 0.85;
+  animation: botSwayLeft 4.6s ease-in-out infinite alternate 1s;
+}
+
+/* Right Flank Items */
+.bot-cherry-r {
+  top: -12px;
+  right: 0;
+  width: clamp(80px, 15vw, 125px);
+  transform: rotate(18deg);
+  animation: botSwayRight 4.4s ease-in-out infinite alternate 0.3s;
+}
+
+.bot-daisy-r {
+  bottom: 0;
+  right: 15px;
+  width: clamp(72px, 14vw, 115px);
+  transform: rotate(-14deg);
+  animation: botSwayLeft 3.9s ease-in-out infinite alternate 0.8s;
+}
+
+.bot-sweetpea-r {
+  top: 38%;
+  right: -10px;
+  width: clamp(66px, 13vw, 105px);
+  transform: rotate(26deg);
+  opacity: 0.85;
+  animation: botSwayRight 4.8s ease-in-out infinite alternate 1.2s;
+}
+
+@keyframes botSwayLeft {
+  0% { transform: translateY(0) rotate(-16deg); }
+  100% { transform: translateY(-8px) rotate(-22deg) scale(1.03); }
+}
+
+@keyframes botSwayRight {
+  0% { transform: translateY(0) rotate(16deg); }
+  100% { transform: translateY(-8px) rotate(22deg) scale(1.03); }
+}
+
+.giftbox-wrapper {
+  position: relative;
+  width: clamp(320px, 75vw, 500px);
+  max-width: 520px;
+  aspect-ratio: 1.15 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transform-origin: bottom center;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  z-index: 2;
+}
+
+.giftbox-wrapper:hover:not(.is-shaking):not(.is-opened) {
+  transform: scale(1.04) translateY(-6px);
+}
+
+.giftbox-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 18px 38px rgba(45, 25, 12, 0.22));
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+  pointer-events: none;
+}
+
+/* Gentle idle breathing on closed box */
+.giftbox-wrapper:not(.is-shaking):not(.is-opened) .giftbox-close-img {
+  animation: giftboxIdleBreath 3.2s ease-in-out infinite alternate;
+}
+
+@keyframes giftboxIdleBreath {
+  0% { transform: translateY(0) scale(0.98); }
+  100% { transform: translateY(-6px) scale(1.02); }
+}
+
+/* 1. Vibration / Shaking Animation ("Geter-Geter") */
+.giftbox-wrapper.is-shaking {
+  animation: giftboxVibrate 0.85s cubic-bezier(0.36, 0.07, 0.19, 0.97) both !important;
+  pointer-events: none;
+}
+
+@keyframes giftboxVibrate {
+  0% { transform: scale(1) translate(0, 0) rotate(0deg); }
+  10% { transform: scale(1.04) translate(-7px, -2px) rotate(-5deg); }
+  20% { transform: scale(1.06) translate(8px, 2px) rotate(5deg); }
+  30% { transform: scale(1.08) translate(-9px, -3px) rotate(-6deg); }
+  40% { transform: scale(1.10) translate(10px, 3px) rotate(6deg); }
+  50% { transform: scale(1.12) translate(-10px, -2px) rotate(-7deg); }
+  60% { transform: scale(1.13) translate(10px, 2px) rotate(7deg); }
+  70% { transform: scale(1.14) translate(-8px, -3px) rotate(-5deg); }
+  80% { transform: scale(1.12) translate(7px, 2px) rotate(4deg); }
+  90% { transform: scale(1.08) translate(-4px, -1px) rotate(-2deg); }
+  100% { transform: scale(1.04) translate(0, -6px) rotate(0deg); }
+}
+
+/* 2. Box Opened State */
+.giftbox-wrapper.is-opened {
+  cursor: default;
+  transform: translateY(14px);
+}
+
+.giftbox-wrapper.is-opened .giftbox-close-img {
+  opacity: 0;
+  display: none;
+}
+
+.giftbox-wrapper.is-opened .giftbox-open-img {
+  display: block;
+  opacity: 1;
+  transform: scale(1.12);
+  animation: giftboxPopOpen 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes giftboxPopOpen {
+  0% {
+    opacity: 0;
+    transform: scale(0.7) translateY(20px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Ambient Sparkles around Gift Box */
+.giftbox-ambient-sparkles {
+  position: absolute;
+  inset: -15px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.g-sparkle {
+  position: absolute;
+  color: var(--gold-antique, #c49a45);
+  font-size: 1.1rem;
+  opacity: 0.7;
+  animation: gSparkleFloat 2.5s ease-in-out infinite alternate;
+}
+
+.g-s1 { top: 12%; left: 8%; animation-delay: 0s; }
+.g-s2 { top: 18%; right: 10%; animation-delay: 0.6s; font-size: 1.4rem; }
+.g-s3 { bottom: 20%; left: 12%; animation-delay: 1.2s; }
+.g-s4 { bottom: 25%; right: 14%; animation-delay: 1.8s; font-size: 1.3rem; }
+
+@keyframes gSparkleFloat {
+  0% { transform: translateY(0) scale(0.85); opacity: 0.3; }
+  100% { transform: translateY(-8px) scale(1.2); opacity: 0.9; }
+}
+
+/* 3. Floating Reveal Text ABOVE the Open Box */
+.gift-floating-reveal {
+  text-align: center;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 5;
+}
+
+.gift-floating-reveal.is-revealed .gift-floating-kicker {
+  opacity: 0;
+  animation: giftTextSpringUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+}
+
+.gift-floating-reveal.is-revealed .gift-floating-title {
+  opacity: 0;
+  animation: giftTextSpringUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.28s forwards;
+}
+
+.gift-floating-reveal.is-revealed .gift-floating-desc {
+  opacity: 0;
+  animation: giftTextSpringUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.48s forwards;
+}
+
+@keyframes giftTextSpringUp {
+  0% {
+    opacity: 0;
+    transform: translateY(32px) scale(0.86);
+  }
+  65% {
+    opacity: 1;
+    transform: translateY(-5px) scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.gift-floating-kicker {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  color: var(--gold-antique, #b78a48);
+  margin-bottom: 8px;
+}
+
+.gift-floating-title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 4.5vw, 2.35rem);
+  color: #2b1c13;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.gift-heart {
+  color: #c94a53;
+  display: inline-block;
+  font-style: normal;
+  animation: heartPulse 1.6s ease-in-out infinite alternate;
+}
+
+@keyframes heartPulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2); }
+}
+
+.gift-floating-desc {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.25rem;
+  color: #553c2c;
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* 4. Action Buttons Floating Below the Box */
+.giftbox-bottom-actions {
+  margin-top: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  justify-content: center;
+  animation: giftActionsFadeUp 0.8s ease 0.25s forwards;
+}
+
+@keyframes giftActionsFadeUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.btn-vintage-gold {
+  background: var(--gold-antique, #b78a48);
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 12px rgba(183, 138, 72, 0.3);
+}
+
+.btn-vintage-gold:hover {
+  background: #c99a53;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(183, 138, 72, 0.45);
+}
+
+.btn-vintage-outline {
+  background: rgba(255, 255, 255, 0.85);
+  color: #3b2618;
+  border: 1.5px solid rgba(125, 80, 60, 0.45);
+}
+
+.btn-vintage-outline:hover {
+  background: #fff;
+  border-color: #7d503c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(45, 25, 12, 0.12);
+}
+
+.btn-primary, .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.site-footer {
+  text-align: center;
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ink-muted);
+}
+
+
+/* --- Modals (Botanical Specimen & Lightbox) --- */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 30, 22, 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  animation: modalFade 0.3s ease;
+}
+
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  position: relative;
+  background: var(--bg-parchment-light);
+  border: 1px solid #dfd1b8;
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalScale 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScale {
+  from { transform: scale(0.9) translateY(20px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #d8c7ac;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--forest-dark);
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: var(--wax-red);
+  color: #fff;
+  border-color: var(--wax-red);
+}
+
+.modal-plate-container {
+  width: 100%;
+  max-height: 360px;
+  overflow: hidden;
+  background: #fbf7ee;
+  border-bottom: 1px solid #e2d2ba;
+}
+
+.modal-plate-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-content {
+  padding: 30px;
+}
+
+.specimen-badge {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-antique);
+}
+
+.modal-flower-name {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--forest-dark);
+  margin-top: 4px;
+}
+
+.modal-flower-common {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+}
+
+.modal-divider {
+  color: var(--gold-antique);
+  font-size: 0.9rem;
+  margin: 16px 0;
+  letter-spacing: 4px;
+}
+
+.meaning-box, .note-box {
+  margin-bottom: 16px;
+}
+
+.meaning-label, .note-label {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--forest-soft);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.meaning-text {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: var(--ink-primary);
+  font-style: italic;
+}
+
+.note-box {
+  background: rgba(183, 138, 72, 0.1);
+  border-left: 3px solid var(--gold-antique);
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+}
+
+.note-text {
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  color: var(--forest-dark);
+  line-height: 1.5;
+}
+
+
+/* LIGHTBOX POLAROID */
+.polaroid-lightbox-card {
+  max-width: 480px;
+  background: #ffffff;
+  padding: 16px 16px 24px;
+}
+
+.polaroid-tape-top {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 26px;
+  background: rgba(225, 205, 175, 0.8);
+  backdrop-filter: blur(2px);
+}
+
+.lightbox-img-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #f0e9dc;
+  overflow: hidden;
+}
+
+.lightbox-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lightbox-meta {
+  padding-top: 18px;
+  text-align: center;
+}
+
+.lightbox-chapter {
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--gold-antique);
+}
+
+.lightbox-title {
+  font-family: var(--font-handwriting);
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--forest-dark);
+  margin: 4px 0 10px;
+}
+
+.lightbox-caption {
+  font-family: var(--font-editorial);
+  font-size: 1.15rem;
+  color: var(--ink-secondary);
+  line-height: 1.5;
+}
+
+
+/* --- Responsive Optimizations (Mobile First) --- */
+@media (max-width: 640px) {
+  .envelope-stage {
+    padding: 16px 12px;
+  }
+
+  .envelope-scene-wrapper {
+    max-width: 360px;
+    gap: 10px;
+  }
+
+  .watercolor-envelope-wrapper {
+    max-width: clamp(265px, 76vw, 310px);
+    margin: 8px auto;
+  }
+
+  .corner-top-left {
+    width: 64px;
+    top: -12px;
+    left: -12px;
+  }
+
+  .corner-bottom-left {
+    width: 60px;
+    bottom: -12px;
+    left: -12px;
+  }
+
+  .corner-top-right {
+    width: 44px;
+    top: 4px;
+    right: -8px;
+  }
+
+  .watercolor-wax-seal {
+    width: 54px;
+    height: 54px;
+  }
+
+  .env-paper-kicker {
+    font-size: 0.72rem;
+  }
+
+  .env-paper-name {
+    font-size: 1.55rem;
+  }
+
+  .env-paper-tagline {
+    font-size: 0.76rem;
+    margin-top: 2px;
+  }
+
+  .unseal-instruction {
+    font-size: 0.95rem;
+    margin-top: 8px;
+  }
+
+  /* Stage 2: Cake Responsive */
+  .cake-stage {
+    padding: 16px 12px;
+  }
+
+  .cake-scene-card {
+    padding: 6px 10px;
+    max-width: 340px;
+  }
+
+  .cake-title {
+    font-size: 1.35rem;
+  }
+
+  .cake-highlight-name {
+    font-size: 1.85rem;
+  }
+
+  .birthday-cake-container {
+    max-width: 285px;
+    margin: 8px auto 4px;
+  }
+
+  .cake-image-wrap {
+    max-width: 285px;
+  }
+
+  .cake-clown-reveal {
+    max-width: 255px;
+  }
+
+  .cake-butterfly-left {
+    width: 38px;
+    left: -5%;
+    top: 30%;
+  }
+
+  .cake-butterfly-right {
+    width: 34px;
+    right: -5%;
+    top: 38%;
+  }
+
+  .cake-butterfly-top-right {
+    width: 26px;
+    right: 2%;
+    top: 2%;
+  }
+
+  .flame-glow-aura {
+    width: 48px;
+    height: 48px;
+    top: -10px;
+  }
+
+  .cake-proceed-btn {
+    padding: 10px 22px;
+    font-size: 0.92rem;
+  }
+
+  /* Stage 3: Bouquet & Letter Responsive */
+  .envelope-container {
+    height: 270px;
+  }
+  
+  .label-name {
+    font-size: 1.7rem;
+  }
+  
+  .header-title {
+    font-size: 2.1rem;
+  }
+  
+  .header-title .highlight-name {
+    font-size: 2.6rem;
+  }
+  
+  .bouquet-composition {
+    height: 400px;
+    max-width: 340px;
+  }
+  
+  .bouquet-wrapper-back,
+  .bouquet-wrapper-front {
+    width: 220px;
+  }
+  
+  /* Responsive Foliage & Ferns */
+  .layer-fern-left { width: 95px; bottom: 175px; left: 50%; margin-left: -85px; }
+  .layer-fern-right { width: 95px; bottom: 170px; left: 50%; margin-left: 5px; }
+
+  /* Responsive 17 Flower Layers */
+  .layer-deep-left { width: 85px; bottom: 140px; left: 50%; margin-left: -98px; }
+  .layer-deep-center-left { width: 90px; bottom: 150px; left: 50%; margin-left: -62px; }
+  .layer-deep-center { width: 105px; bottom: 160px; left: 50%; margin-left: -52.5px; }
+  .layer-deep-center-right { width: 90px; bottom: 150px; left: 50%; margin-left: -22px; }
+  .layer-deep-right { width: 85px; bottom: 140px; left: 50%; margin-left: 12px; }
+
+  .layer-mid-far-left { width: 85px; bottom: 125px; left: 50%; margin-left: -85px; }
+  .layer-mid-left { width: 90px; bottom: 135px; left: 50%; margin-left: -58px; }
+  .layer-mid-center-star { width: 108px; bottom: 144px; left: 50%; margin-left: -54px; }
+  .layer-mid-right { width: 90px; bottom: 135px; left: 50%; margin-left: -26px; }
+  .layer-mid-far-right { width: 95px; bottom: 125px; left: 50%; margin-left: 0px; }
+
+  .layer-front-far-left { width: 90px; bottom: 112px; left: 50%; margin-left: -74px; }
+  .layer-front-left { width: 98px; bottom: 124px; left: 50%; margin-left: -52px; }
+  .layer-front-center-hero { width: 116px; bottom: 128px; left: 50%; margin-left: -58px; }
+  .layer-front-right { width: 98px; bottom: 124px; left: 50%; margin-left: -38px; }
+  .layer-front-far-right { width: 90px; bottom: 112px; left: 50%; margin-left: -8px; }
+
+  .layer-rim-left { width: 78px; bottom: 104px; left: 50%; margin-left: -46px; }
+  .layer-rim-right { width: 82px; bottom: 104px; left: 50%; margin-left: -24px; }
+
+  .card-butterfly {
+    width: 28px;
+  }
+  .butterfly-card-left { top: 14px; left: 14px; }
+  .butterfly-card-right { top: 18px; right: 14px; }
+
+  .card-meadow-foreground {
+    height: 50px;
+  }
+
+  .page-bottom-meadow-wrap {
+    height: 95px;
+  }
+
+  .parallax-flower {
+    width: 52px;
+    opacity: 0.55;
+  }
+  
+  .letter-character-clingy {
+    width: 78px;
+    top: -6px;
+    left: 0px;
+  }
+
+  .letter-character-img {
+    width: 75px;
+    bottom: 12%;
+    right: 8%;
+  }
+
+  .parchment-letter {
+    padding: 28px 18px;
+  }
+  
+  .letter-salutation {
+    font-size: 1.4rem;
+  }
+  
+  .letter-body p {
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  
+  .music-pill {
+    bottom: 16px;
+    right: 16px;
+    padding: 6px 12px 6px 8px;
+  }
+  
+  .curtain-panel {
+    width: 56vw;
+  }
+
+  .head-item {
+    width: calc(var(--base-size, 460px) * 0.88) !important;
+    height: calc(var(--base-size, 460px) * 0.88) !important;
+  }
+
+  .curtain-center-lock {
+    transform: translate(-50%, -50%) scale(0.85);
+  }
+
+  .padlock-note-card {
+    padding: 8px 12px 10px;
+    width: 200px;
+  }
+
+  .key-btn {
+    width: 38px;
+    height: 30px;
+    font-size: 0.88rem;
+  }
+
+  .padlock-tofrom-from, .padlock-tofrom-to {
+    font-size: 1.2rem;
+  }
+
+  /* Vintage Scrapbook Responsive */
+  .vintage-scrapbook-board {
+    gap: 45px;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .scrapbook-spread {
+    padding: 24px 14px 28px;
+    min-height: 420px;
+  }
+
+  .scrapbook-newsprint-clipping {
+    width: 175px;
+    top: -10px;
+    left: 8px;
+    padding: 10px 8px;
+  }
+  .spread-2 .scrapbook-newsprint-clipping {
+    right: 8px;
+    top: -10px;
+  }
+  .newsprint-headline { font-size: 0.72rem; }
+  .newsprint-subhead { font-size: 0.44rem; margin-bottom: 4px; }
+  .newsprint-columns { font-size: 0.48rem; column-gap: 6px; }
+
+  .scrapbook-memo-card {
+    width: 155px;
+    top: 14px;
+    right: 8px;
+    padding: 18px 12px 14px;
+  }
+  .spread-2 .scrapbook-memo-card {
+    left: 8px;
+    top: 14px;
+  }
+  .memo-handwriting-quote { font-size: 1.15rem; margin-bottom: 6px; }
+  .memo-handwriting-sub { font-size: 0.78rem; }
+
+  .scrapbook-dried-botanicals {
+    bottom: 12px;
+    left: 12px;
+  }
+  .spread-2 .scrapbook-dried-botanicals {
+    right: 12px;
+  }
+  .flower-primary { width: 85px; }
+  .flower-secondary { width: 65px; bottom: -10px; left: 25px; }
+
+  .scrapbook-polaroid-pair {
+    max-width: 320px;
+    height: 330px;
+  }
+
+  .scrapbook-polaroid {
+    width: 195px;
+    padding: 8px 8px 26px;
+  }
+
+  .polaroid-back {
+    top: 30px;
+    left: 2%;
+  }
+
+  .polaroid-front {
+    top: 95px;
+    right: 2%;
+  }
+
+  .chin-quote {
+    font-size: 0.95rem;
+  }
+
+  .washi-corner-bottom-left {
+    width: 60px;
+    height: 18px;
+    bottom: -6px;
+    left: -10px;
+  }
+
+  .washi-corner-top-right {
+    width: 60px;
+    height: 18px;
+    top: -8px;
+    right: -10px;
+  }
+}
+
+@media (max-width: 420px) {
+  .watercolor-envelope-wrapper {
+    max-width: 260px;
+  }
+
+  .corner-top-left {
+    width: 54px;
+    top: -10px;
+    left: -10px;
+  }
+
+  .corner-bottom-left {
+    width: 50px;
+    bottom: -10px;
+    left: -10px;
+  }
+
+  .corner-top-right {
+    width: 38px;
+    right: -6px;
+  }
+
+  .env-paper-name {
+    font-size: 1.38rem;
+  }
+
+  .env-paper-tagline {
+    font-size: 0.7rem;
+  }
+
+  .birthday-cake-container,
+  .cake-image-wrap {
+    max-width: 250px;
+  }
+
+  .cake-title {
+    font-size: 1.2rem;
+  }
+
+  .cake-highlight-name {
+    font-size: 1.62rem;
+  }
+
+  .bouquet-composition {
+    height: 360px;
+    max-width: 290px;
+  }
+
+  .vintage-scrapbook-board {
+    max-width: 310px;
+  }
+
+  .scrapbook-spread {
+    padding: 18px 10px 22px;
+    min-height: 380px;
+  }
+
+  .scrapbook-polaroid-pair {
+    height: 300px;
+  }
+
+  .scrapbook-polaroid {
+    width: 175px;
+    padding: 6px 6px 22px;
+  }
+
+  .polaroid-back {
+    top: 25px;
+    left: 0;
+  }
+
+  .polaroid-front {
+    top: 85px;
+    right: 0;
+  }
+
+  .chin-quote {
+    font-size: 0.88rem;
+  }
+}
