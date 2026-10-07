@@ -52,7 +52,7 @@ const CONFIG = {
       id: "first-together",
       spread: 1,
       title: "First Pic Together",
-      image: "assets/images/Moments/first.jpg",
+      image: "assets/images/Moments/first.webp",
       caption: "first pic together btw :3",
       rotation: "-5.5deg"
     },
@@ -60,7 +60,7 @@ const CONFIG = {
       id: "where-it-started",
       spread: 1,
       title: "Where It Started",
-      image: "assets/images/Moments/moment.jpg",
+      image: "assets/images/Moments/moment.webp",
       caption: "look where it all started...",
       rotation: "2.5deg"
     },
@@ -68,7 +68,7 @@ const CONFIG = {
       id: "pretty-girl",
       spread: 1,
       title: "Pretty Girl Spotted",
-      image: "assets/images/Moments/cutee.jpg",
+      image: "assets/images/Moments/cutee.webp",
       caption: "pretty girl spotted (*/ω＼*)",
       rotation: "-3deg"
     },
@@ -78,7 +78,7 @@ const CONFIG = {
       id: "favorite-us",
       spread: 2,
       title: "Favorite Us",
-      image: "assets/images/Moments/look at.jpg",
+      image: "assets/images/Moments/look at.webp",
       caption: "one of my favorite us",
       rotation: "-4deg"
     },
@@ -86,7 +86,7 @@ const CONFIG = {
       id: "still-love-gurl",
       spread: 2,
       title: "Still Loving You",
-      image: "assets/images/Moments/stilllove.jpg",
+      image: "assets/images/Moments/stilllove.webp",
       caption: "yeah... i still love this gurll (〜￣▽￣)〜",
       rotation: "3.5deg"
     },
@@ -96,7 +96,7 @@ const CONFIG = {
       id: "replay-days",
       spread: 3,
       title: "Wish to Replay",
-      image: "assets/images/Moments/replay.jpg",
+      image: "assets/images/Moments/replay.webp",
       caption: "one of those days i wish i could replay 😘",
       rotation: "-6deg"
     },
@@ -104,7 +104,7 @@ const CONFIG = {
       id: "fav-view",
       spread: 3,
       title: "My Favorite View",
-      image: "assets/images/Moments/favv.jpg",
+      image: "assets/images/Moments/favv.webp",
       caption: "my favorite view",
       rotation: "2.5deg"
     },
@@ -112,7 +112,7 @@ const CONFIG = {
       id: "choose-you-again",
       spread: 3,
       title: "Choose You Again",
-      image: "assets/images/Moments/keep.jpg",
+      image: "assets/images/Moments/keep.webp",
       caption: "and i'd choose you all over again.",
       rotation: "-2deg"
     }

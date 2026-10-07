@@ -427,19 +427,19 @@ document.addEventListener('DOMContentLoaded', () => {
       // 3-Step Character Story Sequence
       const characterStory = [
         {
-          src: 'assets/images/character/clown.png',
+          src: 'assets/images/character/clown.webp',
           alt: 'Queen and Clown',
           title: 'a special day for <span class="cake-highlight-name">my little gurl...</span>',
           duration: 3000
         },
         {
-          src: 'assets/images/character/menunjuk.png',
+          src: 'assets/images/character/menunjuk.webp',
           alt: 'Look at Her',
           title: 'look at her... <span class="cake-highlight-name">she\'s 22 now</span>',
           duration: 3000
         },
         {
-          src: 'assets/images/character/short.png',
+          src: 'assets/images/character/short.webp',
           alt: 'Still Cute',
           title: 'still cute tho. <span class="cake-highlight-name">unfortunately :3...</span>',
           duration: 3000
@@ -997,7 +997,7 @@ document.addEventListener('DOMContentLoaded', () => {
       spread.innerHTML = `
         <!-- Vintage Scrapbook Background Card -->
         <div class="scrapbook-card-backdrop" aria-hidden="true">
-          <img src="assets/images/scratchbg.png" alt="Vintage Scrapbook Paper" class="scrapbook-backdrop-img">
+          <img src="assets/images/scratchbg.webp" alt="Vintage Scrapbook Paper" class="scrapbook-backdrop-img">
         </div>
 
         <!-- Newspaper print clipping collage layer -->

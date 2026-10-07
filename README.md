@@ -40,7 +40,7 @@ polaroids: [
     id: "first-together",
     spread: 1,
     title: "First Pic Together",
-    image: "assets/images/Moments/first.jpg",
+    image: "assets/images/Moments/first.webp",
     caption: "first pic together btw :3",
     rotation: "-5.5deg"
   },
