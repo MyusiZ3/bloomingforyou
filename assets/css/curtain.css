@@ -76,8 +76,8 @@
 
 .head-item {
   position: absolute;
-  width: var(--base-size, clamp(180px, 22vw, 300px));
-  height: var(--base-size, clamp(180px, 22vw, 300px));
+  width: var(--base-size, 200px);
+  height: var(--base-size, 200px);
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -89,27 +89,13 @@
 
 @media (max-width: 768px) {
   .curtain-panel {
-    width: 85vw;
+    width: 82vw;
   }
   .curtain-left {
-    left: -10vw;
+    left: -8vw;
   }
   .curtain-right {
-    right: -10vw;
-  }
-  .head-item {
-    width: clamp(160px, 40vw, 250px) !important;
-    height: clamp(160px, 40vw, 250px) !important;
-  }
-}
-
-@media (min-width: 1200px) {
-  .curtain-panel {
-    width: 66vw;
-  }
-  .head-item {
-    width: clamp(210px, 17vw, 340px) !important;
-    height: clamp(210px, 17vw, 340px) !important;
+    right: -8vw;
   }
 }
 
